@@ -1,0 +1,26 @@
+Bug1:
+    StudentWrapper(const std::string &id, const Student &student) {
+        this->id = id;
+        this->student = student;
+    }
+
+
+报错信息：
+error: constructor for 'StudentWrapper' must explicitly initialize the reference member 'student' StudentWrapper(const std::string &id, const Student &student) 
+ 
+
+错误原因：
+根据：
+class StudentWrapper {
+private:
+    const Student &student;
+    double score = 0.0;
+public:
+    const std::string id;
+得知，student 和 id 都是const ,是不可以赋值的，只能在创建的时候使用初始化列表初始化。
+
+解决方案：
+StudentWrapper(const std::string &id, const Student &student):id(id),student(student) {}
+
+
+
