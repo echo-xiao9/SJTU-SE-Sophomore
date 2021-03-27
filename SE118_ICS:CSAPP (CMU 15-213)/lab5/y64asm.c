@@ -590,6 +590,47 @@ parse_t parse_label(char **ptr, char **name)
  */
 
 
+
+
+// parse_line 思路
+// 三种返回值：
+// TYPE_COMM, TYPE_INS, TYPE_ERR
+// 目标：将字符串的指令编码为二进制的代码，即设置line的y64bin（code）,vmaddr(虚拟内存地址)，type  返回line->type
+// 传入参数
+
+// typedef struct line {
+//     type_t type;  /* TYPE_COMM: no y64bin, TYPE_INS: both y64bin and y64asm */
+//     bin_t y64bin;
+//     char *y64asm;
+//     struct line *next;
+// } line_t;
+
+// 其中y64asm 为对应的指令字符串 ，bin 为应该对应的二进制code
+
+// typedef struct bin {
+//     int64_t addr;
+//     byte_t codes[10];
+//     int bytes;  /* the size of line */
+// } bin_t;
+
+// line的分类：
+// 1. instruction
+// 	typedef enum { I_HALT, I_NOP, I_RRMOVQ, I_IRMOVQ, I_RMMOVQ, I_MRMOVQ,
+//     	I_ALU, I_JMP, I_CALL, I_RET, I_PUSHQ, I_POPQ, I_DIRECTIVE } itype_t;
+//  	所有的把icode ,ifunc作为bin.code[0], 除了前面两个，每条指令各自设置自己的	
+// 	bin.code[i]并判定是否是符合规范的parse_line。 其中push pop可以合并，rrmov和		alu	都是使用两个寄存器，合并；I_HALT, I_NOP , I_RET不设置其他合并。
+//  	 I_DIRECTIVE根据ifunc 设置各个参数。
+// 2. comment
+// 3. label
+
+// add_reloc : 向重定位表中增加元素，是不是只有加进去了，才能实现跳转。
+// I_IRMOVQ
+// I_JMP
+// D_DATA
+
+
+
+
 type_t parse_line(line_t *getLine)
 {
 /* when finish parse an instruction or lable, we still need to continue check 
@@ -612,6 +653,7 @@ type_t parse_line(line_t *getLine)
     regid_t rigA;
 	regid_t rigB;
 	bin_t bin;
+
     /* skip blank and check IS_END */
 	SKIP_BLANK(str);
 	if (IS_END(str) || IS_COMMENT(str)) {
@@ -626,10 +668,11 @@ type_t parse_line(line_t *getLine)
 			str = save_str;
 			if (parse_label(&str, &name) == PARSE_ERR) {
 				getLine->type = TYPE_ERR;
-				return getLine->type;
+				return getLine->type; 
+                //the default type is comment. So if it is a label, it returns TYPE_COM
 			}
 			if (add_symbol(name) < 0) { //the symbol exist
-				err_print("Dup symbol:%s", name); 
+				 err_print("Dup symbol:%s", name); 
 				getLine->type = TYPE_ERR;
 				return getLine->type;
 			}
@@ -670,7 +713,7 @@ type_t parse_line(line_t *getLine)
 						parse_delim(&str, ',') == PARSE_ERR ||
 						parse_reg(&str, &rigA)) {
 					getLine->type = TYPE_ERR;
-					return getLine->type;//思路同上
+					return getLine -> type;//思路同上
 				}
                 for (int i = 0; i < 8; i++) {
 		            bin.codes[i+2] = value & 0xFF;
@@ -692,6 +735,7 @@ type_t parse_line(line_t *getLine)
                     if (pt == PARSE_SYMBOL) {
 						add_reloc(name, &getLine->y64bin);
                         //add a new relocation to the relocation table
+                        //? don't need to be written ?
 					}else if(pt == PARSE_DIGIT){
                         for (int i = 0; i < 8; i++) {
 		                    bin.codes[i+2] = value & 0xFF;
@@ -787,16 +831,10 @@ type_t parse_line(line_t *getLine)
 						vmaddr += bytes;
 						break;
 					}
-				
 				default:
 					break;
 			}		
 		}
-	}
-    
-	SKIP_BLANK(str);
-	if (IS_COMMENT(str)) {
-		;
 	}
     return getLine->type;
 }
@@ -832,11 +870,11 @@ int assemble(FILE *in)
         line = (line_t *)malloc(sizeof(line_t)); // free in finit
         memset(line, '\0', sizeof(line_t));
 
-        line->type = TYPE_COMM;
+        line->type = TYPE_COMM; //默认值是comment
         line->y64asm = y64asm;
         line->next = NULL;
 
-        line_tail->next = line;
+        line_tail->next = line; //在尾部插入新line
         line_tail = line;
         lineno ++;
 
@@ -853,7 +891,6 @@ int assemble(FILE *in)
 			}
 		}
     }
-
 	lineno = -1;
     return 0;
 }
