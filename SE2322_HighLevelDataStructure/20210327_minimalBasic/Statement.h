@@ -19,51 +19,57 @@ public:
     int index;
     QString stmt;
     vector<Statement::var> vars;
-    Statement(int inputIndex, QString inputStmt,vector<Statement::var> &Vars);
+    Statement(int inputIndex, vector<Statement::var> &Vars);
     ~Statement();
-
 };
 
-class RemStmt: public Statement{
+
+class InputStmt: public Statement{
 public:
-    RemStmt(int inputIndex, QString  inputStmt,vector<Statement::var> &Vars);
+    InputStmt(int inputIndex, QString  varName1, int varVal1, vector<Statement::var> &Vars);
+    QString varName;
+    int varVal;
 };
 
 class LetStmt: public Statement{
-    QString var;
+    QString varName;
     Exp *rightExp;
 public:
     void  handleLetStmt();
-    LetStmt(int inputIndex, QString  inputStmt,vector<Statement::var> &Vars);
+    LetStmt(int InputIndex, QString VarName, QString expr,vector<Statement::var> &Vars);
+};
+
+class GotoStmt: public Statement{
+    int targetNum;
+public:
+    GotoStmt(int inputIndex, int targetLineNum,vector<Statement::var> &Vars);
+};
+
+class IfStmt: public Statement{
+private:
+    Exp *leftExp;
+    Exp *rightExp;
+
+public:
+     IfStmt(int inputIndex, QString  expr,  QString condition, QString expr1, int targetNum,vector<Statement::var> &Vars);
 };
 
 class PrintStmt: public Statement{
 public:
     Exp *rightExp;
-    int value=0;
-    PrintStmt(int inputIndex, QString  inputStmt,vector<Statement::var> &Vars);
+    PrintStmt(int inputIndex, QString exp, vector<Statement::var> &Vars);
 };
 
-class InputStmt: public Statement{
+class RemStmt: public Statement{
 public:
-    InputStmt(int inputIndex, QString  inputStmt,vector<Statement::var> &Vars);
-    QString variable;
+    RemStmt(int inputIndex, QString lineTmp, vector<Statement::var> &Vars);
 };
 
-class GotoStmt: public Statement{
-public:
-    GotoStmt(int inputIndex, QString  inputStmt,vector<Statement::var> &Vars);
-};
-class IfStmt: public Statement{
-public:
-    IfStmt(int inputIndex, QString  inputStmt,vector<Statement::var> &Vars);
-};
 
 class EndStmt: public Statement{
 public:
-    EndStmt(int inputIndex, QString  inputStmt,vector<Statement::var> &Vars);
+    EndStmt(int inputIndex, vector<Statement::var> &Vars);
 };
-
 
 
 

@@ -12,7 +12,7 @@ Exp::Exp(QString letexp)
 
 bool Exp::isOperator(char c)
 {
-    return (!isalpha(c) && !isdigit(c));
+return (!isalpha(c) && !isdigit(c));
 }
 
 int Exp::getPriority(char C)
