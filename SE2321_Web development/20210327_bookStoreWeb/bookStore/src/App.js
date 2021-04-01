@@ -8,7 +8,7 @@ import Carts from './pages/Cart/Cart';
 import Order from './pages/Order/Order';
 import Login from './pages/Login';
 import Book from './pages/Book/Book'
-
+import Administrator from './pages/Administrator'
 function App() {
   return (
     <>
@@ -21,6 +21,7 @@ function App() {
           <Route path='/Login' component={Login} />
           <Route path='/Book' component={Book} />
           <Route path='/Order' component={Order} />
+          <Route path ='/Administrator' component={Administrator}/>
         </Switch>
       </Router>
     </>

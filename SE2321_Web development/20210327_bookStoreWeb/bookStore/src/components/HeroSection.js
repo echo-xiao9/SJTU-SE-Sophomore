@@ -14,6 +14,7 @@ function HeroSection() {
           className='btns'
           buttonStyle='btn--outline'
           buttonSize='btn--large'
+          buttonLink='/Login'
         >
           LOG IN / REGISTER
         </Button>
@@ -22,6 +23,7 @@ function HeroSection() {
           buttonStyle='btn--primary'
           buttonSize='btn--large'
           onClick={console.log('hey')}
+          buttonLink='/'
         >
           About  Us <i className='far fa-play-circle' />
         </Button>

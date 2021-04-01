@@ -122,7 +122,7 @@ select {
     background-color: rgb(247, 247, 247)
 }
 
-input {
+input#grayInput {
     border: 1px solid rgba(0, 0, 0, 0.137);
     padding: 1vh;
     margin-bottom: 4vh;
@@ -176,7 +176,16 @@ a:hover {
     background-position-y: center
 }
 
-
+.portada #cartPortada{
+  width: auto;
+  height: 100%;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 20px;
+  /* background-image: url("https://m.media-amazon.com/images/S/aplus-media/vc/cab6b08a-dd8f-4534-b845-e33489e91240._CR75,0,300,300_PT0_SX300__.jpg"); */
+  background-position: bottom center;
+  background-image:'images/harryCover.jpg';
+  background-size: cover;
+}
 
 
 

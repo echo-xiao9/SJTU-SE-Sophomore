@@ -1,6 +1,5 @@
 import React from 'react';
 import './Book.css';
-import './openSans.css';
 import Button from '../../components/Button';
 import './w3.css';
 
@@ -50,7 +49,7 @@ and is wrapped around the whole page content, except for the footer in this exam
                     </p>
                   </div>
                   <div className="w3-col m4 w3-hide-small">
-                    <p><span className="w3-padding-large w3-right"><b>Comments &nbsp;</b> <span className="w3-tag">0</span></span></p>
+                  <button className="w3-button w3-white w3-border"><b>Comment</b></button>
                   </div>
                 </div>
               </div>
@@ -62,7 +61,7 @@ and is wrapped around the whole page content, except for the footer in this exam
               <img src="images/jk-rowling.jpg" alt="Norway" style={{ width: '100%' }} />
               <div className="w3-container">
                 <h3><b>Editorial Reviews</b></h3>
-                <h5>About the Author <span className="w3-opacity">J.K. Rowling</span></h5>
+                <h5>About the Author  J.K. Rowling </h5>
               </div>
               <div className="w3-container">
                 <h7>
@@ -80,10 +79,10 @@ with her family.
                 </h7>
                 <div className="w3-row">
                   <div className="w3-col m8 s12">
-                    <p><button className="w3-button w3-padding-large w3-white w3-border"><b> Follow »</b></button></p>
+                  <button className="w3-button w3-white w3-border"><b>Follow »</b></button>
                   </div>
                   <div className="w3-col m4 w3-hide-small">
-                    <p><span className="w3-padding-large w3-right"><b>Comments &nbsp;</b> <span className="w3-badge">2</span></span></p>
+                  <button className="w3-button w3-white "><b>Add to cart »</b></button>
                   </div>
                 </div>
               </div>
@@ -121,22 +120,22 @@ with her family.
                 <li className="w3-padding-16">
                   <img src="images/harry2.jpg" alt="Image" className="w3-left w3-margin-right" style={{ width: '50px' }} />
                   <span className="w3-large">Harry Potter: Illustrated Collection</span><br />
-                  <span>Jim Kay</span>
+                  <h5>Jim Kay</h5>
                 </li>
                 <li className="w3-padding-16">
                   <img src="images/harry2.jpg"alt="Image" className="w3-left w3-margin-right" style={{ width: '50px' }} />
                   <span className="w3-large">Ipsum</span><br />
-                  <span>Praes tinci sed</span>
+                  <h5>Praes tinci sed</h5>
                 </li>
                 <li className="w3-padding-16">
                   <img src="images/harry2.jpg" alt="Image" className="w3-left w3-margin-right" style={{ width: '50px' }} />
                   <span className="w3-large">Dorum</span><br />
-                  <span>Ultricies congue</span>
+                  <h5>Ultricies congue</h5>
                 </li>
                 <li className="w3-padding-16 w3-hide-medium w3-hide-small">
                   <img src="images/harry2.jpg" alt="Image" className="w3-left w3-margin-right" style={{ width: '50px' }} />
                   <span className="w3-large">Mingsum</span><br />
-                  <span>Lorem ipsum dipsum</span>
+                  <h5>Lorem ipsum dipsum</h5>
                 </li>
               </ul>
             </div>
@@ -147,11 +146,11 @@ with her family.
                 <h4>Tags</h4>
               </div>
               <div className="w3-container w3-white">
-                <p><span className="w3-tag w3-black w3-margin-bottom">Fiction</span> <span className="w3-tag w3-light-grey w3-small w3-margin-bottom">Adventure</span> <span className="w3-tag w3-light-grey w3-small w3-margin-bottom">Magic</span>
+                <span><h5 className="w3-tag w3-black w3-small w3-margin-bottom">Fiction</h5> <span className="w3-tag w3-light-grey w3-small w3-margin-bottom">Adventure</span> <span className="w3-tag w3-light-grey w3-small w3-margin-bottom">Magic</span>
                   <span className="w3-tag w3-light-grey w3-small w3-margin-bottom">Children's literature</span> <span className="w3-tag w3-light-grey w3-small w3-margin-bottom">Classics</span> <span className="w3-tag w3-light-grey w3-small w3-margin-bottom">England</span>
                   <span className="w3-tag w3-light-grey w3-small w3-margin-bottom">Ideas</span> 
                   
-                </p>
+                </span>
               </div>
             </div>
             {/* END Introduction Menu */}
@@ -164,7 +163,7 @@ with her family.
       <footer className="w3-container w3-dark-grey w3-padding-32 w3-margin-top">
         <button className="w3-button w3-black w3-disabled w3-padding-large w3-margin-bottom">Previous</button>
         <button className="w3-button w3-black w3-padding-large w3-margin-bottom">Next »</button>
-        <p> <a href="/Carts" target="_blank">返回购物车</a></p>
+
       </footer>
 
     </div>

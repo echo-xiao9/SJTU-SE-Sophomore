@@ -1,17 +1,28 @@
 body {
     background:   #ffffff;
     font-family: 'Roboto', sans-serif;
-
 }
 
-.login-box {
-    position: absolute; 
+#login {
+  position: absolute !important; 
 	top: 0;
 	left: 0;
 	right: 0;
 	bottom: 0;
     margin: auto;
-    
+    height: 500px;
+    width: 800px;
+    background:rgb(36, 36,36);
+    text-align: center;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.45), 0 3px 6px rgba(0, 0, 0, 0.45);
+}
+ .login-box #login{
+  position: absolute !important; 
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+    margin: auto;
     height: 500px;
     width: 800px;
     background:rgb(36, 36,36);

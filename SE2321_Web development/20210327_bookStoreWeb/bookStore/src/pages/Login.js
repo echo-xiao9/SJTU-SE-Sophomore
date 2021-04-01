@@ -5,10 +5,10 @@ import { Button } from '../components/Button';
 
 function SignUp() {
   return (
-    <div class="container">
+    <div class="container" id="login">
       <div class="row">
         <div class="col-lg-3 col-md-2"></div>
-        <div class="col-lg-6 col-md-8 login-box">
+        <div class="col-lg-6 col-md-8 login-box"id="login">
           <div class="col-lg-12 login-key">
             <i class="fa fa-key" aria-hidden="true"></i>
           </div>
@@ -28,12 +28,12 @@ function SignUp() {
                 </div>
 
                 <div class="col-lg-12 loginbttm">
-                  <div class="col-lg-6 login-btm login-text">
-                    {/* <!-- Error Message --> */}
-                  </div>
                   <Button buttonStyle='btn--outline'>Log in  </Button>
                   <Button buttonStyle='btn--outline'>Register</Button>
+                  <Button buttonStyle='btn--outline' buttonLink='/Administrator'>Administrator</Button>
                 </div>
+                
+                
               </form>
             </div>
           </div>

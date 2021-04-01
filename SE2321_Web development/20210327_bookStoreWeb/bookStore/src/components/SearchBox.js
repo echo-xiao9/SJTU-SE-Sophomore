@@ -5,12 +5,7 @@ function SearchBox() {
     return (
         <div className='input-areas'>
             <form>
-                <input
-                    className='footer-input'
-                    name='email'
-                    type='email'
-                    placeholder='Search for book'
-                />
+            <input type="text" id="grayInput" placeholder="Search for books!"/>
                 {/* <Button buttonStyle='btn--primary'>Subscribe</Button> */}
             </form>
         </div>
