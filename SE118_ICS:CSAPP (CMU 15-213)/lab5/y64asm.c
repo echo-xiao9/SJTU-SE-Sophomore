@@ -190,7 +190,6 @@ void add_reloc(char *name, bin_t *bin)
   while(!IS_END(s) && IS_BLANK(s))  \
     (s)++;    \
 } while(0);
-
 /* return value from different parse_xxx function */
 typedef enum { PARSE_ERR=-1, PARSE_REG, PARSE_DIGIT, PARSE_SYMBOL, 
     PARSE_MEM, PARSE_DELIM, PARSE_INSTR, PARSE_LABEL} parse_t;
