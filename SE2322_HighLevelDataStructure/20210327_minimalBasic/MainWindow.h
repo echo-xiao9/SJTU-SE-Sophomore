@@ -33,13 +33,6 @@ typedef QString cmd_t  ;
 typedef QString operator_t ;
 
 
-class Token{
-public:
-    QString name="";
-    int value=0;
-    token_t type= NOTYPE;
-};
-
 
 class MainWindow : public QMainWindow
 {
@@ -60,26 +53,28 @@ public:
     vector <string> command;
     map <int, Statement*> statements;
     vector<Statement::var>variables;
+    int curLine;
 
 private:
     //App *app;
     Ui::MainWindow *ui;
     int stmtNum(stmt_t Stmt);//return -1 if can't find or return the number in stmtTab.
     int cmdNum(cmd_t Cmd);//return -1 if can't find or return the number in cmdTab.
+
 private slots:
     void on_codeLineEdit_return();
     void clearAll();
     void on_loadButton_clicked();
     void loadStat();
+    void runApp();
 
     parse_t parse_line(QString &line);
     parse_t parse_stmt(QString &ptr, stmt_t& stmt);
     parse_t parse_cmd(QString &ptr, stmt_t& cmd);
     parse_t parse_num(QString &ptr, int & val);
     parse_t parse_var(QString &ptr, QString& name);
-    parse_t parse_exp(QString &ptr, vector<Token> &expInputVec);
+    parse_t parse_exp(QString &ptr, QString& exp);
     parse_t parse_delim(QString &ptr, QString& delim);
-
     stmt_t  *find_instr(QString name);
    bool  judge_infix(string str);
 

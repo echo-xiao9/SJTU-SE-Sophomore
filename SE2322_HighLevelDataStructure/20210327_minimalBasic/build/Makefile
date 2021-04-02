@@ -37,7 +37,7 @@ MOVE          = mv -f
 TAR           = tar -cf
 COMPRESS      = gzip -9f
 DISTNAME      = project1_minimal_basic1.0.0
-DISTDIR = /Users/kangyixiao/EchoFile/coding/project/20210327_minimalBasic/build/.tmp/project1_minimal_basic1.0.0
+DISTDIR = /Users/kangyixiao/EchoFile/coding/SJTU-SE/SE2322_HighLevelDataStructure/20210327_minimalBasic/build/.tmp/project1_minimal_basic1.0.0
 LINK          = /Library/Developer/CommandLineTools/usr/bin/clang++
 LFLAGS        = -stdlib=libc++ -headerpad_max_install_names $(EXPORT_ARCH_ARGS) -Wl,-syslibroot,/Library/Developer/CommandLineTools/SDKs/MacOSX11.0.sdk -mmacosx-version-min=10.12 -Wl,-rpath,@executable_path/../Frameworks -Wl,-rpath,/Users/kangyixiao/Qt/5.12.3/clang_64/lib
 LIBS          = $(SUBLIBS) -F/Users/kangyixiao/Qt/5.12.3/clang_64/lib -framework QtWidgets -framework QtGui -framework QtCore -framework DiskArbitration -framework IOKit -framework OpenGL -framework AGL   
@@ -251,7 +251,7 @@ EXPORT_QMAKE_XCODE_DEVELOPER_PATH = /Library/Developer/CommandLineTools
 EXPORT_VALID_ARCHS = x86_64
 EXPORT_ACTIVE_ARCHS = $(filter $(EXPORT_VALID_ARCHS), $(ARCHS))
 EXPORT_ARCH_ARGS = $(foreach arch, $(if $(EXPORT_ACTIVE_ARCHS), $(EXPORT_ACTIVE_ARCHS), $(EXPORT_VALID_ARCHS)), -arch $(arch))
-EXPORT__PRO_FILE_ = /Users/kangyixiao/EchoFile/coding/project/20210327_minimalBasic/project1_minimal_basic.pro
+EXPORT__PRO_FILE_ = /Users/kangyixiao/EchoFile/coding/SJTU-SE/SE2322_HighLevelDataStructure/20210327_minimalBasic/project1_minimal_basic.pro
 
 
 include /Users/kangyixiao/Qt/5.12.3/clang_64/mkspecs/features/mac/sdk.mk
@@ -699,7 +699,7 @@ moc_MainWindow.cpp: ../MainWindow.h \
 		/Users/kangyixiao/Qt/5.12.3/clang_64/lib/QtCore.framework/Headers/qdebug.h \
 		moc_predefs.h \
 		/Users/kangyixiao/Qt/5.12.3/clang_64/bin/moc
-	/Users/kangyixiao/Qt/5.12.3/clang_64/bin/moc $(DEFINES) --include /Users/kangyixiao/EchoFile/coding/project/20210327_minimalBasic/build/moc_predefs.h -I/Users/kangyixiao/Qt/5.12.3/clang_64/mkspecs/macx-clang -I/Users/kangyixiao/EchoFile/coding/project/20210327_minimalBasic -I/Users/kangyixiao/Qt/5.12.3/clang_64/lib/QtWidgets.framework/Headers -I/Users/kangyixiao/Qt/5.12.3/clang_64/lib/QtGui.framework/Headers -I/Users/kangyixiao/Qt/5.12.3/clang_64/lib/QtCore.framework/Headers -I. -I/Library/Developer/CommandLineTools/usr/include/c++/v1 -I/Library/Developer/CommandLineTools/usr/lib/clang/12.0.0/include -I/Library/Developer/CommandLineTools/SDKs/MacOSX11.0.sdk/usr/include -I/Library/Developer/CommandLineTools/usr/include -F/Users/kangyixiao/Qt/5.12.3/clang_64/lib ../MainWindow.h -o moc_MainWindow.cpp
+	/Users/kangyixiao/Qt/5.12.3/clang_64/bin/moc $(DEFINES) --include /Users/kangyixiao/EchoFile/coding/SJTU-SE/SE2322_HighLevelDataStructure/20210327_minimalBasic/build/moc_predefs.h -I/Users/kangyixiao/Qt/5.12.3/clang_64/mkspecs/macx-clang -I/Users/kangyixiao/EchoFile/coding/SJTU-SE/SE2322_HighLevelDataStructure/20210327_minimalBasic -I/Users/kangyixiao/Qt/5.12.3/clang_64/lib/QtWidgets.framework/Headers -I/Users/kangyixiao/Qt/5.12.3/clang_64/lib/QtGui.framework/Headers -I/Users/kangyixiao/Qt/5.12.3/clang_64/lib/QtCore.framework/Headers -I. -I/Library/Developer/CommandLineTools/usr/include/c++/v1 -I/Library/Developer/CommandLineTools/usr/lib/clang/12.0.0/include -I/Library/Developer/CommandLineTools/SDKs/MacOSX11.0.sdk/usr/include -I/Library/Developer/CommandLineTools/usr/include -F/Users/kangyixiao/Qt/5.12.3/clang_64/lib ../MainWindow.h -o moc_MainWindow.cpp
 
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:

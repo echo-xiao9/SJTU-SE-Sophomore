@@ -10,7 +10,8 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->clearButton,SIGNAL(clicked()),this,SLOT(clearAll()));
     connect(ui->codeLineEdit, SIGNAL(returnPressed()), this, SLOT(on_codeLineEdit_return()));
     connect(ui->loadButton,SIGNAL(clicked()),this,SLOT(on_loadButton_clicked()));
-
+    connect(ui->runButton, SIGNAL(clicked()), this, SLOT(runApp()));
+    curLine=0;
 }
 
 MainWindow::~MainWindow()
@@ -58,19 +59,30 @@ void MainWindow::on_loadButton_clicked(){
     updateCodeBrowser();
 }
 
-int MainWindow ::stmtNum(stmt_t Stmt){
-    for(int i=0;i<8;i++){
-        if(Stmt ==stmtTab[i]) return i;
+void MainWindow::loadStat(){
+    QString fileName = QFileDialog::getOpenFileName();
+    QFile file(fileName);
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text)){
+        qDebug()<<"can't open file"<<endl;
+         return;
     }
-    return -1;
+    statements.clear();//clear current statements before loading
+    QTextStream in(&file);
+    QString line ="";
+    while (!in.atEnd()) {
+            QString line = in.readLine();
+            parse_line(line);
+        }
+    file.close();
 }
 
-int MainWindow ::cmdNum(cmd_t Cmd){
-    for(int i=0;i<6;i++){
-        if(Cmd ==cmdTab[i]) return i;
-    }
-    return -1;
-}
+void MainWindow::runApp(){
+    curLine=0;
+    for(map<int, Statement*>::iterator it = statements.begin(); it != statements.end(); it++){
+        it->second->runSingleStmt();
+        }
+
+};
 
 parse_t MainWindow:: parse_line(QString &line){
     stmt_t stmtTmp;
@@ -80,16 +92,14 @@ parse_t MainWindow:: parse_line(QString &line){
     QString exp="";
     QString exp1="";
     QString delim="";
-    vector<Token> expInputVec;
-    vector<Token> expInputVec1;
-    expInputVec.clear();
-    expInputVec1.clear();
+    int index = -1; //index for condition in if
+    int indexThen = -1;    // index for THEN in if
     pair<map<int, Statement*>::iterator, bool> Insert_Pair;
     Statement *newStmt;
     int lineNum=0;
     int numTmp=0;
     // is command
-    if(IS_NUM(line)){ 
+    if(IS_NUM(line)){
         if(parse_num(lineTmp,lineNum)==PARSE_ERR||
                 parse_stmt(lineTmp, stmtTmp)==PARSE_ERR)
             return PARSE_ERR;
@@ -103,10 +113,10 @@ parse_t MainWindow:: parse_line(QString &line){
               newStmt = new InputStmt(lineNum, varName,numTmp, variables);
           break;
         case 1://"LET": //40 LET total = n1 + n2 + n3
-          if(parse_var(lineTmp, varName)==PARSE_ERR || 
-              parse_delim(lineTmp, delim)!=PARSE_CON||
+          if(parse_var(lineTmp, varName)==PARSE_ERR ||
+              parse_delim(lineTmp, delim)==PARSE_ERR||
               delim !="="||
-              parse_exp(lineTmp,expInputVec)==PARSE_ERR)
+              parse_exp(lineTmp,exp)==PARSE_ERR)
               return PARSE_ERR;
               newStmt=new LetStmt(lineNum, varName, exp, variables);
           break;
@@ -117,21 +127,31 @@ parse_t MainWindow:: parse_line(QString &line){
           break;
 
         case 3://"IF":  //IF condition THEN n
+            if(lineTmp.indexOf("<") !=-1){
+                index = lineTmp.indexOf("<");
+                delim = "<";
+            }else if(lineTmp.indexOf("=" )!= -1){
+                index =lineTmp.indexOf("=" );
+                delim = "=";
+            }else if(lineTmp.indexOf(">") != -1){
+                 index =lineTmp.indexOf(">" );
+                 delim = ">";
+            }
+            if(index == -1)return PARSE_ERR;
+           exp = lineTmp.mid(0,index);
+           exp = exp.trimmed();
+           indexThen = lineTmp.indexOf("THEN", 0,  Qt::CaseInsensitive);
+           exp1 = lineTmp.mid(index+1, indexThen-index-1);
+           exp1= exp1.trimmed();
+            // !!!!numTmp;
+           lineTmp = lineTmp.mid(indexThen+4);
+           if(parse_num(lineTmp, numTmp)==PARSE_ERR)return PARSE_ERR;
 
-          if(parse_exp(lineTmp, expInputVec)==PARSE_ERR ||
-          parse_exp(lineTmp,expInputVec)==PARSE_ERR||
-          parse_delim(lineTmp, delim)!=PARSE_CON||
-          parse_exp(lineTmp,expInputVec1)==PARSE_ERR||
-          parse_stmt(lineTmp, stmtTmp)==PARSE_ERR||
-          stmtTmp !="THEN"||
-          parse_num(lineTmp, numTmp)==PARSE_ERR
-          )return PARSE_ERR;
           newStmt = new IfStmt(lineNum, exp,  delim, exp1, numTmp,variables);
-
           break;
 
         case 4: //"PRINT": //PRINT 2 + 2
-          if(parse_exp(lineTmp, expInputVec)==PARSE_ERR)return PARSE_ERR;
+          if(parse_exp(lineTmp, exp)==PARSE_ERR)return PARSE_ERR;
           newStmt = new PrintStmt(lineNum,exp, variables);
           break;
 
@@ -140,7 +160,7 @@ parse_t MainWindow:: parse_line(QString &line){
           break;
 
         case 6: //"END":
-
+         newStmt = new EndStmt(lineNum,variables);
           break;
 
         default:
@@ -160,20 +180,20 @@ parse_t MainWindow:: parse_line(QString &line){
         switch (cmdNum(cmdTmp))
         {
         case 0://"RUN":
-          
+          runApp();
           break;
         case 1://"LOAD":
           loadStat();
           break;
         case 2://"LIST":
-          
+
           break;
         case 3: //"CLEAR":
         clearAll();
-          
+
           break;
         case 4: //"HELP":
-          
+
           break;
         case 5: //"QUIT":
           QApplication::quit();
@@ -186,6 +206,25 @@ parse_t MainWindow:: parse_line(QString &line){
 
 
 }
+
+
+
+int MainWindow ::stmtNum(stmt_t Stmt){
+
+    for(int i=0;i<8;i++){
+        if(Stmt ==stmtTab[i]) return i;
+    }
+    return -1;
+}
+
+int MainWindow ::cmdNum(cmd_t Cmd){
+    for(int i=0;i<6;i++){
+        if(Cmd ==cmdTab[i]) return i;
+    }
+    return -1;
+}
+
+
 parse_t MainWindow:: parse_stmt(QString &ptr, stmt_t& stmt){
     QString tmp=ptr;
     tmp = tmp.trimmed();
@@ -253,48 +292,17 @@ parse_t MainWindow:: parse_var(QString &ptr, QString& name){
     return PARSE_VAR;
 }
 
-parse_t MainWindow:: parse_exp(QString &ptr, vector<Token> &expInputVec){
+parse_t MainWindow:: parse_exp(QString &ptr, QString& exp){
     // the if case needs extra consideration.
-    // if a>b then 12 the if case is the only case in which the expression does not appear at the end
-    int index=-1;
-    int num=0;
-    QString tmp ;
-    QString oper;
-    QString expParseTab[]={"THEN", ">", "=","<" };
-    QString var="";
-    for(int i=0; i<4; i++){
-        index =ptr.indexOf(expParseTab[i] ,0 , Qt::CaseInsensitive);
-        if(index>0) {
-            tmp = ptr.mid(0, index);
-            ptr = ptr.mid(index);
-            break; //break the for?
-        }
-    }
-    if(index==-1) tmp=ptr;
-    tmp= tmp.trimmed();
+    QString tmp = ptr.toUpper();int i=0;
+    tmp=tmp.trimmed();
     if(IS_END(tmp))return PARSE_ERR;
-    while (!IS_END(tmp)) {
-        Token token;
-        if(IS_NUM(tmp)){
-            if(parse_num(tmp, num)==PARSE_NUM) return PARSE_ERR;
-            token.type=NUM;
-            token.value = num;
-        }
-        else if(IS_LETTER(tmp)){
-            if(parse_var(tmp, var) == PARSE_ERR) return PARSE_ERR;
-            token.type = VAR;
-            token.name = var;
-        }
-        else if(IS_OPERATOR(tmp)){
-            if(parse_delim(tmp, oper) !=PARSE_OP)return PARSE_ERR;
-            for(int i=0;i<7;i++){
-                if(tmp == opTab[i]) token.type = optokenTab[i];
-            }
-        }else{return PARSE_ERR;}
-          expInputVec.push_back(token);
-    }
 
-
+    tmp=tmp.remove(QRegExp("\\s"));//remove all the white space
+    if(IS_END(tmp))return PARSE_ERR;
+    if(!judge_infix(tmp.toStdString())) return PARSE_ERR;
+    exp = tmp;
+    ptr = "";
     return PARSE_EXP;
 }
 
@@ -366,23 +374,4 @@ bool MainWindow::judge_infix(string str)
             return false;
         }
 
-
-
-
-void MainWindow::loadStat(){
-    QString fileName = QFileDialog::getOpenFileName();
-    QFile file(fileName);
-    if (!file.open(QIODevice::ReadOnly | QIODevice::Text)){
-        qDebug()<<"can't open file"<<endl;
-         return;
-    }
-    statements.clear();//clear current statements before loading
-    QTextStream in(&file);
-    QString line ="";
-    while (!in.atEnd()) {
-            QString line = in.readLine();
-            parse_line(line);
-        }
-    file.close();
-}
 

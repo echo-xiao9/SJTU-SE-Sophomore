@@ -1,0 +1,4 @@
+1 goto 32
+5 let a=12
+12 goto 13
+13 let b=123

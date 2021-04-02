@@ -6,77 +6,84 @@
 #include <vector>
 using namespace std;
 
+
+
 class Statement
 {
 public:
     struct var{
         QString varName="";
         int varValue=0;
+        var(QString name, int val): varName(name), varValue(val){}
     };
     Exp *exp;
     int index;
     QString stmt;
-    QString synTree;
     vector<Statement::var> vars;
-    Statement(int inputIndex, vector<Statement::var> &Vars);
+    // -1 means no type the type order from 0-6 is
+    // 0:INPUT   1:LET   2:GOTO  3:IF   4:PRINT    5:REM   6:END
+    int type = -1;
+    Statement(int inputIndex, vector<Statement::var> &Vars, int Type);
+    virtual void runSingleStmt()=0;
     ~Statement();
-    virtual void buildSynTree()=0;
-    QString buildExpSynTree(string prefix);
 };
 
 
 class InputStmt: public Statement{
 public:
-    InputStmt(int inputIndex, QString  varName1, int varVal1, vector<Statement::var> &Vars);
     QString varName;
     int varVal;
-    void buildSynTree();
+    InputStmt(int inputIndex, QString  varName1, int varVal1, vector<Statement::var> &Vars);
+    void runSingleStmt();
 };
 
 class LetStmt: public Statement{
     QString varName;
     Exp *rightExp;
 public:
-    LetStmt(int InputIndex, QString VarName, vector<Token> &expInputVec, vector<Statement::var> &Vars);
-     void buildSynTree();
+    LetStmt(int InputIndex, QString VarName, QString expr,vector<Statement::var> &Vars);
+    void runSingleStmt();
 };
 
 class GotoStmt: public Statement{
     int targetNum;
 public:
     GotoStmt(int inputIndex, int targetLineNum,vector<Statement::var> &Vars);
-     void buildSynTree();
+    void runSingleStmt();
 };
 
 class IfStmt: public Statement{
 private:
     Exp *leftExp;
     Exp *rightExp;
-
+    QString inputExp;
+    QString inputExp1;
+    QString condtion;
+    int targetNum;
 public:
-     IfStmt(int inputIndex, vector<Token> &expInputVec,  QString condition, vector<Token> &expInputVec1, int targetNum,vector<Statement::var> &Vars);
-      void buildSynTree();
+     IfStmt(int inputIndex, QString  exp,  QString inputCondition, QString exp1, int targetNum,vector<Statement::var> &Vars);
+     void runSingleStmt();
 };
+
 
 class PrintStmt: public Statement{
 public:
     Exp *rightExp;
-     void buildSynTree();
-    PrintStmt(int inputIndex, vector<Token> &expInputVec, vector<Statement::var> &Vars);
+    PrintStmt(int inputIndex, QString exp, vector<Statement::var> &Vars);
+    void runSingleStmt();
 };
 
 class RemStmt: public Statement{
 public:
-
-    void buildSynTree();
     RemStmt(int inputIndex, QString lineTmp, vector<Statement::var> &Vars);
+    void runSingleStmt();
 };
 
 
 class EndStmt: public Statement{
 public:
-    void buildSynTree();
     EndStmt(int inputIndex, vector<Statement::var> &Vars);
+    void runSingleStmt();
 };
 
 

@@ -14,15 +14,15 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QHBoxLayout" name="horizontalLayout_2">
+   <layout class="QVBoxLayout" name="verticalLayout_5">
     <item>
      <layout class="QVBoxLayout" name="verticalLayout">
       <item>
-       <layout class="QHBoxLayout" name="horizontalLayout_3">
+       <layout class="QHBoxLayout" name="horizontalLayout_3" stretch="2,2,1">
         <item>
          <layout class="QVBoxLayout" name="verticalLayout_2">
           <item>
-           <widget class="QLabel" name="label_3">
+           <widget class="QLabel" name="codeLabel">
             <property name="text">
              <string>代码</string>
             </property>
@@ -36,7 +36,7 @@
         <item>
          <layout class="QVBoxLayout" name="verticalLayout_3">
           <item>
-           <widget class="QLabel" name="label_4">
+           <widget class="QLabel" name="resultLable">
             <property name="text">
              <string>运行结果</string>
             </property>
@@ -47,12 +47,26 @@
           </item>
          </layout>
         </item>
+        <item>
+         <layout class="QVBoxLayout" name="verticalLayout_4" stretch="0,0">
+          <item>
+           <widget class="QLabel" name="varLabel">
+            <property name="text">
+             <string>变量信息</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QTextBrowser" name="varBrowser"/>
+          </item>
+         </layout>
+        </item>
        </layout>
       </item>
       <item>
-       <widget class="QLabel" name="label_2">
+       <widget class="QLabel" name="syntaxLabel">
         <property name="text">
-         <string>语句和语法树</string>
+         <string>句法与语法树</string>
         </property>
        </widget>
       </item>
@@ -63,6 +77,9 @@
        <layout class="QHBoxLayout" name="horizontalLayout">
         <item>
          <widget class="QPushButton" name="clearButton">
+          <property name="mouseTracking">
+           <bool>false</bool>
+          </property>
           <property name="text">
            <string>清空代码 (CLEAR)</string>
           </property>
@@ -77,6 +94,9 @@
         </item>
         <item>
          <widget class="QPushButton" name="loadButton">
+          <property name="mouseTracking">
+           <bool>true</bool>
+          </property>
           <property name="text">
            <string>载入代码 (LOAD)</string>
           </property>
@@ -85,7 +105,7 @@
        </layout>
       </item>
       <item>
-       <widget class="QLabel" name="label">
+       <widget class="QLabel" name="inputlabel">
         <property name="text">
          <string>命令输入窗口</string>
         </property>
@@ -93,6 +113,16 @@
       </item>
       <item>
        <widget class="QLineEdit" name="codeLineEdit"/>
+      </item>
+      <item>
+       <widget class="QLabel" name="messageLabel">
+        <property name="text">
+         <string>提示信息</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="messageLineEdit"/>
       </item>
      </layout>
     </item>
