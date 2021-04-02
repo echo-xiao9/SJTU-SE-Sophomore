@@ -5,26 +5,19 @@
 #include "Exp.h"
 #include <vector>
 using namespace std;
-
-
-
+extern vector<var>variables;
 class Statement
 {
 public:
-    struct var{
-        QString varName="";
-        int varValue=0;
-        var(QString name, int val): varName(name), varValue(val){}
-    };
+
     Exp *exp;
     int index;
     QString stmt;
-    vector<Statement::var> vars;
     // -1 means no type the type order from 0-6 is
     // 0:INPUT   1:LET   2:GOTO  3:IF   4:PRINT    5:REM   6:END
-    int type = -1;
-    Statement(int inputIndex, vector<Statement::var> &Vars, int Type);
-    virtual void runSingleStmt()=0;
+    int type ;
+    Statement(int inputIndex, int Type);
+    virtual QString runSingleStmt(QString par)=0;
     ~Statement();
 };
 
@@ -33,23 +26,24 @@ class InputStmt: public Statement{
 public:
     QString varName;
     int varVal;
-    InputStmt(int inputIndex, QString  varName1, int varVal1, vector<Statement::var> &Vars);
-    void runSingleStmt();
+    InputStmt(int inputIndex, QString  varName1, int varVal1);
+    QString runSingleStmt(QString par);
+    QString findVar();
 };
 
 class LetStmt: public Statement{
     QString varName;
     Exp *rightExp;
 public:
-    LetStmt(int InputIndex, QString VarName, QString expr,vector<Statement::var> &Vars);
-    void runSingleStmt();
+    LetStmt(int InputIndex, QString VarName, QString expr);
+    QString runSingleStmt(QString par);
 };
 
 class GotoStmt: public Statement{
     int targetNum;
 public:
-    GotoStmt(int inputIndex, int targetLineNum,vector<Statement::var> &Vars);
-    void runSingleStmt();
+    GotoStmt(int inputIndex, int targetLineNum);
+    QString runSingleStmt(QString par);
 };
 
 class IfStmt: public Statement{
@@ -61,29 +55,29 @@ private:
     QString condtion;
     int targetNum;
 public:
-     IfStmt(int inputIndex, QString  exp,  QString inputCondition, QString exp1, int targetNum,vector<Statement::var> &Vars);
-     void runSingleStmt();
+     IfStmt(int inputIndex, QString  exp,  QString inputCondition, QString exp1, int targetNum);
+     QString runSingleStmt(QString par);
 };
 
 
 class PrintStmt: public Statement{
 public:
     Exp *rightExp;
-    PrintStmt(int inputIndex, QString exp, vector<Statement::var> &Vars);
-    void runSingleStmt();
+    PrintStmt(int inputIndex, QString exp);
+    QString runSingleStmt(QString par);
 };
 
 class RemStmt: public Statement{
 public:
-    RemStmt(int inputIndex, QString lineTmp, vector<Statement::var> &Vars);
-    void runSingleStmt();
+    RemStmt(int inputIndex, QString lineTmp);
+    QString runSingleStmt(QString par);
 };
 
 
 class EndStmt: public Statement{
 public:
-    EndStmt(int inputIndex, vector<Statement::var> &Vars);
-    void runSingleStmt();
+    EndStmt(int inputIndex);
+    QString runSingleStmt(QString par);
 };
 
 

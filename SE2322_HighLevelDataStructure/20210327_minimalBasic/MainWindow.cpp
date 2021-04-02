@@ -1,7 +1,6 @@
 #include "MainWindow.h"
 #include "ui_MainWindow.h"
 
-
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -30,6 +29,17 @@ void MainWindow::updateCodeBrowser(){
         ui->codeBrowser->append(appendLine);
     }
 }
+
+void MainWindow::updateVarBrowser(){
+    QString appendLine="";
+    ui->varBrowser->clear();
+    for (int i = 0; i < variables.size(); i++)
+    {
+    appendLine =variables[i].varName +" = " + QString::number(variables[i].varValue);
+    ui->varBrowser->append(appendLine);
+    }
+}
+
 
 void MainWindow::updateResultBrowser(QString s){
     ui->codeBrowser->append(s);
@@ -78,10 +88,55 @@ void MainWindow::loadStat(){
 
 void MainWindow::runApp(){
     curLine=0;
-    for(map<int, Statement*>::iterator it = statements.begin(); it != statements.end(); it++){
-        it->second->runSingleStmt();
+    QString par="";
+    QString result = "";
+    map<int, Statement*>::iterator it = statements.begin();
+    while(it !=statements.end()){
+        switch (it->second->type) {
+        // 0:INPUT   1:LET   2:GOTO  3:IF   4:PRINT    5:REM   6:END
+        case 0://problem!?
+            ui->codeLineEdit-> setText("?");
+            par = ui->codeLineEdit->text();
+            par = par.trimmed();
+            it->second->runSingleStmt(par);
+            it++;
+            break;
+
+        case 1:
+            it->second->runSingleStmt(par);
+            it++;
+            break;
+
+        case 2:
+            result  = it->second->runSingleStmt(par); //the target index
+            curLine = result.toInt();
+            for ( it = statements.begin(); it != statements.end(); it++)
+            {
+                if((*it).second->index == curLine) {
+                    qDebug()<<"goto "<<curLine<<endl;
+                    break;
+                }
+            }
+            if(it==statements.end()){// haven't find the index
+                throw "invalid line number in GOTO statement";
+            }
+            break;
+        case 3:
+            break;
+        case 4:
+            break;
+        case 5:
+            break;
+        case 6:
+            break;
+        default:
+            break;
         }
 
+
+    }
+
+ updateVarBrowser();
 };
 
 parse_t MainWindow:: parse_line(QString &line){
@@ -107,10 +162,9 @@ parse_t MainWindow:: parse_line(QString &line){
         {
         case 0: //"INPUT": 35 INPUT n3
           if(parse_var(lineTmp, varName) == PARSE_ERR) return PARSE_ERR;
-              ui->codeLineEdit-> setText("?");
-              numTmp = ui->codeLineEdit ->text().toInt();
+
 //              newStmt = new InputStmt(lineNum, varName, numTmp, statements);
-              newStmt = new InputStmt(lineNum, varName,numTmp, variables);
+              newStmt = new InputStmt(lineNum, varName,numTmp);
           break;
         case 1://"LET": //40 LET total = n1 + n2 + n3
           if(parse_var(lineTmp, varName)==PARSE_ERR ||
@@ -118,12 +172,12 @@ parse_t MainWindow:: parse_line(QString &line){
               delim !="="||
               parse_exp(lineTmp,exp)==PARSE_ERR)
               return PARSE_ERR;
-              newStmt=new LetStmt(lineNum, varName, exp, variables);
+              newStmt=new LetStmt(lineNum, varName, exp);
           break;
 
         case 2: //"GOTO" GOTO n
           if(parse_num(lineTmp,numTmp)==PARSE_ERR)return PARSE_ERR;
-          newStmt = new GotoStmt(lineNum, numTmp,variables);
+          newStmt = new GotoStmt(lineNum, numTmp);
           break;
 
         case 3://"IF":  //IF condition THEN n
@@ -147,20 +201,20 @@ parse_t MainWindow:: parse_line(QString &line){
            lineTmp = lineTmp.mid(indexThen+4);
            if(parse_num(lineTmp, numTmp)==PARSE_ERR)return PARSE_ERR;
 
-          newStmt = new IfStmt(lineNum, exp,  delim, exp1, numTmp,variables);
+          newStmt = new IfStmt(lineNum, exp,  delim, exp1, numTmp);
           break;
 
         case 4: //"PRINT": //PRINT 2 + 2
           if(parse_exp(lineTmp, exp)==PARSE_ERR)return PARSE_ERR;
-          newStmt = new PrintStmt(lineNum,exp, variables);
+          newStmt = new PrintStmt(lineNum,exp);
           break;
 
         case 5: //"REM": //REM aaa
-          newStmt = new RemStmt(lineNum,lineTmp,variables);
+          newStmt = new RemStmt(lineNum,lineTmp);
           break;
 
         case 6: //"END":
-         newStmt = new EndStmt(lineNum,variables);
+         newStmt = new EndStmt(lineNum);
           break;
 
         default:
@@ -294,7 +348,7 @@ parse_t MainWindow:: parse_var(QString &ptr, QString& name){
 
 parse_t MainWindow:: parse_exp(QString &ptr, QString& exp){
     // the if case needs extra consideration.
-    QString tmp = ptr.toUpper();int i=0;
+    QString tmp = ptr.toUpper();
     tmp=tmp.trimmed();
     if(IS_END(tmp))return PARSE_ERR;
 
@@ -336,7 +390,6 @@ parse_t MainWindow:: parse_delim(QString &ptr, QString& delim){
      }
      return PARSE_ERR;
 }
-
 
 
 stmt_t *  MainWindow::find_instr(QString name){}

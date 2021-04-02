@@ -7,6 +7,14 @@
 #include <QDebug>
 using namespace std;
 
+struct var{
+    QString varName="";
+    int varValue=0;
+    var(QString name, int val): varName(name), varValue(val){}
+};
+
+extern vector<var>variables;
+
 class Exp
 {
 public:

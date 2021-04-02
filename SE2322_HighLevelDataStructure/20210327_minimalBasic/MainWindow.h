@@ -5,8 +5,8 @@
 #include <QFileDialog>
 #include <QTextStream>
 #include "Statement.h"
-//#include "App.h"
 using namespace std;
+extern vector<var>variables;
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -18,7 +18,6 @@ QT_END_NAMESPACE
 #define IS_BLANK(s) (s[0]==' ' || s[0]=='\t')
 #define IS_END(s) (s[0]=='\0')
 #define IS_OPERATOR(s) (s[0]=='+'|| s[0]== '-' ||  s[0]=='*' || s[0]=='/' || s[0]=='('  )
-
 
 typedef enum { PARSE_ERR=-1, PARSE_LINE, PARSE_STMT, PARSE_CMD, 
   PARSE_NUM, PARSE_VAR, PARSE_EXP, PARSE_CON, PARSE_OP} parse_t;
@@ -33,7 +32,6 @@ typedef QString cmd_t  ;
 typedef QString operator_t ;
 
 
-
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
@@ -43,16 +41,14 @@ public:
     ~MainWindow();
     void updateCodeBrowser();
     void updateResultBrowser(QString s);
+    void updateVarBrowser();
 
-
-    stmt_t stmtTab[8] = {"INPUT","LET", "GOTO", "IF" , "PRINT",
-                            "REM", "END","THEN"};
+    stmt_t stmtTab[8] = {"INPUT","LET", "GOTO", "IF", "PRINT", "REM", "END","THEN"};
     cmd_t cmdTab[6]={"RUN", "LOAD", "LIST", "CLEAR", "HELP","QUIT"};
     operator_t opTab[7]={"+", "-", "*", "/", "(", ")", "**" };
     token_t optokenTab[7]={ ADD, SUB, MUL, DIV, LBRC, RBRC,EXP } ;
     vector <string> command;
     map <int, Statement*> statements;
-    vector<Statement::var>variables;
     int curLine;
 
 private:
@@ -76,7 +72,7 @@ private slots:
     parse_t parse_exp(QString &ptr, QString& exp);
     parse_t parse_delim(QString &ptr, QString& delim);
     stmt_t  *find_instr(QString name);
-   bool  judge_infix(string str);
+    bool  judge_infix(string str);
 
 };
 

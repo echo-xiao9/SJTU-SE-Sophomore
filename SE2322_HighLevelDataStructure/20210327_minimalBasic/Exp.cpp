@@ -1,4 +1,5 @@
 #include "Exp.h"
+vector<var>variables;
 
 Exp::Exp(QString letexp)
 {

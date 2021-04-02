@@ -1,4 +1,4 @@
-1 goto 32
-5 let a=12
-12 goto 13
-13 let b=123
+1 let a=1
+2 goto 5
+3 let b=2
+5 let c=3
