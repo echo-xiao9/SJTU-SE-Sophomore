@@ -130,6 +130,7 @@ int  Exp::applyOp(int a, int b, char op){
 // Exp after evaluation.
 int  Exp::evaluate(){
     int i;
+
     // stack to store integer values.
     stack <int> values;
     // stack to store operators.
@@ -241,3 +242,13 @@ int  Exp::evaluate(){
     // Top of 'values' contains result, return it.
     return values.top();
 }
+
+void Exp::prepare(){
+
+
+
+
+
+
+}
+

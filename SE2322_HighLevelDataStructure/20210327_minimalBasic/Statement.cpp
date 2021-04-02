@@ -43,7 +43,6 @@ LetStmt::LetStmt(int InputIndex, QString VarName, QString expr)
     :Statement(InputIndex, 1),varName(VarName){
     stmt="LET "+VarName+" = " +expr;
     rightExp = new Exp(expr);
-
 }
 
 QString LetStmt::runSingleStmt(QString par){
@@ -78,7 +77,20 @@ IfStmt::IfStmt(int inputIndex, QString  exp,  QString inputCondition, QString ex
     stmt = "IF "+inputExp+condtion+inputExp1+" THEN "+ QString::number(targetNum);
 }
 
-QString IfStmt::runSingleStmt(QString par){}
+QString IfStmt::runSingleStmt(QString par){
+    leftExp = new Exp(inputExp);
+    rightExp = new Exp(inputExp1);
+    leftExp->evaluate();
+    rightExp->evaluate(); //! 可能表达式出错
+    if(condtion == "="){
+        if(leftExp->value == rightExp->value)return QString::number(targetNum);
+    }
+    else if(condtion == "<"){
+        if(leftExp->value < rightExp ->value)return QString::number(targetNum);
+    }else if(condtion == ">"){
+        if(leftExp->value > rightExp->value)return QString::number(targetNum);
+    }else return "-1";
+}
 
 PrintStmt::PrintStmt(int inputIndex, QString expr):Statement(inputIndex, 4){
     rightExp = new Exp(expr);

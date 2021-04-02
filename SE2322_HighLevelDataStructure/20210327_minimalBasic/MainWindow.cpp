@@ -45,7 +45,6 @@ void MainWindow::updateResultBrowser(QString s){
     ui->codeBrowser->append(s);
 }
 
-
 void MainWindow::on_codeLineEdit_return(){
     QString input = ui->codeLineEdit ->text();
     ui->codeLineEdit->clear();
@@ -60,6 +59,8 @@ void MainWindow::clearAll(){
     ui->codeBrowser->clear();
     ui->resultBrowser->clear();
     ui->syntaxDisplayBroser->clear();
+    ui->varBrowser->clear();
+    ui->messageLineEdit->clear();
     statements.clear();
     variables.clear();
 }
@@ -113,7 +114,6 @@ void MainWindow::runApp(){
             for ( it = statements.begin(); it != statements.end(); it++)
             {
                 if((*it).second->index == curLine) {
-                    qDebug()<<"goto "<<curLine<<endl;
                     break;
                 }
             }
@@ -122,6 +122,16 @@ void MainWindow::runApp(){
             }
             break;
         case 3:
+             curLine= it->second->runSingleStmt(par).toInt();
+             for ( it = statements.begin(); it != statements.end(); it++)
+             {
+                 if((*it).second->index == curLine) {
+                     break;
+                 }
+             }
+             if(it==statements.end()){// haven't find the index
+                 throw "invalid line number in IF THEN statement"; // !test
+             }
             break;
         case 4:
             break;
@@ -137,6 +147,8 @@ void MainWindow::runApp(){
     }
 
  updateVarBrowser();
+ ui->messageLineEdit ->setText("Program ended successfully.");
+
 };
 
 parse_t MainWindow:: parse_line(QString &line){

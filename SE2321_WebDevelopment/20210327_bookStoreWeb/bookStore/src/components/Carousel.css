@@ -40,32 +40,23 @@ span {
 .carousel__face:nth-child(1) {
   /* background-image: url("https://www.notion.so/img-17b51cd71e94425c9c15dcb169e8296a#752ff3c560dd4b979d2e0f0c13e379f5"); */
   /* background-image: url("../../public/images/carPoster1.jpg"); */
-  background-image: url("https://s3.us-west-2.amazonaws.com/secure.notion-static.com/c6f05bca-2715-4ccb-9035-7aae9d4ecf05/2021-04-01_4.21.50.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAT73L2G45O3KS52Y5%2F20210401%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20210401T084306Z&X-Amz-Expires=86400&X-Amz-Signature=2228405378e92c9e5efea2c5b0d3bf94f63f9d33a1eb704a25a4fa09a0578406&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%222021-04-01_4.21.50.png%22");
+  background-image: url("http://r.photo.store.qq.com/psc?/V11fv0hk0pCaQ1/TmEUgtj9EK6.7V8ajmQrEMr0JMbRsOw2lqzLizyXvH8aS0xXEuOfdQAhjvdIPF5yaF0wWy.GUE*ZGsWZmBEDMC1EwUN0yCUQ.M1afpe9J04!/r");
   transform: rotateY(  0deg) translateZ(430px); }
 .carousel__face:nth-child(2) { 
-  background-image: url("https://s3.us-west-2.amazonaws.com/secure.notion-static.com/1e05bda9-1990-4ce5-ac64-3158888c6c6b/2021-04-01_4.49.33.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAT73L2G45O3KS52Y5%2F20210401%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20210401T085122Z&X-Amz-Expires=86400&X-Amz-Signature=458664395c538d0ceef12cb399647ce6897b5d43e67ed92dc4dc2d6293c1e2fa&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%222021-04-01_4.49.33.png%22");
+  background-image: url("http://r.photo.store.qq.com/psc?/V11fv0hk0pCaQ1/TmEUgtj9EK6.7V8ajmQrEKh0OJsTZqhezUy55dIEIelsBrPZMsBR78lYUV.M8j1FUfR9*eYtEnM5c67X5Df9nkvTYeCWBljwBzMKd1tz*eo!/r");
     transform: rotateY( 60deg) translateZ(430px); }
 .carousel__face:nth-child(3) {
-  background-image: url("https://s3.us-west-2.amazonaws.com/secure.notion-static.com/ecb191ef-713a-4d74-9285-1dc49efc3c20/2021-04-01_4.34.00.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAT73L2G45O3KS52Y5%2F20210401%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20210401T084556Z&X-Amz-Expires=86400&X-Amz-Signature=9e040955d887404b46b0552773ce29074e261dca5876be67f262d10c8937bc60&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%222021-04-01_4.34.00.png%22");
+  background-image: url("http://r.photo.store.qq.com/psc?/V11fv0hk0pCaQ1/TmEUgtj9EK6.7V8ajmQrEN7uJW6KPCkVZW2wxLs3x1GnVFQshZwhYwlNTudUmvd63.25Ky.SDUrHgyQ437LOvGyHXBtbZvuXCy2DLNPzgwI!/r");
   transform: rotateY( 120deg) translateZ(430px); }
 .carousel__face:nth-child(4) {
-  background-image: url("https://s3.us-west-2.amazonaws.com/secure.notion-static.com/850ac941-964c-436f-9ace-d4aa5fb14b9a/2021-04-01_4.35.00.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAT73L2G45O3KS52Y5%2F20210401%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20210401T084654Z&X-Amz-Expires=86400&X-Amz-Signature=d100ae92c7a182530ee4464f1540f13b419a79309c30dc86c4461ea28272d252&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%222021-04-01_4.35.00.png%22");
+  background-image: url("http://r.photo.store.qq.com/psc?/V11fv0hk0pCaQ1/TmEUgtj9EK6.7V8ajmQrEHyR9SRNcRh6A7gF2qA5fPsJbFMVGsHhV.olfYiMM2oqnovuxSUS4gu6fYoTen3cSSVr.5Jym9h6RG8ETqTL2FA!/r");
   transform: rotateY(180deg) translateZ(430px); }
 .carousel__face:nth-child(5) { 
-  background-image: url("https://s3.us-west-2.amazonaws.com/secure.notion-static.com/1e05bda9-1990-4ce5-ac64-3158888c6c6b/2021-04-01_4.49.33.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAT73L2G45O3KS52Y5%2F20210401%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20210401T085122Z&X-Amz-Expires=86400&X-Amz-Signature=458664395c538d0ceef12cb399647ce6897b5d43e67ed92dc4dc2d6293c1e2fa&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%222021-04-01_4.49.33.png%22");
+  background-image: url("http://r.photo.store.qq.com/psc?/V11fv0hk0pCaQ1/TmEUgtj9EK6.7V8ajmQrEN0i8ysyt4x8u*9*z4bo74luzVB*fD72u7UWUpFo7PmpBpL4N3Twbn8aYOdps9k0gcRXfAH8*Gur3tyY6v37DPg!/r");
  transform: rotateY(240deg) translateZ(430px); }
 .carousel__face:nth-child(6) { 
-  background-image: url("https://s3.us-west-2.amazonaws.com/secure.notion-static.com/30a9e4c0-790f-4e48-950b-4468f7ea97ff/2021-04-01_4.53.29.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAT73L2G45O3KS52Y5%2F20210401%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20210401T085401Z&X-Amz-Expires=86400&X-Amz-Signature=1fb381f895db7e1c504918bdf95de7cc6ccf0839040cfe64f7ab9f61cfc42823&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%222021-04-01_4.53.29.png%22");
+  background-image: url("http://r.photo.store.qq.com/psc?/V11fv0hk0pCaQ1/TmEUgtj9EK6.7V8ajmQrEDYPeOWzqU1zPEqE8SxvQBoY0qfLYcwU18nkPUbgu5.kz8D70qUQneo7Y1V5W3EuD3qLBpIgJKUFSVsbpG0v3xo!/r");
  transform: rotateY(300deg) translateZ(430px); }
-/* .carousel__face:nth-child(7) { 
-  background-image: url("https://images.pexels.com/photos/1415268/pexels-photo-1415268.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
- transform: rotateY(240deg) translateZ(430px); } */
-/* .carousel__face:nth-child(8) {
-  background-image: url("https://images.pexels.com/photos/135018/pexels-photo-135018.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
-  transform: rotateY(280deg) translateZ(430px); }
-.carousel__face:nth-child(9) {
-  background-image: url("https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=331676190,2765108777&fm=26&gp=0.jpg");
-  transform: rotateY(320deg) translateZ(430px); } */
 
 
 
