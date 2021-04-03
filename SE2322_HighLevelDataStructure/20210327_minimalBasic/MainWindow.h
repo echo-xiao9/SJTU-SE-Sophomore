@@ -5,6 +5,8 @@
 #include <QFileDialog>
 #include <QTextStream>
 #include "Statement.h"
+#include "Help.h"
+
 using namespace std;
 extern vector<var>variables;
 
@@ -40,14 +42,17 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
     void updateCodeBrowser();
-    void updateResultBrowser(QString s);
+    void updateResultBrowser();
     void updateVarBrowser();
+    void updateSyntaxDisplayBroser();
 
     stmt_t stmtTab[8] = {"INPUT","LET", "GOTO", "IF", "PRINT", "REM", "END","THEN"};
     cmd_t cmdTab[6]={"RUN", "LOAD", "LIST", "CLEAR", "HELP","QUIT"};
     operator_t opTab[7]={"+", "-", "*", "/", "(", ")", "**" };
     token_t optokenTab[7]={ ADD, SUB, MUL, DIV, LBRC, RBRC,EXP } ;
     vector <string> command;
+    vector <QString> results;
+    vector <QString> synTree;
     map <int, Statement*> statements;
     int curLine;
 
@@ -56,6 +61,8 @@ private:
     Ui::MainWindow *ui;
     int stmtNum(stmt_t Stmt);//return -1 if can't find or return the number in stmtTab.
     int cmdNum(cmd_t Cmd);//return -1 if can't find or return the number in cmdTab.
+    void showHelpWin();
+    void drawTree();
 
 private slots:
     void on_codeLineEdit_return();
@@ -63,7 +70,6 @@ private slots:
     void on_loadButton_clicked();
     void loadStat();
     void runApp();
-
     parse_t parse_line(QString &line);
     parse_t parse_stmt(QString &ptr, stmt_t& stmt);
     parse_t parse_cmd(QString &ptr, stmt_t& cmd);

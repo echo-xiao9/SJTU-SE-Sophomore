@@ -40,9 +40,16 @@ void MainWindow::updateVarBrowser(){
     }
 }
 
+void MainWindow::updateResultBrowser(){
+    ui->resultBrowser->clear();
+    for(int i=0;i<results.size();i++)
+        ui->resultBrowser->append(results[i]);
+}
 
-void MainWindow::updateResultBrowser(QString s){
-    ui->codeBrowser->append(s);
+void MainWindow:: updateSyntaxDisplayBroser(){
+    ui->syntaxDisplayBroser->clear();
+    for(int i=0;i<synTree.size();i++)
+        ui->syntaxDisplayBroser ->append(synTree[i]);
 }
 
 void MainWindow::on_codeLineEdit_return(){
@@ -62,6 +69,7 @@ void MainWindow::clearAll(){
     ui->varBrowser->clear();
     ui->messageLineEdit->clear();
     statements.clear();
+    synTree.clear();
     variables.clear();
 }
 
@@ -88,6 +96,8 @@ void MainWindow::loadStat(){
 }
 
 void MainWindow::runApp(){
+    results.clear();
+    variables.clear();
     curLine=0;
     QString par="";
     QString result = "";
@@ -134,10 +144,17 @@ void MainWindow::runApp(){
              }
             break;
         case 4:
+             result= it->second->runSingleStmt(par);
+//             ui->resultBrowser->append(result);
+             results.push_back(result);
+
+             it++;
             break;
         case 5:
+            it++;
             break;
         case 6:
+            it = statements.end();
             break;
         default:
             break;
@@ -145,11 +162,56 @@ void MainWindow::runApp(){
 
 
     }
+    drawTree();
 
  updateVarBrowser();
+ updateResultBrowser();
+ updateSyntaxDisplayBroser();
  ui->messageLineEdit ->setText("Program ended successfully.");
-
 };
+
+void MainWindow:: showHelpWin(){
+    Help *helpWin = new Help();
+    helpWin ->show();
+}
+
+
+void MainWindow:: drawTree(){
+    // -1 means no type the type order from 0-6 is
+    // 0:INPUT   1:LET   2:GOTO  3:IF   4:PRINT    5:REM   6:END
+    QString synBranch;
+    map<int, Statement*>::iterator it = statements.begin();
+    while(it !=statements.end()){
+        switch (it->second->type) {
+
+        case 1:
+            break;
+        case 2:
+            synBranch = "GOTO";
+            synTree.push_back(synBranch);
+            synBranch =   "    "+it->second->tree();
+            synTree.push_back(synBranch);
+            break;
+
+        case 3:
+
+            break;
+        case 4:
+\
+            break;
+
+        default:
+
+            break;
+
+        }
+         it++;
+
+
+
+    }
+
+}
 
 parse_t MainWindow:: parse_line(QString &line){
     stmt_t stmtTmp;
@@ -259,7 +321,7 @@ parse_t MainWindow:: parse_line(QString &line){
 
           break;
         case 4: //"HELP":
-
+          showHelpWin();
           break;
         case 5: //"QUIT":
           QApplication::quit();
@@ -269,11 +331,7 @@ parse_t MainWindow:: parse_line(QString &line){
         }
       }
 
-
-
 }
-
-
 
 int MainWindow ::stmtNum(stmt_t Stmt){
 
@@ -289,7 +347,6 @@ int MainWindow ::cmdNum(cmd_t Cmd){
     }
     return -1;
 }
-
 
 parse_t MainWindow:: parse_stmt(QString &ptr, stmt_t& stmt){
     QString tmp=ptr;
@@ -339,7 +396,6 @@ parse_t MainWindow:: parse_num(QString &ptr, int & val){
     return PARSE_NUM;
 }
 
-
 parse_t MainWindow:: parse_var(QString &ptr, QString& name){
 //    begin with a letter or an underscore.  only have letters, numbers,  underscore
     QString tmp=ptr;
@@ -360,13 +416,13 @@ parse_t MainWindow:: parse_var(QString &ptr, QString& name){
 
 parse_t MainWindow:: parse_exp(QString &ptr, QString& exp){
     // the if case needs extra consideration.
-    QString tmp = ptr.toUpper();
+    QString tmp = ptr;
     tmp=tmp.trimmed();
     if(IS_END(tmp))return PARSE_ERR;
 
     tmp=tmp.remove(QRegExp("\\s"));//remove all the white space
     if(IS_END(tmp))return PARSE_ERR;
-    if(!judge_infix(tmp.toStdString())) return PARSE_ERR;
+//    if(!judge_infix(tmp.toStdString())) return PARSE_ERR;
     exp = tmp;
     ptr = "";
     return PARSE_EXP;
@@ -402,7 +458,6 @@ parse_t MainWindow:: parse_delim(QString &ptr, QString& delim){
      }
      return PARSE_ERR;
 }
-
 
 stmt_t *  MainWindow::find_instr(QString name){}
 

@@ -10,16 +10,19 @@ CONFIG += c++11
 
 SOURCES += \
     Exp.cpp \
+    Help.cpp \
     Statement.cpp \
     main.cpp \
     MainWindow.cpp
 
 HEADERS += \
     Exp.h \
+    Help.h \
     MainWindow.h \
     Statement.h
 
 FORMS += \
+    Help.ui \
     MainWindow.ui
 
 # Default rules for deployment.

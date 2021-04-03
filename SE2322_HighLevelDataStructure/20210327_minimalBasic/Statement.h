@@ -9,7 +9,6 @@ extern vector<var>variables;
 class Statement
 {
 public:
-
     Exp *exp;
     int index;
     QString stmt;
@@ -18,6 +17,7 @@ public:
     int type ;
     Statement(int inputIndex, int Type);
     virtual QString runSingleStmt(QString par)=0;
+    virtual QString tree()=0;
     ~Statement();
 };
 
@@ -29,6 +29,7 @@ public:
     InputStmt(int inputIndex, QString  varName1, int varVal1);
     QString runSingleStmt(QString par);
     QString findVar();
+    QString tree();
 };
 
 class LetStmt: public Statement{
@@ -37,6 +38,7 @@ class LetStmt: public Statement{
 public:
     LetStmt(int InputIndex, QString VarName, QString expr);
     QString runSingleStmt(QString par);
+    QString tree();
 };
 
 class GotoStmt: public Statement{
@@ -44,6 +46,7 @@ class GotoStmt: public Statement{
 public:
     GotoStmt(int inputIndex, int targetLineNum);
     QString runSingleStmt(QString par);
+    QString tree();
 };
 
 class IfStmt: public Statement{
@@ -57,6 +60,7 @@ private:
 public:
      IfStmt(int inputIndex, QString  exp,  QString inputCondition, QString exp1, int targetNum);
      QString runSingleStmt(QString par);
+     QString tree();
 };
 
 
@@ -65,12 +69,14 @@ public:
     Exp *rightExp;
     PrintStmt(int inputIndex, QString exp);
     QString runSingleStmt(QString par);
+    QString tree();
 };
 
 class RemStmt: public Statement{
 public:
     RemStmt(int inputIndex, QString lineTmp);
     QString runSingleStmt(QString par);
+    QString tree();
 };
 
 
@@ -78,6 +84,7 @@ class EndStmt: public Statement{
 public:
     EndStmt(int inputIndex);
     QString runSingleStmt(QString par);
+    QString tree();
 };
 
 

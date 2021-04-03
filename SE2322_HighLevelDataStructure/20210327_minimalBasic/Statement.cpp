@@ -3,7 +3,6 @@
 
 Statement::Statement(int inputIndex,  int Type)
     :index(inputIndex),  type(Type){
-    qDebug()<<"new var:";
     //遍历方式3，采用下角标进行数据元素访问
     for (size_t i = 0; i < variables.size(); i++)
     {
@@ -39,6 +38,9 @@ QString InputStmt::findVar(){
 //    else return varName;
 };
 
+QString  InputStmt::tree(){}
+
+
 LetStmt::LetStmt(int InputIndex, QString VarName, QString expr)
     :Statement(InputIndex, 1),varName(VarName){
     stmt="LET "+VarName+" = " +expr;
@@ -61,6 +63,7 @@ QString LetStmt::runSingleStmt(QString par){
     return "";
 }
 
+QString  LetStmt::tree(){}
 
 GotoStmt::GotoStmt(int inputIndex, int targetLineNum):
     Statement(inputIndex,2), targetNum(targetLineNum){
@@ -69,6 +72,10 @@ GotoStmt::GotoStmt(int inputIndex, int targetLineNum):
 
 QString GotoStmt::runSingleStmt(QString par){
     //return the targetLine
+    return QString::number(targetNum);
+}
+
+QString  GotoStmt::tree(){
     return QString::number(targetNum);
 }
 
@@ -92,12 +99,21 @@ QString IfStmt::runSingleStmt(QString par){
     }else return "-1";
 }
 
+QString  IfStmt::tree(){}
+
+
 PrintStmt::PrintStmt(int inputIndex, QString expr):Statement(inputIndex, 4){
     rightExp = new Exp(expr);
     stmt = "PRINT " + expr;
 }
 
-QString PrintStmt::runSingleStmt(QString par){}
+QString PrintStmt::runSingleStmt(QString par){
+    rightExp->evaluate();
+    return QString::number(rightExp->value);
+}
+
+QString  PrintStmt::tree(){}
+
 
 RemStmt::RemStmt(int inputIndex, QString lineTmp):Statement(inputIndex,  5){
     stmt = "REM "+ lineTmp;
@@ -105,13 +121,16 @@ RemStmt::RemStmt(int inputIndex, QString lineTmp):Statement(inputIndex,  5){
 
 QString RemStmt::runSingleStmt(QString par){}
 
+QString  RemStmt::tree(){}
+
+
 EndStmt::EndStmt(int inputIndex):Statement(inputIndex, 6){
     stmt = "END";
 }
 
 QString EndStmt::runSingleStmt(QString par){}
 
-
+QString  EndStmt::tree(){}
 
 
 

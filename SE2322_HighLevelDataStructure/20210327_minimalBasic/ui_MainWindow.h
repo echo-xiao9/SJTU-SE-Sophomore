@@ -58,6 +58,10 @@ public:
         MainWindow->resize(800, 600);
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
+        centralwidget->setStyleSheet(QString::fromUtf8("centralwidget\n"
+"{\n"
+"	background:#333\n"
+"}"));
         verticalLayout_5 = new QVBoxLayout(centralwidget);
         verticalLayout_5->setObjectName(QString::fromUtf8("verticalLayout_5"));
         verticalLayout = new QVBoxLayout();
@@ -73,6 +77,9 @@ public:
 
         codeBrowser = new QTextBrowser(centralwidget);
         codeBrowser->setObjectName(QString::fromUtf8("codeBrowser"));
+        codeBrowser->setStyleSheet(QString::fromUtf8("codeBrower{\n"
+"qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255))\n"
+"}"));
 
         verticalLayout_2->addWidget(codeBrowser);
 
@@ -130,6 +137,9 @@ public:
         clearButton = new QPushButton(centralwidget);
         clearButton->setObjectName(QString::fromUtf8("clearButton"));
         clearButton->setMouseTracking(false);
+        clearButton->setStyleSheet(QString::fromUtf8("QPushButton{\n"
+"rgb(255, 49, 8)\n"
+"}"));
 
         horizontalLayout->addWidget(clearButton);
 

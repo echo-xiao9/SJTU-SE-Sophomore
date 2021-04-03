@@ -18,6 +18,8 @@ extern vector<var>variables;
 class Exp
 {
 public:
+
+    string input;
     string infix;
     string postfix;
     string prefix;

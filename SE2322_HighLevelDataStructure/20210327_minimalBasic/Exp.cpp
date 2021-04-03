@@ -1,13 +1,16 @@
 #include "Exp.h"
+#include <string>
+#include <iostream>
 vector<var>variables;
 
 Exp::Exp(QString letexp)
 {
-    infix= letexp.toStdString();
-    postfix=infixToPostfix();
-    prefix=infixToPrefix();
-    value=evaluate();
-    cout<<value<<endl;
+    input = letexp.toStdString();
+//    infix= letexp.toStdString();
+//    postfix=infixToPostfix();
+//    prefix=infixToPrefix();
+//    value=evaluate();
+
 }
 
 
@@ -79,6 +82,10 @@ string Exp::infixToPostfix()
     return output;
 }
 
+//string Exp::infixToPrefixLetter(){
+
+//}
+
 string Exp:: infixToPrefix()
 {
     /* Reverse String
@@ -129,8 +136,8 @@ int  Exp::applyOp(int a, int b, char op){
 // Function that returns value of
 // Exp after evaluation.
 int  Exp::evaluate(){
+    prepare();
     int i;
-
     // stack to store integer values.
     stack <int> values;
     // stack to store operators.
@@ -238,17 +245,41 @@ int  Exp::evaluate(){
 
         values.push(applyOp(val1, val2, op));
     }
-
+    value = values.top();
     // Top of 'values' contains result, return it.
     return values.top();
 }
 
 void Exp::prepare(){
+    int varIndex=0;
+    QString input1= QString::fromStdString(input);
+    QString tmp="";
+   QString varVal;
+    QString varNa="";
 
-
-
-
-
-
+    for(int i = 0;i < input1.length(); i++){
+            if(input1[i] == '-'){
+                if(i == 0){
+                    input1.insert(0,'0');
+                }else if(input1[i-1] == '('){
+                    input1.insert(i,'0');
+                }
+            }
+        }
+    for(int i=0;i<variables.size();i++){
+        varIndex = input1.indexOf(variables[i].varName);
+        while(varIndex!=-1){
+            varNa = variables[i].varName;
+            varVal = QString::number(variables[i].varValue);
+            input1 = input1.mid(0,varIndex)+varVal+input1.mid(varIndex+varVal.length());
+             varIndex = input1.indexOf(variables[i].varName);
+        }
+    }
+    for(int i=0;i<input1.length();i++)
+    {
+        if((input1[0]>='a' && input1[0]<='z') || (input1[0]>='A' && input1[0]<='Z'))
+            throw "There are undeclared variables in the expression";
+    }
+    infix = input1.toStdString();
 }
 
