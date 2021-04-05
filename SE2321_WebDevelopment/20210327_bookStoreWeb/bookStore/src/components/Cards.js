@@ -23,6 +23,8 @@ function Cards() {
               path='/Book'
               author = 'J·K·Rowling'
               price = '$50'
+              ISBN = '978-7-107-18618-1'
+              inventory = '100'
             />
             <CardItem
               src='images/3bodyCoverSingle.jpeg'
@@ -31,6 +33,8 @@ function Cards() {
               path='/Book'
               author = 'J·K·Rowling'
               price = '$50'
+              ISBN = '978-7-107-18618-1'
+              inventory = '100'
             />
             <CardItem
               src='images/JobsCover.jpeg'
@@ -39,6 +43,8 @@ function Cards() {
               path='/Book'
               author = 'J·K·Rowling'
               price = '$50'
+              ISBN = '978-7-107-18618-1'
+              inventory = '100'
             />
              <CardItem
               src='images/MuskCover.jpeg'
@@ -47,6 +53,8 @@ function Cards() {
               path='/Book'
               author = 'J·K·Rowling'
               price = '$50'
+              ISBN = '978-7-107-18618-1'
+              inventory = '100'
             />
             
           </ul>
@@ -58,6 +66,8 @@ function Cards() {
               path='/Book'
               author = 'J·K·Rowling'
               price = '$50'
+              ISBN = '978-7-107-18618-1'
+              inventory = '100'
               
             />
             <CardItem
@@ -67,6 +77,8 @@ function Cards() {
               path='/products'
               author = 'J·K·Rowling'
               price = '$50'
+              ISBN = '978-7-107-18618-1'
+              inventory = '100'
             />
             <CardItem
               src='images/travelHomeCoverSingle.jpg'
@@ -75,6 +87,8 @@ function Cards() {
               path='/Login'
               author = 'J·K·Rowling'
               price = '$50'
+              ISBN = '978-7-107-18618-1'
+              inventory = '100'
             />
             <CardItem
               src='images/madeSingleCover.jpeg'
@@ -83,6 +97,8 @@ function Cards() {
               path='/Login'
               author = 'J·K·Rowling'
               price = '$50'
+              ISBN = '978-7-107-18618-1'
+              inventory = '100'
             />
           </ul>
           <ul className='cards__items'>
@@ -93,6 +109,8 @@ function Cards() {
               path='/Book'
               author = 'J·K·Rowling'
               price = '$50'
+              ISBN = '978-7-107-18618-1'
+              inventory = '100'
             />
             <CardItem
               src='images/loveCover.png'
@@ -101,6 +119,8 @@ function Cards() {
               path='/products'
               author = 'J·K·Rowling'
               price = '$50'
+              ISBN = '978-7-107-18618-1'
+              inventory = '100'
             />
             <CardItem
               src='images/downToEarthSingleCover.jpeg'
@@ -109,6 +129,8 @@ function Cards() {
               path='/Login'
               author = 'J·K·Rowling'
               price = '$50'
+              ISBN = '978-7-107-18618-1'
+              inventory = '100'
             />
             <CardItem
               src='images/lonelyCover.jpg'

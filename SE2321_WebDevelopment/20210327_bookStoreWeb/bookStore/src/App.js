@@ -3,10 +3,10 @@ import Navbar from './components/Navbar';
 import './App.css';
 import Home from './pages/Home';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import Carts from './pages/Cart/Cart';
-import Order from './pages/Order/Order';
+import Carts from './pages/Cart';
+import Order from './pages/Order';
 import Login from './pages/Login';
-import Book from './pages/Book/Book'
+import Book from './pages/Book'
 import Administrator from './pages/Administrator';
 
 function App() {

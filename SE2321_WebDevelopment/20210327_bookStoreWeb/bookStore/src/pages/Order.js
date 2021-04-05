@@ -1,10 +1,10 @@
 import React from 'react';
-import '../../App.css';
-import './OrderCard.css';
+import '../App.css';
+import '../css/OrderCard.css';
 import Divider from '@material-ui/core/Divider';
-import { Button } from '../../components/Button';
-import DeleteICon from '@material-ui/icons/Delete'
 import { Link } from 'react-router-dom';
+import SearchBox from '../components/SearchBox';
+
 
 function Order() {
   return (
@@ -14,6 +14,9 @@ function Order() {
       <button> wait diliver</button>
       <button> wait diliver</button>
  */}
+
+ <SearchBox />
+ 
    <Divider />
       <>
 

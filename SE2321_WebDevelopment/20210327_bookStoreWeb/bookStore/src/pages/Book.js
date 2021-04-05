@@ -1,7 +1,7 @@
 import React from 'react';
-import './Book.css';
-import Button from '../../components/Button';
-import './w3.css';
+import '../css/Book.css';
+import '../css/w3.css'
+import Button from '../components/Button';
 
 function Book() {
   return (
@@ -97,7 +97,6 @@ with her family.
               <img src="images/harryPoster.jpg" style={{ width: '100%' }} />
               
               <div className="w3-container w3-white">
-
                 <h4><b>Product details</b></h4>
                 <h6><b>Publisher :</b> Arthur A. Levine Books; Slp edition (July 1, 2009)</h6>
                 <h6><b>  Language :</b> English</h6>
