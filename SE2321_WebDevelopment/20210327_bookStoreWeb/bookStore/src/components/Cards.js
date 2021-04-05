@@ -28,7 +28,7 @@ function Cards() {
               src='images/3bodyCoverSingle.jpeg'
               text='Three body'
               label='novel'
-              path='/services'
+              path='/Book'
               author = 'J·K·Rowling'
               price = '$50'
             />
@@ -36,7 +36,7 @@ function Cards() {
               src='images/JobsCover.jpeg'
               text='Steve Jobs'
               label='biographies'
-              path='/services'
+              path='/Book'
               author = 'J·K·Rowling'
               price = '$50'
             />
@@ -44,7 +44,7 @@ function Cards() {
               src='images/MuskCover.jpeg'
               text='Elon Musk'
               label='biographies'
-              path='/services'
+              path='/Book'
               author = 'J·K·Rowling'
               price = '$50'
             />
@@ -55,7 +55,7 @@ function Cards() {
               src='images/PPCoverSingle.jpeg'
               text='Pride and Prejudice'
               label='Classic'
-              path='/services'
+              path='/Book'
               author = 'J·K·Rowling'
               price = '$50'
               
@@ -90,7 +90,7 @@ function Cards() {
               src='images/theFourWindCover.jpeg'
               text='The Four Winds'
               label='Classic'
-              path='/services'
+              path='/Book'
               author = 'J·K·Rowling'
               price = '$50'
             />

@@ -122,13 +122,14 @@ select {
     background-color: rgb(247, 247, 247)
 }
 
-input#grayInput {
+input#grayInput{
     border: 1px solid rgba(0, 0, 0, 0.137);
     padding: 1vh;
     margin-bottom: 4vh;
     outline: none;
     width: 100%;
-    background-color: rgb(247, 247, 247)
+    background-color: rgb(247, 247, 247);
+    color:#000
 }
 
 input:focus::-webkit-input-placeholder {

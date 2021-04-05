@@ -1,6 +1,7 @@
 import React from 'react';
 import '../App.css';
-import './Login.css';
+// import './Login.css';
+import '../css/Login.css';
 import { Button } from '../components/Button';
 
 function SignUp() {
@@ -31,9 +32,8 @@ function SignUp() {
                   <Button buttonStyle='btn--outline'>Log in  </Button>
                   <Button buttonStyle='btn--outline'>Register</Button>
                   <Button buttonStyle='btn--outline' buttonLink='/Administrator'>Administrator</Button>
+
                 </div>
-                
-                
               </form>
             </div>
           </div>
