@@ -1,0 +1,52 @@
+
+# /* rsum_list - Recursive version of sum_list */
+# long rsum_list(list_ptr ls)
+# {
+#     if (!ls)
+# 	return 0;
+#     else {
+# 	long val = ls->val;
+# 	long rest = rsum_list(ls->next);
+# 	return val + rest;
+#     }
+# }
+
+   .pos 0
+  irmovq stack, %rsp
+  call main
+  halt
+
+  .align 8
+ele1:
+  .quad 0x00a
+  .quad ele2
+ele2:
+  .quad 0x0b0
+  .quad ele3
+ele3:
+  .quad 0xc00
+  .quad 0
+
+main:
+  irmovq ele1,%rdi
+  call rsum_list		# sum_list(ele1)
+	ret
+
+rsum_list:
+  pushq %r14
+  xorq  %rax, %rax   #  set ans to 0
+  andq  %rdi, %rdi
+  jne   L2
+  popq  %r14
+  ret
+L2:
+  mrmovq 0(%rdi), %r14 # val = ls->val
+  mrmovq 8(%rdi), %rdi
+  call rsum_list
+  addq   %r14, %rax
+  popq  %r14
+  ret
+
+# Stack starts here and grows to lower addresses
+  .pos 0x200
+stack:

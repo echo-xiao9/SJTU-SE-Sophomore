@@ -1,0 +1,63 @@
+# typedef struct ELE {
+#     long val;
+#     struct ELE *next;
+# } *list_ptr;
+
+# /* sum_list - Sum the elements of a linked list */
+# long sum_list(list_ptr ls)
+# {
+#     long val = 0;
+#     while (ls) {
+# 	val += ls->val;
+# 	ls = ls->next;
+#     }
+#     return val;
+# }
+
+
+
+# Execution begins at address 0
+	.pos 0
+	irmovq stack, %rsp  	# Set up stack pointer
+	call main		# Execute main program
+	halt			# Terminate program 
+
+# 内存区域，存放数据/链表之类
+# Sample linked list  
+.align 8
+ele1:
+    .quad 0x00a
+    .quad ele2
+ele2:
+    .quad 0x0b0
+    .quad ele3
+ele3:
+    .quad 0xc00
+    .quad 0
+# END
+
+main:	
+
+	irmovq ele1,%rdi  #参数准备
+	call sum_list		# sum_list(ele1)
+	ret
+
+# long sum_list(list_ptr ls)
+sum_list:
+  pushq %r10
+  xorq  %rax, %rax   # Store val in %rax, set it to 0
+  jmp   test
+loop:
+  mrmovq 0(%rdi), %r10 # store val in %r10
+  addq   %r10, %rax
+  mrmovq 8(%rdi), %rdi
+test:
+  andq  %rdi, %rdi   # Set cc according to the ls(in %rdi)
+  jne  loop
+  popq %r10
+  ret
+
+# Stack starts here and grows to lower addresses
+  .pos 0x200
+stack:
+

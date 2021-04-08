@@ -1,0 +1,69 @@
+# /* copy_block - Copy src to dest and return xor checksum of src */
+# long copy_block(long *src, long *dest, long len)
+# {
+#     long result = 0;
+#     while (len > 0) {
+# 	long val = *src++;
+# 	*dest++ = val;
+# 	result ^= val;
+# 	len--;
+#     }
+#     return result;
+# }
+
+
+# Execution begins at address 0
+	.pos 0
+	irmovq stack, %rsp  	# Set up stack pointer
+	call main		# Execute main program
+	halt			# Terminate program 
+
+# 内存区域，存放数据/链表之类
+.align 8
+# Source block
+src:
+        .quad 0x00a
+        .quad 0x0b0
+        .quad 0xc00
+# Destination block
+dest:
+        .quad 0x111
+        .quad 0x222
+        .quad 0x333
+# END
+
+main:	
+	irmovq src, %rdi   # prepare parameter
+  irmovq dest,%rsi  
+  irmovq $3,  %rdx  
+	call   copy_block		# long copy_block(long *src, long *dest, long len)
+	ret
+
+copy_block:
+  pushq %r12
+  pushq %r13
+  pushq %r14
+  xorq  %rax, %rax
+  irmovq $8, %r14
+  irmovq $1, %r13
+  jmp   test
+loop:
+  mrmovq 0(%rdi), %r12  # long val = *src;
+  addq   %r14, %rdi     # src++;
+  rmmovq %r12, 0(%rsi)
+  addq   %r14, %rsi     # dest++;
+  xorq   %r12, %rax     # result ^= val;
+  subq   %r13, %rdx     # len--;
+test:
+  andq  %rdx, %rdx   # Set cc according to the ls(in %rdx)
+  jne  loop
+  popq %r14
+  popq %r13
+  popq %r12
+  ret
+
+
+
+  # Stack starts here and grows to lower addresses
+  .pos 0x200
+stack:
