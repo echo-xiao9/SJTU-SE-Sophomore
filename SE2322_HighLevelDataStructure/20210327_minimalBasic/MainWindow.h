@@ -21,8 +21,6 @@ QT_END_NAMESPACE
 #define IS_END(s) (s[0]=='\0')
 #define IS_OPERATOR(s) (s[0]=='+'|| s[0]== '-' ||  s[0]=='*' || s[0]=='/' || s[0]=='('  )
 
-typedef enum { PARSE_ERR=-1, PARSE_LINE, PARSE_STMT, PARSE_CMD, 
-  PARSE_NUM, PARSE_VAR, PARSE_EXP, PARSE_CON, PARSE_OP} parse_t;
 
 typedef enum { CON_ERR=-1, GREATER, EQUAL, LESS} condition_t;
 
@@ -63,6 +61,8 @@ private:
     int cmdNum(cmd_t Cmd);//return -1 if can't find or return the number in cmdTab.
     void showHelpWin();
     void drawTree();
+    void drawExpBranch(Exp *exp, int indentation);
+    void recurPrintExp(Node *n,  int indentation);
 
 private slots:
     void on_codeLineEdit_return();

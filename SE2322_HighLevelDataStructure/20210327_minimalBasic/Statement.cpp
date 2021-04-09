@@ -30,7 +30,6 @@ QString InputStmt::runSingleStmt(QString par){
         }
     }
     if(flag==0)throw "variable undefined";
-
 };
 
 QString InputStmt::findVar(){
@@ -44,26 +43,27 @@ QString  InputStmt::tree(){}
 LetStmt::LetStmt(int InputIndex, QString VarName, QString expr)
     :Statement(InputIndex, 1),varName(VarName){
     stmt="LET "+VarName+" = " +expr;
-    rightExp = new Exp(expr);
+    exp = new Exp(expr);
 }
 
 QString LetStmt::runSingleStmt(QString par){
     bool flag= false;
-    rightExp->evaluate();
-
+    exp->evaluate();
     for (auto it = variables.begin(); it != variables.end();it++) {
         if(it->varName == varName){
-            it->varValue =rightExp->value; //update the value of exist var
+            it->varValue =exp -> value; //update the value of exist var
             flag = true;
             return "";
         }
     }
-        var newVar(varName, rightExp->value);
+        var newVar(varName, exp->value);
         variables.push_back(newVar);
     return "";
 }
 
-QString  LetStmt::tree(){}
+QString  LetStmt::tree(){
+    return varName ;
+}
 
 GotoStmt::GotoStmt(int inputIndex, int targetLineNum):
     Statement(inputIndex,2), targetNum(targetLineNum){
@@ -85,17 +85,17 @@ IfStmt::IfStmt(int inputIndex, QString  exp,  QString inputCondition, QString ex
 }
 
 QString IfStmt::runSingleStmt(QString par){
-    leftExp = new Exp(inputExp);
-    rightExp = new Exp(inputExp1);
-    leftExp->evaluate();
-    rightExp->evaluate(); //! 可能表达式出错
+    exp = new Exp(inputExp);
+    exp1 = new Exp(inputExp1);
+    exp->evaluate();
+    exp1->evaluate(); //! 可能表达式出错
     if(condtion == "="){
-        if(leftExp->value == rightExp->value)return QString::number(targetNum);
+        if(exp->value == exp1->value)return QString::number(targetNum);
     }
     else if(condtion == "<"){
-        if(leftExp->value < rightExp ->value)return QString::number(targetNum);
+        if(exp->value < exp1 ->value)return QString::number(targetNum);
     }else if(condtion == ">"){
-        if(leftExp->value > rightExp->value)return QString::number(targetNum);
+        if(exp->value > exp1->value)return QString::number(targetNum);
     }else return "-1";
 }
 
@@ -103,13 +103,13 @@ QString  IfStmt::tree(){}
 
 
 PrintStmt::PrintStmt(int inputIndex, QString expr):Statement(inputIndex, 4){
-    rightExp = new Exp(expr);
+    exp = new Exp(expr);
     stmt = "PRINT " + expr;
 }
 
 QString PrintStmt::runSingleStmt(QString par){
-    rightExp->evaluate();
-    return QString::number(rightExp->value);
+    exp->evaluate();
+    return QString::number(exp->value);
 }
 
 QString  PrintStmt::tree(){}

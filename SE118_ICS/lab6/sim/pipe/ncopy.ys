@@ -1,3 +1,4 @@
+
 #/* $begin ncopy-ys */
 ##################################################################
 # ncopy.ys - Copy a src block of len words to dst.
@@ -6,7 +7,23 @@
 # Include your name and ID here.
 # 康艺潇 518431910002
 # Describe how and why you modified the baseline code.
-#
+
+# 1. Eight cycle unfolds, reducing the jump and improving the efficiency
+# So let's first go to Len -=8 and if Len -= 0 and go to the REMAINDER part.
+# If ≥0 is evaluated one by one, judge whether =0 after processing, expand 8 times, if still >, 0 enters the loop again.
+
+# 2. The original code has data hazard
+
+# mrmovq (%rdi), %r10	# read val from src...
+# rmmovq %r10, (%rsi)	# ... and store it to dst # data hazard
+# So this %r10 here can be inserted in the middle, which is wasteful
+# Each expansion uses two registers, %r10 and %r11
+# Instead of
+# mrmovq (%rdi), %r10	# read val from src...
+# mrmovq 8(%rdi),%r11
+# rmmovq %r10, (%rsi)	# ... and store it to dst
+# The next round assigns %r11 at the time of assignment.
+
 ##################################################################
 # Do not modify this portion
 # Function prologue.
@@ -16,23 +33,141 @@ ncopy:
 ##################################################################
 # You can modify this portion
 	# Loop header
-	xorq %rax,%rax		# count = 0;
-	andq %rdx,%rdx		# len <= 0?
-	jle Done		# if so, goto Done:
+	xorq %rax,%rax		# count = 0
+	iaddq $-8,%rdx		# length -= 8
+	jl REMAINDER
 
-Loop:	mrmovq (%rdi), %r10	# read val from src...
+Loop:
+  mrmovq (%rdi), %r10	# read val from src...
+	mrmovq 8(%rdi),%r11
 	rmmovq %r10, (%rsi)	# ...and store it to dst
 	andq %r10, %r10		# val <= 0?
 	jle Npos		# if so, goto Npos:
-	irmovq $1, %r10
-	addq %r10, %rax		# count++
-Npos:	irmovq $1, %r10
-	subq %r10, %rdx		# len--
-	irmovq $8, %r10
-	addq %r10, %rdi		# src++
-	addq %r10, %rsi		# dst++
-	andq %rdx,%rdx		# len > 0?
-	jg Loop			# if so, goto Loop:
+	iaddq $1,%rax
+Npos:
+	rmmovq %r11,8(%rsi)
+	andq %r11,%r11
+	jle Npos2
+	iaddq $1,%rax
+Npos2:
+	mrmovq 16(%rdi),%r10
+	mrmovq 24(%rdi),%r11
+	rmmovq %r10, 16(%rsi)
+	andq %r10,%r10
+	jle Npos3
+	iaddq $1,%rax
+Npos3:
+	rmmovq %r11,24(%rsi)
+	andq %r11,%r11
+	jle Npos4
+	iaddq $1,%rax
+Npos4:
+	mrmovq 32(%rdi),%r10
+	mrmovq 40(%rdi),%r11
+	rmmovq %r10, 32(%rsi)
+	andq %r10,%r10
+	jle Npos5
+	iaddq $1,%rax
+Npos5:
+	rmmovq %r11,40(%rsi)
+	andq %r11,%r11
+	jle Npos6
+	iaddq $1,%rax
+Npos6:
+	mrmovq 48(%rdi),%r10
+	mrmovq 56(%rdi),%r11
+	rmmovq %r10, 48(%rsi)
+	andq %r10,%r10
+	jle Npos7
+	iaddq $1,%rax
+Npos7:
+	rmmovq %r11,56(%rsi)
+	andq %r11,%r11
+	jle nLoop
+	iaddq $1,%rax
+
+nLoop:
+	iaddq $64,%rdi
+	iaddq $64,%rsi
+	iaddq $-8,%rdx
+	jge Loop
+
+REMAINDER:
+	iaddq $7,%rdx
+	jl Done
+  mrmovq (%rdi), %r10
+	mrmovq 8(%rdi),%r11
+	rmmovq %r10, (%rsi) //finish 0
+	andq %r10,%r10
+	jle REMPOS
+	iaddq $1,%rax
+REMPOS:
+	iaddq $-1,%rdx
+	jl Done
+  mrmovq 16(%rdi), %r10
+	rmmovq %r11,8(%rsi) //finish 1
+	andq %r11,%r11
+	jle REMPOS1
+	iaddq $1,%rax
+REMPOS1:
+	iaddq $-1,%rdx
+	jl Done
+  mrmovq 24(%rdi), %r11
+	rmmovq %r10, 16(%rsi) //finish 2
+	andq %r10,%r10
+	jle REMPOS2
+	iaddq $1,%rax
+REMPOS2:
+	iaddq $-1,%rdx
+	jl Done
+  mrmovq 32(%rdi), %r10
+	rmmovq %r11,24(%rsi) //finish 3
+	andq %r11,%r11
+	jle REMPOS3
+	iaddq $1,%rax
+REMPOS3:
+	iaddq $-1,%rdx
+	jl Done
+  mrmovq 40(%rdi), %r11
+	rmmovq %r10, 32(%rsi)
+	andq %r10,%r10      //finish 4
+	jle REMPOS4
+	iaddq $1,%rax
+REMPOS4:
+	iaddq $-1,%rdx
+	jl Done
+  mrmovq 48(%rdi), %r10
+	rmmovq %r11,40(%rsi) //finish 5
+	andq %r11,%r11
+  jle REMPOS5
+	iaddq $1,%rax
+
+REMPOS5:
+	iaddq $-1,%rdx
+	jl Done
+  mrmovq 56(%rdi), %r11
+	rmmovq %r10, 48(%rsi)
+	andq %r10,%r10      //finish 6
+	jle REMPOS6
+	iaddq $1,%rax
+
+REMPOS6:
+	iaddq $-1,%rdx
+	jl Done
+  mrmovq 64(%rdi), %r10
+	rmmovq %r11,56(%rsi) //finish 7
+	andq %r11,%r11
+  jle REMPOS7
+	iaddq $1,%rax
+
+REMPOS7:
+	iaddq $-1,%rdx
+	jl Done
+	rmmovq %r10, 64(%rsi)
+	andq %r10,%r10
+	jle Done
+	iaddq $1,%rax
+  
 ##################################################################
 # Do not modify the following section of code
 # Function epilogue.

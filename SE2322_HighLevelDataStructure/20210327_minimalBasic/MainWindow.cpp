@@ -162,8 +162,7 @@ void MainWindow::runApp(){
 
 
     }
-    drawTree();
-
+ drawTree();
  updateVarBrowser();
  updateResultBrowser();
  updateSyntaxDisplayBroser();
@@ -175,25 +174,35 @@ void MainWindow:: showHelpWin(){
     helpWin ->show();
 }
 
+void MainWindow:: drawExpBranch(Exp *exp, int indentation){
+
+}
 
 void MainWindow:: drawTree(){
     // -1 means no type the type order from 0-6 is
     // 0:INPUT   1:LET   2:GOTO  3:IF   4:PRINT    5:REM   6:END
+    // we only need to draw  LET IF GOTO PRINT
     QString synBranch;
     map<int, Statement*>::iterator it = statements.begin();
     while(it !=statements.end()){
         switch (it->second->type) {
 
         case 1:
+            synTree.push_back("LET =");
+            synBranch =   "    "+it->second->tree();
+            drawExpBranch(it->second->exp, 1);
             break;
         case 2:
-            synBranch = "GOTO";
-            synTree.push_back(synBranch);
+            synTree.push_back( "GOTO");
             synBranch =   "    "+it->second->tree();
             synTree.push_back(synBranch);
             break;
 
         case 3:
+            synTree.push_back( "IF  THEN");
+            drawExpBranch(it->second->exp, 1);
+
+
 
             break;
         case 4:
@@ -493,5 +502,25 @@ bool MainWindow::judge_infix(string str)
         return true;
             return false;
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

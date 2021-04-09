@@ -1,17 +1,83 @@
 #include "Exp.h"
 #include <string>
 #include <iostream>
+#include <stack>
 vector<var>variables;
+
+
+
 
 Exp::Exp(QString letexp)
 {
     input = letexp.toStdString();
-//    infix= letexp.toStdString();
-//    postfix=infixToPostfix();
-//    prefix=infixToPrefix();
-//    value=evaluate();
 
 }
+
+
+parse_t Exp:: parse_num(QString &ptr, int & val){
+    QString tmp=ptr;
+    int i=0;
+    tmp=tmp.trimmed();
+    if(IS_END(tmp)) return PARSE_ERR;
+    if(!IS_NUM(tmp)) return PARSE_ERR;
+    for(i=0;i<tmp.length()&&(tmp[i]>='0' && tmp[i]<='9');i++){
+    }
+    val=tmp.mid(0,i).toInt();
+    ptr=tmp.mid(i);
+    return PARSE_NUM;
+}
+
+parse_t  Exp::parse_var(QString &ptr, QString& name){
+//    begin with a letter or an underscore.  only have letters, numbers,  underscore
+    QString tmp=ptr;
+    int i=0;
+    tmp=tmp.trimmed();
+    if(IS_END(tmp)) return PARSE_ERR;
+    if(!(tmp[0] == '_'|| IS_LETTER(tmp)))return PARSE_ERR;
+    while(tmp[i]=='_' ||(tmp[i]>='0'&& tmp[i]<='9') ||
+          (tmp[i]>='a'&& tmp[i]<='z') || (tmp[i]>='A'&& tmp[i]<='Z')){
+        i++;
+    }
+    name = tmp.mid(0,i);
+    tmp = tmp.mid(i);
+    ptr = tmp;
+    if(IS_END(name))return PARSE_ERR;
+    return PARSE_VAR;
+}
+
+parse_t Exp:: parse_delim(QString &ptr, QString& delim){
+     QString tmp=ptr;
+     tmp=tmp.trimmed();
+     if(IS_END(tmp)) return PARSE_ERR;
+     if(tmp[0]=='=' || tmp[0] =='>' || tmp[0] == '<'){
+         delim =tmp.mid(0,1);
+         tmp = tmp.mid(1);
+         ptr = tmp;
+         return PARSE_CON;
+     }
+     if(tmp[0]=='+' || tmp[0] =='-' || tmp[0] == '/'|| tmp[0] == '(' ||tmp[0] == ')'){
+         delim =tmp.mid(0,1);
+         tmp = tmp.mid(1);
+         ptr = tmp;
+         return PARSE_OP;
+     }
+     if(tmp[0] == '*'){
+         if(tmp[1]=='*') {
+             delim = tmp.mid(0,2);
+             tmp = tmp.mid(2);
+         }
+         else {
+             delim = tmp.mid(0,1);
+             tmp = tmp.mid(1);
+         }
+         ptr = tmp;
+         return PARSE_OP;
+     }
+     return PARSE_ERR;
+}
+
+
+
 
 
 bool Exp::isOperator(char c)
@@ -29,6 +95,83 @@ int Exp::getPriority(char C)
         return 3;
     return 0;
 }
+
+int Exp::getPriority2(QString C)
+{
+    if (C == '-' || C == '+')
+        return 1;
+    else if (C == '*' || C == '/')
+        return 2;
+    else if (C == "**")
+        return 3;
+    return 0;
+}
+
+void Exp::getInfixVec(){
+    QString tmp = QString::fromStdString(input);
+    QString delim="";
+    QString var="";
+    int num=0;Node*newNode;
+    while(!IS_END(tmp)){
+        if(IS_NUM(tmp)){
+            parse_num(tmp, num);
+            newNode = new Node(QString::number(num),0);
+        }
+        else if(tmp[0]=="-" && tmp[1]<'9' && tmp[1] > '0'){
+            tmp = tmp.mid(1);
+            parse_num(tmp, num);
+            num = -num;
+             newNode = new Node(QString::number(num),0); //？ can handle negative?
+        }
+        else if(parse_var(tmp, var) != PARSE_ERR){
+             newNode = new Node(var,1);
+        }
+        else if(parse_delim(tmp, delim) == PARSE_OP){
+            newNode = new Node(delim,2);
+        }
+        else throw "invalid expression";
+        in.push_back(*newNode);
+    }
+//    for(int i=0;i<in.size();i++){
+//        qDebug()<<in[i].val;
+//    }
+//    qDebug()<<endl;
+}
+
+void Exp::infixToPostfixVec(){ // num(-), var, operations
+    stack<Node> nodeStack;
+    for(int i=0;i<in.size();i++){
+        if(in[i].type == 0 || in[i].type == 1)post.push_back(in[i]);
+        else if(in[i].val == "(") nodeStack.push(in[i]);
+        else if(in[i].val == ")"){
+            while (nodeStack.top().val != '(')
+            {
+                post.push_back(nodeStack.top());
+                nodeStack.pop();
+            }
+            // Remove '(' from the stack
+            nodeStack.pop();
+        }
+        else{
+            while (  nodeStack.size()!=0 && ( getPriority2(in[i].val)
+                   < getPriority2(nodeStack.top().val))) {
+                post.push_back(nodeStack.top());
+                nodeStack.pop();
+            }
+            // Push current Operator on stack
+            post.push_back(in[i]);
+        }
+    }
+    while (nodeStack.size())  {
+        post.push_back(nodeStack.top());
+        nodeStack.pop();
+    }
+//        for(int i=0;i<post.size();i++){
+//            qDebug()<<post[i].val;
+//        }
+//        qDebug()<<endl;
+}
+
 
 string Exp::infixToPostfix()
 {
@@ -137,6 +280,9 @@ int  Exp::applyOp(int a, int b, char op){
 // Exp after evaluation.
 int  Exp::evaluate(){
     prepare();
+    getInfixVec();
+    infixToPostfixVec();
+    buildSynTree();
     int i;
     // stack to store integer values.
     stack <int> values;
@@ -254,25 +400,25 @@ void Exp::prepare(){
     int varIndex=0;
     QString input1= QString::fromStdString(input);
     QString tmp="";
-   QString varVal;
+    QString varVal;
     QString varNa="";
 
     for(int i = 0;i < input1.length(); i++){
-            if(input1[i] == '-'){
-                if(i == 0){
-                    input1.insert(0,'0');
-                }else if(input1[i-1] == '('){
-                    input1.insert(i,'0');
-                }
+        if(input1[i] == '-'){
+            if(i == 0){
+                input1.insert(0,'0');
+            }else if(input1[i-1] == '('){
+                input1.insert(i,'0');
             }
         }
+    }
     for(int i=0;i<variables.size();i++){
         varIndex = input1.indexOf(variables[i].varName);
         while(varIndex!=-1){
             varNa = variables[i].varName;
             varVal = QString::number(variables[i].varValue);
             input1 = input1.mid(0,varIndex)+varVal+input1.mid(varIndex+varVal.length());
-             varIndex = input1.indexOf(variables[i].varName);
+            varIndex = input1.indexOf(variables[i].varName);
         }
     }
     for(int i=0;i<input1.length();i++)
@@ -282,4 +428,33 @@ void Exp::prepare(){
     }
     infix = input1.toStdString();
 }
+
+bool  Exp::buildSynTree(){
+    stack <Node*> synStack;
+    Node* n;
+    for(int i=0;i<post.size();i++){
+        n= &post[i];
+        if(n->type == 0|| n->type==1 )synStack.push(n); // for num and variable, just push it into stack
+        else{
+            if(synStack.empty())return 0;
+            Node*rightNode = synStack.top();
+            synStack.pop();
+            if(synStack.empty())return 0;
+            Node*leftNode = synStack.top(); //for operater, pop 2 node and set left and right.(can exchange)
+            synStack.pop();
+            n->left = leftNode;
+            n->right = rightNode;
+            synStack.push(n);
+        }
+    }
+    if(synStack.size()==1 && synStack.top()->type == 2)return 1;
+    return 0;
+}
+
+
+
+
+
+
+
 

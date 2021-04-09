@@ -4,8 +4,6 @@
  * High level specs for the functions that the students will rewrite
  * in Y86-64 assembly language
  */
-// 518431910002
-// Yixiao Kang
 
 /* $begin examples */
 /* linked list element */

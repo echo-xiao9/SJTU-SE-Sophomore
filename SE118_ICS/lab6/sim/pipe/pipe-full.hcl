@@ -1,6 +1,20 @@
+# name: Kang Yixiao
+# id: 518431910002
 #/* $begin pipe-all-hcl */
 ####################################################################
 #    HCL Description of Control for Pipelined Y86-64 Processor     #
+
+#	 Like the part B, I just add the neccessary steps into this file.
+#	    eg. iaddq $8,%rdi
+#	    1, add IADDQ to 'instr_valid';
+#	    2. iaddq needs one register(regB), one immediate, so 'need_regids', 'need_valC','D_rB';
+#	    3. %rdi = %rdi +8; so the aluA for iaddq should be 'E_valC', aluB for iaddq should be 'E_valB';
+#	    4. it will write back to the destination of regB, d_dstE should be 'D_rB';
+#	    5. conditions may be caculated, I add it into 'alufun' according to IOPQ;
+#	    6. it will set_cc, so add 'set_cc';
+#	    7,  improve the "load forwarding" of pipeline by changing the source of e_valA;
+#	    8, improve the accuracy of branch prediction by modifying the instructions "addq" "jle"
+#	    9, improve the efficiency of "pushq" to achieve that we only need 1 bubble between pushq and ret;
 #    Copyright (C) Randal E. Bryant, David R. O'Hallaron, 2014     #
 ####################################################################
 
@@ -126,7 +140,7 @@ wordsig W_dstE 'mem_wb_curr->deste'	# Destination E register ID
 wordsig W_valE  'mem_wb_curr->vale'      # ALU E value
 wordsig W_dstM 'mem_wb_curr->destm'	# Destination M register ID
 wordsig W_valM  'mem_wb_curr->valm'	# Memory M value
-
+wordsig W_ifun 'mem_wb_curr->ifun'
 ####################################################################
 #    Control Signal Definitions.                                   #
 ####################################################################
@@ -135,10 +149,17 @@ wordsig W_valM  'mem_wb_curr->valm'	# Memory M value
 
 ## What address should instruction be fetched at
 word f_pc = [
+	#andq jle 100%
+	D_icode == IJXX && f_ifun == 1 && 
+	E_icode == IOPQ && E_ifun == 2 && 
+	E_srcA == E_srcB && E_valA > 0 : D_valP;
 	# Mispredicted branch.  Fetch at incremented PC
-	M_icode == IJXX && !M_Cnd : M_valA;
-	# Completion of RET instruction
-	W_icode == IRET : W_valM;
+	M_icode == IJXX && !M_Cnd && 
+	!(M_ifun == 1 && W_icode == IOPQ && W_ifun == 2): M_valA;
+	# pushq ret
+	D_icode == IRET && E_icode == IPUSHQ : E_valA;
+	# Completion of RET instruction.
+	W_icode == IRET && M_icode == INOP : W_valM;
 	# Default: Use predicted value of PC
 	1 : F_predPC;
 ];
@@ -158,7 +179,7 @@ word f_ifun = [
 # Is instruction valid?
 bool instr_valid = f_icode in 
 	{ INOP, IHALT, IRRMOVQ, IIRMOVQ, IRMMOVQ, IMRMOVQ,
-	  IOPQ, IJXX, ICALL, IRET, IPUSHQ, IPOPQ };
+	  IOPQ, IJXX, ICALL, IRET, IPUSHQ, IPOPQ,IIADDQ };
 
 # Determine status code for fetched instruction
 word f_stat = [
@@ -171,11 +192,11 @@ word f_stat = [
 # Does fetched instruction require a regid byte?
 bool need_regids =
 	f_icode in { IRRMOVQ, IOPQ, IPUSHQ, IPOPQ, 
-		     IIRMOVQ, IRMMOVQ, IMRMOVQ };
+		     IIRMOVQ, IRMMOVQ, IMRMOVQ,IIADDQ};
 
 # Does fetched instruction require a constant word?
 bool need_valC =
-	f_icode in { IIRMOVQ, IRMMOVQ, IMRMOVQ, IJXX, ICALL };
+	f_icode in { IIRMOVQ, IRMMOVQ, IMRMOVQ, IJXX, ICALL,IIADDQ };
 
 # Predict next value of PC
 word f_predPC = [
@@ -195,14 +216,14 @@ word d_srcA = [
 
 ## What register should be used as the B source?
 word d_srcB = [
-	D_icode in { IOPQ, IRMMOVQ, IMRMOVQ  } : D_rB;
+	D_icode in { IOPQ, IRMMOVQ, IMRMOVQ,IIADDQ  } : D_rB;
 	D_icode in { IPUSHQ, IPOPQ, ICALL, IRET } : RRSP;
 	1 : RNONE;  # Don't need register
 ];
 
 ## What register should be used as the E destination?
 word d_dstE = [
-	D_icode in { IRRMOVQ, IIRMOVQ, IOPQ} : D_rB;
+	D_icode in { IRRMOVQ, IIRMOVQ, IOPQ,IIADDQ} : D_rB;
 	D_icode in { IPUSHQ, IPOPQ, ICALL, IRET } : RRSP;
 	1 : RNONE;  # Don't write any register
 ];
@@ -239,7 +260,7 @@ word d_valB = [
 ## Select input A to ALU
 word aluA = [
 	E_icode in { IRRMOVQ, IOPQ } : E_valA;
-	E_icode in { IIRMOVQ, IRMMOVQ, IMRMOVQ } : E_valC;
+	E_icode in { IIRMOVQ, IRMMOVQ, IMRMOVQ,IIADDQ } : E_valC;
 	E_icode in { ICALL, IPUSHQ } : -8;
 	E_icode in { IRET, IPOPQ } : 8;
 	# Other instructions don't need ALU
@@ -248,7 +269,7 @@ word aluA = [
 ## Select input B to ALU
 word aluB = [
 	E_icode in { IRMMOVQ, IMRMOVQ, IOPQ, ICALL, 
-		     IPUSHQ, IRET, IPOPQ } : E_valB;
+		     IPUSHQ, IRET, IPOPQ,IIADDQ} : E_valB;
 	E_icode in { IRRMOVQ, IIRMOVQ } : 0;
 	# Other instructions don't need ALU
 ];
@@ -260,12 +281,15 @@ word alufun = [
 ];
 
 ## Should the condition codes be updated?
-bool set_cc = E_icode == IOPQ &&
+bool set_cc = E_icode in {IOPQ,IIADDQ }&&
 	# State changes only during normal operation
 	!m_stat in { SADR, SINS, SHLT } && !W_stat in { SADR, SINS, SHLT };
 
 ## Generate valA in execute stage
-word e_valA = E_valA;    # Pass valA through stage
+word e_valA = [
+       E_srcA==M_dstM && E_icode in {IRMMOVQ} :m_valM;
+	   1:E_valA;
+];
 
 ## Set dstE to RNONE in event of not-taken conditional move
 word e_dstE = [
@@ -322,34 +346,44 @@ bool F_bubble = 0;
 bool F_stall =
 	# Conditions for a load/use hazard
 	E_icode in { IMRMOVQ, IPOPQ } &&
-	 E_dstM in { d_srcA, d_srcB } ||
+	 E_dstM in { d_srcA, d_srcB } &&
+	!D_icode in { IRMMOVQ } ||
 	# Stalling at fetch while ret passes through pipeline
-	IRET in { D_icode, E_icode, M_icode };
+	#IRET in { D_icode, E_icode, M_icode };
+	(D_icode == IRET && E_icode != IPUSHQ) ||
+	(E_icode == IRET && M_icode != IPUSHQ) ||
+(M_icode == IRET && W_icode != IPUSHQ); 
 
 # Should I stall or inject a bubble into Pipeline Register D?
 # At most one of these can be true.
 bool D_stall = 
 	# Conditions for a load/use hazard
 	E_icode in { IMRMOVQ, IPOPQ } &&
-	 E_dstM in { d_srcA, d_srcB };
+	 E_dstM in { d_srcA, d_srcB } &&
+!D_icode in { IRMMOVQ };
 
 bool D_bubble =
 	# Mispredicted branch
-	(E_icode == IJXX && !e_Cnd) ||
+	(E_icode == IJXX && !e_Cnd &&
+	!(E_ifun == 1 && M_icode == IOPQ && M_ifun == 2 && M_valE > 0)) ||
 	# Stalling at fetch while ret passes through pipeline
 	# but not condition for a load/use hazard
-	!(E_icode in { IMRMOVQ, IPOPQ } && E_dstM in { d_srcA, d_srcB }) &&
-	  IRET in { D_icode, E_icode, M_icode };
-
+	#IRET in { D_icode, E_icode, M_icode };
+	!(E_icode in { IMRMOVQ, IPOPQ } && E_dstM in { d_srcA, d_srcB } && !D_icode in { IRMMOVQ }) &&
+	 (D_icode == IRET && E_icode != IPUSHQ || 
+	E_icode ==  IRET && M_icode != IPUSHQ  || 
+M_icode == IRET && W_icode != IPUSHQ);
 # Should I stall or inject a bubble into Pipeline Register E?
 # At most one of these can be true.
 bool E_stall = 0;
 bool E_bubble =
 	# Mispredicted branch
-	(E_icode == IJXX && !e_Cnd) ||
+	(E_icode == IJXX && !e_Cnd &&
+	!(E_ifun == 1 && M_icode == IOPQ && M_ifun == 2 && M_valE > 0)) ||
 	# Conditions for a load/use hazard
 	E_icode in { IMRMOVQ, IPOPQ } &&
-	 E_dstM in { d_srcA, d_srcB};
+	 E_dstM in { d_srcA, d_srcB} && 
+!D_icode in { IRMMOVQ };
 
 # Should I stall or inject a bubble into Pipeline Register M?
 # At most one of these can be true.

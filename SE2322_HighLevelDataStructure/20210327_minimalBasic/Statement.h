@@ -9,7 +9,8 @@ extern vector<var>variables;
 class Statement
 {
 public:
-    Exp *exp;
+    Exp *exp = nullptr;
+    Exp *exp1 =nullptr;
     int index;
     QString stmt;
     // -1 means no type the type order from 0-6 is
@@ -33,8 +34,9 @@ public:
 };
 
 class LetStmt: public Statement{
+private:
     QString varName;
-    Exp *rightExp;
+    //have exp
 public:
     LetStmt(int InputIndex, QString VarName, QString expr);
     QString runSingleStmt(QString par);
@@ -51,8 +53,7 @@ public:
 
 class IfStmt: public Statement{
 private:
-    Exp *leftExp;
-    Exp *rightExp;
+    //have exp and exp1
     QString inputExp;
     QString inputExp1;
     QString condtion;
@@ -66,7 +67,7 @@ public:
 
 class PrintStmt: public Statement{
 public:
-    Exp *rightExp;
+    //have exp
     PrintStmt(int inputIndex, QString exp);
     QString runSingleStmt(QString par);
     QString tree();
