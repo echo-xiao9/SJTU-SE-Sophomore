@@ -99,8 +99,6 @@ QString IfStmt::runSingleStmt(QString par){
     }else return "-1";
 }
 
-QString  IfStmt::tree(){}
-
 
 PrintStmt::PrintStmt(int inputIndex, QString expr):Statement(inputIndex, 4){
     exp = new Exp(expr);
@@ -131,7 +129,6 @@ EndStmt::EndStmt(int inputIndex):Statement(inputIndex, 6){
 QString EndStmt::runSingleStmt(QString par){}
 
 QString  EndStmt::tree(){}
-
 
 
 

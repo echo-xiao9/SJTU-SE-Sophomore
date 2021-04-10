@@ -61,7 +61,7 @@ private:
 public:
      IfStmt(int inputIndex, QString  exp,  QString inputCondition, QString exp1, int targetNum);
      QString runSingleStmt(QString par);
-     QString tree();
+     QString tree(){return condtion;}
 };
 
 

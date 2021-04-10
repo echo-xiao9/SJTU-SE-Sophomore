@@ -35,8 +35,8 @@ void MainWindow::updateVarBrowser(){
     ui->varBrowser->clear();
     for (int i = 0; i < variables.size(); i++)
     {
-    appendLine =variables[i].varName +" = " + QString::number(variables[i].varValue);
-    ui->varBrowser->append(appendLine);
+        appendLine =variables[i].varName +" = " + QString::number(variables[i].varValue);
+        ui->varBrowser->append(appendLine);
     }
 }
 
@@ -82,91 +82,96 @@ void MainWindow::loadStat(){
     QString fileName = QFileDialog::getOpenFileName();
     QFile file(fileName);
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)){
-        qDebug()<<"can't open file"<<endl;
-         return;
+        QString error ="can't open file!";
+        throw error;
     }
     statements.clear();//clear current statements before loading
     QTextStream in(&file);
     QString line ="";
     while (!in.atEnd()) {
-            QString line = in.readLine();
-            parse_line(line);
-        }
+        QString line = in.readLine();
+        parse_line(line);
+    }
     file.close();
 }
 
 void MainWindow::runApp(){
-    results.clear();
-    variables.clear();
-    curLine=0;
-    QString par="";
-    QString result = "";
-    map<int, Statement*>::iterator it = statements.begin();
-    while(it !=statements.end()){
-        switch (it->second->type) {
-        // 0:INPUT   1:LET   2:GOTO  3:IF   4:PRINT    5:REM   6:END
-        case 0://problem!?
-            ui->codeLineEdit-> setText("?");
-            par = ui->codeLineEdit->text();
-            par = par.trimmed();
-            it->second->runSingleStmt(par);
-            it++;
-            break;
+    try {
+        results.clear();
+        variables.clear();
+        curLine=0;
+        QString par="";
+        QString result = "";
+        map<int, Statement*>::iterator it = statements.begin();
+        while(it !=statements.end()){
+            switch (it->second->type) {
+            // 0:INPUT   1:LET   2:GOTO  3:IF   4:PRINT    5:REM   6:END
+            case 0://problem!?
+                ui->codeLineEdit-> setText("?");
+                par = ui->codeLineEdit->text();
+                par = par.trimmed();
+                it->second->runSingleStmt(par);
+                it++;
+                break;
 
-        case 1:
-            it->second->runSingleStmt(par);
-            it++;
-            break;
+            case 1:
+                it->second->runSingleStmt(par);
+                it++;
+                break;
 
-        case 2:
-            result  = it->second->runSingleStmt(par); //the target index
-            curLine = result.toInt();
-            for ( it = statements.begin(); it != statements.end(); it++)
-            {
-                if((*it).second->index == curLine) {
-                    break;
+            case 2:
+                result  = it->second->runSingleStmt(par); //the target index
+                curLine = result.toInt();
+                for ( it = statements.begin(); it != statements.end(); it++)
+                {
+                    if((*it).second->index == curLine) {
+                        break;
+                    }
                 }
-            }
-            if(it==statements.end()){// haven't find the index
-                throw "invalid line number in GOTO statement";
-            }
-            break;
-        case 3:
-             curLine= it->second->runSingleStmt(par).toInt();
-             for ( it = statements.begin(); it != statements.end(); it++)
-             {
-                 if((*it).second->index == curLine) {
-                     break;
-                 }
-             }
-             if(it==statements.end()){// haven't find the index
-                 throw "invalid line number in IF THEN statement"; // !test
-             }
-            break;
-        case 4:
-             result= it->second->runSingleStmt(par);
-//             ui->resultBrowser->append(result);
-             results.push_back(result);
+                if(it==statements.end()){// haven't find the index
+                    QString error ="invalid line number in GOTO statement";
+                    throw error;
+                }
+                break;
+            case 3:
+                curLine= it->second->runSingleStmt(par).toInt();
+                for ( it = statements.begin(); it != statements.end(); it++)
+                {
+                    if((*it).second->index == curLine) {
+                        break;
+                    }
+                }
+                if(it==statements.end()){// haven't find the index
+                    QString error = "invalid line number in IF THEN statement";
+                    throw error;
 
-             it++;
-            break;
-        case 5:
-            it++;
-            break;
-        case 6:
-            it = statements.end();
-            break;
-        default:
-            break;
+                }
+                break;
+            case 4:
+                result= it->second->runSingleStmt(par);
+                //             ui->resultBrowser->append(result);
+                results.push_back(result);
+
+                it++;
+                break;
+            case 5:
+                it++;
+                break;
+            case 6:
+                it = statements.end();
+                break;
+            default:
+                break;
+            }
         }
-
-
+        drawTree();
+        updateVarBrowser();
+        updateResultBrowser();
+        updateSyntaxDisplayBroser();
+        ui->messageLineEdit ->setText("Program ended successfully.");
+    }catch(QString s){
+        ui->messageLineEdit ->setText(s);
     }
- drawTree();
- updateVarBrowser();
- updateResultBrowser();
- updateSyntaxDisplayBroser();
- ui->messageLineEdit ->setText("Program ended successfully.");
 };
 
 void MainWindow:: showHelpWin(){
@@ -174,9 +179,22 @@ void MainWindow:: showHelpWin(){
     helpWin ->show();
 }
 
-void MainWindow:: drawExpBranch(Exp *exp, int indentation){
 
+void MainWindow:: drawExpBranch(Exp *exp, int indentation){
+    recurPrintExp(exp->root, indentation);
 }
+
+void MainWindow::recurPrintExp(Node *n,  int indentation){
+    QString tmp;
+    for(int i=0;i<indentation*4;i++) tmp = tmp +" ";
+    tmp = tmp+ n->val;
+    synTree.push_back( tmp);
+    if(n->left) recurPrintExp(n->left, indentation+1);
+    if(n->right) recurPrintExp(n->right, indentation+1);
+}
+
+
+
 
 void MainWindow:: drawTree(){
     // -1 means no type the type order from 0-6 is
@@ -187,34 +205,36 @@ void MainWindow:: drawTree(){
     while(it !=statements.end()){
         switch (it->second->type) {
 
-        case 1:
+        case 1: //LET
             synTree.push_back("LET =");
             synBranch =   "    "+it->second->tree();
+            synTree.push_back(synBranch);
             drawExpBranch(it->second->exp, 1);
             break;
-        case 2:
+        case 2: //GOTO
             synTree.push_back( "GOTO");
             synBranch =   "    "+it->second->tree();
             synTree.push_back(synBranch);
             break;
 
-        case 3:
+        case 3: //IF
             synTree.push_back( "IF  THEN");
             drawExpBranch(it->second->exp, 1);
-
-
-
+            synBranch =   "    "+it->second->tree();
+            synTree.push_back(synBranch);
+            drawExpBranch(it->second->exp1, 1);
             break;
-        case 4:
-\
+
+        case 4:  //PRINT
+            synTree.push_back( "PRINT");
+            drawExpBranch(it->second->exp, 1);
             break;
 
         default:
-
             break;
 
         }
-         it++;
+        it++;
 
 
 
@@ -244,24 +264,24 @@ parse_t MainWindow:: parse_line(QString &line){
         switch (stmtNum(stmtTmp))
         {
         case 0: //"INPUT": 35 INPUT n3
-          if(parse_var(lineTmp, varName) == PARSE_ERR) return PARSE_ERR;
+            if(parse_var(lineTmp, varName) == PARSE_ERR) return PARSE_ERR;
 
-//              newStmt = new InputStmt(lineNum, varName, numTmp, statements);
-              newStmt = new InputStmt(lineNum, varName,numTmp);
-          break;
+            //              newStmt = new InputStmt(lineNum, varName, numTmp, statements);
+            newStmt = new InputStmt(lineNum, varName,numTmp);
+            break;
         case 1://"LET": //40 LET total = n1 + n2 + n3
-          if(parse_var(lineTmp, varName)==PARSE_ERR ||
-              parse_delim(lineTmp, delim)==PARSE_ERR||
-              delim !="="||
-              parse_exp(lineTmp,exp)==PARSE_ERR)
-              return PARSE_ERR;
-              newStmt=new LetStmt(lineNum, varName, exp);
-          break;
+            if(parse_var(lineTmp, varName)==PARSE_ERR ||
+                    parse_delim(lineTmp, delim)==PARSE_ERR||
+                    delim !="="||
+                    parse_exp(lineTmp,exp)==PARSE_ERR)
+                return PARSE_ERR;
+            newStmt=new LetStmt(lineNum, varName, exp);
+            break;
 
         case 2: //"GOTO" GOTO n
-          if(parse_num(lineTmp,numTmp)==PARSE_ERR)return PARSE_ERR;
-          newStmt = new GotoStmt(lineNum, numTmp);
-          break;
+            if(parse_num(lineTmp,numTmp)==PARSE_ERR)return PARSE_ERR;
+            newStmt = new GotoStmt(lineNum, numTmp);
+            break;
 
         case 3://"IF":  //IF condition THEN n
             if(lineTmp.indexOf("<") !=-1){
@@ -271,74 +291,74 @@ parse_t MainWindow:: parse_line(QString &line){
                 index =lineTmp.indexOf("=" );
                 delim = "=";
             }else if(lineTmp.indexOf(">") != -1){
-                 index =lineTmp.indexOf(">" );
-                 delim = ">";
+                index =lineTmp.indexOf(">" );
+                delim = ">";
             }
             if(index == -1)return PARSE_ERR;
-           exp = lineTmp.mid(0,index);
-           exp = exp.trimmed();
-           indexThen = lineTmp.indexOf("THEN", 0,  Qt::CaseInsensitive);
-           exp1 = lineTmp.mid(index+1, indexThen-index-1);
-           exp1= exp1.trimmed();
+            exp = lineTmp.mid(0,index);
+            exp = exp.trimmed();
+            indexThen = lineTmp.indexOf("THEN", 0,  Qt::CaseInsensitive);
+            exp1 = lineTmp.mid(index+1, indexThen-index-1);
+            exp1= exp1.trimmed();
             // !!!!numTmp;
-           lineTmp = lineTmp.mid(indexThen+4);
-           if(parse_num(lineTmp, numTmp)==PARSE_ERR)return PARSE_ERR;
+            lineTmp = lineTmp.mid(indexThen+4);
+            if(parse_num(lineTmp, numTmp)==PARSE_ERR)return PARSE_ERR;
 
-          newStmt = new IfStmt(lineNum, exp,  delim, exp1, numTmp);
-          break;
+            newStmt = new IfStmt(lineNum, exp,  delim, exp1, numTmp);
+            break;
 
         case 4: //"PRINT": //PRINT 2 + 2
-          if(parse_exp(lineTmp, exp)==PARSE_ERR)return PARSE_ERR;
-          newStmt = new PrintStmt(lineNum,exp);
-          break;
+            if(parse_exp(lineTmp, exp)==PARSE_ERR)return PARSE_ERR;
+            newStmt = new PrintStmt(lineNum,exp);
+            break;
 
         case 5: //"REM": //REM aaa
-          newStmt = new RemStmt(lineNum,lineTmp);
-          break;
+            newStmt = new RemStmt(lineNum,lineTmp);
+            break;
 
         case 6: //"END":
-         newStmt = new EndStmt(lineNum);
-          break;
+            newStmt = new EndStmt(lineNum);
+            break;
 
         default:
-          break;
+            break;
         }
-           Insert_Pair = statements.insert(pair<int, Statement*>(lineNum, newStmt));
-            // if the index exits
-            if(!Insert_Pair.second) {
-                auto iter = statements.find(lineNum);
-                 // if we can find the same index, replace it with the new one.
-                if(iter != statements.end()) statements.erase(iter);
-                Insert_Pair = statements.insert(pair<int, Statement*>(lineNum, newStmt));
-            }
+        Insert_Pair = statements.insert(pair<int, Statement*>(lineNum, newStmt));
+        // if the index exits
+        if(!Insert_Pair.second) {
+            auto iter = statements.find(lineNum);
+            // if we can find the same index, replace it with the new one.
+            if(iter != statements.end()) statements.erase(iter);
+            Insert_Pair = statements.insert(pair<int, Statement*>(lineNum, newStmt));
+        }
     }
-      else if(IS_LETTER(line)){
+    else if(IS_LETTER(line)){
         if(parse_cmd(lineTmp, cmdTmp)==PARSE_ERR)return PARSE_ERR;
         switch (cmdNum(cmdTmp))
         {
         case 0://"RUN":
-          runApp();
-          break;
+            runApp();
+            break;
         case 1://"LOAD":
-          loadStat();
-          break;
+            loadStat();
+            break;
         case 2://"LIST":
 
-          break;
+            break;
         case 3: //"CLEAR":
-        clearAll();
+            clearAll();
 
-          break;
+            break;
         case 4: //"HELP":
-          showHelpWin();
-          break;
+            showHelpWin();
+            break;
         case 5: //"QUIT":
-          QApplication::quit();
-          break;
+            QApplication::quit();
+            break;
         default:
-          break;
+            break;
         }
-      }
+    }
 
 }
 
@@ -406,7 +426,7 @@ parse_t MainWindow:: parse_num(QString &ptr, int & val){
 }
 
 parse_t MainWindow:: parse_var(QString &ptr, QString& name){
-//    begin with a letter or an underscore.  only have letters, numbers,  underscore
+    //    begin with a letter or an underscore.  only have letters, numbers,  underscore
     QString tmp=ptr;
     int i=0;
     tmp=tmp.trimmed();
@@ -431,41 +451,41 @@ parse_t MainWindow:: parse_exp(QString &ptr, QString& exp){
 
     tmp=tmp.remove(QRegExp("\\s"));//remove all the white space
     if(IS_END(tmp))return PARSE_ERR;
-//    if(!judge_infix(tmp.toStdString())) return PARSE_ERR;
+    //    if(!judge_infix(tmp.toStdString())) return PARSE_ERR;
     exp = tmp;
     ptr = "";
     return PARSE_EXP;
 }
 
 parse_t MainWindow:: parse_delim(QString &ptr, QString& delim){
-     QString tmp=ptr;
-     tmp=tmp.trimmed();
-     if(IS_END(tmp)) return PARSE_ERR;
-     if(tmp[0]=='=' || tmp[0] =='>' || tmp[0] == '<'){
-         delim =tmp.mid(0,1);
-         tmp = tmp.mid(1);
-         ptr = tmp;
-         return PARSE_CON;
-     }
-     if(tmp[0]=='+' || tmp[0] =='-' || tmp[0] == '/'|| tmp[0] == '(' ||tmp[0] == ')'){
-         delim =tmp.mid(0,1);
-         tmp = tmp.mid(1);
-         ptr = tmp;
-         return PARSE_OP;
-     }
-     if(tmp[0] == '*'){
-         if(tmp[1]=='*') {
-             delim = tmp.mid(0,2);
-             tmp = tmp.mid(2);
-         }
-         else {
-             delim = tmp.mid(0,1);
-             tmp = tmp.mid(1);
-         }
-         ptr = tmp;
-         return PARSE_OP;
-     }
-     return PARSE_ERR;
+    QString tmp=ptr;
+    tmp=tmp.trimmed();
+    if(IS_END(tmp)) return PARSE_ERR;
+    if(tmp[0]=='=' || tmp[0] =='>' || tmp[0] == '<'){
+        delim =tmp.mid(0,1);
+        tmp = tmp.mid(1);
+        ptr = tmp;
+        return PARSE_CON;
+    }
+    if(tmp[0]=='+' || tmp[0] =='-' || tmp[0] == '/'|| tmp[0] == '(' ||tmp[0] == ')'){
+        delim =tmp.mid(0,1);
+        tmp = tmp.mid(1);
+        ptr = tmp;
+        return PARSE_OP;
+    }
+    if(tmp[0] == '*'){
+        if(tmp[1]=='*') {
+            delim = tmp.mid(0,2);
+            tmp = tmp.mid(2);
+        }
+        else {
+            delim = tmp.mid(0,1);
+            tmp = tmp.mid(1);
+        }
+        ptr = tmp;
+        return PARSE_OP;
+    }
+    return PARSE_ERR;
 }
 
 stmt_t *  MainWindow::find_instr(QString name){}
@@ -500,9 +520,8 @@ bool MainWindow::judge_infix(string str)
     }
     if(temp==0)
         return true;
-            return false;
-        }
-
+    return false;
+}
 
 
 

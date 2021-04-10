@@ -4,9 +4,6 @@
 #include <stack>
 vector<var>variables;
 
-
-
-
 Exp::Exp(QString letexp)
 {
     input = letexp.toStdString();
@@ -132,21 +129,25 @@ void Exp::getInfixVec(){
         else throw "invalid expression";
         in.push_back(*newNode);
     }
-//    for(int i=0;i<in.size();i++){
-//        qDebug()<<in[i].val;
-//    }
-//    qDebug()<<endl;
+
 }
 
 void Exp::infixToPostfixVec(){ // num(-), var, operations
     stack<Node> nodeStack;
+
     for(int i=0;i<in.size();i++){
-        if(in[i].type == 0 || in[i].type == 1)post.push_back(in[i]);
+        if(in[i].type == 0 || in[i].type == 1){
+            post.push_back(in[i]);
+
+        }
         else if(in[i].val == "(") nodeStack.push(in[i]);
         else if(in[i].val == ")"){
             while (nodeStack.top().val != '(')
             {
+
                 post.push_back(nodeStack.top());
+
+
                 nodeStack.pop();
             }
             // Remove '(' from the stack
@@ -156,20 +157,19 @@ void Exp::infixToPostfixVec(){ // num(-), var, operations
             while (  nodeStack.size()!=0 && ( getPriority2(in[i].val)
                    < getPriority2(nodeStack.top().val))) {
                 post.push_back(nodeStack.top());
+
                 nodeStack.pop();
             }
             // Push current Operator on stack
-            post.push_back(in[i]);
+            nodeStack.push(in[i]);
         }
     }
     while (nodeStack.size())  {
         post.push_back(nodeStack.top());
         nodeStack.pop();
     }
-//        for(int i=0;i<post.size();i++){
-//            qDebug()<<post[i].val;
-//        }
-//        qDebug()<<endl;
+
+
 }
 
 
@@ -282,6 +282,7 @@ int  Exp::evaluate(){
     prepare();
     getInfixVec();
     infixToPostfixVec();
+    infixToPostfix();
     buildSynTree();
     int i;
     // stack to store integer values.
@@ -423,23 +424,37 @@ void Exp::prepare(){
     }
     for(int i=0;i<input1.length();i++)
     {
-        if((input1[0]>='a' && input1[0]<='z') || (input1[0]>='A' && input1[0]<='Z'))
-            throw "There are undeclared variables in the expression";
+        if((input1[0]>='a' && input1[0]<='z') || (input1[0]>='A' && input1[0]<='Z')){
+             QString error= "There are undeclared variables in the expression";
+             throw error;
+        }
+
+
     }
     infix = input1.toStdString();
 }
 
-bool  Exp::buildSynTree(){
+void  Exp::buildSynTree(){
     stack <Node*> synStack;
+
+    cout<<endl;
     Node* n;
     for(int i=0;i<post.size();i++){
         n= &post[i];
-        if(n->type == 0|| n->type==1 )synStack.push(n); // for num and variable, just push it into stack
+        if(n->type == 0|| n->type==1 )
+            synStack.push(n); // for num and variable, just push it into stack
         else{
-            if(synStack.empty())return 0;
+            if(synStack.empty()){
+                QString error = "invalid expression!";
+                 throw  error;
+            }
             Node*rightNode = synStack.top();
             synStack.pop();
-            if(synStack.empty())return 0;
+            if(synStack.empty()){
+                QString error = "invalid expression!";
+                throw error;
+            }
+
             Node*leftNode = synStack.top(); //for operater, pop 2 node and set left and right.(can exchange)
             synStack.pop();
             n->left = leftNode;
@@ -447,10 +462,19 @@ bool  Exp::buildSynTree(){
             synStack.push(n);
         }
     }
-    if(synStack.size()==1 && synStack.top()->type == 2)return 1;
-    return 0;
+    if(synStack.size()==1){
+        if(synStack.top()->type == 2){
+        root = synStack.top();
+        return ;
+        }
+        else if(in.size()==1){
+            root =  synStack.top(); // if only one num eg. let a=1; let a=b;
+            return ;
+        }
+    }
+    QString error = "invalid expression!";
+    throw error;
 }
-
 
 
 

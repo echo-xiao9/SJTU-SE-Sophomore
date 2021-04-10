@@ -44,7 +44,6 @@ public:
     string infix;
     string postfix;
     string prefix;
-    Node* root;
     int value;
     Exp(QString letexp);
     bool isOperator(char c);
@@ -61,7 +60,7 @@ public:
     int  applyOp(int a, int b, char op);
     int  evaluate();
     void prepare();
-    bool buildSynTree();
+    void buildSynTree();
 
 };
 
