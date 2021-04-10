@@ -53,12 +53,17 @@ void MainWindow:: updateSyntaxDisplayBroser(){
 }
 
 void MainWindow::on_codeLineEdit_return(){
+    try{
     QString input = ui->codeLineEdit ->text();
-    ui->codeLineEdit->clear();
-    ui->codeBrowser->clear();
     //input is a statement
+    ui->codeLineEdit->clear();
     parse_line(input);
+    ui->codeBrowser->clear();
     updateCodeBrowser();
+    }catch(QString error){
+        ui->messageLineEdit->setText(error);
+
+    }
 }
 
 
@@ -123,7 +128,6 @@ void MainWindow::runApp(){
                 disconnect(ui->codeLineEdit, SIGNAL(returnPressed()), this, SLOT(getCodeLineVal()));
                 connect(ui->codeLineEdit, SIGNAL(returnPressed()), this, SLOT(on_codeLineEdit_return()));
                 break;
-
             case 1:
                 it->second->runSingleStmt(par);
 
@@ -253,9 +257,6 @@ void MainWindow:: drawTree(){
 
         }
         it++;
-
-
-
     }
 
 }
@@ -274,15 +275,28 @@ parse_t MainWindow:: parse_line(QString &line){
     Statement *newStmt;
     int lineNum=0;
     int numTmp=0;
+    QString numError="Invaild line number!";
+    QString stmtError = "Invaild statement!";
+    QString varError ="Invaild variable name in input statement!";
     // is command
+    if(line[0]=="-"){
+        throw numError;
+    }
     if(IS_NUM(line)){
-        if(parse_num(lineTmp,lineNum)==PARSE_ERR||
-                parse_stmt(lineTmp, stmtTmp)==PARSE_ERR)
-            return PARSE_ERR;
+        if(parse_num(lineTmp,lineNum)==PARSE_ERR) throw numError;
+        if(lineNum>1000000)throw numError;
+        if(IS_END(lineTmp)){
+          if(! statements.erase(lineNum))
+              return PARSE_ERR;
+           return PARSE_DEL ;
+        }
+
+        if(parse_stmt(lineTmp, stmtTmp)==PARSE_ERR)
+            throw  stmtError;
         switch (stmtNum(stmtTmp))
         {
         case 0: //"INPUT": 35 INPUT n3
-            if(parse_var(lineTmp, varName) == PARSE_ERR) return PARSE_ERR;
+            if(parse_var(lineTmp, varName) == PARSE_ERR) throw varError;
 
             //              newStmt = new InputStmt(lineNum, varName, numTmp, statements);
             newStmt = new InputStmt(lineNum, varName,numTmp);
@@ -292,7 +306,7 @@ parse_t MainWindow:: parse_line(QString &line){
                     parse_delim(lineTmp, delim)==PARSE_ERR||
                     delim !="="||
                     parse_exp(lineTmp,exp)==PARSE_ERR)
-                return PARSE_ERR;
+                throw stmtError;
             newStmt=new LetStmt(lineNum, varName, exp);
             break;
 

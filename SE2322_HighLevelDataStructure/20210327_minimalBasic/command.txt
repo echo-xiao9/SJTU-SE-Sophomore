@@ -1,4 +1,4 @@
 1 let a=1
 2 input a
 3 print a
-
+2

@@ -7,7 +7,7 @@
 #include <QDebug>
 using namespace std;
 typedef enum { PARSE_ERR=-1, PARSE_LINE, PARSE_STMT, PARSE_CMD,
-  PARSE_NUM, PARSE_VAR, PARSE_EXP, PARSE_CON, PARSE_OP} parse_t;
+  PARSE_NUM, PARSE_VAR, PARSE_EXP, PARSE_CON, PARSE_OP, PARSE_DEL} parse_t;
 
 #define IS_NUM(s) (s[0]>='0' && s[0]<='9')
 #define IS_LETTER(s) ((s[0]>='a' && s[0]<='z') || (s[0]>='A' && s[0]<='Z'))
