@@ -38,8 +38,6 @@ QString InputStmt::runSingleStmt(QString par){
 };
 
 QString InputStmt::findVar(){
-
-//    else return varName;
 };
 
 QString  InputStmt::tree(){}
