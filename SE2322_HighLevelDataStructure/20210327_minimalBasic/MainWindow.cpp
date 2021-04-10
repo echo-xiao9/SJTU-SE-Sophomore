@@ -61,17 +61,25 @@ void MainWindow::on_codeLineEdit_return(){
     updateCodeBrowser();
 }
 
+
 void MainWindow::clearAll(){
-    ui->codeLineEdit->clear();
+    clearAppStatus();
+    statements.clear();
     ui->codeBrowser->clear();
+}
+
+void MainWindow::clearAppStatus(){
+    synTree.clear();
+    variables.clear();
+    results.clear();
+    ui->codeLineEdit->clear();
     ui->resultBrowser->clear();
     ui->syntaxDisplayBroser->clear();
     ui->varBrowser->clear();
     ui->messageLineEdit->clear();
-    statements.clear();
-    synTree.clear();
-    variables.clear();
+
 }
+
 
 void MainWindow::on_loadButton_clicked(){
     loadStat();
@@ -97,8 +105,7 @@ void MainWindow::loadStat(){
 
 void MainWindow::runApp(){
     try {
-        results.clear();
-        variables.clear();
+        clearAppStatus();
         curLine=0;
         QString par="";
         QString result = "";
@@ -107,15 +114,19 @@ void MainWindow::runApp(){
             switch (it->second->type) {
             // 0:INPUT   1:LET   2:GOTO  3:IF   4:PRINT    5:REM   6:END
             case 0://problem!?
-                ui->codeLineEdit-> setText("?");
-                par = ui->codeLineEdit->text();
-                par = par.trimmed();
-                it->second->runSingleStmt(par);
+                ui->codeLineEdit-> setText(" ? ");
+                disconnect(ui->codeLineEdit, SIGNAL(returnPressed()), this, SLOT(on_codeLineEdit_return()));
+                connect(ui->codeLineEdit, SIGNAL(returnPressed()), this, SLOT(getCodeLineVal()));
+                loop.exec();
+                it->second->runSingleStmt(inputNumTmp);
                 it++;
+                disconnect(ui->codeLineEdit, SIGNAL(returnPressed()), this, SLOT(getCodeLineVal()));
+                connect(ui->codeLineEdit, SIGNAL(returnPressed()), this, SLOT(on_codeLineEdit_return()));
                 break;
 
             case 1:
                 it->second->runSingleStmt(par);
+
                 it++;
                 break;
 
@@ -144,7 +155,6 @@ void MainWindow::runApp(){
                 if(it==statements.end()){// haven't find the index
                     QString error = "invalid line number in IF THEN statement";
                     throw error;
-
                 }
                 break;
             case 4:
@@ -173,6 +183,14 @@ void MainWindow::runApp(){
         ui->messageLineEdit ->setText(s);
     }
 };
+
+
+void MainWindow::getCodeLineVal(){
+    inputNumTmp = ui->codeLineEdit->text();
+    inputNumTmp = inputNumTmp.trimmed();
+    ui->codeLineEdit->clear();
+    loop.exit();
+}
 
 void MainWindow:: showHelpWin(){
     Help *helpWin = new Help();
@@ -207,13 +225,13 @@ void MainWindow:: drawTree(){
 
         case 1: //LET
             synTree.push_back("LET =");
-            synBranch =   "    "+it->second->tree();
+            synBranch =   "    " +it->second->tree();
             synTree.push_back(synBranch);
             drawExpBranch(it->second->exp, 1);
             break;
         case 2: //GOTO
             synTree.push_back( "GOTO");
-            synBranch =   "    "+it->second->tree();
+            synBranch =   "    " +it->second->tree();
             synTree.push_back(synBranch);
             break;
 

@@ -1,5 +1,4 @@
 1 let a=1
-2 goto 20
-20 let c=a*1+3
-21 list
+2 input a
+3 print a
 

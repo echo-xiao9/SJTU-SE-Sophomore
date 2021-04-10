@@ -20,16 +20,21 @@ InputStmt::InputStmt(int inputIndex, QString varName1,int varVal1):
 }
 
 QString InputStmt::runSingleStmt(QString par){
-    int flag = 0;
+    int flag1 = 0;
+    int Parvalue= par.toInt();
     for (int i = 0; i < variables.size(); i++)
     {
         if(variables[i].varName == varName){
             variables[i].varValue = par.toInt();
-            flag=1;
+            flag1=1;
             break;
         }
     }
-    if(flag==0)throw "variable undefined";
+    if(flag1==0){
+        var newVar(varName, Parvalue);
+        variables.push_back(newVar);
+    }
+    return "";
 };
 
 QString InputStmt::findVar(){

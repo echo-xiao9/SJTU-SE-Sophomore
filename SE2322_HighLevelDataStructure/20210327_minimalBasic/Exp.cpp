@@ -134,11 +134,9 @@ void Exp::getInfixVec(){
 
 void Exp::infixToPostfixVec(){ // num(-), var, operations
     stack<Node> nodeStack;
-
     for(int i=0;i<in.size();i++){
         if(in[i].type == 0 || in[i].type == 1){
             post.push_back(in[i]);
-
         }
         else if(in[i].val == "(") nodeStack.push(in[i]);
         else if(in[i].val == ")"){
@@ -279,6 +277,9 @@ int  Exp::applyOp(int a, int b, char op){
 // Function that returns value of
 // Exp after evaluation.
 int  Exp::evaluate(){
+//    in.clear();
+//    post.clear();
+
     prepare();
     getInfixVec();
     infixToPostfixVec();

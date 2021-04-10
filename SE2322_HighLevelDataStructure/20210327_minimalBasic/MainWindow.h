@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QFileDialog>
 #include <QTextStream>
+#include <QEventLoop>
 #include "Statement.h"
 #include "Help.h"
 
@@ -63,13 +64,17 @@ private:
     void drawTree();
     void drawExpBranch(Exp *exp, int indentation);
     void recurPrintExp(Node *n,  int indentation);
-
+    QEventLoop loop;
+    QString inputNumTmp;
 private slots:
     void on_codeLineEdit_return();
     void clearAll();
+    void clearAppStatus();
     void on_loadButton_clicked();
     void loadStat();
     void runApp();
+    void getCodeLineVal();
+
     parse_t parse_line(QString &line);
     parse_t parse_stmt(QString &ptr, stmt_t& stmt);
     parse_t parse_cmd(QString &ptr, stmt_t& cmd);
