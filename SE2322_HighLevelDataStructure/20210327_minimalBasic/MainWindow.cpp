@@ -62,7 +62,6 @@ void MainWindow::on_codeLineEdit_return(){
     updateCodeBrowser();
     }catch(QString error){
         ui->messageLineEdit->setText(error);
-
     }
 }
 
@@ -82,7 +81,6 @@ void MainWindow::clearAppStatus(){
     ui->syntaxDisplayBroser->clear();
     ui->varBrowser->clear();
     ui->messageLineEdit->clear();
-
 }
 
 
@@ -130,7 +128,6 @@ void MainWindow::runApp(){
                 break;
             case 1:
                 it->second->runSingleStmt(par);
-
                 it++;
                 break;
 
@@ -277,6 +274,7 @@ parse_t MainWindow:: parse_line(QString &line){
     int numTmp=0;
     QString numError="Invaild line number!";
     QString stmtError = "Invaild statement!";
+    QString cmdError = "Invaild comand / Statement!";
     QString varError ="Invaild variable name in input statement!";
     // is command
     if(line[0]=="-"){
@@ -311,7 +309,7 @@ parse_t MainWindow:: parse_line(QString &line){
             break;
 
         case 2: //"GOTO" GOTO n
-            if(parse_num(lineTmp,numTmp)==PARSE_ERR)return PARSE_ERR;
+            if(parse_num(lineTmp,numTmp)==PARSE_ERR)throw numError;
             newStmt = new GotoStmt(lineNum, numTmp);
             break;
 
@@ -334,13 +332,13 @@ parse_t MainWindow:: parse_line(QString &line){
             exp1= exp1.trimmed();
             // !!!!numTmp;
             lineTmp = lineTmp.mid(indexThen+4);
-            if(parse_num(lineTmp, numTmp)==PARSE_ERR)return PARSE_ERR;
+            if(parse_num(lineTmp, numTmp)==PARSE_ERR)throw numError;
 
             newStmt = new IfStmt(lineNum, exp,  delim, exp1, numTmp);
             break;
 
         case 4: //"PRINT": //PRINT 2 + 2
-            if(parse_exp(lineTmp, exp)==PARSE_ERR)return PARSE_ERR;
+            if(parse_exp(lineTmp, exp)==PARSE_ERR)throw numError;
             newStmt = new PrintStmt(lineNum,exp);
             break;
 
@@ -365,7 +363,48 @@ parse_t MainWindow:: parse_line(QString &line){
         }
     }
     else if(IS_LETTER(line)){
-        if(parse_cmd(lineTmp, cmdTmp)==PARSE_ERR)return PARSE_ERR;
+        if(parse_stmt(lineTmp,  stmtTmp)!=PARSE_ERR){
+             var v("",0);
+             QString result="";
+            switch (stmtNum(stmtTmp)) {
+            //LET、PRINT、INPUT可以不带行号直接输入执行
+            // 0:INPUT   1:LET   2:GOTO  3:IF   4:PRINT    5:REM   6:END
+            case 0:
+                if(parse_var(lineTmp, varName)==PARSE_ERR) throw stmtError;
+                ui->codeLineEdit-> setText(" ? ");
+                disconnect(ui->codeLineEdit, SIGNAL(returnPressed()), this, SLOT(on_codeLineEdit_return()));
+                connect(ui->codeLineEdit, SIGNAL(returnPressed()), this, SLOT(getCodeLineVal()));
+                loop.exec();
+                v.varName = varName;
+                v.varValue = inputNumTmp.toInt();
+                variables.push_back(v);
+                updateVarBrowser();
+                disconnect(ui->codeLineEdit, SIGNAL(returnPressed()), this, SLOT(getCodeLineVal()));
+                connect(ui->codeLineEdit, SIGNAL(returnPressed()), this, SLOT(on_codeLineEdit_return()));
+                break;
+            case 1:
+                if(parse_var(lineTmp, varName)==PARSE_ERR ||
+                        parse_delim(lineTmp, delim)==PARSE_ERR||
+                        delim !="="||
+                        parse_exp(lineTmp,exp)==PARSE_ERR)
+                    throw stmtError;
+                newStmt=new LetStmt(0, varName, exp);
+                newStmt->runSingleStmt("");
+                updateVarBrowser();
+                break;
+            case 4:
+                if(parse_exp(lineTmp, exp)==PARSE_ERR)throw numError;
+                newStmt = new PrintStmt(lineNum,exp);
+                result = newStmt->runSingleStmt("");
+                results.push_back(result);
+                updateResultBrowser();
+                break;
+            default:
+                break;
+            }
+            return PARSE_STMT;
+        }
+        if(parse_cmd(lineTmp, cmdTmp)==PARSE_ERR)throw cmdError;
         switch (cmdNum(cmdTmp))
         {
         case 0://"RUN":
@@ -391,7 +430,7 @@ parse_t MainWindow:: parse_line(QString &line){
             break;
         }
     }
-
+    return PARSE_ERR;
 }
 
 int MainWindow ::stmtNum(stmt_t Stmt){

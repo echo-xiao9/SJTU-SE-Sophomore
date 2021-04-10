@@ -66,6 +66,7 @@ private:
     void recurPrintExp(Node *n,  int indentation);
     QEventLoop loop;
     QString inputNumTmp;
+
 private slots:
     void on_codeLineEdit_return();
     void clearAll();

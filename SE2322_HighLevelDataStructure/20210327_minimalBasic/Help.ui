@@ -102,7 +102,7 @@
        <item>
         <widget class="QLabel" name="label_13">
          <property name="text">
-          <string>PRINT、INPUT可以不带行号直接输入执行</string>
+          <string>LET、PRINT、INPUT可以不带行号直接输入执行</string>
          </property>
         </widget>
        </item>
