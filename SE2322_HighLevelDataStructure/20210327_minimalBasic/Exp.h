@@ -22,6 +22,7 @@ struct var{
     int varValue=0;
     var(QString name, int val): varName(name), varValue(val){}
 };
+extern vector<var>variables;
 
 struct Node{
     QString val; //var:mame num:val operator:name
@@ -30,12 +31,25 @@ struct Node{
     Node *right;
     Node(QString value, int Type, Node*Left=NULL, Node*Right = NULL):
         val(value), type(Type), left(Left), right(Right){}
+    int getVarVal(){
+        // return -1 if is not variable or can't find the exist variable
+        if(type!=1)return -1;
+        for(int i=0;i<variables.size();i++){
+            if(variables[i].varName == val){
+                return variables[i].varValue;
+            }
+        }
+        return -1;
+    }
 };
 
-extern vector<var>variables;
 
 class Exp
 {
+private:
+     stack <Node*> values;
+     stack <Node*> ops;
+
 public:
     Node *root = nullptr;
     vector <Node> in;
@@ -45,23 +59,29 @@ public:
     string postfix;
     string prefix;
     int value;
+    void combine();
+
     Exp(QString letexp);
     bool isOperator(char c);
-    int getPriority(char C);
-    int getPriority2(QString C);
+//    int getPriority(char C);
+    int getPriority(QString C);
     parse_t parse_num(QString &ptr, int & val);
     parse_t parse_var(QString &ptr, QString& name);
     parse_t parse_delim(QString &ptr, QString& delim);
-    string infixToPostfix();
+//    string infixToPostfix();
     void getInfixVec();
     void infixToPostfixVec();
-    string infixToPrefix();
+//    string infixToPrefix();
     int precedence(char op);
-    int  applyOp(int a, int b, char op);
-    int  evaluate();
-    void prepare();
+//    int precedence2(QString op);
+//    int  applyOp(int a, int b, char op);
+    int applyOp(int a, int b, string op);
+//    int  evaluate();
+    void evaluate();
+    int recurEvaluate(Node *t);
+//    void prepare();
+//    void prepare2(); //may be no need
     void buildSynTree();
-
 };
 
 class ExpException{

@@ -99,7 +99,8 @@ QString IfStmt::runSingleStmt(QString par){
         if(exp->value < exp1 ->value)return QString::number(targetNum);
     }else if(condtion == ">"){
         if(exp->value > exp1->value)return QString::number(targetNum);
-    }else return "-1";
+    }
+    return "-1";
 }
 
 

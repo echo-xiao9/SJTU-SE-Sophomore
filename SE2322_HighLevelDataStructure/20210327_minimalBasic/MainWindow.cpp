@@ -54,12 +54,12 @@ void MainWindow:: updateSyntaxDisplayBroser(){
 
 void MainWindow::on_codeLineEdit_return(){
     try{
-    QString input = ui->codeLineEdit ->text();
-    //input is a statement
-    ui->codeLineEdit->clear();
-    parse_line(input);
-    ui->codeBrowser->clear();
-    updateCodeBrowser();
+        QString input = ui->codeLineEdit ->text();
+        //input is a statement
+        ui->codeLineEdit->clear();
+        parse_line(input);
+        ui->codeBrowser->clear();
+        updateCodeBrowser();
     }catch(QString error){
         ui->messageLineEdit->setText(error);
     }
@@ -86,7 +86,6 @@ void MainWindow::clearAppStatus(){
 
 void MainWindow::on_loadButton_clicked(){
     loadStat();
-    updateCodeBrowser();
 }
 
 void MainWindow::loadStat(){
@@ -102,6 +101,7 @@ void MainWindow::loadStat(){
     while (!in.atEnd()) {
         QString line = in.readLine();
         parse_line(line);
+        updateCodeBrowser();
     }
     file.close();
 }
@@ -122,15 +122,12 @@ void MainWindow::runApp(){
                 connect(ui->codeLineEdit, SIGNAL(returnPressed()), this, SLOT(getCodeLineVal()));
                 loop.exec();
                 it->second->runSingleStmt(inputNumTmp);
-                it++;
                 disconnect(ui->codeLineEdit, SIGNAL(returnPressed()), this, SLOT(getCodeLineVal()));
                 connect(ui->codeLineEdit, SIGNAL(returnPressed()), this, SLOT(on_codeLineEdit_return()));
                 break;
             case 1:
                 it->second->runSingleStmt(par);
-                it++;
                 break;
-
             case 2:
                 result  = it->second->runSingleStmt(par); //the target index
                 curLine = result.toInt();
@@ -144,9 +141,13 @@ void MainWindow::runApp(){
                     QString error ="invalid line number in GOTO statement";
                     throw error;
                 }
+
                 break;
             case 3:
                 curLine= it->second->runSingleStmt(par).toInt();
+                if(curLine== -1){
+                    break;
+                }
                 for ( it = statements.begin(); it != statements.end(); it++)
                 {
                     if((*it).second->index == curLine) {
@@ -162,11 +163,9 @@ void MainWindow::runApp(){
                 result= it->second->runSingleStmt(par);
                 //             ui->resultBrowser->append(result);
                 results.push_back(result);
-
-                it++;
                 break;
             case 5:
-                it++;
+
                 break;
             case 6:
                 it = statements.end();
@@ -174,11 +173,12 @@ void MainWindow::runApp(){
             default:
                 break;
             }
+            it++;
         }
         drawTree();
+        updateSyntaxDisplayBroser();
         updateVarBrowser();
         updateResultBrowser();
-        updateSyntaxDisplayBroser();
         ui->messageLineEdit ->setText("Program ended successfully.");
     }catch(QString s){
         ui->messageLineEdit ->setText(s);
@@ -200,6 +200,7 @@ void MainWindow:: showHelpWin(){
 
 
 void MainWindow:: drawExpBranch(Exp *exp, int indentation){
+    if(exp==nullptr)return;
     recurPrintExp(exp->root, indentation);
 }
 
@@ -272,10 +273,10 @@ parse_t MainWindow:: parse_line(QString &line){
     Statement *newStmt;
     int lineNum=0;
     int numTmp=0;
-    QString numError="Invaild line number!";
-    QString stmtError = "Invaild statement!";
-    QString cmdError = "Invaild comand / Statement!";
-    QString varError ="Invaild variable name in input statement!";
+    QString numError="Invalid line number!";
+    QString stmtError = "Invalid statement!";
+    QString cmdError = "Invalid comand / Statement!";
+    QString varError ="Invalid variable name in input statement!";
     // is command
     if(line[0]=="-"){
         throw numError;
@@ -284,9 +285,9 @@ parse_t MainWindow:: parse_line(QString &line){
         if(parse_num(lineTmp,lineNum)==PARSE_ERR) throw numError;
         if(lineNum>1000000)throw numError;
         if(IS_END(lineTmp)){
-          if(! statements.erase(lineNum))
-              return PARSE_ERR;
-           return PARSE_DEL ;
+            if(! statements.erase(lineNum))
+                return PARSE_ERR;
+            return PARSE_DEL ;
         }
 
         if(parse_stmt(lineTmp, stmtTmp)==PARSE_ERR)
@@ -364,8 +365,8 @@ parse_t MainWindow:: parse_line(QString &line){
     }
     else if(IS_LETTER(line)){
         if(parse_stmt(lineTmp,  stmtTmp)!=PARSE_ERR){
-             var v("",0);
-             QString result="";
+            var v("",0);
+            QString result="";
             switch (stmtNum(stmtTmp)) {
             //LET、PRINT、INPUT可以不带行号直接输入执行
             // 0:INPUT   1:LET   2:GOTO  3:IF   4:PRINT    5:REM   6:END
@@ -427,7 +428,7 @@ parse_t MainWindow:: parse_line(QString &line){
             QApplication::quit();
             break;
         default:
-            break;
+            throw cmdError;
         }
     }
     return PARSE_ERR;

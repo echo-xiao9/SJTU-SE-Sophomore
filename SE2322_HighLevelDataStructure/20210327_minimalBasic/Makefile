@@ -705,6 +705,8 @@ moc_MainWindow.cpp: MainWindow.h \
 		/Users/kangyixiao/Qt/5.12.3/clang_64/lib/QtWidgets.framework/Headers/qfiledialog.h \
 		/Users/kangyixiao/Qt/5.12.3/clang_64/lib/QtCore.framework/Headers/QTextStream \
 		/Users/kangyixiao/Qt/5.12.3/clang_64/lib/QtCore.framework/Headers/qtextstream.h \
+		/Users/kangyixiao/Qt/5.12.3/clang_64/lib/QtCore.framework/Headers/QEventLoop \
+		/Users/kangyixiao/Qt/5.12.3/clang_64/lib/QtCore.framework/Headers/qeventloop.h \
 		Statement.h \
 		/Users/kangyixiao/Qt/5.12.3/clang_64/lib/QtCore.framework/Headers/QString \
 		/Users/kangyixiao/Qt/5.12.3/clang_64/lib/QtCore.framework/Headers/qstring.h \
@@ -773,6 +775,8 @@ main.o: main.cpp MainWindow.h \
 		/Users/kangyixiao/Qt/5.12.3/clang_64/lib/QtWidgets.framework/Headers/qfiledialog.h \
 		/Users/kangyixiao/Qt/5.12.3/clang_64/lib/QtCore.framework/Headers/QTextStream \
 		/Users/kangyixiao/Qt/5.12.3/clang_64/lib/QtCore.framework/Headers/qtextstream.h \
+		/Users/kangyixiao/Qt/5.12.3/clang_64/lib/QtCore.framework/Headers/QEventLoop \
+		/Users/kangyixiao/Qt/5.12.3/clang_64/lib/QtCore.framework/Headers/qeventloop.h \
 		Statement.h \
 		/Users/kangyixiao/Qt/5.12.3/clang_64/lib/QtCore.framework/Headers/QString \
 		/Users/kangyixiao/Qt/5.12.3/clang_64/lib/QtCore.framework/Headers/qstring.h \
@@ -793,6 +797,8 @@ MainWindow.o: MainWindow.cpp MainWindow.h \
 		/Users/kangyixiao/Qt/5.12.3/clang_64/lib/QtWidgets.framework/Headers/qfiledialog.h \
 		/Users/kangyixiao/Qt/5.12.3/clang_64/lib/QtCore.framework/Headers/QTextStream \
 		/Users/kangyixiao/Qt/5.12.3/clang_64/lib/QtCore.framework/Headers/qtextstream.h \
+		/Users/kangyixiao/Qt/5.12.3/clang_64/lib/QtCore.framework/Headers/QEventLoop \
+		/Users/kangyixiao/Qt/5.12.3/clang_64/lib/QtCore.framework/Headers/qeventloop.h \
 		Statement.h \
 		/Users/kangyixiao/Qt/5.12.3/clang_64/lib/QtCore.framework/Headers/QString \
 		/Users/kangyixiao/Qt/5.12.3/clang_64/lib/QtCore.framework/Headers/qstring.h \

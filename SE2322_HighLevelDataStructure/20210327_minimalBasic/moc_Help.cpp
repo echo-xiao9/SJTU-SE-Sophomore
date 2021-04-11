@@ -6,7 +6,7 @@
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
 
-#include "Help.h"
+#include "../../../../../Downloads/SJTU-SE-main 5/SE2322_HighLevelDataStructure/20210327_minimalBasic/Help.h"
 #include <QtCore/qbytearray.h>
 #include <QtCore/qmetatype.h>
 #if !defined(Q_MOC_OUTPUT_REVISION)

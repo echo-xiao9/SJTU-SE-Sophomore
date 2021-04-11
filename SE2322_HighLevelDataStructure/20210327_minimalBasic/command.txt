@@ -1,4 +1,7 @@
 1 let a=1
-2 input a
-3 print a
-2
+2 let c=a+2
+4 let b=c + 3
+5 if a>c then 1
+6 if a<c then 8
+7 let d=3
+8 let e=23
