@@ -206,7 +206,7 @@ void MainWindow:: drawExpBranch(Exp *exp, int indentation){
 
 void MainWindow::recurPrintExp(Node *n,  int indentation){
     QString tmp;
-    for(int i=0;i<indentation*4;i++) tmp = tmp +" ";
+    for(int i=0;i<indentation*8;i++) tmp = tmp +" ";
     tmp = tmp+ n->val;
     synTree.push_back( tmp);
     if(n->left) recurPrintExp(n->left, indentation+1);
