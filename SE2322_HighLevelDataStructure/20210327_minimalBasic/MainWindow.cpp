@@ -85,7 +85,9 @@ void MainWindow::clearAppStatus(){
 
 
 void MainWindow::on_loadButton_clicked(){
-    loadStat();
+    static bool i=0;
+    if(!i)loadStat();
+    i=!i;
 }
 
 void MainWindow::loadStat(){
@@ -359,7 +361,7 @@ parse_t MainWindow:: parse_line(QString &line){
                 index =lineTmp.indexOf(">" );
                 delim = ">";
             }
-            if(index == -1)return PARSE_ERR;
+            if(index == -1) return PARSE_ERR;
             exp = lineTmp.mid(0,index);
             exp = exp.trimmed();
             indexThen = lineTmp.indexOf("THEN", 0,  Qt::CaseInsensitive);

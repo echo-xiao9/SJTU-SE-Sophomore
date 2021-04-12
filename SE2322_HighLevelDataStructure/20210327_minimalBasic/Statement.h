@@ -94,6 +94,11 @@ public:
     QString tree(int i=0);
 };
 
-
+//class ErrorStmt: public Statement{
+//public:
+//    ErrorStmt(int inputIndex);
+//    QString runSingleStmt(QString par){}
+//    QString tree(int i=0);
+//};
 
 #endif // STATEMENT_H

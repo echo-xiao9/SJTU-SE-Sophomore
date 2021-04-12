@@ -99,31 +99,47 @@ void Exp::getInfixVec(){
     QString tmp = QString::fromStdString(input);
     QString delim="";
     QString var="";
+    QString expError="Invalid expression";
     int num=0;Node*newNode;
+    tmp=tmp.trimmed();
     while(!IS_END(tmp)){
+        //        if(tmp[0]=="-"){
+        //            qDebug()<<"-"<<endl;
+        //        }
         if(IS_NUM(tmp)){
             parse_num(tmp, num);
             newNode = new Node(QString::number(num),0);
         }
-        else if(tmp[0]=="-" && tmp[1]<'9' && tmp[1] > '0'){
-            tmp = tmp.mid(1);
-            parse_num(tmp, num);
-            num = -num;
-            newNode = new Node(QString::number(num),0); //？ can handle negative?
+        else if(tmp[0]=="("){
+            parse_delim(tmp, delim);
+            newNode = new Node(delim,2);
+            in.push_back(*newNode);
+            if(parse_delim(tmp, delim)!=PARSE_ERR ){
+                if(delim=="-"){
+                    if(parse_num(tmp, num)!=PARSE_ERR) newNode = new Node(QString::number(-num),0);
+                    else if(parse_var(tmp, var) != PARSE_ERR){
+                        newNode = new Node(var,1);
+                    }
+                    else throw expError;
+                    in.push_back(*newNode);
+
+                }else throw expError;
+            }
+             continue;
         }
+
         else if(parse_var(tmp, var) != PARSE_ERR){
             newNode = new Node(var,1);
         }
         else if(parse_delim(tmp, delim) == PARSE_OP){
             newNode = new Node(delim,2);
         }
-        else throw "invalid expression";
+        else throw expError;
         in.push_back(*newNode);
     }
-    for(int i=0;i<in.size();i++){
-//        qDebug()<<in[i].val;
-    }
-//    qDebug()<<endl;
+    for(int i=0;i<in.size();i++)qDebug()<<in[i].val;
+    qDebug()<<endl;
+
 }
 
 void Exp::infixToPostfixVec(){ // num(-), var, operations
@@ -157,8 +173,8 @@ void Exp::infixToPostfixVec(){ // num(-), var, operations
         post.push_back(nodeStack.top());
         nodeStack.pop();
     }
-//    for(int i=0;i<post.size();i++)qDebug()<<post[i].val;
-//    qDebug()<<endl;
+        for(int i=0;i<post.size();i++)qDebug()<<post[i].val;
+        qDebug()<<endl;
 }
 
 

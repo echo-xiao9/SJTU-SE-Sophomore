@@ -151,8 +151,11 @@ QString  EndStmt::tree(int i){return "";}
 
 
 
+//ErrorStmt::ErrorStmt(int inputIndex):Statement(inputIndex, 7){
 
+//}
 
+//QString  ErrorStmt::tree(int i){return "Error";}
 
 
 
