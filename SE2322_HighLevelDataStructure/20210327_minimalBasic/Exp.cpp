@@ -102,11 +102,21 @@ void Exp::getInfixVec(){
     QString expError="Invalid expression";
     int num=0;Node*newNode;
     tmp=tmp.trimmed();
+    bool first=0;
     while(!IS_END(tmp)){
         //        if(tmp[0]=="-"){
         //            qDebug()<<"-"<<endl;
         //        }
-        if(IS_NUM(tmp)){
+        if(tmp[0]=="-"&& first==0){
+            tmp= tmp.mid(1);
+            tmp=tmp.trimmed();
+            if(IS_NUM(tmp)) {
+                parse_num(tmp, num);
+            newNode = new Node(QString::number(-num),0);
+
+            }else throw expError;
+        }
+        else if(IS_NUM(tmp)){
             parse_num(tmp, num);
             newNode = new Node(QString::number(num),0);
         }
@@ -125,6 +135,7 @@ void Exp::getInfixVec(){
 
                 }else throw expError;
             }
+            first++;
              continue;
         }
 
@@ -135,6 +146,7 @@ void Exp::getInfixVec(){
             newNode = new Node(delim,2);
         }
         else throw expError;
+        first++;
         in.push_back(*newNode);
     }
     for(int i=0;i<in.size();i++)qDebug()<<in[i].val;

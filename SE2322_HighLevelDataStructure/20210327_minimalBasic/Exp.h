@@ -34,7 +34,7 @@ struct Node{
     int getVarVal(){
         QString errorVar="can't find the variable!";
         // return -1 if is not variable or can't find the exist variable
-        if(type!=1)return -1;
+        if(type!=1)return -111111;
         for(int i=0;i<variables.size();i++){
             if(variables[i].varName == val){
                 return variables[i].varValue;

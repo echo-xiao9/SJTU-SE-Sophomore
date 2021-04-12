@@ -118,7 +118,7 @@ PrintStmt::PrintStmt(int inputIndex, QString expr):Statement(inputIndex, 4){
 QString PrintStmt::runSingleStmt(QString par){
     QString noVar= "can't find variable in print statement!";
     exp->evaluate();
-    if(exp->value == -1)throw  noVar;
+    if(exp->value == -111111)throw  noVar;
     return QString::number(exp->value);
 }
 
