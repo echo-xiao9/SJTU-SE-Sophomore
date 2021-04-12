@@ -129,6 +129,9 @@ public:
 
         syntaxDisplayBroser = new QTextBrowser(centralwidget);
         syntaxDisplayBroser->setObjectName(QString::fromUtf8("syntaxDisplayBroser"));
+        QFont font;
+        font.setFamily(QString::fromUtf8("Arial"));
+        syntaxDisplayBroser->setFont(font);
 
         verticalLayout->addWidget(syntaxDisplayBroser);
 

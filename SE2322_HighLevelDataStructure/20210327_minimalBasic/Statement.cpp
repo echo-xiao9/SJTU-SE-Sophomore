@@ -40,8 +40,9 @@ QString InputStmt::runSingleStmt(QString par){
 QString InputStmt::findVar(){
 };
 
-QString  InputStmt::tree(){}
-
+QString  InputStmt::tree(){
+    return varName;
+}
 
 LetStmt::LetStmt(int InputIndex, QString VarName, QString expr)
     :Statement(InputIndex, 1),varName(VarName){
@@ -105,34 +106,43 @@ QString IfStmt::runSingleStmt(QString par){
 
 
 PrintStmt::PrintStmt(int inputIndex, QString expr):Statement(inputIndex, 4){
+    expStr = expr;
     exp = new Exp(expr);
     stmt = "PRINT " + expr;
 }
 
 QString PrintStmt::runSingleStmt(QString par){
+    QString noVar= "can't find variable in print statement!";
     exp->evaluate();
+    if(exp->value == -1)throw  noVar;
     return QString::number(exp->value);
 }
 
-QString  PrintStmt::tree(){}
+QString  PrintStmt::tree(){
+    return expStr;
+}
 
 
 RemStmt::RemStmt(int inputIndex, QString lineTmp):Statement(inputIndex,  5){
     stmt = "REM "+ lineTmp;
+    remark=lineTmp;
+    return;
 }
 
 QString RemStmt::runSingleStmt(QString par){}
 
-QString  RemStmt::tree(){}
+QString  RemStmt::tree(){
+    return remark;
+}
 
 
 EndStmt::EndStmt(int inputIndex):Statement(inputIndex, 6){
     stmt = "END";
 }
 
-QString EndStmt::runSingleStmt(QString par){}
+QString EndStmt::runSingleStmt(QString par){return "";}
 
-QString  EndStmt::tree(){}
+QString  EndStmt::tree(){return "";}
 
 
 

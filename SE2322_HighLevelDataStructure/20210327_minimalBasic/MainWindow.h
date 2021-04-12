@@ -68,7 +68,7 @@ private:
     QString inputNumTmp;
 
 private slots:
-    void on_codeLineEdit_return();
+    void codeLineEdit_return();
     void clearAll();
     void clearAppStatus();
     void on_loadButton_clicked();

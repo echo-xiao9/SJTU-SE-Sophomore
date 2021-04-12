@@ -22,7 +22,7 @@ QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_MainWindow_t {
     QByteArrayData data[33];
-    char stringdata0[295];
+    char stringdata0[292];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -32,41 +32,41 @@ struct qt_meta_stringdata_MainWindow_t {
 static const qt_meta_stringdata_MainWindow_t qt_meta_stringdata_MainWindow = {
     {
 QT_MOC_LITERAL(0, 0, 10), // "MainWindow"
-QT_MOC_LITERAL(1, 11, 22), // "on_codeLineEdit_return"
-QT_MOC_LITERAL(2, 34, 0), // ""
-QT_MOC_LITERAL(3, 35, 8), // "clearAll"
-QT_MOC_LITERAL(4, 44, 14), // "clearAppStatus"
-QT_MOC_LITERAL(5, 59, 21), // "on_loadButton_clicked"
-QT_MOC_LITERAL(6, 81, 8), // "loadStat"
-QT_MOC_LITERAL(7, 90, 6), // "runApp"
-QT_MOC_LITERAL(8, 97, 14), // "getCodeLineVal"
-QT_MOC_LITERAL(9, 112, 10), // "parse_line"
-QT_MOC_LITERAL(10, 123, 7), // "parse_t"
-QT_MOC_LITERAL(11, 131, 8), // "QString&"
-QT_MOC_LITERAL(12, 140, 4), // "line"
-QT_MOC_LITERAL(13, 145, 10), // "parse_stmt"
-QT_MOC_LITERAL(14, 156, 3), // "ptr"
-QT_MOC_LITERAL(15, 160, 7), // "stmt_t&"
-QT_MOC_LITERAL(16, 168, 4), // "stmt"
-QT_MOC_LITERAL(17, 173, 9), // "parse_cmd"
-QT_MOC_LITERAL(18, 183, 3), // "cmd"
-QT_MOC_LITERAL(19, 187, 9), // "parse_num"
-QT_MOC_LITERAL(20, 197, 4), // "int&"
-QT_MOC_LITERAL(21, 202, 3), // "val"
-QT_MOC_LITERAL(22, 206, 9), // "parse_var"
-QT_MOC_LITERAL(23, 216, 4), // "name"
-QT_MOC_LITERAL(24, 221, 9), // "parse_exp"
-QT_MOC_LITERAL(25, 231, 3), // "exp"
-QT_MOC_LITERAL(26, 235, 11), // "parse_delim"
-QT_MOC_LITERAL(27, 247, 5), // "delim"
-QT_MOC_LITERAL(28, 253, 10), // "find_instr"
-QT_MOC_LITERAL(29, 264, 7), // "stmt_t*"
-QT_MOC_LITERAL(30, 272, 11), // "judge_infix"
-QT_MOC_LITERAL(31, 284, 6), // "string"
-QT_MOC_LITERAL(32, 291, 3) // "str"
+QT_MOC_LITERAL(1, 11, 19), // "codeLineEdit_return"
+QT_MOC_LITERAL(2, 31, 0), // ""
+QT_MOC_LITERAL(3, 32, 8), // "clearAll"
+QT_MOC_LITERAL(4, 41, 14), // "clearAppStatus"
+QT_MOC_LITERAL(5, 56, 21), // "on_loadButton_clicked"
+QT_MOC_LITERAL(6, 78, 8), // "loadStat"
+QT_MOC_LITERAL(7, 87, 6), // "runApp"
+QT_MOC_LITERAL(8, 94, 14), // "getCodeLineVal"
+QT_MOC_LITERAL(9, 109, 10), // "parse_line"
+QT_MOC_LITERAL(10, 120, 7), // "parse_t"
+QT_MOC_LITERAL(11, 128, 8), // "QString&"
+QT_MOC_LITERAL(12, 137, 4), // "line"
+QT_MOC_LITERAL(13, 142, 10), // "parse_stmt"
+QT_MOC_LITERAL(14, 153, 3), // "ptr"
+QT_MOC_LITERAL(15, 157, 7), // "stmt_t&"
+QT_MOC_LITERAL(16, 165, 4), // "stmt"
+QT_MOC_LITERAL(17, 170, 9), // "parse_cmd"
+QT_MOC_LITERAL(18, 180, 3), // "cmd"
+QT_MOC_LITERAL(19, 184, 9), // "parse_num"
+QT_MOC_LITERAL(20, 194, 4), // "int&"
+QT_MOC_LITERAL(21, 199, 3), // "val"
+QT_MOC_LITERAL(22, 203, 9), // "parse_var"
+QT_MOC_LITERAL(23, 213, 4), // "name"
+QT_MOC_LITERAL(24, 218, 9), // "parse_exp"
+QT_MOC_LITERAL(25, 228, 3), // "exp"
+QT_MOC_LITERAL(26, 232, 11), // "parse_delim"
+QT_MOC_LITERAL(27, 244, 5), // "delim"
+QT_MOC_LITERAL(28, 250, 10), // "find_instr"
+QT_MOC_LITERAL(29, 261, 7), // "stmt_t*"
+QT_MOC_LITERAL(30, 269, 11), // "judge_infix"
+QT_MOC_LITERAL(31, 281, 6), // "string"
+QT_MOC_LITERAL(32, 288, 3) // "str"
 
     },
-    "MainWindow\0on_codeLineEdit_return\0\0"
+    "MainWindow\0codeLineEdit_return\0\0"
     "clearAll\0clearAppStatus\0on_loadButton_clicked\0"
     "loadStat\0runApp\0getCodeLineVal\0"
     "parse_line\0parse_t\0QString&\0line\0"
@@ -136,7 +136,7 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         auto *_t = static_cast<MainWindow *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
-        case 0: _t->on_codeLineEdit_return(); break;
+        case 0: _t->codeLineEdit_return(); break;
         case 1: _t->clearAll(); break;
         case 2: _t->clearAppStatus(); break;
         case 3: _t->on_loadButton_clicked(); break;

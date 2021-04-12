@@ -83,7 +83,13 @@ qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 0, 0, 255), s
        </widget>
       </item>
       <item>
-       <widget class="QTextBrowser" name="syntaxDisplayBroser"/>
+       <widget class="QTextBrowser" name="syntaxDisplayBroser">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+         </font>
+        </property>
+       </widget>
       </item>
       <item>
        <layout class="QHBoxLayout" name="horizontalLayout">

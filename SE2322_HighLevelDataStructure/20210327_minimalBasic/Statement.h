@@ -66,6 +66,7 @@ public:
 
 
 class PrintStmt: public Statement{
+    QString expStr;
 public:
     //have exp
     PrintStmt(int inputIndex, QString exp);
@@ -74,6 +75,7 @@ public:
 };
 
 class RemStmt: public Statement{
+    QString remark;
 public:
     RemStmt(int inputIndex, QString lineTmp);
     QString runSingleStmt(QString par);
