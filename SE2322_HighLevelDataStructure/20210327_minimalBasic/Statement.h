@@ -18,7 +18,7 @@ public:
     int type ;
     Statement(int inputIndex, int Type);
     virtual QString runSingleStmt(QString par)=0;
-    virtual QString tree()=0;
+    virtual QString tree(int i=0)=0;
     ~Statement();
 };
 
@@ -30,17 +30,17 @@ public:
     InputStmt(int inputIndex, QString  varName1, int varVal1);
     QString runSingleStmt(QString par);
     QString findVar();
-    QString tree();
+    QString tree(int i=0);
 };
 
 class LetStmt: public Statement{
 private:
-    QString varName;
+    QString letVarName;
     //have exp
 public:
     LetStmt(int InputIndex, QString VarName, QString expr);
     QString runSingleStmt(QString par);
-    QString tree();
+    QString tree(int i=0);
 };
 
 class GotoStmt: public Statement{
@@ -48,7 +48,7 @@ class GotoStmt: public Statement{
 public:
     GotoStmt(int inputIndex, int targetLineNum);
     QString runSingleStmt(QString par);
-    QString tree();
+    QString tree(int i=0);
 };
 
 class IfStmt: public Statement{
@@ -58,10 +58,14 @@ private:
     QString inputExp1;
     QString condtion;
     int targetNum;
+
 public:
      IfStmt(int inputIndex, QString  exp,  QString inputCondition, QString exp1, int targetNum);
      QString runSingleStmt(QString par);
-     QString tree(){return condtion;}
+     QString tree(int i=0){
+         if(i==1)return QString::number(targetNum);
+         return condtion;
+     }
 };
 
 
@@ -71,7 +75,7 @@ public:
     //have exp
     PrintStmt(int inputIndex, QString exp);
     QString runSingleStmt(QString par);
-    QString tree();
+    QString tree(int i=0);
 };
 
 class RemStmt: public Statement{
@@ -79,7 +83,7 @@ class RemStmt: public Statement{
 public:
     RemStmt(int inputIndex, QString lineTmp);
     QString runSingleStmt(QString par);
-    QString tree();
+    QString tree(int i=0);
 };
 
 
@@ -87,7 +91,7 @@ class EndStmt: public Statement{
 public:
     EndStmt(int inputIndex);
     QString runSingleStmt(QString par);
-    QString tree();
+    QString tree(int i=0);
 };
 
 

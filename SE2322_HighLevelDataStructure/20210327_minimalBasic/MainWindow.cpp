@@ -119,8 +119,9 @@ void MainWindow::runApp(){
         map<int, Statement*>::iterator it = statements.begin();
         while(it !=statements.end()){
             i++;
-            if(i>10000)throw loop1;
+            if(i>100000) throw loop1;
             switch (it->second->type) {
+
             // 0:INPUT   1:LET   2:GOTO  3:IF   4:PRINT    5:REM   6:END
             case 0://problem!?
                 ui->codeLineEdit-> setText(" ? ");
@@ -133,6 +134,7 @@ void MainWindow::runApp(){
                 break;
             case 1:
                 it->second->runSingleStmt(par);
+                it++;
                 break;
             case 2:
                 result  = it->second->runSingleStmt(par); //the target index
@@ -151,7 +153,9 @@ void MainWindow::runApp(){
                 break;
             case 3:
                 curLine= it->second->runSingleStmt(par).toInt();
+//                qDebug()<<curLine<<endl;
                 if(curLine== -1){
+                    it++;
                     break;
                 }
                 for ( it = statements.begin(); it != statements.end(); it++)
@@ -169,17 +173,21 @@ void MainWindow::runApp(){
                 result= it->second->runSingleStmt(par);
                 //    ui->resultBrowser->append(result);
                 results.push_back(result);
+                it++;
                 break;
             case 5:
-
+                it++;
                 break;
             case 6:
                 it = statements.end();
                 break;
             default:
+                it++;
                 break;
             }
-            it++;
+//              qDebug()<<it->second->stmt<<endl;
+            if(it==statements.end())break;
+
         }
         updateVarBrowser();
         updateResultBrowser();
@@ -223,7 +231,6 @@ void MainWindow::recurPrintExp(Node *n,  int indentation){
 
 
 
-
 void MainWindow:: drawTree(){
     // -1 means no type the type order from 0-6 is
     // 0:INPUT   1:LET   2:GOTO  3:IF   4:PRINT    5:REM   6:END
@@ -257,6 +264,8 @@ void MainWindow:: drawTree(){
             synBranch =   "    "+it->second->tree();
             synTree.push_back(synBranch);
             drawExpBranch(it->second->exp1, 1);
+            synBranch =   "    "+it->second->tree(1);
+            synTree.push_back(synBranch);
             break;
 
         case 4:  //PRINT
@@ -266,6 +275,7 @@ void MainWindow:: drawTree(){
         case 5:  //REM
             synTree.push_back( QString::number(it->first)+" REM");
             synBranch =   "    " +it->second->tree();
+            synTree.push_back(synBranch);
             break;
         case 6: //end
             synTree.push_back(QString::number(it->first)+" END");
@@ -488,7 +498,7 @@ parse_t MainWindow:: parse_stmt(QString &ptr, stmt_t& stmt){
     if(IS_END(tmp)) return PARSE_ERR;
     for(i=0;i<8;i++){
         index = tmp.indexOf(stmtTab[i], 0,  Qt::CaseInsensitive);
-        if(index != -1) break;
+        if(index==0) break;
     }
     if(index == 0) {
         stmt = stmtTab[i];

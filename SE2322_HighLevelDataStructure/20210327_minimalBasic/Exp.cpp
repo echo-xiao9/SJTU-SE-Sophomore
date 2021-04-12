@@ -120,6 +120,10 @@ void Exp::getInfixVec(){
         else throw "invalid expression";
         in.push_back(*newNode);
     }
+    for(int i=0;i<in.size();i++){
+//        qDebug()<<in[i].val;
+    }
+//    qDebug()<<endl;
 }
 
 void Exp::infixToPostfixVec(){ // num(-), var, operations
@@ -132,7 +136,6 @@ void Exp::infixToPostfixVec(){ // num(-), var, operations
         else if(in[i].val == ")"){
             while (nodeStack.top().val != '(')
             {
-
                 post.push_back(nodeStack.top());
                 nodeStack.pop();
             }
@@ -140,8 +143,9 @@ void Exp::infixToPostfixVec(){ // num(-), var, operations
             nodeStack.pop();
         }
         else{
-            while (  nodeStack.size()!=0 && ( getPriority(in[i].val)
-                                              < getPriority(nodeStack.top().val))) {
+            while (  nodeStack.size()!=0 &&(  getPriority(in[i].val)
+                                              <= getPriority(nodeStack.top().val)) ) {
+                if(getPriority(in[i].val)==3 && getPriority(nodeStack.top().val)==3  )break;
                 post.push_back(nodeStack.top());
                 nodeStack.pop();
             }
@@ -153,6 +157,8 @@ void Exp::infixToPostfixVec(){ // num(-), var, operations
         post.push_back(nodeStack.top());
         nodeStack.pop();
     }
+//    for(int i=0;i<post.size();i++)qDebug()<<post[i].val;
+//    qDebug()<<endl;
 }
 
 

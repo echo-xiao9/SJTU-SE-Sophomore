@@ -66,6 +66,8 @@ OBJECTS       = Exp.o \
 		moc_Help.o \
 		moc_MainWindow.o
 DIST          = command.txt \
+		command的副本.txt \
+		fibo.txt \
 		/Users/kangyixiao/Qt/5.12.3/clang_64/mkspecs/features/spec_pre.prf \
 		/Users/kangyixiao/Qt/5.12.3/clang_64/mkspecs/qdevice.pri \
 		/Users/kangyixiao/Qt/5.12.3/clang_64/mkspecs/features/device_config.prf \

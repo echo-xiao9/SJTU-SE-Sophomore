@@ -56,6 +56,9 @@ public:
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
         MainWindow->resize(800, 600);
+        QFont font;
+        font.setFamily(QString::fromUtf8("Monaco"));
+        MainWindow->setFont(font);
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         centralwidget->setStyleSheet(QString::fromUtf8("centralwidget\n"
@@ -129,9 +132,9 @@ public:
 
         syntaxDisplayBroser = new QTextBrowser(centralwidget);
         syntaxDisplayBroser->setObjectName(QString::fromUtf8("syntaxDisplayBroser"));
-        QFont font;
-        font.setFamily(QString::fromUtf8("Arial"));
-        syntaxDisplayBroser->setFont(font);
+        QFont font1;
+        font1.setFamily(QString::fromUtf8("Arial"));
+        syntaxDisplayBroser->setFont(font1);
 
         verticalLayout->addWidget(syntaxDisplayBroser);
 
