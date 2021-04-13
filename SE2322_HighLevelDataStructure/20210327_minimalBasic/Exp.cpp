@@ -201,13 +201,16 @@ int Exp::precedence(char op){
 
 
 int  Exp::applyOp(int a, int b, string op){
+    QString zero="Divided by 0!";
     switch(op[0]){
     case '+': return a + b;
     case '-': return a - b;
     case '*':
         if(op[1]=='*') return pow(a,b);
         else return a * b;
-    case '/': return a / b;
+    case '/':
+        if(b==0)throw zero;
+        return a / b;
     }
 }
 

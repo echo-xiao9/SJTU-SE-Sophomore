@@ -69,14 +69,16 @@ void MainWindow::codeLineEdit_return(){
 void MainWindow::clearAll(){
     clearAppStatus();
     statements.clear();
+    variables.clear();
     ui->codeBrowser->clear();
 }
 
 void MainWindow::clearAppStatus(){
     synTree.clear();
-    variables.clear();
+
     results.clear();
     ui->codeLineEdit->clear();
+    ui->messageLineEdit->clear();
     ui->resultBrowser->clear();
     ui->syntaxDisplayBroser->clear();
     ui->varBrowser->clear();
@@ -126,13 +128,21 @@ void MainWindow::runApp(){
 
             // 0:INPUT   1:LET   2:GOTO  3:IF   4:PRINT    5:REM   6:END
             case 0://problem!?
-                ui->codeLineEdit-> setText(" ? ");
+                try{
+                 ui->codeLineEdit-> setPlaceholderText(" ? ");
                 disconnect(ui->codeLineEdit, SIGNAL(returnPressed()), this, SLOT(codeLineEdit_return()));
                 connect(ui->codeLineEdit, SIGNAL(returnPressed()), this, SLOT(getCodeLineVal()));
                 loop.exec();
                 it->second->runSingleStmt(inputNumTmp);
                 disconnect(ui->codeLineEdit, SIGNAL(returnPressed()), this, SLOT(getCodeLineVal()));
                 connect(ui->codeLineEdit, SIGNAL(returnPressed()), this, SLOT(codeLineEdit_return()));
+                ui->codeLineEdit-> setPlaceholderText("");
+            }catch(QString error){
+                    ui->messageLineEdit->setText(error);
+                    disconnect(ui->codeLineEdit, SIGNAL(returnPressed()), this, SLOT(getCodeLineVal()));
+                    connect(ui->codeLineEdit, SIGNAL(returnPressed()), this, SLOT(codeLineEdit_return()));
+                }
+                it++;
                 break;
             case 1:
                 it->second->runSingleStmt(par);
@@ -155,7 +165,7 @@ void MainWindow::runApp(){
                 break;
             case 3:
                 curLine= it->second->runSingleStmt(par).toInt();
-//                qDebug()<<curLine<<endl;
+                //                qDebug()<<curLine<<endl;
                 if(curLine== -1){
                     it++;
                     break;
@@ -187,27 +197,30 @@ void MainWindow::runApp(){
                 it++;
                 break;
             }
-//              qDebug()<<it->second->stmt<<endl;
+            //              qDebug()<<it->second->stmt<<endl;
             if(it==statements.end())break;
 
         }
         updateVarBrowser();
         updateResultBrowser();
         ui->messageLineEdit ->setText("Program ended successfully.");
+        variables.clear();
+        ui->codeLineEdit->clear();
     }catch(QString s){
         ui->messageLineEdit ->setText(s);
+        variables.clear();
     }
 };
 
 
 void MainWindow::getCodeLineVal(){
     QString errorNum ="Invaild number in input statement!";
+//    ui->codeLineEdit-> setPlaceholderText(" ? ");
     inputNumTmp = ui->codeLineEdit->text();
     inputNumTmp = inputNumTmp.trimmed();
     for(int i=0;i<inputNumTmp.length();i++){
-        if(inputNumTmp[i]<'0' || inputNumTmp >"9")throw  errorNum;
+        if(inputNumTmp[i]<'0' || inputNumTmp >"9") throw errorNum;
     }
-    ui->codeLineEdit->clear();
     loop.exit();
 }
 
@@ -241,7 +254,6 @@ void MainWindow:: drawTree(){
     map<int, Statement*>::iterator it = statements.begin();
     while(it !=statements.end()){
 
-        try{
         switch (it->second->type) {
         case 0: //REM
             synTree.push_back(QString::number(it->first)+" INPUT");
@@ -274,20 +286,24 @@ void MainWindow:: drawTree(){
             synTree.push_back( QString::number(it->first)+" PRINT");
             drawExpBranch(it->second->exp, 1);
             break;
+
         case 5:  //REM
             synTree.push_back( QString::number(it->first)+" REM");
             synBranch =   "    " +it->second->tree();
             synTree.push_back(synBranch);
             break;
+
         case 6: //end
             synTree.push_back(QString::number(it->first)+" END");
             break;
+
+        case 7:
+            synTree.push_back(QString::number(it->first)+" Error");
+            break;
+
         default:
             break;
 
-        }
-        }catch(QString s){
-            synTree.push_back(QString::number(it->first)+" Error");
         }
 
         it++;
@@ -303,6 +319,7 @@ parse_t MainWindow:: parse_line(QString &line){
     QString exp="";
     QString exp1="";
     QString delim="";
+    QString errorStrBackUp="";
     int index = -1; //index for condition in if
     int indexThen = -1;    // index for THEN in if
     pair<map<int, Statement*>::iterator, bool> Insert_Pair;
@@ -318,77 +335,82 @@ parse_t MainWindow:: parse_line(QString &line){
         throw numError;
     }
     if(IS_NUM(line)){
-        if(parse_num(lineTmp,lineNum)==PARSE_ERR) throw numError;
-        if(lineNum>1000000)throw numError;
-        if(IS_END(lineTmp)){
-            if(! statements.erase(lineNum))
-                return PARSE_ERR;
-            return PARSE_DEL ;
-        }
-
-        if(parse_stmt(lineTmp, stmtTmp)==PARSE_ERR)
-            throw  stmtError;
-        switch (stmtNum(stmtTmp))
-        {
-        case 0: //"INPUT": 35 INPUT n3
-            if(parse_var(lineTmp, varName) == PARSE_ERR) throw varError;
-
-            //              newStmt = new InputStmt(lineNum, varName, numTmp, statements);
-            newStmt = new InputStmt(lineNum, varName,numTmp);
-            break;
-        case 1://"LET": //40 LET total = n1 + n2 + n3
-            if(parse_var(lineTmp, varName)==PARSE_ERR ||
-                    parse_delim(lineTmp, delim)==PARSE_ERR||
-                    delim !="="||
-                    parse_exp(lineTmp,exp)==PARSE_ERR)
-                throw stmtError;
-            newStmt=new LetStmt(lineNum, varName, exp);
-            break;
-
-        case 2: //"GOTO" GOTO n
-            if(parse_num(lineTmp,numTmp)==PARSE_ERR)throw numError;
-            newStmt = new GotoStmt(lineNum, numTmp);
-            break;
-
-        case 3://"IF":  //IF condition THEN n
-            if(lineTmp.indexOf("<") !=-1){
-                index = lineTmp.indexOf("<");
-                delim = "<";
-            }else if(lineTmp.indexOf("=" )!= -1){
-                index =lineTmp.indexOf("=" );
-                delim = "=";
-            }else if(lineTmp.indexOf(">") != -1){
-                index =lineTmp.indexOf(">" );
-                delim = ">";
+        try{
+            if(parse_num(lineTmp,lineNum)==PARSE_ERR) throw numError;
+            errorStrBackUp = lineTmp;
+            errorStrBackUp=errorStrBackUp.trimmed();
+            if(lineNum>1000000)throw numError;
+            if(IS_END(lineTmp)){
+                if(! statements.erase(lineNum))
+                    throw stmtError;
+                return PARSE_DEL;
             }
-            if(index == -1) return PARSE_ERR;
-            exp = lineTmp.mid(0,index);
-            exp = exp.trimmed();
-            indexThen = lineTmp.indexOf("THEN", 0,  Qt::CaseInsensitive);
-            exp1 = lineTmp.mid(index+1, indexThen-index-1);
-            exp1= exp1.trimmed();
-            // !!!!numTmp;
-            lineTmp = lineTmp.mid(indexThen+4);
-            if(parse_num(lineTmp, numTmp)==PARSE_ERR)throw numError;
+            if(parse_stmt(lineTmp, stmtTmp)==PARSE_ERR)
+                throw  stmtError;
 
-            newStmt = new IfStmt(lineNum, exp,  delim, exp1, numTmp);
-            break;
+            switch (stmtNum(stmtTmp))
+            {
+            case 0: //"INPUT": 35 INPUT n3
+                if(parse_var(lineTmp, varName) == PARSE_ERR) throw varError;
 
-        case 4: //"PRINT": //PRINT 2 + 2
-            if(parse_exp(lineTmp, exp)==PARSE_ERR)throw numError;
-            newStmt = new PrintStmt(lineNum,exp);
-            break;
+                //              newStmt = new InputStmt(lineNum, varName, numTmp, statements);
+                newStmt = new InputStmt(lineNum, varName,numTmp);
+                break;
+            case 1://"LET": //40 LET total = n1 + n2 + n3
+                if(parse_var(lineTmp, varName)==PARSE_ERR ||
+                        parse_delim(lineTmp, delim)==PARSE_ERR||
+                        delim !="="||
+                        parse_exp(lineTmp,exp)==PARSE_ERR)
+                    throw stmtError;
+                newStmt=new LetStmt(lineNum, varName, exp);
+                break;
 
-        case 5: //"REM": //REM aaa
-            newStmt = new RemStmt(lineNum,lineTmp);
-            break;
+            case 2: //"GOTO" GOTO n
+                if(parse_num(lineTmp,numTmp)==PARSE_ERR)throw numError;
+                newStmt = new GotoStmt(lineNum, numTmp);
+                break;
 
-        case 6: //"END":
-            newStmt = new EndStmt(lineNum);
-            break;
+            case 3://"IF":  //IF condition THEN n
+                if(lineTmp.indexOf("<") !=-1){
+                    index = lineTmp.indexOf("<");
+                    delim = "<";
+                }else if(lineTmp.indexOf("=" )!= -1){
+                    index =lineTmp.indexOf("=" );
+                    delim = "=";
+                }else if(lineTmp.indexOf(">") != -1){
+                    index =lineTmp.indexOf(">" );
+                    delim = ">";
+                }
+                if(index == -1) return PARSE_ERR;
+                exp = lineTmp.mid(0,index);
+                exp = exp.trimmed();
+                indexThen = lineTmp.indexOf("THEN", 0,  Qt::CaseInsensitive);
+                exp1 = lineTmp.mid(index+1, indexThen-index-1);
+                exp1= exp1.trimmed();
+                // !!!!numTmp;
+                lineTmp = lineTmp.mid(indexThen+4);
+                if(parse_num(lineTmp, numTmp)==PARSE_ERR)throw numError;
+                newStmt = new IfStmt(lineNum, exp,  delim, exp1, numTmp);
+                break;
 
-        default:
-            break;
+            case 4: //"PRINT": //PRINT 2 + 2
+                if(parse_exp(lineTmp, exp)==PARSE_ERR)throw numError;
+                newStmt = new PrintStmt(lineNum,exp);
+                break;
+
+            case 5: //"REM": //REM aaa
+                newStmt = new RemStmt(lineNum,lineTmp);
+                break;
+
+            case 6: //"END":
+                newStmt = new EndStmt(lineNum);
+                break;
+
+            default:
+                throw stmtError;
+            }
+        }catch(QString e){
+            newStmt = new ErrorStmt(lineNum, errorStrBackUp);
         }
         Insert_Pair = statements.insert(pair<int, Statement*>(lineNum, newStmt));
         // if the index exits
@@ -409,23 +431,24 @@ parse_t MainWindow:: parse_line(QString &line){
             case 0:
                 if(parse_var(lineTmp, varName)==PARSE_ERR) throw stmtError;
 
-                while (true) {
+
                     try{
-                    ui->codeLineEdit-> setText(" ? ");
-                    disconnect(ui->codeLineEdit, SIGNAL(returnPressed()), this, SLOT(codeLineEdit_return()));
-                    connect(ui->codeLineEdit, SIGNAL(returnPressed()), this, SLOT(getCodeLineVal()));
-                    loop.exec();
-                    v.varName = varName;
-                    v.varValue = inputNumTmp.toInt();
-                    variables.push_back(v);
-                    updateVarBrowser();
-                    disconnect(ui->codeLineEdit, SIGNAL(returnPressed()), this, SLOT(getCodeLineVal()));
-                    connect(ui->codeLineEdit, SIGNAL(returnPressed()), this, SLOT(codeLineEdit_return()));
-                    break;
+                        disconnect(ui->codeLineEdit, SIGNAL(returnPressed()), this, SLOT(codeLineEdit_return()));
+                        connect(ui->codeLineEdit, SIGNAL(returnPressed()), this, SLOT(getCodeLineVal()));
+                        loop.exec();
+                        v.varName = varName;
+                        v.varValue = inputNumTmp.toInt();
+                        variables.push_back(v);
+                        updateVarBrowser();
+                        disconnect(ui->codeLineEdit, SIGNAL(returnPressed()), this, SLOT(getCodeLineVal()));
+                        connect(ui->codeLineEdit, SIGNAL(returnPressed()), this, SLOT(codeLineEdit_return()));
+                        break;
                     }catch(QString error){
                         ui->messageLineEdit->setText(error);
+                        disconnect(ui->codeLineEdit, SIGNAL(returnPressed()), this, SLOT(getCodeLineVal()));
+                        connect(ui->codeLineEdit, SIGNAL(returnPressed()), this, SLOT(codeLineEdit_return()));
                     }
-            }
+
                 break;
             case 1:
                 if(parse_var(lineTmp, varName)==PARSE_ERR ||

@@ -3,11 +3,6 @@
 
 Statement::Statement(int inputIndex,  int Type)
     :index(inputIndex),  type(Type){
-    //遍历方式3，采用下角标进行数据元素访问
-//    for (size_t i = 0; i < variables.size(); i++)
-//    {
-//    qDebug() << variables[i].varName<<endl;
-//    }
 }
 
 Statement:: ~Statement(){
@@ -56,9 +51,6 @@ QString LetStmt::runSingleStmt(QString par){
         if(it->varName == letVarName){
             it->varValue =exp -> value; //update the value of exist var
             flag = true;
-//            qDebug()<<"LET:"<<it->varName<<' '<< it->varValue<<endl;
-//             if(it->varName == "n1")
-//                 qDebug()<<it->varValue<<endl;
             return "";
         }
     }
@@ -94,7 +86,7 @@ IfStmt::IfStmt(int inputIndex, QString  inputExp,  QString inputCondition, QStri
 
 QString IfStmt::runSingleStmt(QString par){
     exp->evaluate();
-    exp1->evaluate(); //! 可能表达式出错
+    exp1->evaluate();
 //    qDebug()<<"Exp:"<<exp->value<<endl;
 //    qDebug()<<"Exp1:"<<exp1->value<<endl;
     if(condtion == "="){
@@ -139,7 +131,6 @@ QString  RemStmt::tree(int i){
     return remark;
 }
 
-
 EndStmt::EndStmt(int inputIndex):Statement(inputIndex, 6){
     stmt = "END";
 }
@@ -149,13 +140,11 @@ QString EndStmt::runSingleStmt(QString par){return "";}
 QString  EndStmt::tree(int i){return "";}
 
 
+ErrorStmt::ErrorStmt(int inputIndex, QString content):Statement(inputIndex, 7){
+    stmt = content;
+}
 
-
-//ErrorStmt::ErrorStmt(int inputIndex):Statement(inputIndex, 7){
-
-//}
-
-//QString  ErrorStmt::tree(int i){return "Error";}
+QString  ErrorStmt::tree(int i){return "Error";}
 
 
 
