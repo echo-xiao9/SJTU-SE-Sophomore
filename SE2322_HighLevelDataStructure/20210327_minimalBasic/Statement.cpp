@@ -87,8 +87,6 @@ IfStmt::IfStmt(int inputIndex, QString  inputExp,  QString inputCondition, QStri
 QString IfStmt::runSingleStmt(QString par){
     exp->evaluate();
     exp1->evaluate();
-//    qDebug()<<"Exp:"<<exp->value<<endl;
-//    qDebug()<<"Exp1:"<<exp1->value<<endl;
     if(condtion == "="){
         if(exp->value == exp1->value)return QString::number(targetNum);
     }

@@ -45,14 +45,14 @@ public:
     void updateVarBrowser();
     void updateSyntaxDisplayBroser();
 
-    stmt_t stmtTab[8] = {"INPUT","LET", "GOTO", "IF", "PRINT", "REM", "END","THEN"};
-    cmd_t cmdTab[6]={"RUN", "LOAD", "LIST", "CLEAR", "HELP","QUIT"};
-    operator_t opTab[7]={"+", "-", "*", "/", "(", ")", "**" };
+    stmt_t stmtTab[8] = {"INPUT","LET", "GOTO", "IF", "PRINT", "REM", "END","THEN"}; //all valid statement
+    cmd_t cmdTab[6]={"RUN", "LOAD", "LIST", "CLEAR", "HELP","QUIT"}; // all valid command
+    operator_t opTab[7]={"+", "-", "*", "/", "(", ")", "**" }; // all valid operator
     token_t optokenTab[7]={ ADD, SUB, MUL, DIV, LBRC, RBRC,EXP } ;
     vector <string> command;
     vector <QString> results;
     vector <QString> synTree;
-    map <int, Statement*> statements;
+    map <int, Statement*> statements; // store the existing statements after running the app
     int curLine;
 
 private:

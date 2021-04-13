@@ -96,6 +96,7 @@ int Exp::getPriority(QString C)
 }
 
 void Exp::getInfixVec(){
+    // turn the infix expression(String) to a vector including different types of token(num, variables, operators).
     QString tmp = QString::fromStdString(input);
     QString delim="";
     QString var="";
@@ -104,9 +105,6 @@ void Exp::getInfixVec(){
     tmp=tmp.trimmed();
     bool first=0;
     while(!IS_END(tmp)){
-        //        if(tmp[0]=="-"){
-        //            qDebug()<<"-"<<endl;
-        //        }
         if(tmp[0]=="-"&& first==0){
             tmp= tmp.mid(1);
             tmp=tmp.trimmed();
@@ -149,12 +147,10 @@ void Exp::getInfixVec(){
         first++;
         in.push_back(*newNode);
     }
-    for(int i=0;i<in.size();i++)qDebug()<<in[i].val;
-    qDebug()<<endl;
-
 }
 
 void Exp::infixToPostfixVec(){ // num(-), var, operations
+    // turn infix vector to postfix vector
     stack<Node> nodeStack;
     for(int i=0;i<in.size();i++){
         if(in[i].type == 0 || in[i].type == 1){
@@ -185,8 +181,6 @@ void Exp::infixToPostfixVec(){ // num(-), var, operations
         post.push_back(nodeStack.top());
         nodeStack.pop();
     }
-        for(int i=0;i<post.size();i++)qDebug()<<post[i].val;
-        qDebug()<<endl;
 }
 
 
@@ -201,6 +195,7 @@ int Exp::precedence(char op){
 
 
 int  Exp::applyOp(int a, int b, string op){
+    // return the result of calculation.
     QString zero="Divided by 0!";
     switch(op[0]){
     case '+': return a + b;
@@ -216,10 +211,12 @@ int  Exp::applyOp(int a, int b, string op){
 
 
 void Exp::evaluate(){
+    // get the value by calculate recursively.
     value = recurEvaluate(root);
 }
 
 int Exp::recurEvaluate(Node *t){
+    // Operates on the left and right subtrees and operators, and returns its own value if it is a number or a variable.
     if(t==nullptr)return 0;
     switch (t->type) {
     case 0: //num
@@ -235,6 +232,7 @@ int Exp::recurEvaluate(Node *t){
 
 
 void  Exp::buildSynTree(){
+    //The expression binary tree is constructed from the postfix expression.
     getInfixVec();
     infixToPostfixVec();
     stack <Node*> synStack;

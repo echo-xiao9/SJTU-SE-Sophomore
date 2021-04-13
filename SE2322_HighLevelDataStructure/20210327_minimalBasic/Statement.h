@@ -97,7 +97,7 @@ public:
 class ErrorStmt: public Statement{
 public:
     ErrorStmt(int inputIndex, QString content);
-    QString runSingleStmt(QString par){}
+    QString runSingleStmt(QString par){return "";}
     QString tree(int i=0);
 };
 

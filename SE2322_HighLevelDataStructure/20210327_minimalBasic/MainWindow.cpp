@@ -67,6 +67,7 @@ void MainWindow::codeLineEdit_return(){
 
 
 void MainWindow::clearAll(){
+    // clear all the information of the program.
     clearAppStatus();
     statements.clear();
     variables.clear();
@@ -74,6 +75,7 @@ void MainWindow::clearAll(){
 }
 
 void MainWindow::clearAppStatus(){
+    //clear the status in the program, including the content on GUI , syntax tree and results.
     synTree.clear();
 
     results.clear();
@@ -93,6 +95,7 @@ void MainWindow::on_loadButton_clicked(){
 }
 
 void MainWindow::loadStat(){
+    // load statements from files.
     QString fileName = QFileDialog::getOpenFileName();
     QFile file(fileName);
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)){
@@ -111,6 +114,7 @@ void MainWindow::loadStat(){
 }
 
 void MainWindow::runApp(){
+    // run the statement one by one.
     int i=0;
     try {
         QString loop1="The program will loop forever！";
@@ -123,7 +127,7 @@ void MainWindow::runApp(){
         map<int, Statement*>::iterator it = statements.begin();
         while(it !=statements.end()){
             i++;
-            if(i>100000) throw loop1;
+            if(i>100000) throw loop1; // Bug: loop forever
             switch (it->second->type) {
 
             // 0:INPUT   1:LET   2:GOTO  3:IF   4:PRINT    5:REM   6:END
@@ -165,7 +169,6 @@ void MainWindow::runApp(){
                 break;
             case 3:
                 curLine= it->second->runSingleStmt(par).toInt();
-                //                qDebug()<<curLine<<endl;
                 if(curLine== -1){
                     it++;
                     break;
@@ -197,7 +200,6 @@ void MainWindow::runApp(){
                 it++;
                 break;
             }
-            //              qDebug()<<it->second->stmt<<endl;
             if(it==statements.end())break;
 
         }
@@ -430,14 +432,14 @@ parse_t MainWindow:: parse_line(QString &line){
             // 0:INPUT   1:LET   2:GOTO  3:IF   4:PRINT    5:REM   6:END
             case 0:
                 if(parse_var(lineTmp, varName)==PARSE_ERR) throw stmtError;
-
-
                     try{
+                        ui->codeLineEdit->setPlaceholderText(" ? ");
                         disconnect(ui->codeLineEdit, SIGNAL(returnPressed()), this, SLOT(codeLineEdit_return()));
                         connect(ui->codeLineEdit, SIGNAL(returnPressed()), this, SLOT(getCodeLineVal()));
                         loop.exec();
                         v.varName = varName;
                         v.varValue = inputNumTmp.toInt();
+                        ui->codeLineEdit->setPlaceholderText("");
                         variables.push_back(v);
                         updateVarBrowser();
                         disconnect(ui->codeLineEdit, SIGNAL(returnPressed()), this, SLOT(getCodeLineVal()));
@@ -626,7 +628,7 @@ parse_t MainWindow:: parse_delim(QString &ptr, QString& delim){
     return PARSE_ERR;
 }
 
-stmt_t *  MainWindow::find_instr(QString name){}
+stmt_t *  MainWindow::find_instr(QString name){return nullptr;}
 
 bool MainWindow::judge_infix(string str)
 {
