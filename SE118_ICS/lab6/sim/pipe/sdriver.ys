@@ -1,0 +1,236 @@
+#######################################################################
+# Test for copying block of size 4;
+#######################################################################
+	.pos 0
+main:	irmovq Stack, %rsp  	# Set up stack pointer
+
+	# Set up arguments for copy function and then invoke it
+	irmovq $4, %rdx		# src and dst have 4 elements
+	irmovq dest, %rsi	# dst array
+	irmovq src, %rdi	# src array
+	call ncopy		 
+	halt			# should halt with num nonzeros in %rax
+StartFun:
+
+#/* $begin ncopy-ys */
+##################################################################
+# ncopy.ys - Copy a src block of len words to dst.
+# Return the number of positive words (>0) contained in src.
+#
+# Include your name and ID here.
+# 康艺潇 518431910002
+# Describe how and why you modified the baseline code.
+
+# 1. Eight cycle unfolds, reducing the jump and improving the efficiency
+# So let's first go to Len -=8 and if Len -= 0 and go to the REMAINDER part.
+# If ≥0 is evaluated one by one, judge whether =0 after processing, expand 8 times, if still >, 0 enters the loop again.
+
+# 2. The original code has data hazard
+
+# mrmovq (%rdi), %r10	# read val from src...
+# rmmovq %r10, (%rsi)	# ... and store it to dst # data hazard
+# So this %r10 here can be inserted in the middle, which is wasteful
+# Each expansion uses two registers, %r10 and %r11
+# Instead of
+# mrmovq (%rdi), %r10	# read val from src...
+# mrmovq 8(%rdi),%r11
+# rmmovq %r10, (%rsi)	# ... and store it to dst
+# The next round assigns %r11 at the time of assignment.
+
+##################################################################
+# Do not modify this portion
+# Function prologue.
+# %rdi = src, %rsi = dst, %rdx = len
+ncopy:
+
+##################################################################
+# You can modify this portion
+	# Loop header
+	xorq %rax,%rax		# count = 0
+	iaddq $-8,%rdx		# length -= 8
+	jl REMAINDER
+
+Loop:
+  mrmovq (%rdi), %r10	# read val from src...
+	mrmovq 8(%rdi),%r11
+	rmmovq %r10, (%rsi)	# ...and store it to dst
+	andq %r10, %r10		# val <= 0?
+	jle Npos		# if so, goto Npos:
+	iaddq $1,%rax
+Npos:
+	rmmovq %r11,8(%rsi)
+	andq %r11,%r11
+	jle Npos2
+	iaddq $1,%rax
+Npos2:
+	mrmovq 16(%rdi),%r10
+	mrmovq 24(%rdi),%r11
+	rmmovq %r10, 16(%rsi)
+	andq %r10,%r10
+	jle Npos3
+	iaddq $1,%rax
+Npos3:
+	rmmovq %r11,24(%rsi)
+	andq %r11,%r11
+	jle Npos4
+	iaddq $1,%rax
+Npos4:
+	mrmovq 32(%rdi),%r10
+	mrmovq 40(%rdi),%r11
+	rmmovq %r10, 32(%rsi)
+	andq %r10,%r10
+	jle Npos5
+	iaddq $1,%rax
+Npos5:
+	rmmovq %r11,40(%rsi)
+	andq %r11,%r11
+	jle Npos6
+	iaddq $1,%rax
+Npos6:
+	mrmovq 48(%rdi),%r10
+	mrmovq 56(%rdi),%r11
+	rmmovq %r10, 48(%rsi)
+	andq %r10,%r10
+	jle Npos7
+	iaddq $1,%rax
+Npos7:
+	rmmovq %r11,56(%rsi)
+	andq %r11,%r11
+	jle nLoop
+	iaddq $1,%rax
+
+nLoop:
+	iaddq $64,%rdi
+	iaddq $64,%rsi
+	iaddq $-8,%rdx
+	jge Loop
+
+REMAINDER:
+	iaddq $7,%rdx
+	jl Done
+  mrmovq (%rdi), %r10
+	mrmovq 8(%rdi),%r11
+	rmmovq %r10, (%rsi) //finish 0
+	andq %r10,%r10
+	jle REMPOS
+	iaddq $1,%rax
+REMPOS:
+	iaddq $-1,%rdx
+	jl Done
+  mrmovq 16(%rdi), %r10
+	rmmovq %r11,8(%rsi) //finish 1
+	andq %r11,%r11
+	jle REMPOS1
+	iaddq $1,%rax
+REMPOS1:
+	iaddq $-1,%rdx
+	jl Done
+  mrmovq 24(%rdi), %r11
+	rmmovq %r10, 16(%rsi) //finish 2
+	andq %r10,%r10
+	jle REMPOS2
+	iaddq $1,%rax
+REMPOS2:
+	iaddq $-1,%rdx
+	jl Done
+  mrmovq 32(%rdi), %r10
+	rmmovq %r11,24(%rsi) //finish 3
+	andq %r11,%r11
+	jle REMPOS3
+	iaddq $1,%rax
+REMPOS3:
+	iaddq $-1,%rdx
+	jl Done
+  mrmovq 40(%rdi), %r11
+	rmmovq %r10, 32(%rsi)
+	andq %r10,%r10      //finish 4
+	jle REMPOS4
+	iaddq $1,%rax
+REMPOS4:
+	iaddq $-1,%rdx
+	jl Done
+  mrmovq 48(%rdi), %r10
+	rmmovq %r11,40(%rsi) //finish 5
+	andq %r11,%r11
+  jle REMPOS5
+	iaddq $1,%rax
+
+REMPOS5:
+	iaddq $-1,%rdx
+	jl Done
+  mrmovq 56(%rdi), %r11
+	rmmovq %r10, 48(%rsi)
+	andq %r10,%r10      //finish 6
+	jle REMPOS6
+	iaddq $1,%rax
+
+REMPOS6:
+	iaddq $-1,%rdx
+	jl Done
+  mrmovq 64(%rdi), %r10
+	rmmovq %r11,56(%rsi) //finish 7
+	andq %r11,%r11
+  jle REMPOS7
+	iaddq $1,%rax
+
+REMPOS7:
+	iaddq $-1,%rdx
+	jl Done
+	rmmovq %r10, 64(%rsi)
+	andq %r10,%r10
+	jle Done
+	iaddq $1,%rax
+  
+##################################################################
+# Do not modify the following section of code
+# Function epilogue.
+Done:
+	ret
+##################################################################
+# Keep the following label at the end of your function
+End:
+#/* $end ncopy-ys */
+EndFun:
+
+###############################
+# Source and destination blocks 
+###############################
+	.align 8
+src:
+	.quad 1
+	.quad -2
+	.quad -3
+	.quad 4
+	.quad 0xbcdefa # This shouldn't get moved
+
+	.align 16
+Predest:
+	.quad 0xbcdefa
+dest:
+	.quad 0xcdefab
+	.quad 0xcdefab
+	.quad 0xcdefab
+	.quad 0xcdefab
+Postdest:
+	.quad 0xdefabc
+
+.align 8
+# Run time stack
+	.quad 0
+	.quad 0
+	.quad 0
+	.quad 0
+	.quad 0
+	.quad 0
+	.quad 0
+	.quad 0
+	.quad 0
+	.quad 0
+	.quad 0
+	.quad 0
+	.quad 0
+	.quad 0
+	.quad 0
+	.quad 0
+
+Stack:

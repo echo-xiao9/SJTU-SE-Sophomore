@@ -1,0 +1,16 @@
+<!DOCTYPE html><html lang="en"  data-adblockkey=MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBANnylWw2vLY4hUn9w06zQKbhKBfvjFUCsdFlb6TdQhxb9RXWXuI4t31c+o8fYOv/s8q1LGPga3DE1L/tHU4LENMCAwEAAQ==_b3s8NX4iJGXBM6V79X4322/pMJiL3UlfY60J/xfhMs+xWT+NnO3udQvhnXJjUw/CVkpIgeft+IoZePAeoK/T3w==><head><meta charset="utf-8"><title>edu.im&nbsp;-&nbsp</title><meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0"><meta name="description" content=" "><link
+        rel="icon"
+        type="image/png"
+        href="//img.sedoparking.com/templates/logos/sedo_logo.png"
+/></head><body><img width="16" height="16" src="http://img.sedoparking.com/images/js_preloader.gif"/><script type="text/javascript">
+    var request = new XMLHttpRequest();
+    request.open('GET', "//csapp.cs.cmu.edu.im/search/tsc.php?200=NTc0OTQyMTg=&21=NTguMjQ3LjIyLjE5Nw==&681=MTYxNzY2ODUxODBhMWQ0YmVhMDJiODIxODk3MTg2NjljYWM3NjYyNjNj&crc=779d5428b9cf144f02ac3ca4101d4642af2d48f9&cv=1");
+    request.send();
+            request.onreadystatechange = function() {
+            if (request.readyState === 4) {
+                if (request.status === 200) {
+                     window.location = "//csapp.cs.cmu.edu.im/search/redirect.php?f=http%3A%2F%2F660.dragonparking.com%2F%3Fsite%3Dedu.im%26t%3D1617668518000%26s%3D64cba81aa25cf505e1c678505beb3448%26fs%3Dhttps%253A%252F%252Fsedo.com%252Fsearch%252Fdetails%252F%253Fpartnerid%253D14460%2526language%253Dcn%2526domain%253Dedu.im%2526origin%253Dparking%2526utm_medium%253DParking%2526utm_campaign%253Ddragonparking%26channel%3D18271&amp;v=YjhmMWRjNWJmYmMwZTFlYjU1MzAwZDIyZjQzYzIyZDYJMQljc2FwcC5jcy5jbXUuZWR1LmltNjA2YmE5YTY4YTdhZjkuNjQzMzAyNDMJY3NhcHAuY3MuY211LmVkdS5pbTYwNmJhOWE2OGE3ZGY3LjQyNDA0MDQwCTE2MTc2Njg1MTgJYWRfNDRfMA==&amp;l=OAlhMTI5YzY5NzI0MWYzNWFmNmRmOWM5OTc2MTZlMDczZAkwCTgJMAk3MzBlNmQyMDE3MmZmMzlkZjExY2RhMTJjMzRkZjgzMQk1NzQ5NDIxOAlFZHUJMAk0NAkxNQk5NQkxNjE3NjY4NTE4CTAJTgkwCTEJMTgxNAkxMTI5CTU3NDk0MjE4CTU4LjI0Ny4yMi4xOTcJMA%3D%3D"
+                }
+            }
+        }
+    </script></body></html>
