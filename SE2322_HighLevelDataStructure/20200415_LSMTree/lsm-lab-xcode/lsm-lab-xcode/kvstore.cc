@@ -1,6 +1,8 @@
 #include "kvstore.h"
 #include <string>
 
+
+
 KVStore::KVStore(const std::string &dir): KVStoreAPI(dir)
 {
 }
@@ -15,7 +17,7 @@ KVStore::~KVStore()
  */
 void KVStore::put(uint64_t key, const std::string &s)
 {
-    
+    slmSkip.put(key, s);
 }
 /**
  * Returns the (string) value of the given key.
@@ -23,7 +25,8 @@ void KVStore::put(uint64_t key, const std::string &s)
  */
 std::string KVStore::get(uint64_t key)
 {
-	return "";
+    string s = slmSkip.get(key);
+	return s;
 }
 /**
  * Delete the given key-value pair if it exists.
@@ -31,6 +34,8 @@ std::string KVStore::get(uint64_t key)
  */
 bool KVStore::del(uint64_t key)
 {
+    //need to find in ssTable later!
+    if(slmSkip.remove(key))return true;
 	return false;
 }
 
@@ -40,4 +45,5 @@ bool KVStore::del(uint64_t key)
  */
 void KVStore::reset()
 {
+    slmSkip.init();
 }

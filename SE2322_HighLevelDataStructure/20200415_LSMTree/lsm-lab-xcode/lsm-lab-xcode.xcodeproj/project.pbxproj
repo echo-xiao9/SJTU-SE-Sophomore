@@ -26,6 +26,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		E81913DE26297DBC000BFECD /* skipList.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = skipList.h; sourceTree = "<group>"; };
 		E83925052629320000F0CAAD /* lsm-lab-xcode */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "lsm-lab-xcode"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E83925202629327E00F0CAAD /* utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = utils.h; sourceTree = "<group>"; };
 		E83925212629327E00F0CAAD /* correctness.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = correctness.cc; sourceTree = "<group>"; };
@@ -81,6 +82,7 @@
 				E83925222629327E00F0CAAD /* README.md */,
 				E83925282629327E00F0CAAD /* test.h */,
 				E83925202629327E00F0CAAD /* utils.h */,
+				E81913DE26297DBC000BFECD /* skipList.h */,
 			);
 			path = "lsm-lab-xcode";
 			sourceTree = "<group>";
