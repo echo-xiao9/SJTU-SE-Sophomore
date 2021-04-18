@@ -14,6 +14,8 @@
   "license": "ISC",
   "description": "",
   "devDependencies": {
+    "eslint": "^7.24.0",
+    "eslint-plugin-react": "^7.23.2",
     "nodemon": "^2.0.7"
   }
 }
