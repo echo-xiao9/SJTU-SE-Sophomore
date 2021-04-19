@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		E839252B2629327E00F0CAAD /* correctness.cc in Sources */ = {isa = PBXBuildFile; fileRef = E83925212629327E00F0CAAD /* correctness.cc */; };
-		E839252C2629327E00F0CAAD /* persistence.cc in Sources */ = {isa = PBXBuildFile; fileRef = E83925242629327E00F0CAAD /* persistence.cc */; };
 		E839252D2629327E00F0CAAD /* kvstore.cc in Sources */ = {isa = PBXBuildFile; fileRef = E83925292629327E00F0CAAD /* kvstore.cc */; };
 		E839252E2629327E00F0CAAD /* Makefile in Sources */ = {isa = PBXBuildFile; fileRef = E839252A2629327E00F0CAAD /* Makefile */; };
 /* End PBXBuildFile section */
@@ -32,7 +31,6 @@
 		E83925212629327E00F0CAAD /* correctness.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = correctness.cc; sourceTree = "<group>"; };
 		E83925222629327E00F0CAAD /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		E83925232629327E00F0CAAD /* data */ = {isa = PBXFileReference; lastKnownFileType = folder; path = data; sourceTree = "<group>"; };
-		E83925242629327E00F0CAAD /* persistence.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = persistence.cc; sourceTree = "<group>"; };
 		E83925252629327E00F0CAAD /* kvstore_api.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kvstore_api.h; sourceTree = "<group>"; };
 		E83925262629327E00F0CAAD /* kvstore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kvstore.h; sourceTree = "<group>"; };
 		E83925272629327E00F0CAAD /* MurmurHash3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MurmurHash3.h; sourceTree = "<group>"; };
@@ -78,7 +76,6 @@
 				E83925262629327E00F0CAAD /* kvstore.h */,
 				E839252A2629327E00F0CAAD /* Makefile */,
 				E83925272629327E00F0CAAD /* MurmurHash3.h */,
-				E83925242629327E00F0CAAD /* persistence.cc */,
 				E83925222629327E00F0CAAD /* README.md */,
 				E83925282629327E00F0CAAD /* test.h */,
 				E83925202629327E00F0CAAD /* utils.h */,
@@ -144,7 +141,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				E839252B2629327E00F0CAAD /* correctness.cc in Sources */,
-				E839252C2629327E00F0CAAD /* persistence.cc in Sources */,
 				E839252E2629327E00F0CAAD /* Makefile in Sources */,
 				E839252D2629327E00F0CAAD /* kvstore.cc in Sources */,
 			);

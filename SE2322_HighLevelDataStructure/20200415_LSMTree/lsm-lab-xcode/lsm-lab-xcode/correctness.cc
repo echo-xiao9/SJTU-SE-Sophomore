@@ -27,12 +27,21 @@ private:
 		for (i = 0; i < max; ++i) {
 			store.put(i, std::string(i+1, 's'));
 			EXPECT(std::string(i+1, 's'), store.get(i));
+   
+            if(store.get(1)!="ss")
+                cout<<i<<endl;
+            
+            
 		}
 		phase();
 
 		// Test after all insertions
-		for (i = 0; i < max; ++i)
+        for (i = 0; i < max; ++i){
+            if(store.get(i)!=std::string(i+1, 's')){
+                cout<<"error!"<<" "<<i<<endl;
+            }
 			EXPECT(std::string(i+1, 's'), store.get(i));
+        }
 		phase();
 
 		// Test deletions

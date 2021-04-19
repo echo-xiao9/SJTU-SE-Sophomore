@@ -11,12 +11,14 @@
 #include <stdio.h>
 #include <vector>
 #include <iostream>
+#include <limits.h>
 using namespace std;
 #define size_t long long int
 
 struct Node{
     Node *right,*down;   //向右向下足矣
-    uint64_t key;
+    uint64_t key=UINT_MAX-10;
+    //set default key=UINT_MAX-10 problem??
     string val;
     Node(Node *right,Node *down, uint64_t key, string val): right(right), down(down), key(key), val(val){}
     Node(): right(nullptr), down(nullptr) {}
@@ -62,7 +64,7 @@ public:
                     return (cur->val);
                 cur = cur -> down;
             }
-        return nullptr;
+        return "";
     }
     
     void put(const uint64_t& key, const string& val) {

@@ -28,6 +28,7 @@ std::string KVStore::get(uint64_t key)
     string s = slmSkip.get(key);
 	return s;
 }
+
 /**
  * Delete the given key-value pair if it exists.
  * Returns false iff the key is not found.
