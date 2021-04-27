@@ -13,6 +13,9 @@
 #include <iostream>
 #include <limits.h>
 #include "MurmurHash3.h"
+const uint32_t KB = 1024;
+//const uint32_t MB = 838860;
+const uint32_t MB = 8388608;
 using namespace std;
 
 struct Node{
@@ -27,21 +30,16 @@ struct Node{
 
 class Skiplist {
 public:
+    uint64_t num;
+    uint64_t memSize;
     Node*head;
     Skiplist() {
         head = new Node();  //初始化头结点
+        num=0;
+        memSize = 32+10*KB;
     }
     
-    uint64_t size()const{
-        Node*cur=head;
-        int size=0;
-        while (cur->down)  cur=cur->down; //转到最底层
-        while (cur->right) {
-            cur = cur->right;
-            size++;
-        }
-        return size;
-    }
+ 
     void init(){
         Node*cur=head;
         Node*nextNode=nullptr;
@@ -85,6 +83,8 @@ public:
             //vector.front() 、vector.back() 来得到 vector 首尾的值。
             pathList.pop_back();
             insert->right = new Node(insert->right, downNode, key, val); //add新结点
+            num++;
+            memSize+= 12+ val.length();
             downNode = insert->right;    //把新结点赋值为downNode
             insertUp = (rand()&1);   //50%概率
         }
@@ -92,9 +92,10 @@ public:
             Node* oldHead = head;
             head = new Node();
             head->right = new Node(NULL, downNode, key, val);
+            num++;
+            memSize+= 12+ val.length();
             head->down = oldHead;
         }
-        Node* cur=buttomHeadRight();
         return;
     }
     
@@ -128,6 +129,7 @@ public:
                     }
                     //纵向处理
                     delete target;
+                    num--;
                     target = below;
                     if(target && target->down)below = target->down;
                     else below = nullptr;
@@ -158,21 +160,19 @@ public:
         while (cur->down)cur=cur->down; //turn to buttom.
         return cur->right;
     }
-    uint64_t memSize(){
-        // return size in memTable
-        uint64_t frontSize = 32+10000+12*size();
-        uint64_t dataSize =frontSize;
-        Node* cur = buttomHeadRight();
-        while(cur) {
-            dataSize+= cur->val.length();
-            cur = cur->right;
-        }
-        return dataSize;
-    }
+//    uint64_t calMemSize(string val){
+//        // return size in memTable
+//        uint64_t frontSize = 32+10000+12*num;
+//        uint64_t dataSize =frontSize;
+//        Node* cur = buttomHeadRight();
+//        while(cur) {
+//            dataSize+= cur->val.length();
+//            cur = cur->right;
+//        }
+//        return dataSize;
+//    }
     
 };
-
-
 
 
 

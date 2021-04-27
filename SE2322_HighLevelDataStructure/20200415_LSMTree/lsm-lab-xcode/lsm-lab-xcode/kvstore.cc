@@ -17,7 +17,7 @@ void KVStore::put(uint64_t key, const std::string &s)
 {
     // If the 2MB limit is reached after insertion, the SSTables are generated.
     slmSkip.put(key, s);
-    if(slmSkip.memSize()>MB*2){
+    if(slmSkip.memSize > MB*2){
         SsTable *newSsTable = new SsTable(curTime, slmSkip);
         curTime++;
         memTable.push_back(*newSsTable);
@@ -67,17 +67,20 @@ void KVStore::writeToFile(SsTable &st){
         throw "can't open the file!";
     // write head 32B, all uint64_t
     outfile <<setw(8)<< st.sTime<<setw(8)<<
-    st.num<<setw(8)<<st.min<<setw(8)<<st.max<<endl;
+    st.num<<setw(8)<<st.min<<setw(8)<<st.max;
+    
     // write bloom filter
     for (int i=0; i<102400; i++) {
         outfile << st.bloomFilter[i];
     }
-    if(st.keyOff.size()!=st.data.size()) throw "keyOff size != data size";
+    
     // write key and offset
     for(map<uint64_t, uint32_t>::iterator it = st.keyOff.begin(); it != st.keyOff.end(); it++){
-        outfile<<setw(8)<<it->first<<setw(8)<<it->second;
+        outfile<<setw(8)<<it->first<<setw(4)<<it->second;
         }
+//    cout<<"front size true in file:"<<12*st.keyOff.size()<<endl;;
     // write data
+    
     for(int i=0;i<st.data.size();i++){
         string curString=st.data[i];
         for(int i=0;i<curString.length();i++){

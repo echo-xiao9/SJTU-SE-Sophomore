@@ -6,11 +6,16 @@
 //
 
 #include "kvstore.h"
-
+#include "fstream"
 int main(int argc, char *argv[])
 {
+    ofstream outfileTest;
+    outfileTest.open("testMB",ios::out);
     KVStore store("./data");
-    for(int i=0;i<2*MB+1;i++)
-        store.put(i,"test" );
+    
+    for(int i=0;i<2*MB+1;i++){
+        store.put(i,"a");
+        outfileTest<<i<<' ';
+    }
     return 0;
 }

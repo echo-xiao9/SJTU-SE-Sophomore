@@ -14,9 +14,7 @@
 #include <map>
 #include "skipList.h"
 using namespace std;
-const uint32_t KB = 1024;
-//const uint32_t MB = 8388608;
-const uint32_t MB = 120000;
+
 class OffAndVal{
     uint32_t offset;
     string s;
@@ -28,12 +26,12 @@ public:
 class SsTable{
 private:
     //head 32B
-    
-    uint64_t size(); //current byte
+
     // if it can be insert,insert and return 1. If memory limit is reached after insert, return 0, do not insert.
     bool insert(const uint64_t& key, const string& val);
     void getBloomFilter();
 public:
+    uint64_t size;
     uint64_t sTime;
     uint64_t num;
     uint64_t curOff;
@@ -45,6 +43,7 @@ public:
     // index
     map<uint64_t, uint32_t> keyOff; //key and offset
     SsTable(uint64_t time, Skiplist &skipList);
+//    uint64_t size(); //current byte
    
 //    writeToFile(fstream file); //?
 };
