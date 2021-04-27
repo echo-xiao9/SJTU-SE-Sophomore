@@ -9,6 +9,7 @@ The handout files include two main parts:
 Explanation of each handout file:
 
 ```text
+.
 ├── Makefile  // Makefile if you use GNU Make
 ├── README.md // This readme file
 ├── correctness.cc // Correctness test, you should not modify this file

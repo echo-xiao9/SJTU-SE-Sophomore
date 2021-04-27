@@ -10,6 +10,8 @@
 		E839252B2629327E00F0CAAD /* correctness.cc in Sources */ = {isa = PBXBuildFile; fileRef = E83925212629327E00F0CAAD /* correctness.cc */; };
 		E839252D2629327E00F0CAAD /* kvstore.cc in Sources */ = {isa = PBXBuildFile; fileRef = E83925292629327E00F0CAAD /* kvstore.cc */; };
 		E839252E2629327E00F0CAAD /* Makefile in Sources */ = {isa = PBXBuildFile; fileRef = E839252A2629327E00F0CAAD /* Makefile */; };
+		E886B83C26359B9000983E5D /* ssTable.cc in Sources */ = {isa = PBXBuildFile; fileRef = E886B83B26359B9000983E5D /* ssTable.cc */; };
+		E8D64F7A2636F3900089F185 /* myTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E8D64F792636F3900089F185 /* myTest.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -37,6 +39,9 @@
 		E83925282629327E00F0CAAD /* test.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = test.h; sourceTree = "<group>"; };
 		E83925292629327E00F0CAAD /* kvstore.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = kvstore.cc; sourceTree = "<group>"; };
 		E839252A2629327E00F0CAAD /* Makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
+		E886B839263598B000983E5D /* ssTable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ssTable.h; sourceTree = "<group>"; };
+		E886B83B26359B9000983E5D /* ssTable.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ssTable.cc; sourceTree = "<group>"; };
+		E8D64F792636F3900089F185 /* myTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = myTest.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,12 +79,15 @@
 				E83925252629327E00F0CAAD /* kvstore_api.h */,
 				E83925292629327E00F0CAAD /* kvstore.cc */,
 				E83925262629327E00F0CAAD /* kvstore.h */,
+				E886B83B26359B9000983E5D /* ssTable.cc */,
+				E886B839263598B000983E5D /* ssTable.h */,
 				E839252A2629327E00F0CAAD /* Makefile */,
 				E83925272629327E00F0CAAD /* MurmurHash3.h */,
 				E83925222629327E00F0CAAD /* README.md */,
 				E83925282629327E00F0CAAD /* test.h */,
 				E83925202629327E00F0CAAD /* utils.h */,
 				E81913DE26297DBC000BFECD /* skipList.h */,
+				E8D64F792636F3900089F185 /* myTest.cpp */,
 			);
 			path = "lsm-lab-xcode";
 			sourceTree = "<group>";
@@ -141,6 +149,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				E839252B2629327E00F0CAAD /* correctness.cc in Sources */,
+				E8D64F7A2636F3900089F185 /* myTest.cpp in Sources */,
+				E886B83C26359B9000983E5D /* ssTable.cc in Sources */,
 				E839252E2629327E00F0CAAD /* Makefile in Sources */,
 				E839252D2629327E00F0CAAD /* kvstore.cc in Sources */,
 			);

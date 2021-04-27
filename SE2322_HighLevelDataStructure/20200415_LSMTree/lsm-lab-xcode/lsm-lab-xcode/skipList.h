@@ -12,8 +12,8 @@
 #include <vector>
 #include <iostream>
 #include <limits.h>
+#include "MurmurHash3.h"
 using namespace std;
-#define size_t long long int
 
 struct Node{
     Node *right,*down;   //向右向下足矣
@@ -32,7 +32,7 @@ public:
         head = new Node();  //初始化头结点
     }
     
-    size_t size()const{
+    uint64_t size()const{
         Node*cur=head;
         int size=0;
         while (cur->down)  cur=cur->down; //转到最底层
@@ -94,6 +94,8 @@ public:
             head->right = new Node(NULL, downNode, key, val);
             head->down = oldHead;
         }
+        Node* cur=buttomHeadRight();
+        return;
     }
     
     bool remove(const uint64_t& key) {
@@ -135,6 +137,37 @@ public:
             cur = cur -> down;
         }
         return false;
+    }
+    int64_t getMax(){
+        Node*cur=head;
+        while (cur->down)cur=cur->down; //turn to buttom.
+        if(cur->right ==nullptr || cur==nullptr)throw "empty skiplist!";
+        while (cur->right) {
+            cur = cur->right; //turn to the max.
+        }
+        return cur->key;
+    }
+    int64_t getMin(){
+        Node*cur=head;
+        while (cur->down)cur=cur->down; //turn to buttom.
+        if(cur->right ==nullptr || cur==nullptr)throw "empty skiplist!";
+        return cur->right->key;
+    }
+    Node* buttomHeadRight(){
+        Node*cur=head;
+        while (cur->down)cur=cur->down; //turn to buttom.
+        return cur->right;
+    }
+    uint64_t memSize(){
+        // return size in memTable
+        uint64_t frontSize = 32+10000+12*size();
+        uint64_t dataSize =frontSize;
+        Node* cur = buttomHeadRight();
+        while(cur) {
+            dataSize+= cur->val.length();
+            cur = cur->right;
+        }
+        return dataSize;
     }
     
 };
