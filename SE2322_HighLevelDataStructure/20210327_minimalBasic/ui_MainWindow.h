@@ -27,7 +27,7 @@ class Ui_MainWindow
 {
 public:
     QWidget *centralwidget;
-    QVBoxLayout *verticalLayout_5;
+    QVBoxLayout *verticalLayout_4;
     QVBoxLayout *verticalLayout;
     QHBoxLayout *horizontalLayout_3;
     QVBoxLayout *verticalLayout_2;
@@ -36,14 +36,18 @@ public:
     QVBoxLayout *verticalLayout_3;
     QLabel *resultLable;
     QTextBrowser *resultBrowser;
-    QVBoxLayout *verticalLayout_4;
+    QHBoxLayout *horizontalLayout_11;
+    QVBoxLayout *verticalLayout_5;
+    QLabel *syntaxLabel_2;
+    QTextBrowser *syntaxDisplayBroser;
+    QVBoxLayout *verticalLayout_7;
     QLabel *varLabel;
     QTextBrowser *varBrowser;
     QLabel *syntaxLabel;
-    QTextBrowser *syntaxDisplayBroser;
     QHBoxLayout *horizontalLayout;
     QPushButton *clearButton;
     QPushButton *runButton;
+    QPushButton *pushButton;
     QPushButton *loadButton;
     QLabel *inputlabel;
     QLineEdit *codeLineEdit;
@@ -55,7 +59,7 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
-        MainWindow->resize(800, 600);
+        MainWindow->resize(650, 678);
         QFont font;
         font.setFamily(QString::fromUtf8("Monaco"));
         MainWindow->setFont(font);
@@ -65,8 +69,8 @@ public:
 "{\n"
 "	background:#333\n"
 "}"));
-        verticalLayout_5 = new QVBoxLayout(centralwidget);
-        verticalLayout_5->setObjectName(QString::fromUtf8("verticalLayout_5"));
+        verticalLayout_4 = new QVBoxLayout(centralwidget);
+        verticalLayout_4->setObjectName(QString::fromUtf8("verticalLayout_4"));
         verticalLayout = new QVBoxLayout();
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
         horizontalLayout_3 = new QHBoxLayout();
@@ -104,31 +108,19 @@ public:
 
         horizontalLayout_3->addLayout(verticalLayout_3);
 
-        verticalLayout_4 = new QVBoxLayout();
-        verticalLayout_4->setObjectName(QString::fromUtf8("verticalLayout_4"));
-        varLabel = new QLabel(centralwidget);
-        varLabel->setObjectName(QString::fromUtf8("varLabel"));
-
-        verticalLayout_4->addWidget(varLabel);
-
-        varBrowser = new QTextBrowser(centralwidget);
-        varBrowser->setObjectName(QString::fromUtf8("varBrowser"));
-
-        verticalLayout_4->addWidget(varBrowser);
-
-
-        horizontalLayout_3->addLayout(verticalLayout_4);
-
         horizontalLayout_3->setStretch(0, 2);
         horizontalLayout_3->setStretch(1, 2);
-        horizontalLayout_3->setStretch(2, 1);
 
         verticalLayout->addLayout(horizontalLayout_3);
 
-        syntaxLabel = new QLabel(centralwidget);
-        syntaxLabel->setObjectName(QString::fromUtf8("syntaxLabel"));
+        horizontalLayout_11 = new QHBoxLayout();
+        horizontalLayout_11->setObjectName(QString::fromUtf8("horizontalLayout_11"));
+        verticalLayout_5 = new QVBoxLayout();
+        verticalLayout_5->setObjectName(QString::fromUtf8("verticalLayout_5"));
+        syntaxLabel_2 = new QLabel(centralwidget);
+        syntaxLabel_2->setObjectName(QString::fromUtf8("syntaxLabel_2"));
 
-        verticalLayout->addWidget(syntaxLabel);
+        verticalLayout_5->addWidget(syntaxLabel_2);
 
         syntaxDisplayBroser = new QTextBrowser(centralwidget);
         syntaxDisplayBroser->setObjectName(QString::fromUtf8("syntaxDisplayBroser"));
@@ -136,7 +128,33 @@ public:
         font1.setFamily(QString::fromUtf8("Arial"));
         syntaxDisplayBroser->setFont(font1);
 
-        verticalLayout->addWidget(syntaxDisplayBroser);
+        verticalLayout_5->addWidget(syntaxDisplayBroser);
+
+
+        horizontalLayout_11->addLayout(verticalLayout_5);
+
+        verticalLayout_7 = new QVBoxLayout();
+        verticalLayout_7->setObjectName(QString::fromUtf8("verticalLayout_7"));
+        varLabel = new QLabel(centralwidget);
+        varLabel->setObjectName(QString::fromUtf8("varLabel"));
+
+        verticalLayout_7->addWidget(varLabel);
+
+        varBrowser = new QTextBrowser(centralwidget);
+        varBrowser->setObjectName(QString::fromUtf8("varBrowser"));
+
+        verticalLayout_7->addWidget(varBrowser);
+
+
+        horizontalLayout_11->addLayout(verticalLayout_7);
+
+
+        verticalLayout->addLayout(horizontalLayout_11);
+
+        syntaxLabel = new QLabel(centralwidget);
+        syntaxLabel->setObjectName(QString::fromUtf8("syntaxLabel"));
+
+        verticalLayout->addWidget(syntaxLabel);
 
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
@@ -153,6 +171,11 @@ public:
         runButton->setObjectName(QString::fromUtf8("runButton"));
 
         horizontalLayout->addWidget(runButton);
+
+        pushButton = new QPushButton(centralwidget);
+        pushButton->setObjectName(QString::fromUtf8("pushButton"));
+
+        horizontalLayout->addWidget(pushButton);
 
         loadButton = new QPushButton(centralwidget);
         loadButton->setObjectName(QString::fromUtf8("loadButton"));
@@ -184,12 +207,12 @@ public:
         verticalLayout->addWidget(messageLineEdit);
 
 
-        verticalLayout_5->addLayout(verticalLayout);
+        verticalLayout_4->addLayout(verticalLayout);
 
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
-        menubar->setGeometry(QRect(0, 0, 800, 22));
+        menubar->setGeometry(QRect(0, 0, 650, 22));
         MainWindow->setMenuBar(menubar);
 
         retranslateUi(MainWindow);
@@ -202,10 +225,12 @@ public:
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", nullptr));
         codeLabel->setText(QApplication::translate("MainWindow", "\344\273\243\347\240\201", nullptr));
         resultLable->setText(QApplication::translate("MainWindow", "\350\277\220\350\241\214\347\273\223\346\236\234", nullptr));
-        varLabel->setText(QApplication::translate("MainWindow", "\345\217\230\351\207\217\344\277\241\346\201\257", nullptr));
+        syntaxLabel_2->setText(QApplication::translate("MainWindow", "\345\217\245\346\263\225\344\270\216\350\257\255\346\263\225\346\240\221", nullptr));
+        varLabel->setText(QApplication::translate("MainWindow", "\345\275\223\345\211\215\345\217\230\351\207\217", nullptr));
         syntaxLabel->setText(QApplication::translate("MainWindow", "\345\217\245\346\263\225\344\270\216\350\257\255\346\263\225\346\240\221", nullptr));
         clearButton->setText(QApplication::translate("MainWindow", "\346\270\205\347\251\272\344\273\243\347\240\201 (CLEAR)", nullptr));
         runButton->setText(QApplication::translate("MainWindow", "\346\211\247\350\241\214\344\273\243\347\240\201 (RUN)", nullptr));
+        pushButton->setText(QApplication::translate("MainWindow", "\350\260\203\350\257\225/\345\215\225\346\255\245 (Debug/Step)", nullptr));
         loadButton->setText(QApplication::translate("MainWindow", "\350\275\275\345\205\245\344\273\243\347\240\201 (LOAD)", nullptr));
         inputlabel->setText(QApplication::translate("MainWindow", "\345\221\275\344\273\244\350\276\223\345\205\245\347\252\227\345\217\243", nullptr));
         messageLabel->setText(QApplication::translate("MainWindow", "\346\217\220\347\244\272\344\277\241\346\201\257", nullptr));
