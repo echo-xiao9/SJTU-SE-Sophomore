@@ -5,6 +5,7 @@
 #include <cmath>
 vector<var>variables;
 
+
 Exp::Exp(QString letexp)
 {
     input = letexp.toStdString();

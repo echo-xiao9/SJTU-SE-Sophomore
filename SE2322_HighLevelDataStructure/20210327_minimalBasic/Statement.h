@@ -6,6 +6,7 @@
 #include <vector>
 using namespace std;
 extern vector<var>variables;
+
 class Statement
 {
 public:
@@ -13,6 +14,7 @@ public:
     Exp *exp1 =nullptr;
     int index;
     QString stmt;
+    QString str="";
     // -1 means no type the type order from 0-6 is
     // 0:INPUT   1:LET   2:GOTO  3:IF   4:PRINT    5:REM   6:END
     int type ;
@@ -22,6 +24,15 @@ public:
     ~Statement();
 };
 
+class InputStringStmt: public Statement{
+public:
+    QString varName;
+    QString varVal;
+   InputStringStmt(int inputIndex,  QString varName1, QString  varVal1) ;
+    QString runSingleStmt(QString par);
+    QString findVar();
+    QString tree(int i=0);
+};
 
 class InputStmt: public Statement{
 public:
@@ -36,9 +47,10 @@ public:
 class LetStmt: public Statement{
 private:
     QString letVarName;
+    int type=0;
     //have exp
 public:
-    LetStmt(int InputIndex, QString VarName, QString expr);
+    LetStmt(int InputIndex, QString VarName, QString expOrString, int inputType=0);
     QString runSingleStmt(QString par);
     QString tree(int i=0);
 };
@@ -100,5 +112,10 @@ public:
     QString runSingleStmt(QString par){return "";}
     QString tree(int i=0);
 };
+
+
+
+
+
 
 #endif // STATEMENT_H

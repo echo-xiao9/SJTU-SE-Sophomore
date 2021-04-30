@@ -8,6 +8,40 @@ Statement::Statement(int inputIndex,  int Type)
 Statement:: ~Statement(){
 }
 
+
+InputStringStmt::InputStringStmt(int inputIndex,  QString varName1, QString  varVal1) :
+    Statement(inputIndex, 0), varName(varName1), varVal(varVal1){
+    stmt="INPUTS "+varName1;
+}
+
+QString InputStringStmt::runSingleStmt(QString par){
+    int flag1 = 0;
+    QString inputString = "\"" + par.trimmed() + "\"";
+    for (int i = 0; i < variables.size(); i++)
+    {
+        if(variables[i].varName == varName){
+            if(variables[i].type == 0){
+            flag1=-1;
+            throw QString("The variable type is a number, not a string!");
+            }else{
+                flag1=1;
+                variables[i].varValue = par;
+            }
+        }
+        if(flag1==0){
+            var newVar(varName, inputString,1);
+            variables.push_back(newVar);
+        }
+        return "";
+    }
+}
+QString InputStringStmt::findVar(){}
+QString InputStringStmt::tree(int i){ return varName;}
+
+
+
+
+
 InputStmt::InputStmt(int inputIndex, QString varName1,int varVal1):
     Statement(inputIndex, 0), varName(varName1), varVal(varVal1){
     stmt="INPUT "+varName1;
@@ -15,7 +49,7 @@ InputStmt::InputStmt(int inputIndex, QString varName1,int varVal1):
 
 QString InputStmt::runSingleStmt(QString par){
     int flag1 = 0;
-    int Parvalue= par.toInt();
+    QString Parvalue= par.trimmed();
     for (int i = 0; i < variables.size(); i++)
     {
         if(variables[i].varName == varName){
@@ -38,24 +72,42 @@ QString  InputStmt::tree(int i){
     return varName;
 }
 
-LetStmt::LetStmt(int InputIndex, QString VarName, QString expr)
-    :Statement(InputIndex, 1),letVarName(VarName){
-    stmt="LET "+VarName+" = " +expr;
-    exp = new Exp(expr);
+LetStmt::LetStmt(int InputIndex, QString VarName, QString expOrString, int inputType)
+    :Statement(InputIndex, 1),letVarName(VarName),type(inputType){
+    stmt="LET "+VarName+" = " +expOrString;
+    if(type==0) exp = new Exp(expOrString);
+    else{
+        exp = nullptr;
+        str = expOrString;
+    }
 }
 
 QString LetStmt::runSingleStmt(QString par){
     bool flag= false;
+    if(exp){
     exp->evaluate();
     for (auto it = variables.begin(); it != variables.end();it++) {
         if(it->varName == letVarName){
+            if(it->type == 1)throw QString("The variable declared before was a number!");
             it->varValue =exp -> value; //update the value of exist var
             flag = true;
             return "";
         }
     }
-        var newVar(letVarName, exp->value);
+    var newVar(letVarName, QString::number(exp->value),0);
+    variables.push_back(newVar);
+    }else{ // is a string
+        for(auto it = variables.begin();it !=variables.end(); it++){
+            if(it->varName == letVarName){
+                if(it->type == 0)throw QString("The variable declared before was a string!");
+                it->varValue = str;
+                return "";
+        }
+    }
+        var newVar(letVarName,str, 1);
         variables.push_back(newVar);
+    return "";
+    }
     return "";
 }
 

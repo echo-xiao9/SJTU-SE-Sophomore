@@ -7,7 +7,7 @@
 #include <QDebug>
 using namespace std;
 typedef enum { PARSE_ERR=-1, PARSE_LINE, PARSE_STMT, PARSE_CMD,
-  PARSE_NUM, PARSE_VAR, PARSE_EXP, PARSE_CON, PARSE_OP, PARSE_DEL} parse_t;
+  PARSE_NUM, PARSE_VAR, PARSE_EXP, PARSE_CON, PARSE_OP, PARSE_DEL,PARSE_STR} parse_t;
 
 #define IS_NUM(s) (s[0]>='0' && s[0]<='9')
 #define IS_LETTER(s) ((s[0]>='a' && s[0]<='z') || (s[0]>='A' && s[0]<='Z'))
@@ -19,10 +19,19 @@ parse_t parse_num(QString &ptr, int & val);
 
 struct var{
     QString varName="";
-    int varValue=0;
-    var(QString name, int val): varName(name), varValue(val){}
+    QString varValue=0;
+    int type=0; // 0:num 1:string
+    var(QString name, QString val,int Type=0): varName(name), varValue(val),type(Type){}
 };
+
+//struct strVar{
+//    QString varName="";
+//    QString varVal="";
+//    strVar(QString name, QString val):varName(name), varVal(val){}
+//};
+
 extern vector<var>variables;
+//extern vector<strVar>strVariables;
 
 struct Node{
     QString val; //var:mame num:val operator:name
@@ -37,7 +46,7 @@ struct Node{
         if(type!=1)return -111111;
         for(int i=0;i<variables.size();i++){
             if(variables[i].varName == val){
-                return variables[i].varValue;
+                return variables[i].varValue.toInt();
             }
         }
        throw errorVar;
@@ -64,24 +73,16 @@ public:
 
     Exp(QString letexp);
     bool isOperator(char c);
-//    int getPriority(char C);
     int getPriority(QString C);
     parse_t parse_num(QString &ptr, int & val);
     parse_t parse_var(QString &ptr, QString& name);
     parse_t parse_delim(QString &ptr, QString& delim);
-//    string infixToPostfix();
     void getInfixVec();
     void infixToPostfixVec();
-//    string infixToPrefix();
     int precedence(char op);
-//    int precedence2(QString op);
-//    int  applyOp(int a, int b, char op);
     int applyOp(int a, int b, string op);
-//    int  evaluate();
     void evaluate();
     int recurEvaluate(Node *t);
-//    void prepare();
-//    void prepare2(); //may be no need
     void buildSynTree();
 };
 

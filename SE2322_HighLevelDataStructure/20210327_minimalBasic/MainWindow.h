@@ -45,7 +45,7 @@ public:
     void updateVarBrowser();
     void updateSyntaxDisplayBroser();
 
-    stmt_t stmtTab[8] = {"INPUT","LET", "GOTO", "IF", "PRINT", "REM", "END","THEN"}; //all valid statement
+    stmt_t stmtTab[9] = {"INPUTS","INPUT","LET", "GOTO", "IF", "PRINT", "REM", "END","THEN" }; //all valid statement
     cmd_t cmdTab[6]={"RUN", "LOAD", "LIST", "CLEAR", "HELP","QUIT"}; // all valid command
     operator_t opTab[7]={"+", "-", "*", "/", "(", ")", "**" }; // all valid operator
     token_t optokenTab[7]={ ADD, SUB, MUL, DIV, LBRC, RBRC,EXP } ;
@@ -83,6 +83,8 @@ private slots:
     parse_t parse_var(QString &ptr, QString& name);
     parse_t parse_exp(QString &ptr, QString& exp);
     parse_t parse_delim(QString &ptr, QString& delim);
+    parse_t parse_string(QString &ptr, QString &inputString);
+
     stmt_t  *find_instr(QString name);
     bool  judge_infix(string str);
 
