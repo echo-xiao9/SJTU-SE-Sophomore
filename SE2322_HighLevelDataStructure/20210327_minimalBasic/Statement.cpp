@@ -176,6 +176,7 @@ parse_t Statement::parse_string(QString &ptr, QString &inputString){
 }
 
 QString PrintfStmt::runSingleStmt(QString par){ // PRINTF "Mini Basic V {}", 2
+    replacePair.clear();
     QStringList list1 = str.split(QLatin1Char(','));
     base = list1[0].trimmed();
     base=base.mid(1,base.length()-2);

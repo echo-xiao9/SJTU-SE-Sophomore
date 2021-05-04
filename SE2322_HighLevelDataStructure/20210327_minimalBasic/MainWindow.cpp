@@ -28,7 +28,59 @@ void MainWindow::updateCodeBrowser(){
         ++iter;
         ui->codeBrowser->append(appendLine);
     }
+
+    // 获取需要高亮的 TextEdit 对象(QTextBrowser 是 QTextEdit 的只读子类) QTextBrowser *code = ui->CodeDisplay;
+    QTextBrowser* code=ui->codeBrowser;
+    QTextCursor cursor(code->document());
+    // 用于维护的所有高亮的链表
+    QList<QTextEdit::ExtraSelection> extras; QList<QPair<int, QColor>> highlights = {
+    {92, QColor(100, 255, 100)},
+    {131, QColor(255, 100, 100)},
+    {180, QColor(255, 100, 100)}
+    };
+    // 配置高亮，并加入到 extras 中 for (auto &line : highlights) {
+    for(auto &line:highlights){
+        QTextEdit::ExtraSelection h;
+        h.cursor = cursor;
+    // 下面这些的功能，请大家自行查看文档
+        h.cursor.setPosition(line.first);
+        h.cursor.movePosition(QTextCursor::StartOfLine);
+        h.cursor.movePosition(QTextCursor::EndOfLine);
+        h.format.setProperty(QTextFormat::FullWidthSelection, true);
+        h.format.setBackground(line.second);
+        extras.append(h);
+    }
+    //应用高亮效果
+    code->setExtraSelections(extras);
 }
+
+void  MainWindow::highLightErrorCode(){
+    // 获取需要高亮的 TextEdit 对象(QTextBrowser 是 QTextEdit 的只读子类)
+    QTextBrowser* code=ui->codeBrowser;
+    QTextCursor cursor(code->document());
+    // 用于维护的所有高亮的链表
+    QList<QTextEdit::ExtraSelection> extras; QList<QPair<int, QColor>> highlights = {
+    {92, QColor(100, 255, 100)},
+    {131, QColor(255, 100, 100)},
+    {180, QColor(255, 100, 100)}
+    };
+    // 配置高亮，并加入到 extras 中 for (auto &line : highlights) {
+    for(auto &line:highlights){
+        QTextEdit::ExtraSelection h;
+        h.cursor = cursor;
+    // 下面这些的功能，请大家自行查看文档
+        h.cursor.setPosition(line.first);
+        h.cursor.movePosition(QTextCursor::StartOfLine);
+        h.cursor.movePosition(QTextCursor::EndOfLine);
+        h.format.setProperty(QTextFormat::FullWidthSelection, true);
+        h.format.setBackground(line.second);
+        extras.append(h);
+    }
+    //应用高亮效果
+    code->setExtraSelections(extras);
+}
+
+
 
 void MainWindow::updateVarBrowser(){
     QString appendLine="";
@@ -85,6 +137,7 @@ void MainWindow::clearAppStatus(){
     ui->syntaxDisplayBroser->clear();
     ui->varBrowser->clear();
     ui->messageLineEdit->clear();
+
 }
 
 

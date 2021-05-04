@@ -41,6 +41,7 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
     void updateCodeBrowser();
+    void highLightErrorCode();
     void updateResultBrowser();
     void updateVarBrowser();
     void updateSyntaxDisplayBroser();
