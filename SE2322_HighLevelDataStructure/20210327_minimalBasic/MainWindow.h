@@ -44,8 +44,8 @@ public:
     void updateResultBrowser();
     void updateVarBrowser();
     void updateSyntaxDisplayBroser();
-
-    stmt_t stmtTab[9] = {"INPUTS","INPUT","LET", "GOTO", "IF", "PRINT", "REM", "END","THEN" }; //all valid statement
+    // 0: INPUTS,1:INPUT, 2：LET, 3：GOTO, 4:IF,  5:PRINTF, 6: PRINT， 7:REM, 8:END,9:THEN
+    stmt_t stmtTab[10] = {"INPUTS","INPUT","LET", "GOTO", "IF",  "PRINTF", "PRINT", "REM", "END","THEN" }; //all valid statement
     cmd_t cmdTab[6]={"RUN", "LOAD", "LIST", "CLEAR", "HELP","QUIT"}; // all valid command
     operator_t opTab[7]={"+", "-", "*", "/", "(", ")", "**" }; // all valid operator
     token_t optokenTab[7]={ ADD, SUB, MUL, DIV, LBRC, RBRC,EXP } ;

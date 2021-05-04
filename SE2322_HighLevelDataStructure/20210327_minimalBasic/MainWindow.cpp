@@ -114,6 +114,7 @@ void MainWindow::loadStat(){
 }
 
 void MainWindow::runApp(){
+    // the relation is false!!!!!!!!!!
     // run the statement one by one.
     int i=0;
     try {
@@ -130,8 +131,10 @@ void MainWindow::runApp(){
             if(i>100000) throw loop1; // Bug: loop forever
             switch (it->second->type) {
 
-            // 0:INPUT   1:LET   2:GOTO  3:IF   4:PRINT    5:REM   6:END
-            case 0://problem!?
+           // 0: INPUTS,1:INPUT, 2：LET, 3：GOTO, 4:IF,  5:PRINTF, 6: PRINT， 7:REM, 8:END,9:THEN
+            case 0: // INPUTS
+                break;
+            case 1://INPUT
                 try{
                 ui->codeLineEdit-> setPlaceholderText(" ? ");
                 disconnect(ui->codeLineEdit, SIGNAL(returnPressed()), this, SLOT(codeLineEdit_return()));
@@ -148,11 +151,11 @@ void MainWindow::runApp(){
                 }
                 it++;
                 break;
-            case 1:
+            case 2: //LET
                 it->second->runSingleStmt(par);
                 it++;
                 break;
-            case 2:
+            case 3: // GOTO
                 result  = it->second->runSingleStmt(par); //the target index
                 curLine = result.toInt();
                 for ( it = statements.begin(); it != statements.end(); it++)
@@ -167,7 +170,7 @@ void MainWindow::runApp(){
                 }
 
                 break;
-            case 3:
+            case 4: //IF
                 curLine= it->second->runSingleStmt(par).toInt();
                 if(curLine== -1){
                     it++;
@@ -184,24 +187,29 @@ void MainWindow::runApp(){
                     throw error;
                 }
                 break;
-            case 4:
+             case 5: // PRINTF
                 result= it->second->runSingleStmt(par);
                 //    ui->resultBrowser->append(result);
                 results.push_back(result);
                 it++;
                 break;
-            case 5:
+            case 6: // PRINT
+                result= it->second->runSingleStmt(par);
+                //    ui->resultBrowser->append(result);
+                results.push_back(result);
                 it++;
                 break;
-            case 6:
+            case 7: // REM
+                it++;
+                break;
+            case 8: // END
                 it = statements.end();
                 break;
-            default:
+            default: //ERROR
                 it++;
                 break;
             }
             if(it==statements.end())break;
-
         }
         updateVarBrowser();
         updateResultBrowser();
@@ -250,30 +258,30 @@ void MainWindow::recurPrintExp(Node *n,  int indentation){
 void MainWindow:: drawTree(){
     // -1 means no type the type order from 0-6 is
     // 0:INPUT   1:LET   2:GOTO  3:IF   4:PRINT    5:REM   6:END
+    // 0: INPUTS,1:INPUT, 2：LET, 3：GOTO, 4:IF,  5:PRINTF, 6: PRINT， 7:REM, 8:END,9:THEN
     // we only need to draw  LET IF GOTO PRINT
     QString synBranch;
     map<int, Statement*>::iterator it = statements.begin();
     while(it !=statements.end()){
-
         switch (it->second->type) {
-        case 0: //REM
+        case 1: //INPUT
             synTree.push_back(QString::number(it->first)+" INPUT");
             synBranch =   "    " +it->second->tree();
             synTree.push_back(synBranch);
             break;
-        case 1: //LET
+        case 2: //LET
             synTree.push_back(QString::number(it->first)+" LET =");
             synBranch =   "    " +it->second->tree();
             synTree.push_back(synBranch);
             drawExpBranch(it->second->exp, 1);
             break;
-        case 2: //GOTO
+        case 3: //GOTO
             synTree.push_back(QString::number(it->first)+ " GOTO");
             synBranch =   "    " +it->second->tree();
             synTree.push_back(synBranch);
             break;
 
-        case 3: //IF
+        case 4: //IF
             synTree.push_back( QString::number(it->first)+" IF  THEN");
             drawExpBranch(it->second->exp, 1);
             synBranch =   "    "+it->second->tree();
@@ -283,22 +291,22 @@ void MainWindow:: drawTree(){
             synTree.push_back(synBranch);
             break;
 
-        case 4:  //PRINT
+        case 6:  //PRINT
             synTree.push_back( QString::number(it->first)+" PRINT");
             drawExpBranch(it->second->exp, 1);
             break;
 
-        case 5:  //REM
+        case 7:  //REM
             synTree.push_back( QString::number(it->first)+" REM");
             synBranch =   "    " +it->second->tree();
             synTree.push_back(synBranch);
             break;
 
-        case 6: //end
+        case 8: //end
             synTree.push_back(QString::number(it->first)+" END");
             break;
 
-        case 7:
+        case 9:
             synTree.push_back(QString::number(it->first)+" Error");
             break;
 
@@ -315,19 +323,12 @@ void MainWindow:: drawTree(){
 parse_t MainWindow:: parse_line(QString &line){
     stmt_t stmtTmp;
     cmd_t cmdTmp;
-    QString lineTmp=line;
-    QString varName="";
-    QString exp="";
-    QString exp1="";
-    QString delim="";
-    QString errorStrBackUp="";
-    QString inputString="";
+    QString lineTmp=line, varName="", exp="", exp1="", delim="", errorStrBackUp="", inputString="";
     int index = -1; //index for condition in if
     int indexThen = -1;    // index for THEN in if
     pair<map<int, Statement*>::iterator, bool> Insert_Pair;
     Statement *newStmt;
-    int lineNum=0;
-    int numTmp=0;
+    int lineNum=0, numTmp=0, printfNum=0;
     int type=0; //0:num 1:string
     QString numError="Invalid line number!";
     QString stmtError = "Invalid statement!";
@@ -351,7 +352,7 @@ parse_t MainWindow:: parse_line(QString &line){
             }
             if(parse_stmt(lineTmp, stmtTmp)==PARSE_ERR)
                 throw  stmtError;
-
+               // 0: INPUTS,1:INPUT, 2：LET, 3：GOTO, 4:IF,  5:PRINTF, 6: PRINT， 7:REM, 8:END,9:THEN
             switch (stmtNum(stmtTmp))
             {
             case 0: //"INPUTS"  35 INPUTS n3
@@ -371,6 +372,7 @@ parse_t MainWindow:: parse_line(QString &line){
                         parse_delim(lineTmp, delim)==PARSE_ERR||
                         delim !="=" )throw stmtError;
                 if(parse_string(lineTmp, inputString) !=PARSE_ERR) { // is string
+                    if(! IS_END( lineTmp)) throw stmtError;
                     newStmt = new LetStmt(lineNum, varName, inputString,1);
                     break;
                 }
@@ -407,16 +409,19 @@ parse_t MainWindow:: parse_line(QString &line){
                 newStmt = new IfStmt(lineNum, exp,  delim, exp1, numTmp);
                 break;
 
-            case 5: //"PRINT": //PRINT 2 + 2
+            case 5: //"PRINTF"
+                newStmt = new PrintfStmt(lineNum,lineTmp);
+                break;
+            case 6: //"PRINT": //PRINT 2 + 2
                 if(parse_exp(lineTmp, exp)==PARSE_ERR)throw numError;
                 newStmt = new PrintStmt(lineNum,exp);
                 break;
 
-            case 6: //"REM": //REM aaa
+            case 7: //"REM": //REM aaa
                 newStmt = new RemStmt(lineNum,lineTmp);
                 break;
 
-            case 7: //"END":
+            case 8: //"END":
                 newStmt = new EndStmt(lineNum);
                 break;
 
@@ -516,7 +521,6 @@ parse_t MainWindow:: parse_line(QString &line){
 }
 
 int MainWindow ::stmtNum(stmt_t Stmt){
-
     for(int i=0;i<9;i++){
         if(Stmt ==stmtTab[i]) return i;
     }
@@ -643,20 +647,23 @@ parse_t MainWindow:: parse_delim(QString &ptr, QString& delim){
 parse_t MainWindow::parse_string(QString &ptr, QString &inputString){
     QString tmp = ptr;
     tmp= tmp.trimmed();
+    int tail=0;
     if(tmp[0]=="\'"){
         if(tmp.indexOf("\"")!=-1)return PARSE_ERR;
-        if(tmp.indexOf("\'",1) != tmp.length()-1)return PARSE_ERR;
-        inputString = tmp;
+        tail = tmp.indexOf("\'",1);
+        if(tail== -1)return PARSE_ERR;
+        inputString = tmp.mid(0, tail+1);
+        ptr = tmp.mid(tail+1);
         return PARSE_STR;
     }
     else if(tmp[0]== "\""){
         if(tmp.indexOf("\'") !=-1)return PARSE_ERR;
-
-        if(tmp.indexOf("\"",1) != tmp.length()-1)return PARSE_ERR;
-        inputString = tmp;
+        tail = tmp.indexOf("\"",1);
+        if(tmp.indexOf("\"",1) == -1)return PARSE_ERR;
+        inputString = tmp.mid(0, tail+1);
+        ptr = tmp.mid(tail+1);
         return PARSE_STR;
     }
-
     return PARSE_ERR;
 }
 

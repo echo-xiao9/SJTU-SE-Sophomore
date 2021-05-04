@@ -4,6 +4,7 @@
 #include <QString>
 #include "Exp.h"
 #include <vector>
+#include <map>
 using namespace std;
 extern vector<var>variables;
 
@@ -21,6 +22,7 @@ public:
     Statement(int inputIndex, int Type);
     virtual QString runSingleStmt(QString par)=0;
     virtual QString tree(int i=0)=0;
+    parse_t parse_string(QString &ptr, QString &inputString);
     ~Statement();
 };
 
@@ -110,6 +112,24 @@ class ErrorStmt: public Statement{
 public:
     ErrorStmt(int inputIndex, QString content);
     QString runSingleStmt(QString par){return "";}
+    QString tree(int i=0);
+};
+
+struct myPair{
+    int index;
+    QString str;
+    myPair(int Index, QString Str):index(Index), str(Str){}
+};
+
+class PrintfStmt:public Statement{
+private:
+    vector<myPair> replacePair;
+    QString base="";
+    QString result="";
+public:
+    //have exp
+    PrintfStmt(int inputIndex, QString inputStr);
+    QString runSingleStmt(QString par);
     QString tree(int i=0);
 };
 

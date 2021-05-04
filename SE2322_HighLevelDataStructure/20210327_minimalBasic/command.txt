@@ -1,2 +1,5 @@
-1 let a=1
-2 let a="dsf"
+1 PRINTF "Hello World"
+2 PRINTF "Mini Basic V {}", 2
+3 PRINTF 'hello {}', 'world'
+4 PRINTF "{} {} {}", "hello", 2, "world"
+5 LET a = 100 PRINTF "a = {}", a
