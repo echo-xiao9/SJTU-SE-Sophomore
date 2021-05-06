@@ -67,7 +67,9 @@ private:
     void recurPrintExp(Node *n,  int indentation);
     QEventLoop loop;
     QString inputNumTmp;
-
+    QString inputStr;
+    QList<QPair<int, QColor>> errorHighLights;
+    QList<int>errorIndex;
 private slots:
     void codeLineEdit_return();
     void clearAll();
@@ -76,6 +78,7 @@ private slots:
     void loadStat();
     void runApp();
     void getCodeLineVal();
+    void getCodeLineStrVal();
 
     parse_t parse_line(QString &line);
     parse_t parse_stmt(QString &ptr, stmt_t& stmt);

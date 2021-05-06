@@ -29,12 +29,12 @@ QString InputStringStmt::runSingleStmt(QString par){
                 variables[i].varValue = par;
             }
         }
-        if(flag1==0){
-            var newVar(varName, inputString,1);
-            variables.push_back(newVar);
-        }
-        return "";
     }
+    if(flag1==0){
+        var newVar(varName, par);
+        variables.push_back(newVar);
+    }
+    return "";
 }
 QString InputStringStmt::findVar(){}
 QString InputStringStmt::tree(int i){ return varName;}
@@ -50,13 +50,13 @@ QString InputStmt::runSingleStmt(QString par){
     for (int i = 0; i < variables.size(); i++)
     {
         if(variables[i].varName == varName){
-            variables[i].varValue = par.toInt();
+            variables[i].varValue = par;
             flag1=1;
             break;
         }
     }
     if(flag1==0){
-        var newVar(varName, Parvalue);
+        var newVar(varName, par);
         variables.push_back(newVar);
     }
     return "";

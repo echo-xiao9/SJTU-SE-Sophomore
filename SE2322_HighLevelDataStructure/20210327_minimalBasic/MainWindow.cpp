@@ -28,44 +28,25 @@ void MainWindow::updateCodeBrowser(){
         ++iter;
         ui->codeBrowser->append(appendLine);
     }
-
-    // 获取需要高亮的 TextEdit 对象(QTextBrowser 是 QTextEdit 的只读子类) QTextBrowser *code = ui->CodeDisplay;
-    QTextBrowser* code=ui->codeBrowser;
-    QTextCursor cursor(code->document());
-    // 用于维护的所有高亮的链表
-    QList<QTextEdit::ExtraSelection> extras; QList<QPair<int, QColor>> highlights = {
-    {92, QColor(100, 255, 100)},
-    {131, QColor(255, 100, 100)},
-    {180, QColor(255, 100, 100)}
-    };
-    // 配置高亮，并加入到 extras 中 for (auto &line : highlights) {
-    for(auto &line:highlights){
-        QTextEdit::ExtraSelection h;
-        h.cursor = cursor;
-    // 下面这些的功能，请大家自行查看文档
-        h.cursor.setPosition(line.first);
-        h.cursor.movePosition(QTextCursor::StartOfLine);
-        h.cursor.movePosition(QTextCursor::EndOfLine);
-        h.format.setProperty(QTextFormat::FullWidthSelection, true);
-        h.format.setBackground(line.second);
-        extras.append(h);
-    }
-    //应用高亮效果
-    code->setExtraSelections(extras);
+    highLightErrorCode();
 }
 
+int getIndexPos(){
+
+}
 void  MainWindow::highLightErrorCode(){
     // 获取需要高亮的 TextEdit 对象(QTextBrowser 是 QTextEdit 的只读子类)
     QTextBrowser* code=ui->codeBrowser;
     QTextCursor cursor(code->document());
     // 用于维护的所有高亮的链表
-    QList<QTextEdit::ExtraSelection> extras; QList<QPair<int, QColor>> highlights = {
-    {92, QColor(100, 255, 100)},
-    {131, QColor(255, 100, 100)},
-    {180, QColor(255, 100, 100)}
+    QList<QTextEdit::ExtraSelection> extras;
+     errorHighLights = {
+    {1, QColor(100, 255, 100)},
+    {100, QColor(255, 100, 100)},
+    {4, QColor(255, 100, 100)}
     };
     // 配置高亮，并加入到 extras 中 for (auto &line : highlights) {
-    for(auto &line:highlights){
+    for(auto &line:errorHighLights){
         QTextEdit::ExtraSelection h;
         h.cursor = cursor;
     // 下面这些的功能，请大家自行查看文档
@@ -186,6 +167,21 @@ void MainWindow::runApp(){
 
            // 0: INPUTS,1:INPUT, 2：LET, 3：GOTO, 4:IF,  5:PRINTF, 6: PRINT， 7:REM, 8:END,9:THEN
             case 0: // INPUTS
+                try{
+                ui->codeLineEdit-> setPlaceholderText(" ? ");
+                disconnect(ui->codeLineEdit, SIGNAL(returnPressed()), this, SLOT(codeLineEdit_return()));
+                connect(ui->codeLineEdit, SIGNAL(returnPressed()), this, SLOT(getCodeLineStrVal()));
+                loop.exec();
+                it->second->runSingleStmt(inputStr);
+                disconnect(ui->codeLineEdit, SIGNAL(returnPressed()), this, SLOT(getCodeLineStrVal()));
+                connect(ui->codeLineEdit, SIGNAL(returnPressed()), this, SLOT(codeLineEdit_return()));
+                ui->codeLineEdit-> setPlaceholderText("");
+            }catch(QString error){
+                    ui->messageLineEdit->setText(error);
+                    disconnect(ui->codeLineEdit, SIGNAL(returnPressed()), this, SLOT(getCodeLineStrVal()));
+                    connect(ui->codeLineEdit, SIGNAL(returnPressed()), this, SLOT(codeLineEdit_return()));
+                }
+                it++;
                 break;
             case 1://INPUT
                 try{
@@ -285,6 +281,14 @@ void MainWindow::getCodeLineVal(){
         if(inputNumTmp[i]<'0' || inputNumTmp >"9") throw errorNum;
     }
     loop.exit();
+    return;
+}
+void MainWindow::getCodeLineStrVal(){
+    inputStr = ui->codeLineEdit->text();
+    inputStr = inputStr.trimmed();
+
+    loop.exit();
+    return;
 }
 
 void MainWindow:: showHelpWin(){
@@ -317,6 +321,11 @@ void MainWindow:: drawTree(){
     map<int, Statement*>::iterator it = statements.begin();
     while(it !=statements.end()){
         switch (it->second->type) {
+        case 0: //INPUTS
+            synTree.push_back(QString::number(it->first)+" INPUTS");
+            synBranch =   "    " +it->second->tree();
+            synTree.push_back(synBranch);
+            break;
         case 1: //INPUT
             synTree.push_back(QString::number(it->first)+" INPUT");
             synBranch =   "    " +it->second->tree();
@@ -366,7 +375,7 @@ void MainWindow:: drawTree(){
             synTree.push_back(QString::number(it->first)+" END");
             break;
 
-        case 9:
+        case 9: //error
             synTree.push_back(QString::number(it->first)+" Error");
             break;
 
@@ -490,6 +499,7 @@ parse_t MainWindow:: parse_line(QString &line){
             }
         }catch(QString e){
             newStmt = new ErrorStmt(lineNum, errorStrBackUp);
+            errorIndex.push_back(lineNum);
         }
         Insert_Pair = statements.insert(pair<int, Statement*>(lineNum, newStmt));
         // if the index exits
@@ -507,7 +517,8 @@ parse_t MainWindow:: parse_line(QString &line){
             switch (stmtNum(stmtTmp)) {
             //LET、PRINT、INPUT可以不带行号直接输入执行
             // 0:INPUT   1:LET   2:GOTO  3:IF   4:PRINT    5:REM   6:END
-            case 0:
+             // 0: INPUTS,1:INPUT, 2：LET, 3：GOTO, 4:IF,  5:PRINTF, 6: PRINT， 7:REM, 8:END,9:THEN
+            case 1: // input
                 if(parse_var(lineTmp, varName)==PARSE_ERR) throw stmtError;
                 try{
                 ui->codeLineEdit->setPlaceholderText(" ? ");
@@ -529,7 +540,7 @@ parse_t MainWindow:: parse_line(QString &line){
                 }
 
                 break;
-            case 1:
+            case 2: //let
                 if(parse_var(lineTmp, varName)==PARSE_ERR ||
                         parse_delim(lineTmp, delim)==PARSE_ERR||
                         delim !="="||
@@ -539,7 +550,7 @@ parse_t MainWindow:: parse_line(QString &line){
                 newStmt->runSingleStmt("");
                 updateVarBrowser();
                 break;
-            case 4:
+            case 6: //print
                 if(parse_exp(lineTmp, exp)==PARSE_ERR)throw numError;
                 newStmt = new PrintStmt(lineNum,exp);
                 result = newStmt->runSingleStmt("");

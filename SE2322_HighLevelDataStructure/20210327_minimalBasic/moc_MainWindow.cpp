@@ -21,8 +21,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_MainWindow_t {
-    QByteArrayData data[35];
-    char stringdata0[317];
+    QByteArrayData data[36];
+    char stringdata0[335];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -40,43 +40,45 @@ QT_MOC_LITERAL(5, 56, 21), // "on_loadButton_clicked"
 QT_MOC_LITERAL(6, 78, 8), // "loadStat"
 QT_MOC_LITERAL(7, 87, 6), // "runApp"
 QT_MOC_LITERAL(8, 94, 14), // "getCodeLineVal"
-QT_MOC_LITERAL(9, 109, 10), // "parse_line"
-QT_MOC_LITERAL(10, 120, 7), // "parse_t"
-QT_MOC_LITERAL(11, 128, 8), // "QString&"
-QT_MOC_LITERAL(12, 137, 4), // "line"
-QT_MOC_LITERAL(13, 142, 10), // "parse_stmt"
-QT_MOC_LITERAL(14, 153, 3), // "ptr"
-QT_MOC_LITERAL(15, 157, 7), // "stmt_t&"
-QT_MOC_LITERAL(16, 165, 4), // "stmt"
-QT_MOC_LITERAL(17, 170, 9), // "parse_cmd"
-QT_MOC_LITERAL(18, 180, 3), // "cmd"
-QT_MOC_LITERAL(19, 184, 9), // "parse_num"
-QT_MOC_LITERAL(20, 194, 4), // "int&"
-QT_MOC_LITERAL(21, 199, 3), // "val"
-QT_MOC_LITERAL(22, 203, 9), // "parse_var"
-QT_MOC_LITERAL(23, 213, 4), // "name"
-QT_MOC_LITERAL(24, 218, 9), // "parse_exp"
-QT_MOC_LITERAL(25, 228, 3), // "exp"
-QT_MOC_LITERAL(26, 232, 11), // "parse_delim"
-QT_MOC_LITERAL(27, 244, 5), // "delim"
-QT_MOC_LITERAL(28, 250, 12), // "parse_string"
-QT_MOC_LITERAL(29, 263, 11), // "inputString"
-QT_MOC_LITERAL(30, 275, 10), // "find_instr"
-QT_MOC_LITERAL(31, 286, 7), // "stmt_t*"
-QT_MOC_LITERAL(32, 294, 11), // "judge_infix"
-QT_MOC_LITERAL(33, 306, 6), // "string"
-QT_MOC_LITERAL(34, 313, 3) // "str"
+QT_MOC_LITERAL(9, 109, 17), // "getCodeLineStrVal"
+QT_MOC_LITERAL(10, 127, 10), // "parse_line"
+QT_MOC_LITERAL(11, 138, 7), // "parse_t"
+QT_MOC_LITERAL(12, 146, 8), // "QString&"
+QT_MOC_LITERAL(13, 155, 4), // "line"
+QT_MOC_LITERAL(14, 160, 10), // "parse_stmt"
+QT_MOC_LITERAL(15, 171, 3), // "ptr"
+QT_MOC_LITERAL(16, 175, 7), // "stmt_t&"
+QT_MOC_LITERAL(17, 183, 4), // "stmt"
+QT_MOC_LITERAL(18, 188, 9), // "parse_cmd"
+QT_MOC_LITERAL(19, 198, 3), // "cmd"
+QT_MOC_LITERAL(20, 202, 9), // "parse_num"
+QT_MOC_LITERAL(21, 212, 4), // "int&"
+QT_MOC_LITERAL(22, 217, 3), // "val"
+QT_MOC_LITERAL(23, 221, 9), // "parse_var"
+QT_MOC_LITERAL(24, 231, 4), // "name"
+QT_MOC_LITERAL(25, 236, 9), // "parse_exp"
+QT_MOC_LITERAL(26, 246, 3), // "exp"
+QT_MOC_LITERAL(27, 250, 11), // "parse_delim"
+QT_MOC_LITERAL(28, 262, 5), // "delim"
+QT_MOC_LITERAL(29, 268, 12), // "parse_string"
+QT_MOC_LITERAL(30, 281, 11), // "inputString"
+QT_MOC_LITERAL(31, 293, 10), // "find_instr"
+QT_MOC_LITERAL(32, 304, 7), // "stmt_t*"
+QT_MOC_LITERAL(33, 312, 11), // "judge_infix"
+QT_MOC_LITERAL(34, 324, 6), // "string"
+QT_MOC_LITERAL(35, 331, 3) // "str"
 
     },
     "MainWindow\0codeLineEdit_return\0\0"
     "clearAll\0clearAppStatus\0on_loadButton_clicked\0"
     "loadStat\0runApp\0getCodeLineVal\0"
-    "parse_line\0parse_t\0QString&\0line\0"
-    "parse_stmt\0ptr\0stmt_t&\0stmt\0parse_cmd\0"
-    "cmd\0parse_num\0int&\0val\0parse_var\0name\0"
-    "parse_exp\0exp\0parse_delim\0delim\0"
-    "parse_string\0inputString\0find_instr\0"
-    "stmt_t*\0judge_infix\0string\0str"
+    "getCodeLineStrVal\0parse_line\0parse_t\0"
+    "QString&\0line\0parse_stmt\0ptr\0stmt_t&\0"
+    "stmt\0parse_cmd\0cmd\0parse_num\0int&\0val\0"
+    "parse_var\0name\0parse_exp\0exp\0parse_delim\0"
+    "delim\0parse_string\0inputString\0"
+    "find_instr\0stmt_t*\0judge_infix\0string\0"
+    "str"
 };
 #undef QT_MOC_LITERAL
 
@@ -86,7 +88,7 @@ static const uint qt_meta_data_MainWindow[] = {
        8,       // revision
        0,       // classname
        0,    0, // classinfo
-      17,   14, // methods
+      18,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -94,23 +96,24 @@ static const uint qt_meta_data_MainWindow[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    0,   99,    2, 0x08 /* Private */,
-       3,    0,  100,    2, 0x08 /* Private */,
-       4,    0,  101,    2, 0x08 /* Private */,
-       5,    0,  102,    2, 0x08 /* Private */,
-       6,    0,  103,    2, 0x08 /* Private */,
-       7,    0,  104,    2, 0x08 /* Private */,
-       8,    0,  105,    2, 0x08 /* Private */,
-       9,    1,  106,    2, 0x08 /* Private */,
-      13,    2,  109,    2, 0x08 /* Private */,
-      17,    2,  114,    2, 0x08 /* Private */,
-      19,    2,  119,    2, 0x08 /* Private */,
-      22,    2,  124,    2, 0x08 /* Private */,
-      24,    2,  129,    2, 0x08 /* Private */,
-      26,    2,  134,    2, 0x08 /* Private */,
-      28,    2,  139,    2, 0x08 /* Private */,
-      30,    1,  144,    2, 0x08 /* Private */,
-      32,    1,  147,    2, 0x08 /* Private */,
+       1,    0,  104,    2, 0x08 /* Private */,
+       3,    0,  105,    2, 0x08 /* Private */,
+       4,    0,  106,    2, 0x08 /* Private */,
+       5,    0,  107,    2, 0x08 /* Private */,
+       6,    0,  108,    2, 0x08 /* Private */,
+       7,    0,  109,    2, 0x08 /* Private */,
+       8,    0,  110,    2, 0x08 /* Private */,
+       9,    0,  111,    2, 0x08 /* Private */,
+      10,    1,  112,    2, 0x08 /* Private */,
+      14,    2,  115,    2, 0x08 /* Private */,
+      18,    2,  120,    2, 0x08 /* Private */,
+      20,    2,  125,    2, 0x08 /* Private */,
+      23,    2,  130,    2, 0x08 /* Private */,
+      25,    2,  135,    2, 0x08 /* Private */,
+      27,    2,  140,    2, 0x08 /* Private */,
+      29,    2,  145,    2, 0x08 /* Private */,
+      31,    1,  150,    2, 0x08 /* Private */,
+      33,    1,  153,    2, 0x08 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
@@ -120,16 +123,17 @@ static const uint qt_meta_data_MainWindow[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
-    0x80000000 | 10, 0x80000000 | 11,   12,
-    0x80000000 | 10, 0x80000000 | 11, 0x80000000 | 15,   14,   16,
-    0x80000000 | 10, 0x80000000 | 11, 0x80000000 | 15,   14,   18,
-    0x80000000 | 10, 0x80000000 | 11, 0x80000000 | 20,   14,   21,
-    0x80000000 | 10, 0x80000000 | 11, 0x80000000 | 11,   14,   23,
-    0x80000000 | 10, 0x80000000 | 11, 0x80000000 | 11,   14,   25,
-    0x80000000 | 10, 0x80000000 | 11, 0x80000000 | 11,   14,   27,
-    0x80000000 | 10, 0x80000000 | 11, 0x80000000 | 11,   14,   29,
-    0x80000000 | 31, QMetaType::QString,   23,
-    QMetaType::Bool, 0x80000000 | 33,   34,
+    QMetaType::Void,
+    0x80000000 | 11, 0x80000000 | 12,   13,
+    0x80000000 | 11, 0x80000000 | 12, 0x80000000 | 16,   15,   17,
+    0x80000000 | 11, 0x80000000 | 12, 0x80000000 | 16,   15,   19,
+    0x80000000 | 11, 0x80000000 | 12, 0x80000000 | 21,   15,   22,
+    0x80000000 | 11, 0x80000000 | 12, 0x80000000 | 12,   15,   24,
+    0x80000000 | 11, 0x80000000 | 12, 0x80000000 | 12,   15,   26,
+    0x80000000 | 11, 0x80000000 | 12, 0x80000000 | 12,   15,   28,
+    0x80000000 | 11, 0x80000000 | 12, 0x80000000 | 12,   15,   30,
+    0x80000000 | 32, QMetaType::QString,   24,
+    QMetaType::Bool, 0x80000000 | 34,   35,
 
        0        // eod
 };
@@ -147,25 +151,26 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 4: _t->loadStat(); break;
         case 5: _t->runApp(); break;
         case 6: _t->getCodeLineVal(); break;
-        case 7: { parse_t _r = _t->parse_line((*reinterpret_cast< QString(*)>(_a[1])));
+        case 7: _t->getCodeLineStrVal(); break;
+        case 8: { parse_t _r = _t->parse_line((*reinterpret_cast< QString(*)>(_a[1])));
             if (_a[0]) *reinterpret_cast< parse_t*>(_a[0]) = std::move(_r); }  break;
-        case 8: { parse_t _r = _t->parse_stmt((*reinterpret_cast< QString(*)>(_a[1])),(*reinterpret_cast< stmt_t(*)>(_a[2])));
+        case 9: { parse_t _r = _t->parse_stmt((*reinterpret_cast< QString(*)>(_a[1])),(*reinterpret_cast< stmt_t(*)>(_a[2])));
             if (_a[0]) *reinterpret_cast< parse_t*>(_a[0]) = std::move(_r); }  break;
-        case 9: { parse_t _r = _t->parse_cmd((*reinterpret_cast< QString(*)>(_a[1])),(*reinterpret_cast< stmt_t(*)>(_a[2])));
+        case 10: { parse_t _r = _t->parse_cmd((*reinterpret_cast< QString(*)>(_a[1])),(*reinterpret_cast< stmt_t(*)>(_a[2])));
             if (_a[0]) *reinterpret_cast< parse_t*>(_a[0]) = std::move(_r); }  break;
-        case 10: { parse_t _r = _t->parse_num((*reinterpret_cast< QString(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2])));
+        case 11: { parse_t _r = _t->parse_num((*reinterpret_cast< QString(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2])));
             if (_a[0]) *reinterpret_cast< parse_t*>(_a[0]) = std::move(_r); }  break;
-        case 11: { parse_t _r = _t->parse_var((*reinterpret_cast< QString(*)>(_a[1])),(*reinterpret_cast< QString(*)>(_a[2])));
+        case 12: { parse_t _r = _t->parse_var((*reinterpret_cast< QString(*)>(_a[1])),(*reinterpret_cast< QString(*)>(_a[2])));
             if (_a[0]) *reinterpret_cast< parse_t*>(_a[0]) = std::move(_r); }  break;
-        case 12: { parse_t _r = _t->parse_exp((*reinterpret_cast< QString(*)>(_a[1])),(*reinterpret_cast< QString(*)>(_a[2])));
+        case 13: { parse_t _r = _t->parse_exp((*reinterpret_cast< QString(*)>(_a[1])),(*reinterpret_cast< QString(*)>(_a[2])));
             if (_a[0]) *reinterpret_cast< parse_t*>(_a[0]) = std::move(_r); }  break;
-        case 13: { parse_t _r = _t->parse_delim((*reinterpret_cast< QString(*)>(_a[1])),(*reinterpret_cast< QString(*)>(_a[2])));
+        case 14: { parse_t _r = _t->parse_delim((*reinterpret_cast< QString(*)>(_a[1])),(*reinterpret_cast< QString(*)>(_a[2])));
             if (_a[0]) *reinterpret_cast< parse_t*>(_a[0]) = std::move(_r); }  break;
-        case 14: { parse_t _r = _t->parse_string((*reinterpret_cast< QString(*)>(_a[1])),(*reinterpret_cast< QString(*)>(_a[2])));
+        case 15: { parse_t _r = _t->parse_string((*reinterpret_cast< QString(*)>(_a[1])),(*reinterpret_cast< QString(*)>(_a[2])));
             if (_a[0]) *reinterpret_cast< parse_t*>(_a[0]) = std::move(_r); }  break;
-        case 15: { stmt_t* _r = _t->find_instr((*reinterpret_cast< QString(*)>(_a[1])));
+        case 16: { stmt_t* _r = _t->find_instr((*reinterpret_cast< QString(*)>(_a[1])));
             if (_a[0]) *reinterpret_cast< stmt_t**>(_a[0]) = std::move(_r); }  break;
-        case 16: { bool _r = _t->judge_infix((*reinterpret_cast< string(*)>(_a[1])));
+        case 17: { bool _r = _t->judge_infix((*reinterpret_cast< string(*)>(_a[1])));
             if (_a[0]) *reinterpret_cast< bool*>(_a[0]) = std::move(_r); }  break;
         default: ;
         }
@@ -201,13 +206,13 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 17)
+        if (_id < 18)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 17;
+        _id -= 18;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 17)
+        if (_id < 18)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 17;
+        _id -= 18;
     }
     return _id;
 }

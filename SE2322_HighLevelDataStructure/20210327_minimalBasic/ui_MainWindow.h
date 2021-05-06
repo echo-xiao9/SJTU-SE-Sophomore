@@ -59,7 +59,7 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
-        MainWindow->resize(650, 678);
+        MainWindow->resize(648, 678);
         QFont font;
         font.setFamily(QString::fromUtf8("Monaco"));
         MainWindow->setFont(font);
@@ -212,7 +212,7 @@ public:
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
-        menubar->setGeometry(QRect(0, 0, 650, 22));
+        menubar->setGeometry(QRect(0, 0, 648, 22));
         MainWindow->setMenuBar(menubar);
 
         retranslateUi(MainWindow);
