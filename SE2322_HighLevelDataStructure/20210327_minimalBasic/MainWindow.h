@@ -5,6 +5,7 @@
 #include <QFileDialog>
 #include <QTextStream>
 #include <QEventLoop>
+#include <QTextBrowser>
 #include "Statement.h"
 #include "Help.h"
 
@@ -55,7 +56,7 @@ public:
     vector <QString> synTree;
     map <int, Statement*> statements; // store the existing statements after running the app
     int curLine;
-
+    int curPos=0;
 private:
     //App *app;
     Ui::MainWindow *ui;
@@ -70,6 +71,10 @@ private:
     QString inputStr;
     QList<QPair<int, QColor>> errorHighLights;
     QList<int>errorIndex;
+    QTextBrowser* code;
+     QTextCursor cursor;
+
+
 private slots:
     void codeLineEdit_return();
     void clearAll();

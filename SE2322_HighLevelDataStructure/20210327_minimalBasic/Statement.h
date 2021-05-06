@@ -14,6 +14,8 @@ public:
     Exp *exp = nullptr;
     Exp *exp1 =nullptr;
     int index;
+    int length=0;
+    int startPos;
     QString stmt;
     QString str="";
     // -1 means no type the type order from 0-6 is
