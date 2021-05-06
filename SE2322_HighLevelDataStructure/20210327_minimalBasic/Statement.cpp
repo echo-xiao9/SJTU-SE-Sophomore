@@ -150,6 +150,9 @@ QString IfStmt::runSingleStmt(QString par){
 PrintfStmt::PrintfStmt(int inputIndex, QString inputStr):Statement(inputIndex, 5){
     stmt = "PRINTF "+ inputStr;
     str = inputStr;
+    list1 = str.split(QLatin1Char(','));
+    base = list1[0].trimmed();
+    base=base.mid(1,base.length()-2);
 }
 
 parse_t Statement::parse_string(QString &ptr, QString &inputString){
@@ -177,9 +180,6 @@ parse_t Statement::parse_string(QString &ptr, QString &inputString){
 
 QString PrintfStmt::runSingleStmt(QString par){ // PRINTF "Mini Basic V {}", 2
     replacePair.clear();
-    QStringList list1 = str.split(QLatin1Char(','));
-    base = list1[0].trimmed();
-    base=base.mid(1,base.length()-2);
     QString target;
     bool isNum=1;
     int i=0; int replacementIndex=1;
@@ -247,7 +247,13 @@ QString PrintfStmt::runSingleStmt(QString par){ // PRINTF "Mini Basic V {}", 2
 }
 
 QString  PrintfStmt::tree(int i){
-    return result;
+    QString targetList="";
+    if(i==0)
+    return base;
+    for(int j=0;j<list1.size()-1;j++){
+        targetList+=list1[j+1]+" ";
+    }
+    return targetList;
 }
 
 PrintStmt::PrintStmt(int inputIndex, QString expr):Statement(inputIndex, 6){
@@ -264,7 +270,7 @@ QString PrintStmt::runSingleStmt(QString par){
 }
 
 QString  PrintStmt::tree(int i){
-    return expStr;
+   return expStr;
 }
 
 

@@ -343,6 +343,13 @@ void MainWindow:: drawTree(){
             synBranch =   "    "+it->second->tree(1);
             synTree.push_back(synBranch);
             break;
+        case 5: // PRINTF
+             synTree.push_back( QString::number(it->first)+" PRINTF");
+             synBranch =   "    " +it->second->tree(0);
+             synTree.push_back(synBranch);
+             synBranch =   "    " +it->second->tree(1);
+             synTree.push_back(synBranch);
+            break;
 
         case 6:  //PRINT
             synTree.push_back( QString::number(it->first)+" PRINT");

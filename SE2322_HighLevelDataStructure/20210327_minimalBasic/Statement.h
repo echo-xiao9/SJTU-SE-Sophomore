@@ -124,6 +124,7 @@ struct myPair{
 class PrintfStmt:public Statement{
 private:
     vector<myPair> replacePair;
+    QStringList list1;
     QString base="";
     QString result="";
 public:

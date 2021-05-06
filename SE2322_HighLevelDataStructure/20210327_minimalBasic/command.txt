@@ -2,4 +2,5 @@
 2 PRINTF "Mini Basic V {}", 2
 3 PRINTF 'hello {}', 'world'
 4 PRINTF "{} {} {}", "hello", 2, "world"
-5 LET a = 100 PRINTF "a = {}", a
+5 LET a = 100
+6 PRINTF "a = {}", a
