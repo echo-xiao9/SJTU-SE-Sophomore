@@ -188,7 +188,6 @@ QString PrintfStmt::runSingleStmt(QString par){ // PRINTF "Mini Basic V {}", 2
     if(list1.length()>1)target =  list1[replacementIndex].trimmed();
     while(i<base.length()){
         isNum=1;
-        qDebug()<<base[i]<<"i:"<<i<<endl;
         if(base[i]=='{'){
             if(base[i+1]!= '}')throw QString("Single { !");
             else {
@@ -240,7 +239,6 @@ QString PrintfStmt::runSingleStmt(QString par){ // PRINTF "Mini Basic V {}", 2
     result =base;
         for(int i=replacePair.size()-1;i>=0 ;i--){
             result = result.mid(0,replacePair[i].index)+replacePair[i].str+result.mid(replacePair[i].index+2);
-            qDebug()<<result<<endl;
         }
 
     return result;

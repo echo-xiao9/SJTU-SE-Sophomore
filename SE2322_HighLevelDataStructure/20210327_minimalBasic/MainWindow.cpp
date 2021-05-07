@@ -15,6 +15,8 @@ MainWindow::MainWindow(QWidget *parent)
     curLine=0;
     code=ui->codeBrowser;
     cursor = QTextCursor (code->document());
+    debugEnd = new DebugEnd();
+    debugError = new DebugError();
 }
 
 MainWindow::~MainWindow()
@@ -33,7 +35,6 @@ void MainWindow::updateCodeBrowser(){
         //        curPos+= appendLine.length();
         if(cursor.position()==0)iter->second->startPos=0;
         else iter->second->startPos=cursor.position()+1;
-        qDebug()<<iter->second->startPos<< endl;
         if(iter->second->type==9){
             QPair<int,QColor>error(iter->second->startPos,QColor(255, 100, 100));
             errorHighLights.push_back(error);
@@ -73,7 +74,12 @@ void MainWindow::updateVarBrowser(){
     ui->varBrowser->clear();
     for (int i = 0; i < variables.size(); i++)
     {
-        appendLine =variables[i].varName +" = " + variables[i].varValue;
+        appendLine =variables[i].varName +": " ;
+        qDebug()<<"type:"<<variables[i].type<<endl;
+        if(variables[i].type==0) appendLine += "INT = ";
+        else appendLine += "STR = ";
+        appendLine +=variables[i].varValue;
+        qDebug()<<appendLine<<endl;
         ui->varBrowser->append(appendLine);
     }
 }
@@ -115,7 +121,6 @@ void MainWindow::clearAll(){
 void MainWindow::clearAppStatus(){
     //clear the status in the program, including the content on GUI , syntax tree and results.
     synTree.clear();
-
     results.clear();
     ui->codeLineEdit->clear();
     ui->messageLineEdit->clear();
@@ -307,6 +312,8 @@ void MainWindow::debug(){
     ui->loadButton->setEnabled(false);
     ui->clearButton->setEnabled(false);
     ui->syntaxDisplayBroser->clear();
+    ui->resultBrowser->clear();
+    ui->codeLineEdit->clear();
     debugIt = statements.begin();
     disconnect(ui->debugButton, SIGNAL(clicked()), this, SLOT(debug()));
     connect(ui->debugButton, SIGNAL(clicked()), this, SLOT(stepIn()));
@@ -315,8 +322,40 @@ void MainWindow::debug(){
 
 void MainWindow::stepIn(){
     QPair<int,QColor>error(debugIt->second->startPos,QColor(100, 255, 100));
+
     errorHighLights.push_back(error);
     highLightErrorCode();
+    errorHighLights.pop_back();
+
+    // syntax tree
+    ui->syntaxDisplayBroser->clear();
+    synTree.clear();
+    drawSingleTree(debugIt);
+    updateSyntaxDisplayBroser();
+
+    // next statement
+    runStmt(debugIt);
+
+    // update variable
+    updateVarBrowser();
+    updateResultBrowser();
+    // if reach error
+    if(debugIt->second->type==9){
+        debugError -> show();
+        disconnect(ui->debugButton, SIGNAL(clicked()), this, SLOT(stepIn()));
+        connect(ui->debugButton, SIGNAL(clicked()), this, SLOT(debug()));
+        ui->loadButton->setEnabled(true);
+        ui->clearButton->setEnabled(true);
+    }
+   // if reach end
+    else if(debugIt==statements.end()){
+        debugEnd ->show();
+        disconnect(ui->debugButton, SIGNAL(clicked()), this, SLOT(stepIn()));
+        connect(ui->debugButton, SIGNAL(clicked()), this, SLOT(debug()));
+        ui->loadButton->setEnabled(true);
+        ui->clearButton->setEnabled(true);
+    }
+
 }
 
 void MainWindow:: showHelpWin(){
@@ -461,7 +500,7 @@ parse_t MainWindow:: parse_line(QString &line){
             case 1: //"INPUT": 35 INPUT n3
                 if(parse_var(lineTmp, varName) == PARSE_ERR) throw varError;
 
-                //              newStmt = new InputStmt(lineNum, varName, numTmp, statements);
+                //    newStmt = new InputStmt(lineNum, varName, numTmp, statements);
                 newStmt = new InputStmt(lineNum, varName,numTmp);
                 break;
             case 2://"LET": //40 LET total = n1 + n2 + n3  LET s = "hello world"    LET t = 'Mini Basic'

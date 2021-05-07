@@ -8,6 +8,8 @@
 #include <QTextBrowser>
 #include "Statement.h"
 #include "Help.h"
+#include "DebugEnd.h"
+#include "DebugError.h"
 
 using namespace std;
 extern vector<var>variables;
@@ -75,7 +77,8 @@ private:
     QTextBrowser* code;
     QTextCursor cursor;
     map<int, Statement*>::iterator debugIt;
-
+    DebugEnd* debugEnd;
+    DebugError *debugError;
 private slots:
     void codeLineEdit_return();
     void clearAll();

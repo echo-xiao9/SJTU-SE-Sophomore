@@ -52,17 +52,25 @@ OBJECTS_DIR   = ./
 
 ####### Files
 
-SOURCES       = Exp.cpp \
+SOURCES       = DebugEnd.cpp \
+		DebugError.cpp \
+		Exp.cpp \
 		Help.cpp \
 		Statement.cpp \
 		main.cpp \
-		MainWindow.cpp moc_Help.cpp \
+		MainWindow.cpp moc_DebugEnd.cpp \
+		moc_DebugError.cpp \
+		moc_Help.cpp \
 		moc_MainWindow.cpp
-OBJECTS       = Exp.o \
+OBJECTS       = DebugEnd.o \
+		DebugError.o \
+		Exp.o \
 		Help.o \
 		Statement.o \
 		main.o \
 		MainWindow.o \
+		moc_DebugEnd.o \
+		moc_DebugError.o \
 		moc_Help.o \
 		moc_MainWindow.o
 DIST          = command.txt \
@@ -240,10 +248,14 @@ DIST          = command.txt \
 		/Users/kangyixiao/Qt/5.12.3/clang_64/mkspecs/features/exceptions.prf \
 		/Users/kangyixiao/Qt/5.12.3/clang_64/mkspecs/features/yacc.prf \
 		/Users/kangyixiao/Qt/5.12.3/clang_64/mkspecs/features/lex.prf \
-		project1_minimal_basic.pro Exp.h \
+		project1_minimal_basic.pro DebugEnd.h \
+		DebugError.h \
+		Exp.h \
 		Help.h \
 		MainWindow.h \
-		Statement.h Exp.cpp \
+		Statement.h DebugEnd.cpp \
+		DebugError.cpp \
+		Exp.cpp \
 		Help.cpp \
 		Statement.cpp \
 		main.cpp \
@@ -266,7 +278,7 @@ include /Users/kangyixiao/Qt/5.12.3/clang_64/mkspecs/features/mac/sdk.mk
 first: all
 ####### Build rules
 
-project1_minimal_basic.app/Contents/MacOS/project1_minimal_basic: ui_Help.h ui_MainWindow.h $(OBJECTS)  
+project1_minimal_basic.app/Contents/MacOS/project1_minimal_basic: ui_DebugEnd.h ui_DebugError.h ui_Help.h ui_MainWindow.h $(OBJECTS)  
 	@test -d project1_minimal_basic.app/Contents/MacOS/ || mkdir -p project1_minimal_basic.app/Contents/MacOS/
 	$(LINK) $(LFLAGS) -o $(TARGET) $(OBJECTS) $(OBJCOMP) $(LIBS)
 
@@ -653,9 +665,9 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents /Users/kangyixiao/Qt/5.12.3/clang_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents Exp.h Help.h MainWindow.h Statement.h $(DISTDIR)/
-	$(COPY_FILE) --parents Exp.cpp Help.cpp Statement.cpp main.cpp MainWindow.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents Help.ui MainWindow.ui $(DISTDIR)/
+	$(COPY_FILE) --parents DebugEnd.h DebugError.h Exp.h Help.h MainWindow.h Statement.h $(DISTDIR)/
+	$(COPY_FILE) --parents DebugEnd.cpp DebugError.cpp Exp.cpp Help.cpp Statement.cpp main.cpp MainWindow.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents DebugEnd.ui DebugError.ui Help.ui MainWindow.ui $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -690,9 +702,23 @@ compiler_moc_predefs_clean:
 moc_predefs.h: /Users/kangyixiao/Qt/5.12.3/clang_64/mkspecs/features/data/dummy.cpp
 	/Library/Developer/CommandLineTools/usr/bin/clang++ -pipe -stdlib=libc++ -g -std=gnu++11 $(EXPORT_ARCH_ARGS) -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX11.0.sdk -mmacosx-version-min=10.12 -Wall -W -dM -E -o moc_predefs.h /Users/kangyixiao/Qt/5.12.3/clang_64/mkspecs/features/data/dummy.cpp
 
-compiler_moc_header_make_all: moc_Help.cpp moc_MainWindow.cpp
+compiler_moc_header_make_all: moc_DebugEnd.cpp moc_DebugError.cpp moc_Help.cpp moc_MainWindow.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_Help.cpp moc_MainWindow.cpp
+	-$(DEL_FILE) moc_DebugEnd.cpp moc_DebugError.cpp moc_Help.cpp moc_MainWindow.cpp
+moc_DebugEnd.cpp: DebugEnd.h \
+		/Users/kangyixiao/Qt/5.12.3/clang_64/lib/QtWidgets.framework/Headers/QMainWindow \
+		/Users/kangyixiao/Qt/5.12.3/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
+		moc_predefs.h \
+		/Users/kangyixiao/Qt/5.12.3/clang_64/bin/moc
+	/Users/kangyixiao/Qt/5.12.3/clang_64/bin/moc $(DEFINES) --include /Users/kangyixiao/EchoFile/coding/SJTU-SE/SE2322_HighLevelDataStructure/20210327_minimalBasic/moc_predefs.h -I/Users/kangyixiao/Qt/5.12.3/clang_64/mkspecs/macx-clang -I/Users/kangyixiao/EchoFile/coding/SJTU-SE/SE2322_HighLevelDataStructure/20210327_minimalBasic -I/Users/kangyixiao/Qt/5.12.3/clang_64/lib/QtWidgets.framework/Headers -I/Users/kangyixiao/Qt/5.12.3/clang_64/lib/QtGui.framework/Headers -I/Users/kangyixiao/Qt/5.12.3/clang_64/lib/QtCore.framework/Headers -I/Library/Developer/CommandLineTools/usr/include/c++/v1 -I/Library/Developer/CommandLineTools/usr/lib/clang/12.0.0/include -I/Library/Developer/CommandLineTools/SDKs/MacOSX11.0.sdk/usr/include -I/Library/Developer/CommandLineTools/usr/include -F/Users/kangyixiao/Qt/5.12.3/clang_64/lib DebugEnd.h -o moc_DebugEnd.cpp
+
+moc_DebugError.cpp: DebugError.h \
+		/Users/kangyixiao/Qt/5.12.3/clang_64/lib/QtWidgets.framework/Headers/QMainWindow \
+		/Users/kangyixiao/Qt/5.12.3/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
+		moc_predefs.h \
+		/Users/kangyixiao/Qt/5.12.3/clang_64/bin/moc
+	/Users/kangyixiao/Qt/5.12.3/clang_64/bin/moc $(DEFINES) --include /Users/kangyixiao/EchoFile/coding/SJTU-SE/SE2322_HighLevelDataStructure/20210327_minimalBasic/moc_predefs.h -I/Users/kangyixiao/Qt/5.12.3/clang_64/mkspecs/macx-clang -I/Users/kangyixiao/EchoFile/coding/SJTU-SE/SE2322_HighLevelDataStructure/20210327_minimalBasic -I/Users/kangyixiao/Qt/5.12.3/clang_64/lib/QtWidgets.framework/Headers -I/Users/kangyixiao/Qt/5.12.3/clang_64/lib/QtGui.framework/Headers -I/Users/kangyixiao/Qt/5.12.3/clang_64/lib/QtCore.framework/Headers -I/Library/Developer/CommandLineTools/usr/include/c++/v1 -I/Library/Developer/CommandLineTools/usr/lib/clang/12.0.0/include -I/Library/Developer/CommandLineTools/SDKs/MacOSX11.0.sdk/usr/include -I/Library/Developer/CommandLineTools/usr/include -F/Users/kangyixiao/Qt/5.12.3/clang_64/lib DebugError.h -o moc_DebugError.cpp
+
 moc_Help.cpp: Help.h \
 		/Users/kangyixiao/Qt/5.12.3/clang_64/lib/QtWidgets.framework/Headers/QWidget \
 		/Users/kangyixiao/Qt/5.12.3/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
@@ -709,6 +735,8 @@ moc_MainWindow.cpp: MainWindow.h \
 		/Users/kangyixiao/Qt/5.12.3/clang_64/lib/QtCore.framework/Headers/qtextstream.h \
 		/Users/kangyixiao/Qt/5.12.3/clang_64/lib/QtCore.framework/Headers/QEventLoop \
 		/Users/kangyixiao/Qt/5.12.3/clang_64/lib/QtCore.framework/Headers/qeventloop.h \
+		/Users/kangyixiao/Qt/5.12.3/clang_64/lib/QtWidgets.framework/Headers/QTextBrowser \
+		/Users/kangyixiao/Qt/5.12.3/clang_64/lib/QtWidgets.framework/Headers/qtextbrowser.h \
 		Statement.h \
 		/Users/kangyixiao/Qt/5.12.3/clang_64/lib/QtCore.framework/Headers/QString \
 		/Users/kangyixiao/Qt/5.12.3/clang_64/lib/QtCore.framework/Headers/qstring.h \
@@ -718,6 +746,8 @@ moc_MainWindow.cpp: MainWindow.h \
 		Help.h \
 		/Users/kangyixiao/Qt/5.12.3/clang_64/lib/QtWidgets.framework/Headers/QWidget \
 		/Users/kangyixiao/Qt/5.12.3/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
+		DebugEnd.h \
+		DebugError.h \
 		moc_predefs.h \
 		/Users/kangyixiao/Qt/5.12.3/clang_64/bin/moc
 	/Users/kangyixiao/Qt/5.12.3/clang_64/bin/moc $(DEFINES) --include /Users/kangyixiao/EchoFile/coding/SJTU-SE/SE2322_HighLevelDataStructure/20210327_minimalBasic/moc_predefs.h -I/Users/kangyixiao/Qt/5.12.3/clang_64/mkspecs/macx-clang -I/Users/kangyixiao/EchoFile/coding/SJTU-SE/SE2322_HighLevelDataStructure/20210327_minimalBasic -I/Users/kangyixiao/Qt/5.12.3/clang_64/lib/QtWidgets.framework/Headers -I/Users/kangyixiao/Qt/5.12.3/clang_64/lib/QtGui.framework/Headers -I/Users/kangyixiao/Qt/5.12.3/clang_64/lib/QtCore.framework/Headers -I/Library/Developer/CommandLineTools/usr/include/c++/v1 -I/Library/Developer/CommandLineTools/usr/lib/clang/12.0.0/include -I/Library/Developer/CommandLineTools/SDKs/MacOSX11.0.sdk/usr/include -I/Library/Developer/CommandLineTools/usr/include -F/Users/kangyixiao/Qt/5.12.3/clang_64/lib MainWindow.h -o moc_MainWindow.cpp
@@ -726,9 +756,17 @@ compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
-compiler_uic_make_all: ui_Help.h ui_MainWindow.h
+compiler_uic_make_all: ui_DebugEnd.h ui_DebugError.h ui_Help.h ui_MainWindow.h
 compiler_uic_clean:
-	-$(DEL_FILE) ui_Help.h ui_MainWindow.h
+	-$(DEL_FILE) ui_DebugEnd.h ui_DebugError.h ui_Help.h ui_MainWindow.h
+ui_DebugEnd.h: DebugEnd.ui \
+		/Users/kangyixiao/Qt/5.12.3/clang_64/bin/uic
+	/Users/kangyixiao/Qt/5.12.3/clang_64/bin/uic DebugEnd.ui -o ui_DebugEnd.h
+
+ui_DebugError.h: DebugError.ui \
+		/Users/kangyixiao/Qt/5.12.3/clang_64/bin/uic
+	/Users/kangyixiao/Qt/5.12.3/clang_64/bin/uic DebugError.ui -o ui_DebugError.h
+
 ui_Help.h: Help.ui \
 		/Users/kangyixiao/Qt/5.12.3/clang_64/bin/uic
 	/Users/kangyixiao/Qt/5.12.3/clang_64/bin/uic Help.ui -o ui_Help.h
@@ -748,6 +786,18 @@ compiler_lex_clean:
 compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean compiler_uic_clean 
 
 ####### Compile
+
+DebugEnd.o: DebugEnd.cpp DebugEnd.h \
+		/Users/kangyixiao/Qt/5.12.3/clang_64/lib/QtWidgets.framework/Headers/QMainWindow \
+		/Users/kangyixiao/Qt/5.12.3/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
+		ui_DebugEnd.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o DebugEnd.o DebugEnd.cpp
+
+DebugError.o: DebugError.cpp DebugError.h \
+		/Users/kangyixiao/Qt/5.12.3/clang_64/lib/QtWidgets.framework/Headers/QMainWindow \
+		/Users/kangyixiao/Qt/5.12.3/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
+		ui_DebugError.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o DebugError.o DebugError.cpp
 
 Exp.o: Exp.cpp Exp.h \
 		/Users/kangyixiao/Qt/5.12.3/clang_64/lib/QtCore.framework/Headers/QString \
@@ -779,6 +829,8 @@ main.o: main.cpp MainWindow.h \
 		/Users/kangyixiao/Qt/5.12.3/clang_64/lib/QtCore.framework/Headers/qtextstream.h \
 		/Users/kangyixiao/Qt/5.12.3/clang_64/lib/QtCore.framework/Headers/QEventLoop \
 		/Users/kangyixiao/Qt/5.12.3/clang_64/lib/QtCore.framework/Headers/qeventloop.h \
+		/Users/kangyixiao/Qt/5.12.3/clang_64/lib/QtWidgets.framework/Headers/QTextBrowser \
+		/Users/kangyixiao/Qt/5.12.3/clang_64/lib/QtWidgets.framework/Headers/qtextbrowser.h \
 		Statement.h \
 		/Users/kangyixiao/Qt/5.12.3/clang_64/lib/QtCore.framework/Headers/QString \
 		/Users/kangyixiao/Qt/5.12.3/clang_64/lib/QtCore.framework/Headers/qstring.h \
@@ -788,6 +840,8 @@ main.o: main.cpp MainWindow.h \
 		Help.h \
 		/Users/kangyixiao/Qt/5.12.3/clang_64/lib/QtWidgets.framework/Headers/QWidget \
 		/Users/kangyixiao/Qt/5.12.3/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
+		DebugEnd.h \
+		DebugError.h \
 		/Users/kangyixiao/Qt/5.12.3/clang_64/lib/QtWidgets.framework/Headers/QApplication \
 		/Users/kangyixiao/Qt/5.12.3/clang_64/lib/QtWidgets.framework/Headers/qapplication.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o main.cpp
@@ -801,6 +855,8 @@ MainWindow.o: MainWindow.cpp MainWindow.h \
 		/Users/kangyixiao/Qt/5.12.3/clang_64/lib/QtCore.framework/Headers/qtextstream.h \
 		/Users/kangyixiao/Qt/5.12.3/clang_64/lib/QtCore.framework/Headers/QEventLoop \
 		/Users/kangyixiao/Qt/5.12.3/clang_64/lib/QtCore.framework/Headers/qeventloop.h \
+		/Users/kangyixiao/Qt/5.12.3/clang_64/lib/QtWidgets.framework/Headers/QTextBrowser \
+		/Users/kangyixiao/Qt/5.12.3/clang_64/lib/QtWidgets.framework/Headers/qtextbrowser.h \
 		Statement.h \
 		/Users/kangyixiao/Qt/5.12.3/clang_64/lib/QtCore.framework/Headers/QString \
 		/Users/kangyixiao/Qt/5.12.3/clang_64/lib/QtCore.framework/Headers/qstring.h \
@@ -810,8 +866,16 @@ MainWindow.o: MainWindow.cpp MainWindow.h \
 		Help.h \
 		/Users/kangyixiao/Qt/5.12.3/clang_64/lib/QtWidgets.framework/Headers/QWidget \
 		/Users/kangyixiao/Qt/5.12.3/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
+		DebugEnd.h \
+		DebugError.h \
 		ui_MainWindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o MainWindow.o MainWindow.cpp
+
+moc_DebugEnd.o: moc_DebugEnd.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_DebugEnd.o moc_DebugEnd.cpp
+
+moc_DebugError.o: moc_DebugError.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_DebugError.o moc_DebugError.cpp
 
 moc_Help.o: moc_Help.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_Help.o moc_Help.cpp
