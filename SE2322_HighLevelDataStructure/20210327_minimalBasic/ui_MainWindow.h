@@ -47,7 +47,7 @@ public:
     QHBoxLayout *horizontalLayout;
     QPushButton *clearButton;
     QPushButton *runButton;
-    QPushButton *pushButton;
+    QPushButton *debugButton;
     QPushButton *loadButton;
     QLabel *inputlabel;
     QLineEdit *codeLineEdit;
@@ -172,10 +172,10 @@ public:
 
         horizontalLayout->addWidget(runButton);
 
-        pushButton = new QPushButton(centralwidget);
-        pushButton->setObjectName(QString::fromUtf8("pushButton"));
+        debugButton = new QPushButton(centralwidget);
+        debugButton->setObjectName(QString::fromUtf8("debugButton"));
 
-        horizontalLayout->addWidget(pushButton);
+        horizontalLayout->addWidget(debugButton);
 
         loadButton = new QPushButton(centralwidget);
         loadButton->setObjectName(QString::fromUtf8("loadButton"));
@@ -230,7 +230,7 @@ public:
         syntaxLabel->setText(QApplication::translate("MainWindow", "\345\217\245\346\263\225\344\270\216\350\257\255\346\263\225\346\240\221", nullptr));
         clearButton->setText(QApplication::translate("MainWindow", "\346\270\205\347\251\272\344\273\243\347\240\201 (CLEAR)", nullptr));
         runButton->setText(QApplication::translate("MainWindow", "\346\211\247\350\241\214\344\273\243\347\240\201 (RUN)", nullptr));
-        pushButton->setText(QApplication::translate("MainWindow", "\350\260\203\350\257\225/\345\215\225\346\255\245 (Debug/Step)", nullptr));
+        debugButton->setText(QApplication::translate("MainWindow", "\350\260\203\350\257\225/\345\215\225\346\255\245 (Debug/Step)", nullptr));
         loadButton->setText(QApplication::translate("MainWindow", "\350\275\275\345\205\245\344\273\243\347\240\201 (LOAD)", nullptr));
         inputlabel->setText(QApplication::translate("MainWindow", "\345\221\275\344\273\244\350\276\223\345\205\245\347\252\227\345\217\243", nullptr));
         messageLabel->setText(QApplication::translate("MainWindow", "\346\217\220\347\244\272\344\277\241\346\201\257", nullptr));

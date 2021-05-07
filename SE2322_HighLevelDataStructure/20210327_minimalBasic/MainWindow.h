@@ -27,7 +27,7 @@ QT_END_NAMESPACE
 typedef enum { CON_ERR=-1, GREATER, EQUAL, LESS} condition_t;
 
 typedef enum { NOTYPE=-1, ADD, SUB, MUL, DIV, EXP, LBRC, RBRC, NUM, VAR
-  } token_t; // LBRC: left bracket RBRC: right bracket
+             } token_t; // LBRC: left bracket RBRC: right bracket
 
 typedef QString stmt_t  ;
 typedef QString cmd_t  ;
@@ -64,6 +64,7 @@ private:
     int cmdNum(cmd_t Cmd);//return -1 if can't find or return the number in cmdTab.
     void showHelpWin();
     void drawTree();
+    void drawSingleTree( map<int, Statement*>::iterator& it);
     void drawExpBranch(Exp *exp, int indentation);
     void recurPrintExp(Node *n,  int indentation);
     QEventLoop loop;
@@ -72,8 +73,8 @@ private:
     QList<QPair<int, QColor>> errorHighLights;
     QList<int>errorIndex;
     QTextBrowser* code;
-     QTextCursor cursor;
-
+    QTextCursor cursor;
+    map<int, Statement*>::iterator debugIt;
 
 private slots:
     void codeLineEdit_return();
@@ -82,8 +83,12 @@ private slots:
     void on_loadButton_clicked();
     void loadStat();
     void runApp();
+    map<int, Statement*>::iterator runStmt(map<int, Statement*>::iterator &it);
     void getCodeLineVal();
     void getCodeLineStrVal();
+    void debug();
+    void stepIn();
+
 
     parse_t parse_line(QString &line);
     parse_t parse_stmt(QString &ptr, stmt_t& stmt);

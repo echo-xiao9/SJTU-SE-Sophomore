@@ -10,6 +10,8 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->codeLineEdit, SIGNAL(returnPressed()), this, SLOT(codeLineEdit_return()));
     connect(ui->loadButton,SIGNAL(clicked()),this,SLOT(on_loadButton_clicked()));
     connect(ui->runButton, SIGNAL(clicked()), this, SLOT(runApp()));
+    connect(ui->debugButton, SIGNAL(clicked()), this, SLOT(debug()));
+
     curLine=0;
     code=ui->codeBrowser;
     cursor = QTextCursor (code->document());
@@ -161,108 +163,12 @@ void MainWindow::runApp(){
         QString par="";
         QString result = "";
         drawTree();
-         highLightErrorCode();
+        highLightErrorCode();
         updateSyntaxDisplayBroser();
         map<int, Statement*>::iterator it = statements.begin();
         while(it !=statements.end()){
-            i++;
-            if(i>100000) throw loop1; // Bug: loop forever
-            switch (it->second->type) {
-
-            // 0: INPUTS,1:INPUT, 2：LET, 3：GOTO, 4:IF,  5:PRINTF, 6: PRINT， 7:REM, 8:END,9:THEN
-            case 0: // INPUTS
-                try{
-                ui->codeLineEdit-> setPlaceholderText(" ? ");
-                disconnect(ui->codeLineEdit, SIGNAL(returnPressed()), this, SLOT(codeLineEdit_return()));
-                connect(ui->codeLineEdit, SIGNAL(returnPressed()), this, SLOT(getCodeLineStrVal()));
-                loop.exec();
-                it->second->runSingleStmt(inputStr);
-                disconnect(ui->codeLineEdit, SIGNAL(returnPressed()), this, SLOT(getCodeLineStrVal()));
-                connect(ui->codeLineEdit, SIGNAL(returnPressed()), this, SLOT(codeLineEdit_return()));
-                ui->codeLineEdit-> setPlaceholderText("");
-            }catch(QString error){
-                    ui->messageLineEdit->setText(error);
-                    disconnect(ui->codeLineEdit, SIGNAL(returnPressed()), this, SLOT(getCodeLineStrVal()));
-                    connect(ui->codeLineEdit, SIGNAL(returnPressed()), this, SLOT(codeLineEdit_return()));
-                }
-                it++;
-                break;
-            case 1://INPUT
-                try{
-                ui->codeLineEdit-> setPlaceholderText(" ? ");
-                disconnect(ui->codeLineEdit, SIGNAL(returnPressed()), this, SLOT(codeLineEdit_return()));
-                connect(ui->codeLineEdit, SIGNAL(returnPressed()), this, SLOT(getCodeLineVal()));
-                loop.exec();
-                it->second->runSingleStmt(inputNumTmp);
-                disconnect(ui->codeLineEdit, SIGNAL(returnPressed()), this, SLOT(getCodeLineVal()));
-                connect(ui->codeLineEdit, SIGNAL(returnPressed()), this, SLOT(codeLineEdit_return()));
-                ui->codeLineEdit-> setPlaceholderText("");
-            }catch(QString error){
-                    ui->messageLineEdit->setText(error);
-                    disconnect(ui->codeLineEdit, SIGNAL(returnPressed()), this, SLOT(getCodeLineVal()));
-                    connect(ui->codeLineEdit, SIGNAL(returnPressed()), this, SLOT(codeLineEdit_return()));
-                }
-                it++;
-                break;
-            case 2: //LET
-                it->second->runSingleStmt(par);
-                it++;
-                break;
-            case 3: // GOTO
-                result  = it->second->runSingleStmt(par); //the target index
-                curLine = result.toInt();
-                for ( it = statements.begin(); it != statements.end(); it++)
-                {
-                    if((*it).second->index == curLine) {
-                        break;
-                    }
-                }
-                if(it==statements.end()){// haven't find the index
-                    QString error ="invalid line number in GOTO statement";
-                    throw error;
-                }
-
-                break;
-            case 4: //IF
-                curLine= it->second->runSingleStmt(par).toInt();
-                if(curLine== -1){
-                    it++;
-                    break;
-                }
-                for ( it = statements.begin(); it != statements.end(); it++)
-                {
-                    if((*it).second->index == curLine) {
-                        break;
-                    }
-                }
-                if(it==statements.end()){// haven't find the index
-                    QString error = "invalid line number in IF THEN statement";
-                    throw error;
-                }
-                break;
-            case 5: // PRINTF
-                result= it->second->runSingleStmt(par);
-                //    ui->resultBrowser->append(result);
-                results.push_back(result);
-                it++;
-                break;
-            case 6: // PRINT
-                result= it->second->runSingleStmt(par);
-                //    ui->resultBrowser->append(result);
-                results.push_back(result);
-                it++;
-                break;
-            case 7: // REM
-                it++;
-                break;
-            case 8: // END
-                it = statements.end();
-                break;
-            default: //ERROR
-                it++;
-                break;
-            }
-            if(it==statements.end())break;
+            map<int, Statement*>::iterator nextIt = runStmt(it);
+            if(nextIt==statements.end())break;
         }
         updateVarBrowser();
         updateResultBrowser();
@@ -274,6 +180,107 @@ void MainWindow::runApp(){
         variables.clear();
     }
 };
+
+map<int, Statement*>::iterator MainWindow:: runStmt(map<int, Statement*>::iterator &it){
+    curLine=0;
+    QString par="";
+    QString result = "";
+    switch (it->second->type) {
+    // 0: INPUTS,1:INPUT, 2：LET, 3：GOTO, 4:IF,  5:PRINTF, 6: PRINT， 7:REM, 8:END,9:THEN
+    case 0: // INPUTS
+        try{
+        ui->codeLineEdit-> setPlaceholderText(" ? ");
+        disconnect(ui->codeLineEdit, SIGNAL(returnPressed()), this, SLOT(codeLineEdit_return()));
+        connect(ui->codeLineEdit, SIGNAL(returnPressed()), this, SLOT(getCodeLineStrVal()));
+        loop.exec();
+        it->second->runSingleStmt(inputStr);
+        disconnect(ui->codeLineEdit, SIGNAL(returnPressed()), this, SLOT(getCodeLineStrVal()));
+        connect(ui->codeLineEdit, SIGNAL(returnPressed()), this, SLOT(codeLineEdit_return()));
+        ui->codeLineEdit-> setPlaceholderText("");
+    }catch(QString error){
+            ui->messageLineEdit->setText(error);
+            disconnect(ui->codeLineEdit, SIGNAL(returnPressed()), this, SLOT(getCodeLineStrVal()));
+            connect(ui->codeLineEdit, SIGNAL(returnPressed()), this, SLOT(codeLineEdit_return()));
+        }
+        it++;
+        break;
+    case 1://INPUT
+        try{
+        ui->codeLineEdit-> setPlaceholderText(" ? ");
+        disconnect(ui->codeLineEdit, SIGNAL(returnPressed()), this, SLOT(codeLineEdit_return()));
+        connect(ui->codeLineEdit, SIGNAL(returnPressed()), this, SLOT(getCodeLineVal()));
+        loop.exec();
+        it->second->runSingleStmt(inputNumTmp);
+        disconnect(ui->codeLineEdit, SIGNAL(returnPressed()), this, SLOT(getCodeLineVal()));
+        connect(ui->codeLineEdit, SIGNAL(returnPressed()), this, SLOT(codeLineEdit_return()));
+        ui->codeLineEdit-> setPlaceholderText("");
+    }catch(QString error){
+            ui->messageLineEdit->setText(error);
+            disconnect(ui->codeLineEdit, SIGNAL(returnPressed()), this, SLOT(getCodeLineVal()));
+            connect(ui->codeLineEdit, SIGNAL(returnPressed()), this, SLOT(codeLineEdit_return()));
+        }
+        it++;
+        break;
+    case 2: //LET
+        it->second->runSingleStmt(par);
+        it++;
+        break;
+    case 3: // GOTO
+        result  = it->second->runSingleStmt(par); //the target index
+        curLine = result.toInt();
+        for ( it = statements.begin(); it != statements.end(); it++)
+        {
+            if((*it).second->index == curLine) {
+                break;
+            }
+        }
+        if(it==statements.end()){// haven't find the index
+            QString error ="invalid line number in GOTO statement";
+            throw error;
+        }
+
+        break;
+    case 4: //IF
+        curLine= it->second->runSingleStmt(par).toInt();
+        if(curLine== -1){
+            it++;
+            break;
+        }
+        for ( it = statements.begin(); it != statements.end(); it++)
+        {
+            if((*it).second->index == curLine) {
+                break;
+            }
+        }
+        if(it==statements.end()){// haven't find the index
+            QString error = "invalid line number in IF THEN statement";
+            throw error;
+        }
+        break;
+    case 5: // PRINTF
+        result= it->second->runSingleStmt(par);
+        //    ui->resultBrowser->append(result);
+        results.push_back(result);
+        it++;
+        break;
+    case 6: // PRINT
+        result= it->second->runSingleStmt(par);
+        //    ui->resultBrowser->append(result);
+        results.push_back(result);
+        it++;
+        break;
+    case 7: // REM
+        it++;
+        break;
+    case 8: // END
+        it = statements.end();
+        break;
+    default: //ERROR
+        it++;
+        break;
+    }
+    return it;
+}
 
 
 void MainWindow::getCodeLineVal(){
@@ -287,12 +294,29 @@ void MainWindow::getCodeLineVal(){
     loop.exit();
     return;
 }
+
 void MainWindow::getCodeLineStrVal(){
     inputStr = ui->codeLineEdit->text();
     inputStr = inputStr.trimmed();
 
     loop.exit();
     return;
+}
+
+void MainWindow::debug(){
+    ui->loadButton->setEnabled(false);
+    ui->clearButton->setEnabled(false);
+    ui->syntaxDisplayBroser->clear();
+    debugIt = statements.begin();
+    disconnect(ui->debugButton, SIGNAL(clicked()), this, SLOT(debug()));
+    connect(ui->debugButton, SIGNAL(clicked()), this, SLOT(stepIn()));
+    stepIn();
+}
+
+void MainWindow::stepIn(){
+    QPair<int,QColor>error(debugIt->second->startPos,QColor(100, 255, 100));
+    errorHighLights.push_back(error);
+    highLightErrorCode();
 }
 
 void MainWindow:: showHelpWin(){
@@ -315,7 +339,6 @@ void MainWindow::recurPrintExp(Node *n,  int indentation){
     if(n->right) recurPrintExp(n->right, indentation+1);
 }
 
-
 void MainWindow:: drawTree(){
     // -1 means no type the type order from 0-6 is
     // 0:INPUT   1:LET   2:GOTO  3:IF   4:PRINT    5:REM   6:END
@@ -324,73 +347,76 @@ void MainWindow:: drawTree(){
     QString synBranch;
     map<int, Statement*>::iterator it = statements.begin();
     while(it !=statements.end()){
-        switch (it->second->type) {
-        case 0: //INPUTS
-            synTree.push_back(QString::number(it->first)+" INPUTS");
-            synBranch =   "    " +it->second->tree();
-            synTree.push_back(synBranch);
-            break;
-        case 1: //INPUT
-            synTree.push_back(QString::number(it->first)+" INPUT");
-            synBranch =   "    " +it->second->tree();
-            synTree.push_back(synBranch);
-            break;
-        case 2: //LET
-            synTree.push_back(QString::number(it->first)+" LET =");
-            synBranch =   "    " +it->second->tree();
-            synTree.push_back(synBranch);
-            drawExpBranch(it->second->exp, 1);
-            break;
-        case 3: //GOTO
-            synTree.push_back(QString::number(it->first)+ " GOTO");
-            synBranch =   "    " +it->second->tree();
-            synTree.push_back(synBranch);
-            break;
-
-        case 4: //IF
-            synTree.push_back( QString::number(it->first)+" IF  THEN");
-            drawExpBranch(it->second->exp, 1);
-            synBranch =   "    "+it->second->tree();
-            synTree.push_back(synBranch);
-            drawExpBranch(it->second->exp1, 1);
-            synBranch =   "    "+it->second->tree(1);
-            synTree.push_back(synBranch);
-            break;
-        case 5: // PRINTF
-            synTree.push_back( QString::number(it->first)+" PRINTF");
-            synBranch =   "    " +it->second->tree(0);
-            synTree.push_back(synBranch);
-            synBranch =   "    " +it->second->tree(1);
-            synTree.push_back(synBranch);
-            break;
-
-        case 6:  //PRINT
-            synTree.push_back( QString::number(it->first)+" PRINT");
-            drawExpBranch(it->second->exp, 1);
-            break;
-
-        case 7:  //REM
-            synTree.push_back( QString::number(it->first)+" REM");
-            synBranch =   "    " +it->second->tree();
-            synTree.push_back(synBranch);
-            break;
-
-        case 8: //end
-            synTree.push_back(QString::number(it->first)+" END");
-            break;
-
-        case 9: //error
-            synTree.push_back(QString::number(it->first)+" Error");
-            break;
-
-        default:
-            break;
-
-        }
-
+        drawSingleTree(it);
         it++;
     }
+}
 
+
+void MainWindow:: drawSingleTree( map<int, Statement*>::iterator& it){
+    QString synBranch;
+    switch (it->second->type) {
+    case 0: //INPUTS
+        synTree.push_back(QString::number(it->first)+" INPUTS");
+        synBranch =   "    " +it->second->tree();
+        synTree.push_back(synBranch);
+        break;
+    case 1: //INPUT
+        synTree.push_back(QString::number(it->first)+" INPUT");
+        synBranch =   "    " +it->second->tree();
+        synTree.push_back(synBranch);
+        break;
+    case 2: //LET
+        synTree.push_back(QString::number(it->first)+" LET =");
+        synBranch =   "    " +it->second->tree();
+        synTree.push_back(synBranch);
+        drawExpBranch(it->second->exp, 1);
+        break;
+    case 3: //GOTO
+        synTree.push_back(QString::number(it->first)+ " GOTO");
+        synBranch =   "    " +it->second->tree();
+        synTree.push_back(synBranch);
+        break;
+
+    case 4: //IF
+        synTree.push_back( QString::number(it->first)+" IF  THEN");
+        drawExpBranch(it->second->exp, 1);
+        synBranch =   "    "+it->second->tree();
+        synTree.push_back(synBranch);
+        drawExpBranch(it->second->exp1, 1);
+        synBranch =   "    "+it->second->tree(1);
+        synTree.push_back(synBranch);
+        break;
+    case 5: // PRINTF
+        synTree.push_back( QString::number(it->first)+" PRINTF");
+        synBranch =   "    " +it->second->tree(0);
+        synTree.push_back(synBranch);
+        synBranch =   "    " +it->second->tree(1);
+        synTree.push_back(synBranch);
+        break;
+
+    case 6:  //PRINT
+        synTree.push_back( QString::number(it->first)+" PRINT");
+        drawExpBranch(it->second->exp, 1);
+        break;
+
+    case 7:  //REM
+        synTree.push_back( QString::number(it->first)+" REM");
+        synBranch =   "    " +it->second->tree();
+        synTree.push_back(synBranch);
+        break;
+
+    case 8: //end
+        synTree.push_back(QString::number(it->first)+" END");
+        break;
+
+    case 9: //error
+        synTree.push_back(QString::number(it->first)+" Error");
+        break;
+
+    default:
+        break;
+    }
 }
 
 parse_t MainWindow:: parse_line(QString &line){

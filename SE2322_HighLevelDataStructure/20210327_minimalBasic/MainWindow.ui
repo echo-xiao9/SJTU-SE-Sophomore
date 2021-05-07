@@ -136,7 +136,7 @@ rgb(255, 49, 8)
          </widget>
         </item>
         <item>
-         <widget class="QPushButton" name="pushButton">
+         <widget class="QPushButton" name="debugButton">
           <property name="text">
            <string>调试/单步 (Debug/Step)</string>
           </property>
