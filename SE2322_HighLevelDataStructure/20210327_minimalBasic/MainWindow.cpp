@@ -1,5 +1,6 @@
 #include "MainWindow.h"
 #include "ui_MainWindow.h"
+#include <QList>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -75,11 +76,11 @@ void MainWindow::updateVarBrowser(){
     for (int i = 0; i < variables.size(); i++)
     {
         appendLine =variables[i].varName +": " ;
-        qDebug()<<"type:"<<variables[i].type<<endl;
+
         if(variables[i].type==0) appendLine += "INT = ";
         else appendLine += "STR = ";
         appendLine +=variables[i].varValue;
-        qDebug()<<appendLine<<endl;
+        qDebug()<<variables[i].varName<<" "<<variables[i].varValue<<endl;
         ui->varBrowser->append(appendLine);
     }
 }
@@ -122,6 +123,10 @@ void MainWindow::clearAppStatus(){
     //clear the status in the program, including the content on GUI , syntax tree and results.
     synTree.clear();
     results.clear();
+    //debug
+    variables.clear();
+
+
     ui->codeLineEdit->clear();
     ui->messageLineEdit->clear();
     ui->resultBrowser->clear();
@@ -174,16 +179,18 @@ void MainWindow::runApp(){
         while(it !=statements.end()){
             map<int, Statement*>::iterator nextIt = runStmt(it);
             if(nextIt==statements.end())break;
+            updateVarBrowser();
+            updateResultBrowser();
         }
-        updateVarBrowser();
-        updateResultBrowser();
         ui->messageLineEdit ->setText("Program ended successfully.");
-        variables.clear();
         ui->codeLineEdit->clear();
+
     }catch(QString s){
         ui->messageLineEdit ->setText(s);
-        variables.clear();
     }
+    updateVarBrowser();
+    updateResultBrowser();
+    variables.clear();
 };
 
 map<int, Statement*>::iterator MainWindow:: runStmt(map<int, Statement*>::iterator &it){
@@ -290,7 +297,6 @@ map<int, Statement*>::iterator MainWindow:: runStmt(map<int, Statement*>::iterat
 
 void MainWindow::getCodeLineVal(){
     QString errorNum ="Invaild number in input statement!";
-    //    ui->codeLineEdit-> setPlaceholderText(" ? ");
     inputNumTmp = ui->codeLineEdit->text();
     inputNumTmp = inputNumTmp.trimmed();
     for(int i=0;i<inputNumTmp.length();i++){
@@ -309,6 +315,7 @@ void MainWindow::getCodeLineStrVal(){
 }
 
 void MainWindow::debug(){
+    clearAppStatus();
     ui->loadButton->setEnabled(false);
     ui->clearButton->setEnabled(false);
     ui->syntaxDisplayBroser->clear();
@@ -320,6 +327,7 @@ void MainWindow::debug(){
     stepIn();
 }
 
+
 void MainWindow::stepIn(){
     QPair<int,QColor>error(debugIt->second->startPos,QColor(100, 255, 100));
 
@@ -327,36 +335,43 @@ void MainWindow::stepIn(){
     highLightErrorCode();
     errorHighLights.pop_back();
 
-    // syntax tree
-    ui->syntaxDisplayBroser->clear();
-    synTree.clear();
-    drawSingleTree(debugIt);
-    updateSyntaxDisplayBroser();
+    try{
+        // syntax tree
+        ui->syntaxDisplayBroser->clear();
+        synTree.clear();
+        drawSingleTree(debugIt);
+        updateSyntaxDisplayBroser();
 
-    // next statement
-    runStmt(debugIt);
+        // next statement
+        runStmt(debugIt);
 
-    // update variable
-    updateVarBrowser();
-    updateResultBrowser();
-    // if reach error
-    if(debugIt->second->type==9){
-        debugError -> show();
-        disconnect(ui->debugButton, SIGNAL(clicked()), this, SLOT(stepIn()));
-        connect(ui->debugButton, SIGNAL(clicked()), this, SLOT(debug()));
-        ui->loadButton->setEnabled(true);
-        ui->clearButton->setEnabled(true);
+        // update variable
+        updateVarBrowser();
+        updateResultBrowser();
+        // if reach error
+        if(debugIt->second->type==9){
+            debugError -> show();
+            toNormal();
+        }
+        // if reach end
+        else if(debugIt==statements.end()){
+            debugEnd ->show();
+            toNormal();
+        }
+    }catch(QString s){
+        ui->codeLineEdit->setText(s);
+        toNormal();
     }
-   // if reach end
-    else if(debugIt==statements.end()){
-        debugEnd ->show();
-        disconnect(ui->debugButton, SIGNAL(clicked()), this, SLOT(stepIn()));
-        connect(ui->debugButton, SIGNAL(clicked()), this, SLOT(debug()));
-        ui->loadButton->setEnabled(true);
-        ui->clearButton->setEnabled(true);
-    }
-
 }
+
+void MainWindow::toNormal(){
+    disconnect(ui->debugButton, SIGNAL(clicked()), this, SLOT(stepIn()));
+    connect(ui->debugButton, SIGNAL(clicked()), this, SLOT(debug()));
+    ui->loadButton->setEnabled(true);
+    ui->clearButton->setEnabled(true);
+    debugIt=statements.begin();
+}
+
 
 void MainWindow:: showHelpWin(){
     Help *helpWin = new Help();
@@ -586,6 +601,30 @@ parse_t MainWindow:: parse_line(QString &line){
             //LET、PRINT、INPUT可以不带行号直接输入执行
             // 0:INPUT   1:LET   2:GOTO  3:IF   4:PRINT    5:REM   6:END
             // 0: INPUTS,1:INPUT, 2：LET, 3：GOTO, 4:IF,  5:PRINTF, 6: PRINT， 7:REM, 8:END,9:THEN
+            case 0://inputs
+                if(parse_var(lineTmp, varName)==PARSE_ERR) throw stmtError;
+                try{
+                ui->codeLineEdit-> setPlaceholderText(" ? ");
+                disconnect(ui->codeLineEdit, SIGNAL(returnPressed()), this, SLOT(codeLineEdit_return()));
+                connect(ui->codeLineEdit, SIGNAL(returnPressed()), this, SLOT(getCodeLineStrVal()));
+                loop.exec();
+                v.varName = varName;
+                v.varValue = inputStr;
+                v.type=1;
+                variables.push_back(v);
+                updateVarBrowser();
+                ui->codeLineEdit-> setPlaceholderText("");
+                ui->codeLineEdit->clear();
+                connect(ui->codeLineEdit, SIGNAL(returnPressed()), this, SLOT(codeLineEdit_return()));
+
+            }catch(QString error){
+
+                    ui->codeLineEdit->setPlaceholderText("");
+                    ui->messageLineEdit->setText(error);
+                    disconnect(ui->codeLineEdit, SIGNAL(returnPressed()), this, SLOT(getCodeLineStrVal()));
+                    connect(ui->codeLineEdit, SIGNAL(returnPressed()), this, SLOT(codeLineEdit_return()));
+                }
+                break;
             case 1: // input
                 if(parse_var(lineTmp, varName)==PARSE_ERR) throw stmtError;
                 try{
@@ -618,6 +657,14 @@ parse_t MainWindow:: parse_line(QString &line){
                 newStmt->runSingleStmt("");
                 updateVarBrowser();
                 break;
+            case 5://printf
+                if(parse_exp(lineTmp, exp)==PARSE_ERR)throw numError;
+                newStmt = new PrintfStmt(lineNum,exp);
+                result = newStmt->runSingleStmt("");
+                results.push_back(result);
+                updateResultBrowser();
+                break;
+
             case 6: //print
                 if(parse_exp(lineTmp, exp)==PARSE_ERR)throw numError;
                 newStmt = new PrintStmt(lineNum,exp);
@@ -744,7 +791,6 @@ parse_t MainWindow:: parse_exp(QString &ptr, QString& exp){
     QString tmp = ptr;
     tmp=tmp.trimmed();
     if(IS_END(tmp))return PARSE_ERR;
-    tmp=tmp.remove(QRegExp("\\s"));//remove all the white space
     if(IS_END(tmp))return PARSE_ERR;
     //    if(!judge_infix(tmp.toStdString())) return PARSE_ERR;
     exp = tmp;

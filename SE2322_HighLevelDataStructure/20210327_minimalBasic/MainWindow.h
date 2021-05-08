@@ -91,7 +91,7 @@ private slots:
     void getCodeLineStrVal();
     void debug();
     void stepIn();
-
+    void toNormal();
 
     parse_t parse_line(QString &line);
     parse_t parse_stmt(QString &ptr, stmt_t& stmt);

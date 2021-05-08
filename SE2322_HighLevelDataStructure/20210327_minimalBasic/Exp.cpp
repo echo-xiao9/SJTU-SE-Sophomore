@@ -223,6 +223,7 @@ int Exp::recurEvaluate(Node *t){
     case 0: //num
         return t->val.toInt();
     case 1://var
+        qDebug()<<t->getVarVal();
         return t->getVarVal();
     default: //op
         int val1=recurEvaluate(t->left);

@@ -44,8 +44,11 @@ struct Node{
         QString errorVar="can't find the variable!";
         // return -1 if is not variable or can't find the exist variable
         if(type!=1)return -111111;
+
         for(int i=0;i<variables.size();i++){
             if(variables[i].varName == val){
+                if(variables[i].type == 1)
+                    throw QString("The Print instruction does not support string types!");
                 return variables[i].varValue.toInt();
             }
         }

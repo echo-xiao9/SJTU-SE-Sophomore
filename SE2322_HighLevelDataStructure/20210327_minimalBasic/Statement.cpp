@@ -86,13 +86,16 @@ QString LetStmt::runSingleStmt(QString par){
         for (auto it = variables.begin(); it != variables.end();it++) {
             if(it->varName == letVarName){
                 if(it->type == 1)throw QString("The variable declared before was a number!");
-                it->varValue =exp -> value; //update the value of exist var
+                it->varValue =QString::number(exp -> value); //update the value of exist var
+                qDebug()<<it->varValue<<endl;
                 flag = true;
                 return "";
             }
         }
+        if(flag==false){
         var newVar(letVarName, QString::number(exp->value),0);
         variables.push_back(newVar);
+        }
     }else{ // is a string
         for(auto it = variables.begin();it !=variables.end(); it++){
             if(it->varName == letVarName){
@@ -214,9 +217,10 @@ QString PrintfStmt::runSingleStmt(QString par){ // PRINTF "Mini Basic V {}", 2
                                 else target == nullptr;
                             }
                             else {
-                                QString tmp = variables[i].varValue.mid(1,variables[i].varValue.length()-1);
+                                QString tmp = variables[i].varValue.mid(1,variables[i].varValue.length()-2);
                                 replacePair.push_back(myPair(i, tmp));
-                                target =  list1[++replacementIndex];
+                                if(++replacementIndex <list1.length())
+                                    target =  list1[replacementIndex].trimmed();
                             }
                         }
                     }
@@ -240,7 +244,6 @@ QString PrintfStmt::runSingleStmt(QString par){ // PRINTF "Mini Basic V {}", 2
         for(int i=replacePair.size()-1;i>=0 ;i--){
             result = result.mid(0,replacePair[i].index)+replacePair[i].str+result.mid(replacePair[i].index+2);
         }
-
     return result;
 }
 
