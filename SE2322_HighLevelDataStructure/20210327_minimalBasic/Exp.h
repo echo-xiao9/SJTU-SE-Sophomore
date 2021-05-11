@@ -20,7 +20,7 @@ parse_t parse_num(QString &ptr, int & val);
 struct var{
     QString varName="";
     QString varValue=0;
-    int type=0; // 0:num 1:string
+    int type=0; // 0:num 1:string //
     var(QString name, QString val,int Type=0): varName(name), varValue(val),type(Type){}
 };
 
@@ -48,7 +48,7 @@ struct Node{
         for(int i=0;i<variables.size();i++){
             if(variables[i].varName == val){
                 if(variables[i].type == 1)
-                    throw QString("The Print instruction does not support string types!");
+                    throw QString("Does not support string types!");
                 return variables[i].varValue.toInt();
             }
         }

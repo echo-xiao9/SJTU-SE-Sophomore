@@ -80,7 +80,6 @@ void MainWindow::updateVarBrowser(){
         if(variables[i].type==0) appendLine += "INT = ";
         else appendLine += "STR = ";
         appendLine +=variables[i].varValue;
-        qDebug()<<variables[i].varName<<" "<<variables[i].varValue<<endl;
         ui->varBrowser->append(appendLine);
     }
 }
@@ -125,8 +124,6 @@ void MainWindow::clearAppStatus(){
     results.clear();
     //debug
     variables.clear();
-
-
     ui->codeLineEdit->clear();
     ui->messageLineEdit->clear();
     ui->resultBrowser->clear();
@@ -162,9 +159,12 @@ void MainWindow::loadStat(){
     file.close();
 }
 
+
 void MainWindow::runApp(){
     // the relation is false!!!!!!!!!!
     // run the statement one by one.
+    ui->loadButton->setEnabled(true);
+    ui->clearButton->setEnabled(true);
     int i=0;
     try {
         QString loop1="The program will loop forever！";
@@ -184,13 +184,14 @@ void MainWindow::runApp(){
         }
         ui->messageLineEdit ->setText("Program ended successfully.");
         ui->codeLineEdit->clear();
-
     }catch(QString s){
         ui->messageLineEdit ->setText(s);
     }
     updateVarBrowser();
     updateResultBrowser();
     variables.clear();
+    ui->codeLineEdit->clear();
+    ui->codeLineEdit->setPlaceholderText("");
 };
 
 map<int, Statement*>::iterator MainWindow:: runStmt(map<int, Statement*>::iterator &it){
@@ -288,7 +289,8 @@ map<int, Statement*>::iterator MainWindow:: runStmt(map<int, Statement*>::iterat
         it = statements.end();
         break;
     default: //ERROR
-        it++;
+        throw QString("invalid statement!");
+//        it++;
         break;
     }
     return it;
@@ -296,12 +298,14 @@ map<int, Statement*>::iterator MainWindow:: runStmt(map<int, Statement*>::iterat
 
 
 void MainWindow::getCodeLineVal(){
-    QString errorNum ="Invaild number in input statement!";
+    QString errorNum ="Invaild input in input statement!";
     inputNumTmp = ui->codeLineEdit->text();
     inputNumTmp = inputNumTmp.trimmed();
+
     for(int i=0;i<inputNumTmp.length();i++){
         if(inputNumTmp[i]<'0' || inputNumTmp >"9") throw errorNum;
     }
+    ui->codeLineEdit->clear();
     loop.exit();
     return;
 }
@@ -309,45 +313,49 @@ void MainWindow::getCodeLineVal(){
 void MainWindow::getCodeLineStrVal(){
     inputStr = ui->codeLineEdit->text();
     inputStr = inputStr.trimmed();
-
     loop.exit();
     return;
 }
 
 void MainWindow::debug(){
+    static bool first=1;
     clearAppStatus();
+    if(statements.size()==0)return;
     ui->loadButton->setEnabled(false);
     ui->clearButton->setEnabled(false);
     ui->syntaxDisplayBroser->clear();
     ui->resultBrowser->clear();
     ui->codeLineEdit->clear();
     debugIt = statements.begin();
+    QPair<int,QColor>error(debugIt->second->startPos,QColor(100, 255, 100));
+    errorHighLights.push_back(error);
+    highLightErrorCode();
+    errorHighLights.pop_back();
+    first = !first;
+    if(first){
     disconnect(ui->debugButton, SIGNAL(clicked()), this, SLOT(debug()));
     connect(ui->debugButton, SIGNAL(clicked()), this, SLOT(stepIn()));
     stepIn();
+    }
 }
 
 
 void MainWindow::stepIn(){
-    QPair<int,QColor>error(debugIt->second->startPos,QColor(100, 255, 100));
-
-    errorHighLights.push_back(error);
-    highLightErrorCode();
-    errorHighLights.pop_back();
-
     try{
         // syntax tree
         ui->syntaxDisplayBroser->clear();
         synTree.clear();
         drawSingleTree(debugIt);
-        updateSyntaxDisplayBroser();
-
         // next statement
         runStmt(debugIt);
-
         // update variable
         updateVarBrowser();
         updateResultBrowser();
+        updateSyntaxDisplayBroser();
+        QPair<int,QColor>error(debugIt->second->startPos,QColor(100, 255, 100));
+        errorHighLights.push_back(error);
+        highLightErrorCode();
+        errorHighLights.pop_back();
         // if reach error
         if(debugIt->second->type==9){
             debugError -> show();
@@ -359,9 +367,11 @@ void MainWindow::stepIn(){
             toNormal();
         }
     }catch(QString s){
-        ui->codeLineEdit->setText(s);
+        debugError -> show();
+        ui->messageLineEdit->setText(s);
         toNormal();
     }
+
 }
 
 void MainWindow::toNormal(){
@@ -370,6 +380,7 @@ void MainWindow::toNormal(){
     ui->loadButton->setEnabled(true);
     ui->clearButton->setEnabled(true);
     debugIt=statements.begin();
+    highLightErrorCode();
 }
 
 
@@ -422,9 +433,13 @@ void MainWindow:: drawSingleTree( map<int, Statement*>::iterator& it){
         break;
     case 2: //LET
         synTree.push_back(QString::number(it->first)+" LET =");
-        synBranch =   "    " +it->second->tree();
+        synBranch =   "    " +it->second->tree(0);
         synTree.push_back(synBranch);
         drawExpBranch(it->second->exp, 1);
+        if(it->second->str!=""){
+            synBranch =   "    " +it->second->tree(1);
+            synTree.push_back(synBranch);
+        }
         break;
     case 3: //GOTO
         synTree.push_back(QString::number(it->first)+ " GOTO");
@@ -488,6 +503,9 @@ parse_t MainWindow:: parse_line(QString &line){
     QString cmdError = "Invalid comand / Statement!";
     QString varError ="Invalid variable name in input statement!";
     QString strError = "Invalid string in INPUTS statement!";
+    QString lineTmp2=lineTmp;
+    QString lineOri=lineTmp;
+
     // is command
     if(line[0]=="-"){
         throw numError;
@@ -505,6 +523,7 @@ parse_t MainWindow:: parse_line(QString &line){
             }
             if(parse_stmt(lineTmp, stmtTmp)==PARSE_ERR)
                 throw  stmtError;
+            lineOri=lineTmp;
             // 0: INPUTS,1:INPUT, 2：LET, 3：GOTO, 4:IF,  5:PRINTF, 6: PRINT， 7:REM, 8:END,9:THEN
             switch (stmtNum(stmtTmp))
             {
@@ -524,11 +543,23 @@ parse_t MainWindow:: parse_line(QString &line){
                 if(parse_var(lineTmp, varName)==PARSE_ERR ||
                         parse_delim(lineTmp, delim)==PARSE_ERR||
                         delim !="=" )throw stmtError;
+                lineTmp2 = lineTmp;
                 if(parse_string(lineTmp, inputString) !=PARSE_ERR) { // is string
                     if(! IS_END( lineTmp)) throw stmtError;
                     newStmt = new LetStmt(lineNum, varName, inputString,1);
                     break;
                 }
+//                else if(parse_var(lineTmp2,varName)!=PARSE_ERR ){ // is string type var
+//                     lineTmp2 = lineTmp2.trimmed();
+//                    if( IS_END(lineTmp2)){
+//                          qDebug()<<variables.size()<<endl;
+//                        for(int i=0;i<variables.size();i++){
+//                            if(variables[i].varName==varName && variables[i].type == 1){
+//                                 newStmt = new LetStmt(lineNum, varName, variables[i].varValue,1);
+//                            }
+//                        }
+//                    }
+//                }
                 else if( parse_exp(lineTmp,exp) != PARSE_ERR){ // is num
                     newStmt=new LetStmt(lineNum, varName, exp,0);
                     break;
@@ -563,7 +594,7 @@ parse_t MainWindow:: parse_line(QString &line){
                 break;
 
             case 5: //"PRINTF"
-                newStmt = new PrintfStmt(lineNum,lineTmp);
+                newStmt = new PrintfStmt(lineNum,lineOri);
                 break;
             case 6: //"PRINT": //PRINT 2 + 2
                 if(parse_exp(lineTmp, exp)==PARSE_ERR)throw numError;
@@ -633,8 +664,9 @@ parse_t MainWindow:: parse_line(QString &line){
                 connect(ui->codeLineEdit, SIGNAL(returnPressed()), this, SLOT(getCodeLineVal()));
                 loop.exec();
                 v.varName = varName;
-                v.varValue = inputNumTmp.toInt();
+                v.varValue = inputNumTmp;
                 ui->codeLineEdit->setPlaceholderText("");
+                ui->codeLineEdit->clear();
                 variables.push_back(v);
                 updateVarBrowser();
                 disconnect(ui->codeLineEdit, SIGNAL(returnPressed()), this, SLOT(getCodeLineVal()));
@@ -642,21 +674,36 @@ parse_t MainWindow:: parse_line(QString &line){
                 break;
             }catch(QString error){
                     ui->messageLineEdit->setText(error);
+                    ui->codeLineEdit->setPlaceholderText("");
+                    ui->codeLineEdit->clear();
                     disconnect(ui->codeLineEdit, SIGNAL(returnPressed()), this, SLOT(getCodeLineVal()));
                     connect(ui->codeLineEdit, SIGNAL(returnPressed()), this, SLOT(codeLineEdit_return()));
                 }
-
                 break;
-            case 2: //let
+            case 2:
+                //let
+//                if(parse_var(lineTmp, varName)==PARSE_ERR ||
+//                        parse_delim(lineTmp, delim)==PARSE_ERR||
+//                        delim !="="||
+//                        parse_exp(lineTmp,exp)==PARSE_ERR)
+//                    throw stmtError;
+
                 if(parse_var(lineTmp, varName)==PARSE_ERR ||
                         parse_delim(lineTmp, delim)==PARSE_ERR||
-                        delim !="="||
-                        parse_exp(lineTmp,exp)==PARSE_ERR)
-                    throw stmtError;
-                newStmt=new LetStmt(0, varName, exp);
+                        delim !="=")  throw stmtError;
+
+                if(parse_string(lineTmp, inputString) !=PARSE_ERR) { // is string
+                    if(! IS_END( lineTmp)) throw stmtError;
+                    newStmt = new LetStmt(lineNum, varName, inputString,1);
+                }
+                else if( parse_exp(lineTmp,exp) != PARSE_ERR){ // is num
+                    newStmt=new LetStmt(lineNum, varName, exp,0);
+                }
+                else throw  stmtError;
                 newStmt->runSingleStmt("");
                 updateVarBrowser();
                 break;
+
             case 5://printf
                 if(parse_exp(lineTmp, exp)==PARSE_ERR)throw numError;
                 newStmt = new PrintfStmt(lineNum,exp);
@@ -793,6 +840,7 @@ parse_t MainWindow:: parse_exp(QString &ptr, QString& exp){
     if(IS_END(tmp))return PARSE_ERR;
     if(IS_END(tmp))return PARSE_ERR;
     //    if(!judge_infix(tmp.toStdString())) return PARSE_ERR;
+    tmp=tmp.remove(QRegExp("\\s"));//remove all the white space
     exp = tmp;
     ptr = "";
     return PARSE_EXP;
@@ -837,7 +885,7 @@ parse_t MainWindow::parse_string(QString &ptr, QString &inputString){
         if(tmp.indexOf("\"")!=-1)return PARSE_ERR;
         tail = tmp.indexOf("\'",1);
         if(tail== -1)return PARSE_ERR;
-        inputString = tmp.mid(0, tail+1);
+        inputString = "\""+ tmp.mid(1, tail-1)+ "\""; // all change to "
         ptr = tmp.mid(tail+1);
         return PARSE_STR;
     }

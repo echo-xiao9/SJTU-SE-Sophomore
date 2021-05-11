@@ -1,0 +1,6 @@
+1 LET a = "asdf"
+100 REM 2 LET b = '123'
+2 LET b="hh"
+3 REM 3 PRINTF  "{},{}",a,b
+4 PRINTF  "{}{}",a,b
+ 

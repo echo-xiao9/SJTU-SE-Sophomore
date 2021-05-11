@@ -73,9 +73,11 @@ OBJECTS       = DebugEnd.o \
 		moc_DebugError.o \
 		moc_Help.o \
 		moc_MainWindow.o
-DIST          = command.txt \
+DIST          = baTest.txt \
+		command.txt \
 		command的副本.txt \
 		fibo.txt \
+		quoteTest.txt \
 		/Users/kangyixiao/Qt/5.12.3/clang_64/mkspecs/features/spec_pre.prf \
 		/Users/kangyixiao/Qt/5.12.3/clang_64/mkspecs/qdevice.pri \
 		/Users/kangyixiao/Qt/5.12.3/clang_64/mkspecs/features/device_config.prf \
@@ -868,7 +870,9 @@ MainWindow.o: MainWindow.cpp MainWindow.h \
 		/Users/kangyixiao/Qt/5.12.3/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
 		DebugEnd.h \
 		DebugError.h \
-		ui_MainWindow.h
+		ui_MainWindow.h \
+		/Users/kangyixiao/Qt/5.12.3/clang_64/lib/QtGui.framework/Headers/QList \
+		/Users/kangyixiao/Qt/5.12.3/clang_64/lib/QtGui.framework/Headers/qevent.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o MainWindow.o MainWindow.cpp
 
 moc_DebugEnd.o: moc_DebugEnd.cpp 

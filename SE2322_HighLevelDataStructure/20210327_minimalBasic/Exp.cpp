@@ -21,7 +21,7 @@ parse_t Exp:: parse_num(QString &ptr, int & val){
     if(!IS_NUM(tmp)) return PARSE_ERR;
     for(i=0;i<tmp.length()&&(tmp[i]>='0' && tmp[i]<='9');i++){
     }
-    val=tmp.mid(0,i).toInt();
+    val=tmp.mid(0,i).trimmed().toInt();
     ptr=tmp.mid(i);
     return PARSE_NUM;
 }
@@ -112,7 +112,6 @@ void Exp::getInfixVec(){
             if(IS_NUM(tmp)) {
                 parse_num(tmp, num);
             newNode = new Node(QString::number(-num),0);
-
             }else throw expError;
         }
         else if(IS_NUM(tmp)){
@@ -131,7 +130,6 @@ void Exp::getInfixVec(){
                     }
                     else throw expError;
                     in.push_back(*newNode);
-
                 }else throw expError;
             }
             first++;
@@ -223,7 +221,6 @@ int Exp::recurEvaluate(Node *t){
     case 0: //num
         return t->val.toInt();
     case 1://var
-        qDebug()<<t->getVarVal();
         return t->getVarVal();
     default: //op
         int val1=recurEvaluate(t->left);

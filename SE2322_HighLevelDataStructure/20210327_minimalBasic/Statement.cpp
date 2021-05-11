@@ -9,7 +9,6 @@ Statement::Statement(int inputIndex,  int Type)
 Statement:: ~Statement(){
 }
 
-
 InputStringStmt::InputStringStmt(int inputIndex,  QString varName1, QString  varVal1) :
     Statement(inputIndex, 0), varName(varName1), varVal(varVal1){
     stmt="INPUTS "+varName1;
@@ -85,9 +84,8 @@ QString LetStmt::runSingleStmt(QString par){
         exp->evaluate();
         for (auto it = variables.begin(); it != variables.end();it++) {
             if(it->varName == letVarName){
-                if(it->type == 1)throw QString("The variable declared before was a number!");
+                if(it->type == 1)throw QString("Can not change variable type!");
                 it->varValue =QString::number(exp -> value); //update the value of exist var
-                qDebug()<<it->varValue<<endl;
                 flag = true;
                 return "";
             }
@@ -112,7 +110,8 @@ QString LetStmt::runSingleStmt(QString par){
 }
 
 QString  LetStmt::tree(int i){
-    return letVarName ;
+    if(i==0) return letVarName ;
+    else return str;
 }
 
 GotoStmt::GotoStmt(int inputIndex, int targetLineNum):
@@ -151,9 +150,20 @@ QString IfStmt::runSingleStmt(QString par){
 }
 
 PrintfStmt::PrintfStmt(int inputIndex, QString inputStr):Statement(inputIndex, 5){
+    int num=0;int i=0;
     stmt = "PRINTF "+ inputStr;
+    for(int i=0;i<inputStr.length();i++){
+        if(inputStr[i]=="\'")inputStr[i]='\"'; // change ' to ''
+    }
     str = inputStr;
     list1 = str.split(QLatin1Char(','));
+    while (num<2) {
+        if(inputStr[i]=='\"')num++;
+        i++;
+    }
+//    base = str.mid(1,i-1);
+//    QString remain = str.mid(i);
+//    list1 = remain.split(QLatin1Char(','));
     base = list1[0].trimmed();
     base=base.mid(1,base.length()-2);
 }
@@ -166,15 +176,14 @@ parse_t Statement::parse_string(QString &ptr, QString &inputString){
         if(tmp.indexOf("\"")!=-1)return PARSE_ERR;
         tail = tmp.indexOf("\'",1);
         if(tail== -1)return PARSE_ERR;
-        inputString = tmp.mid(0, tail);
+        inputString = tmp.mid(0, tail+1);
         ptr = tmp.mid(tail+1);
         return PARSE_STR;
     }
     else if(tmp[0]== "\""){
         if(tmp.indexOf("\'") !=-1)return PARSE_ERR;
         tail = tmp.indexOf("\"",1);
-        if(tmp.indexOf("\"",1) == -1)return PARSE_ERR;
-        inputString = tmp.mid(0, tail);
+        inputString = tmp.mid(0, tail+1);
         ptr = tmp.mid(tail+1);
         return PARSE_STR;
     }
@@ -187,6 +196,7 @@ QString PrintfStmt::runSingleStmt(QString par){ // PRINTF "Mini Basic V {}", 2
     bool isNum=1;
     int i=0; int replacementIndex=1;
     QString inputStr="";
+    int flag=0;
     // build the replace pair
     if(list1.length()>1)target =  list1[replacementIndex].trimmed();
     while(i<base.length()){
@@ -194,7 +204,9 @@ QString PrintfStmt::runSingleStmt(QString par){ // PRINTF "Mini Basic V {}", 2
         if(base[i]=='{'){
             if(base[i+1]!= '}')throw QString("Single { !");
             else {
-                if(replacementIndex >=list1.size() ) throw QString("invalid input in Printf!");
+                if(replacementIndex >=list1.size())
+//                    throw QString("invalid input in Printf!");
+                    break;
                 for(int j=0; j< target.length();j++) {
                     if(target[j]<'0' || target[j]>'9'){
                         isNum=0;
@@ -210,27 +222,34 @@ QString PrintfStmt::runSingleStmt(QString par){ // PRINTF "Mini Basic V {}", 2
                 else  if(IS_LETTER(target)){ // is variable
                     for (int j = 0; j < variables.size(); j++){
                         if(variables[j].varName == target){
-                            if(variables[j].type==0){
+                            qDebug()<<variables[j].varValue<<endl;
+                            flag=1; // found the var;
+                            if(variables[j].type==0){// 0:num 1:string
                                 replacePair.push_back(myPair(i,variables[j].varValue));
                                 if(++replacementIndex <list1.length())
                                     target =  list1[replacementIndex].trimmed();
                                 else target == nullptr;
                             }
                             else {
-                                QString tmp = variables[i].varValue.mid(1,variables[i].varValue.length()-2);
+                                QString val = variables[j].varValue;
+                                qDebug()<<val<<" "<<val.length()<<endl;
+                                QString tmp = val.mid(1,val.length()-2); // delete the out ""
                                 replacePair.push_back(myPair(i, tmp));
                                 if(++replacementIndex <list1.length())
                                     target =  list1[replacementIndex].trimmed();
                             }
+                            break;
                         }
                     }
+                    if(flag==0) throw QString("can't find the variable in printf !");
                 }
                 else if(parse_string(target,inputStr)!=PARSE_ERR && IS_END(target)){ // is string
-                    inputStr = inputStr.mid(1,inputStr.length()-1);
+                    qDebug()<<inputStr<<" "<<inputStr.length()<<endl;
+                    inputStr = inputStr.mid(1,inputStr.length()-2);
                     replacePair.push_back(myPair(i, inputStr));
                     if(++replacementIndex <list1.length())
                         target =  list1[replacementIndex].trimmed();
-                    else target == nullptr;
+                    else target = nullptr;
                 }
                 else throw QString("invalid input in Printf!");
             }
@@ -241,7 +260,9 @@ QString PrintfStmt::runSingleStmt(QString par){ // PRINTF "Mini Basic V {}", 2
     }
     // do the replacement
     result =base;
+    int index=0;
         for(int i=replacePair.size()-1;i>=0 ;i--){
+            index = replacePair[i].index;
             result = result.mid(0,replacePair[i].index)+replacePair[i].str+result.mid(replacePair[i].index+2);
         }
     return result;

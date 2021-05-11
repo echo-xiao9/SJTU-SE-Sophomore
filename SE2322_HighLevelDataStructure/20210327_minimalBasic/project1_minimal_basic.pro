@@ -37,6 +37,8 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 DISTFILES += \
+    baTest.txt \
     command.txt \
     command的副本.txt \
-    fibo.txt
+    fibo.txt \
+    quoteTest.txt
