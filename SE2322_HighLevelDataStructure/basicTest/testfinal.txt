@@ -1,0 +1,38 @@
+1 REM basic v2 test program
+2 LET s = "Welcome to the mini basic version 2 test"
+3 PRINTF "{}", s
+4 PRINTF "Please Input Your Name"
+5 INPUTS name
+6 PRINTF "Your name is {}", name
+7 LET a = 2
+8 LET b = 4
+9 PRINTF "Please Input a Integer Between 0 to 22"
+10 INPUT n
+11 IF n = 0 THEN 41
+12 IF n = 1 THEN 43
+13 IF n < 0 THEN 100
+14 IF n > 22 THEN 100
+17 LET i = 1
+20 LET tmp = 0
+21 IF i = n THEN 28
+22 LET i = i + 1
+23 LET tmp = (b + a)*2 + 4
+24 LET tmp = tmp - b - a
+25 LET a = b
+26 LET b = tmp
+27 GOTO 21
+28 LET t = "reuslt"
+30 PRINTF "{} for the input {} is {}", t, n, b
+40 GOTO 200
+41 PRINTF "result for the input {} is {}", n, a
+42 GOTO 200
+43 PRINTF "result for the input {} is {}", n, b
+50 GOTO 200
+100 PRINTF "Input Error! Your Input is {}, Retry!", n
+101 GOTO 9
+200 PRINTF "Retry? 1 or 0"
+210 INPUT retry
+220 IF retry = 1 THEN 9
+230 END
+
+

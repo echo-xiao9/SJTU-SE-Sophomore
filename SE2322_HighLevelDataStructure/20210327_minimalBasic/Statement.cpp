@@ -22,7 +22,7 @@ QString InputStringStmt::runSingleStmt(QString par){
     {
         if(variables[i].varName == varName){
             if(variables[i].type==1) {
-                    variables[i].varValue = par;
+                    variables[i].varValue = inputString;
             }
             else
                 throw a;
@@ -31,7 +31,7 @@ QString InputStringStmt::runSingleStmt(QString par){
         }
     }
     if(flag1==0){
-        var newVar(varName, par);
+        var newVar(varName, inputString,1);
         variables.push_back(newVar);
     }
     return "";
@@ -230,9 +230,9 @@ QString PrintfStmt::runSingleStmt(QString par){ // PRINTF "Mini Basic V {}", 2
                     else target == nullptr;
                 }
                 else  if(IS_LETTER(target)){ // is variable
+                    qDebug()<<variables.size()<<endl;
                     for (int j = 0; j < variables.size(); j++){
                         if(variables[j].varName == target){
-                            qDebug()<<variables[j].varValue<<endl;
                             flag=1; // found the var;
                             if(variables[j].type==0){// 0:num 1:string
                                 replacePair.push_back(myPair(i,variables[j].varValue));
@@ -242,7 +242,7 @@ QString PrintfStmt::runSingleStmt(QString par){ // PRINTF "Mini Basic V {}", 2
                             }
                             else {
                                 QString val = variables[j].varValue;
-                                qDebug()<<val<<" "<<val.length()<<endl;
+                                // problem
                                 QString tmp = val.mid(1,val.length()-2); // delete the out ""
                                 replacePair.push_back(myPair(i, tmp));
                                 if(++replacementIndex <list1.length())

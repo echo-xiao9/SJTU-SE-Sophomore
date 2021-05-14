@@ -41,10 +41,9 @@ struct Node{
     Node(QString value, int Type, Node*Left=NULL, Node*Right = NULL):
         val(value), type(Type), left(Left), right(Right){}
     int getVarVal(){
-        QString errorVar="can't find the variable!";
+        QString errorVar="can't get variable's value!";
         // return -1 if is not variable or can't find the exist variable
         if(type!=1)return -111111;
-
         for(int i=0;i<variables.size();i++){
             if(variables[i].varName == val){
                 if(variables[i].type == 1)

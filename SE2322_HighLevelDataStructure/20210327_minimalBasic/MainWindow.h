@@ -79,6 +79,7 @@ private:
     map<int, Statement*>::iterator debugIt;
     DebugEnd* debugEnd;
     DebugError *debugError;
+    bool isDebugging;
 private slots:
     void codeLineEdit_return();
     void clearAll();
@@ -92,6 +93,9 @@ private slots:
     void debug();
     void stepIn();
     void toNormal();
+    void disCon();
+    void con();
+
 
     parse_t parse_line(QString &line);
     parse_t parse_stmt(QString &ptr, stmt_t& stmt);
@@ -101,7 +105,6 @@ private slots:
     parse_t parse_exp(QString &ptr, QString& exp);
     parse_t parse_delim(QString &ptr, QString& delim);
     parse_t parse_string(QString &ptr, QString &inputString);
-
     stmt_t  *find_instr(QString name);
     bool  judge_infix(string str);
 
