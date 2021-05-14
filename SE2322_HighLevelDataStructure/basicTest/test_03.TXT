@@ -1,0 +1,5 @@
+1 REM test_03
+5 INPUT s
+8 PRINT s
+10 INPUTS s
+50 PRINTF "{}", s

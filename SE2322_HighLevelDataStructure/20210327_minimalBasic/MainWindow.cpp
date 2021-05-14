@@ -116,8 +116,8 @@ void MainWindow::clearAll(){
     statements.clear();
     variables.clear();
     ui->codeBrowser->clear();
+    ui->messageLineEdit->setPlaceholderText("");
 }
-
 void MainWindow::clearAppStatus(){
     //clear the status in the program, including the content on GUI , syntax tree and results.
     synTree.clear();
@@ -188,6 +188,7 @@ void MainWindow::runApp(){
         ui->codeLineEdit->clear();
     }catch(QString s){
         ui->messageLineEdit ->setText(s);
+        ui->codeLineEdit->setPlaceholderText("");
     }
     updateVarBrowser();
     updateResultBrowser();
@@ -215,7 +216,14 @@ map<int, Statement*>::iterator MainWindow:: runStmt(map<int, Statement*>::iterat
         ui->codeLineEdit-> setPlaceholderText("");
     }catch(QString error){
             ui->messageLineEdit->setText(error);
+            ui->codeLineEdit->setPlaceholderText("");
             disconnect(ui->codeLineEdit, SIGNAL(returnPressed()), this, SLOT(getCodeLineStrVal()));
+            connect(ui->codeLineEdit, SIGNAL(returnPressed()), this, SLOT(codeLineEdit_return()));
+        }
+        catch(string s){
+            ui->messageLineEdit->setText( QString::fromStdString(s));
+            ui->codeLineEdit->setPlaceholderText("");
+            disconnect(ui->codeLineEdit, SIGNAL(returnPressed()), this, SLOT(getCodeLineVal()));
             connect(ui->codeLineEdit, SIGNAL(returnPressed()), this, SLOT(codeLineEdit_return()));
         }
         it++;
@@ -232,9 +240,17 @@ map<int, Statement*>::iterator MainWindow:: runStmt(map<int, Statement*>::iterat
         ui->codeLineEdit-> setPlaceholderText("");
     }catch(QString error){
             ui->messageLineEdit->setText(error);
+            ui->codeLineEdit->setPlaceholderText("");
             disconnect(ui->codeLineEdit, SIGNAL(returnPressed()), this, SLOT(getCodeLineVal()));
             connect(ui->codeLineEdit, SIGNAL(returnPressed()), this, SLOT(codeLineEdit_return()));
         }
+        catch(string s){
+            ui->messageLineEdit->setText( QString::fromStdString(s));
+            ui->codeLineEdit->setPlaceholderText("");
+            disconnect(ui->codeLineEdit, SIGNAL(returnPressed()), this, SLOT(getCodeLineVal()));
+            connect(ui->codeLineEdit, SIGNAL(returnPressed()), this, SLOT(codeLineEdit_return()));
+        }
+
         it++;
         break;
     case 2: //LET
@@ -294,7 +310,7 @@ map<int, Statement*>::iterator MainWindow:: runStmt(map<int, Statement*>::iterat
     default: //ERROR
         throw QString("invalid statement!");
 //        it++;
-        break;
+//        break;
     }
     return it;
 }
@@ -308,6 +324,7 @@ void MainWindow::getCodeLineVal(){
     for(int i=0;i<inputNumTmp.length();i++){
         if(inputNumTmp[i]<'0' || inputNumTmp >"9") throw errorNum;
     }
+     if(inputNumTmp.trimmed()=="")return;
     ui->codeLineEdit->clear();
     loop.exit();
     return;
@@ -316,6 +333,7 @@ void MainWindow::getCodeLineVal(){
 void MainWindow::getCodeLineStrVal(){
     inputStr = ui->codeLineEdit->text();
     inputStr = inputStr.trimmed();
+    if(inputStr=="")return;
     loop.exit();
     return;
 }
@@ -508,7 +526,7 @@ parse_t MainWindow:: parse_line(QString &line){
     QString strError = "Invalid string in INPUTS statement!";
     QString lineTmp2=lineTmp;
     QString lineOri=lineTmp;
-
+     int flag1 = 0;
     // is command
     if(line[0]=="-"){
         throw numError;
@@ -552,17 +570,6 @@ parse_t MainWindow:: parse_line(QString &line){
                     newStmt = new LetStmt(lineNum, varName, inputString,1);
                     break;
                 }
-//                else if(parse_var(lineTmp2,varName)!=PARSE_ERR ){ // is string type var
-//                     lineTmp2 = lineTmp2.trimmed();
-//                    if( IS_END(lineTmp2)){
-//                          qDebug()<<variables.size()<<endl;
-//                        for(int i=0;i<variables.size();i++){
-//                            if(variables[i].varName==varName && variables[i].type == 1){
-//                                 newStmt = new LetStmt(lineNum, varName, variables[i].varValue,1);
-//                            }
-//                        }
-//                    }
-//                }
                 else if( parse_exp(lineTmp,exp) != PARSE_ERR){ // is num
                     newStmt=new LetStmt(lineNum, varName, exp,0);
                     break;
@@ -637,6 +644,7 @@ parse_t MainWindow:: parse_line(QString &line){
             // 0:INPUT   1:LET   2:GOTO  3:IF   4:PRINT    5:REM   6:END
             // 0: INPUTS,1:INPUT, 2：LET, 3：GOTO, 4:IF,  5:PRINTF, 6: PRINT， 7:REM, 8:END,9:THEN
             case 0://inputs
+                flag1=0;
                 if(parse_var(lineTmp, varName)==PARSE_ERR) throw stmtError;
                 try{
                 ui->codeLineEdit-> setPlaceholderText(" ? ");
@@ -646,6 +654,17 @@ parse_t MainWindow:: parse_line(QString &line){
                 v.varName = varName;
                 v.varValue = inputStr;
                 v.type=1;
+                for (int i = 0; i < variables.size(); i++)
+                {
+                    if(variables[i].varName == varName){
+                        if(variables[i].type==1) {
+                                variables[i].varValue = inputNumTmp;
+                        }
+                        else throw QString("the variable was a number before!");
+                         flag1=1;
+                        break;
+                    }
+                }
                 variables.push_back(v);
                 updateVarBrowser();
                 ui->codeLineEdit-> setPlaceholderText("");
@@ -661,6 +680,7 @@ parse_t MainWindow:: parse_line(QString &line){
                 }
                 break;
             case 1: // input
+                flag1=0;
                 if(parse_var(lineTmp, varName)==PARSE_ERR) throw stmtError;
                 try{
                 ui->codeLineEdit->setPlaceholderText(" ? ");
@@ -671,7 +691,18 @@ parse_t MainWindow:: parse_line(QString &line){
                 v.varValue = inputNumTmp;
                 ui->codeLineEdit->setPlaceholderText("");
                 ui->codeLineEdit->clear();
-                variables.push_back(v);
+                for (int i = 0; i < variables.size(); i++)
+                {
+                    if(variables[i].varName == varName){
+                        if(variables[i].type==0) {
+                                variables[i].varValue = inputNumTmp;
+                        }
+                        else throw QString("the variable was a string before!");
+                         flag1=1;
+                        break;
+                    }
+                }
+                if(flag1==0)variables.push_back(v);
                 updateVarBrowser();
                 disconnect(ui->codeLineEdit, SIGNAL(returnPressed()), this, SLOT(getCodeLineVal()));
                 connect(ui->codeLineEdit, SIGNAL(returnPressed()), this, SLOT(codeLineEdit_return()));

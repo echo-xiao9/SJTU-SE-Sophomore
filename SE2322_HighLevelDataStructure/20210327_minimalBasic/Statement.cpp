@@ -16,17 +16,18 @@ InputStringStmt::InputStringStmt(int inputIndex,  QString varName1, QString  var
 
 QString InputStringStmt::runSingleStmt(QString par){
     int flag1 = 0;
+    string a = "the variable was a number before!";
     QString inputString = "\"" + par.trimmed() + "\"";
     for (int i = 0; i < variables.size(); i++)
     {
         if(variables[i].varName == varName){
-            if(variables[i].type == 0){
-                flag1=-1;
-                throw QString("The variable type is a number, not a string!");
-            }else{
-                flag1=1;
-                variables[i].varValue = par;
+            if(variables[i].type==1) {
+                    variables[i].varValue = par;
             }
+            else
+                throw a;
+             flag1=1;
+            break;
         }
     }
     if(flag1==0){
@@ -45,12 +46,17 @@ InputStmt::InputStmt(int inputIndex, QString varName1,int varVal1):
 
 QString InputStmt::runSingleStmt(QString par){
     int flag1 = 0;
+     string a = "the variable was a string before!";
     QString Parvalue= par.trimmed();
     for (int i = 0; i < variables.size(); i++)
     {
         if(variables[i].varName == varName){
-            variables[i].varValue = par;
-            flag1=1;
+            if(variables[i].type==0) {
+                    variables[i].varValue = par;
+            }
+            else
+                throw a;
+             flag1=1;
             break;
         }
     }

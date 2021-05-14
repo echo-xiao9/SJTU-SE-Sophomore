@@ -1,0 +1,4 @@
+1 LET A = " ADF "
+2 PRINT A
+5 PRINT A
+7 REM no syntax highlight
