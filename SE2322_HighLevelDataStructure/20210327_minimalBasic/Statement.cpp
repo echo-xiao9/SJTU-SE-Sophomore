@@ -152,19 +152,21 @@ QString IfStmt::runSingleStmt(QString par){
 PrintfStmt::PrintfStmt(int inputIndex, QString inputStr):Statement(inputIndex, 5){
     int num=0;int i=0;
     stmt = "PRINTF "+ inputStr;
+
     for(int i=0;i<inputStr.length();i++){
         if(inputStr[i]=="\'")inputStr[i]='\"'; // change ' to ''
     }
     str = inputStr;
-    list1 = str.split(QLatin1Char(','));
-    while (num<2) {
-        if(inputStr[i]=='\"')num++;
-        i++;
-    }
+    if(parse_string(inputStr,base)==PARSE_ERR)throw QString("invalid printf statement!");
+    list1 = inputStr.split(QLatin1Char(','));
+//    for(int i=0;i<inputStr.length();i++){
+//        if(inputStr[i]=='\"')num++;
+//        if(num==2)break;
+//    }
 //    base = str.mid(1,i-1);
 //    QString remain = str.mid(i);
 //    list1 = remain.split(QLatin1Char(','));
-    base = list1[0].trimmed();
+//    base = list1[0].trimmed();
     base=base.mid(1,base.length()-2);
 }
 
@@ -198,7 +200,9 @@ QString PrintfStmt::runSingleStmt(QString par){ // PRINTF "Mini Basic V {}", 2
     QString inputStr="";
     int flag=0;
     // build the replace pair
-    if(list1.length()>1)target =  list1[replacementIndex].trimmed();
+    if(list1.length()>1 && replacementIndex <list1.length()){
+        target =  list1[replacementIndex].trimmed();
+    }
     while(i<base.length()){
         isNum=1;
         if(base[i]=='{'){
@@ -244,7 +248,6 @@ QString PrintfStmt::runSingleStmt(QString par){ // PRINTF "Mini Basic V {}", 2
                     if(flag==0) throw QString("can't find the variable in printf !");
                 }
                 else if(parse_string(target,inputStr)!=PARSE_ERR && IS_END(target)){ // is string
-                    qDebug()<<inputStr<<" "<<inputStr.length()<<endl;
                     inputStr = inputStr.mid(1,inputStr.length()-2);
                     replacePair.push_back(myPair(i, inputStr));
                     if(++replacementIndex <list1.length())
@@ -275,7 +278,7 @@ QString  PrintfStmt::tree(int i){
     for(int j=0;j<list1.size()-1;j++){
         targetList+=list1[j+1]+" ";
     }
-    return targetList;
+    return targetList.trimmed();
 }
 
 PrintStmt::PrintStmt(int inputIndex, QString expr):Statement(inputIndex, 6){

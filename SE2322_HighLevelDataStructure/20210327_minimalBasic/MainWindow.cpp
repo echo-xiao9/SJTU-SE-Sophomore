@@ -135,6 +135,8 @@ void MainWindow::clearAppStatus(){
 
 
 void MainWindow::on_loadButton_clicked(){
+    ui->loadButton->setEnabled(true);
+    ui->clearButton->setEnabled(true);
     static bool i=0;
     if(!i)loadStat();
     i=!i;
@@ -190,6 +192,7 @@ void MainWindow::runApp(){
     updateVarBrowser();
     updateResultBrowser();
     variables.clear();
+    errorHighLights.clear();
     ui->codeLineEdit->clear();
     ui->codeLineEdit->setPlaceholderText("");
 };
@@ -461,7 +464,7 @@ void MainWindow:: drawSingleTree( map<int, Statement*>::iterator& it){
         synBranch =   "    " +it->second->tree(0);
         synTree.push_back(synBranch);
         synBranch =   "    " +it->second->tree(1);
-        synTree.push_back(synBranch);
+        if(synBranch.trimmed()!="")synTree.push_back(synBranch);
         break;
 
     case 6:  //PRINT
@@ -628,6 +631,7 @@ parse_t MainWindow:: parse_line(QString &line){
         if(parse_stmt(lineTmp,  stmtTmp)!=PARSE_ERR){
             var v("",0);
             QString result="";
+            lineOri = lineTmp;
             switch (stmtNum(stmtTmp)) {
             //LET、PRINT、INPUT可以不带行号直接输入执行
             // 0:INPUT   1:LET   2:GOTO  3:IF   4:PRINT    5:REM   6:END
@@ -705,8 +709,8 @@ parse_t MainWindow:: parse_line(QString &line){
                 break;
 
             case 5://printf
-                if(parse_exp(lineTmp, exp)==PARSE_ERR)throw numError;
-                newStmt = new PrintfStmt(lineNum,exp);
+//                if(parse_exp(lineTmp, exp)==PARSE_ERR)throw numError;
+                newStmt = new PrintfStmt(lineNum,lineOri);
                 result = newStmt->runSingleStmt("");
                 results.push_back(result);
                 updateResultBrowser();
