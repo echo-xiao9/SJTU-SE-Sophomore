@@ -271,6 +271,8 @@ map<int, Statement*>::iterator MainWindow:: runStmt(map<int, Statement*>::iterat
         }
         disconnect(ui->codeLineEdit, SIGNAL(returnPressed()), this, SLOT(getCodeLineVal()));
         connect(ui->codeLineEdit, SIGNAL(returnPressed()), this, SLOT(codeLineEdit_return()));
+        disconnect(ui->debugButton, SIGNAL(clicked()), this, SLOT(getCodeLineStrVal()));
+        connect(ui->debugButton, SIGNAL(clicked()), this, SLOT(stepIn()));
         it++;
         break;
     case 2: //LET
@@ -378,36 +380,39 @@ void MainWindow::debug(){
     errorHighLights.push_back(error);
     highLightErrorCode();
     errorHighLights.pop_back();
-
+    synTree.clear();
+    drawSingleTree(debugIt);
+    updateSyntaxDisplayBroser();
     first = !first;
     if(first){
     disconnect(ui->debugButton, SIGNAL(clicked()), this, SLOT(debug()));
     connect(ui->debugButton, SIGNAL(clicked()), this, SLOT(stepIn()));
     stepIn();
+
     }
 }
 
 
 void MainWindow::stepIn(){
+
     isDebugging=1;
     try{
         // syntax tree
         ui->syntaxDisplayBroser->clear();
-        synTree.clear();
-        drawSingleTree(debugIt);
+
         // next statement
-        if(debugIt->second->type ==1 ){
-            qDebug()<<"input!"<<endl;
-        }
         runStmt(debugIt);
         // update variable
         updateVarBrowser();
         updateResultBrowser();
-        updateSyntaxDisplayBroser();
+
         QPair<int,QColor>error(debugIt->second->startPos,QColor(100, 255, 100));
         errorHighLights.push_back(error);
         highLightErrorCode();
         errorHighLights.pop_back();
+        synTree.clear();
+        drawSingleTree(debugIt);
+        updateSyntaxDisplayBroser();
         // if reach error
         if(debugIt->second->type==9){
             debugError -> show();
@@ -423,7 +428,6 @@ void MainWindow::stepIn(){
         ui->messageLineEdit->setText(s);
         toNormal();
     }
-
 }
 
 void MainWindow::toNormal(){
@@ -541,21 +545,6 @@ void MainWindow:: drawSingleTree( map<int, Statement*>::iterator& it){
     }
 }
 
-void MainWindow:: disCon(){
-    disconnect(ui->clearButton,SIGNAL(clicked()),this,SLOT(clearAll()));
-    disconnect(ui->codeLineEdit, SIGNAL(returnPressed()), this, SLOT(codeLineEdit_return()));
-    disconnect(ui->loadButton,SIGNAL(clicked()),this,SLOT(on_loadButton_clicked()));
-    disconnect(ui->runButton, SIGNAL(clicked()), this, SLOT(runApp()));
-    disconnect(ui->debugButton, SIGNAL(clicked()), this, SLOT(debug()));
-}
-
-void MainWindow:: con(){
-    connect(ui->clearButton,SIGNAL(clicked()),this,SLOT(clearAll()));
-    connect(ui->codeLineEdit, SIGNAL(returnPressed()), this, SLOT(codeLineEdit_return()));
-    connect(ui->loadButton,SIGNAL(clicked()),this,SLOT(on_loadButton_clicked()));
-    connect(ui->runButton, SIGNAL(clicked()), this, SLOT(runApp()));
-    connect(ui->debugButton, SIGNAL(clicked()), this, SLOT(debug()));
-}
 
 parse_t MainWindow:: parse_line(QString &line){
     stmt_t stmtTmp;

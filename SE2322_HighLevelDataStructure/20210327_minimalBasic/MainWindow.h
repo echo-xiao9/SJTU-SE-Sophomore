@@ -93,9 +93,6 @@ private slots:
     void debug();
     void stepIn();
     void toNormal();
-    void disCon();
-    void con();
-
 
     parse_t parse_line(QString &line);
     parse_t parse_stmt(QString &ptr, stmt_t& stmt);
