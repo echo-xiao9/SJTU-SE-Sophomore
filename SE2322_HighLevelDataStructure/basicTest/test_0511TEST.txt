@@ -1,6 +1,0 @@
-1 LET A = 1
-2 LET C = 2
-3 LET D = A + C
-4 IF D > 1 THEN 6
-5 PRINT C
-6 PRINTF " { } " , A

@@ -28,12 +28,13 @@ const useForm = (callback, validate) => {
                 // this.$notify({ title: '提示信息', message: '登录成功', type: 'success'
                 //                 // })
                 alert("登陆成功");
-                this.$global.username = this.input_username
-                this.$global.password = this.input_password // 跳转
-                this.$router.push('Home')
+                // this.$global.username = this.input_username
+                // this.$global.password = this.input_password // 跳转
+                // this.$router.push('Home')
             }
         }).catch(error => {
             console.log(error)
+            console.log("登陆失败！")
             // this.$notify({
             //     title: '提示信息', message: '账号或密码错误', type: 'error'
             // })
@@ -47,7 +48,7 @@ const useForm = (callback, validate) => {
             ...values,
             [name]: value
         });
-        console.log(e.target)
+        // console.log(e.target)
     };
 
 
@@ -85,16 +86,16 @@ const useForm = (callback, validate) => {
         // setIsSubmitting(true);
     };
 
-    useEffect(
-        () => {
-            if (Object.keys(errors).length === 0 && isSubmitting) {
-                console.log('Received values of form: ', values);
-                //userService.login(values);
-                callback();
-            }
-        },
-        [errors]
-    );
+    // useEffect(
+    //     () => {
+    //         if (Object.keys(errors).length === 0 && isSubmitting) {
+    //             console.log('Received values of form: ', values);
+    //             //userService.login(values);
+    //             callback();
+    //         }
+    //     },
+    //     [errors]
+    // );
 
     return {handleChange, handleSubmit, values, errors};
 };

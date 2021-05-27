@@ -1,8 +1,0 @@
-10 LET s = "hello world"
-20 LET t = 'Mini Basic'
-30 PRINTF "Hello World"
-40 PRINTF "Mini Basic V {}", 2
-50 PRINTF 'hello {}', 'world'
-60 PRINTF "{} {} {}", "hello", 2, "world"
-70 LET a = 100
-80 PRINTF "a = {}", a

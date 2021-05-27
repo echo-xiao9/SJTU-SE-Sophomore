@@ -16,7 +16,7 @@ function CardItem(props) {
           <div className='cards__item__info'>
             <h5 className='cards__item__text'>{props.text}</h5>
             <h6 className='cards__item__author'>{props.author}</h6>
-            <h6 className='cards__item__price'>{props.price}</h6>
+            <h6 className='cards__item__price'>{props.price}$</h6>
             <h7 className='cards__item__author'>ISBN:{props.ISBN}</h7>
             <h7 className='cards__item__author'>inventory:{props.inventory}</h7>
           </div>

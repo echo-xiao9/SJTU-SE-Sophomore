@@ -1,3 +1,0 @@
-1 input a
-2 inputs a
-3 print a

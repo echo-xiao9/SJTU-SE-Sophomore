@@ -1,5 +1,0 @@
-1 LET a = "123 (89)"
-5 LET b = 996
-40 INPUTS c
-50 PRINTF "{}{}..,{}", a, b,c
-100 PRINT b
