@@ -13,7 +13,6 @@ const useForm = (callback, validate) => {
     const [errors, setErrors] = useState({});
     const [isSubmitting, setIsSubmitting] = useState(false);
 
-
     const check= () => {
         axios({
             method: 'GET',

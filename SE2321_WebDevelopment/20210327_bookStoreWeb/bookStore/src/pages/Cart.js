@@ -4,7 +4,7 @@ import '../css/Cart.css';
 import '../components/CartItem'
 import CartItem from '../components/CartItem';
 import axios from 'axios';
-
+import {useState, useEffect} from 'react';
 
 function formatPrice(price) {
   if (typeof price !== "number") {
@@ -27,8 +27,6 @@ const castyle = {
 export default class Carts extends React.Component {
 
 
-
-
   constructor() {
     super()
     this.state = {
@@ -45,11 +43,6 @@ export default class Carts extends React.Component {
     }
     console.log(this.state);
   }
-
-
-
-
-
 
   renderBooks() {
     return (
@@ -133,7 +126,7 @@ export default class Carts extends React.Component {
               {/* <Button style={{ marginLeft: 550, backgroundColor: 'black' ,color:'white' }}>总价格:{this.getTotalprice()}</Button> */}
               <h4 class="col text-right" style={{ color: '#000' }}  > {this.getTotalprice()}</h4>
             </div>
-            <button class="cartBtn" onClick={this.checkOut}>CHECKOUT</button>
+            <button class="cartBtn" onClick={this.test}>CHECKOUT</button>
           </div>
         </div>
       </div>
@@ -168,66 +161,34 @@ export default class Carts extends React.Component {
   }
 
 
-  // public ResponseEntity<Integer> addOrderFromUser (@RequestParam(required = true) String username,
-  //                                                    @RequestParam (required = true) String password,
-  //                                                    @RequestParam (required = true) Integer id,
-  //                                                    @RequestParam (required = true) Integer item_id,
-  //                                                    @RequestParam (required = true) Integer book_id,
-  //                                                    @RequestParam (required = true) Integer book_cnt) {
-
-  
 
 
-  async checkOut() {
-    const Username = "echo";
-    const password= "password";
-    const id = 0;
-    const item_id=0;
-    const book_id=0;
-    const book_cnt=2;
-    const order = {
-      username:"echo", 
-      password:"password", 
-      id:JSON.stringify(0), 
-      item_id:JSON.stringify(0), 
-      book_id:JSON.stringify(0), 
-      book_cnt:JSON.stringify(1),
-    };
-
-    console.log(order);
-    const options = {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(order)
-    }
-    const response = await fetch('http://localhost:9090/addOrderFromUser', options);
-    console.log(response.json())
+  test(){
+  // super();
+  const values = {
+    user_id:1,
+    order_price: 100
   };
 
-  test() {
-    const username = "echo";
-    const password= "password";
-    const id = 0;
-    const item_id=0;
-    const book_id=0;
-    const book_cnt=2;
-    const order = {username, password, id, item_id, book_id, book_cnt};
-    const data = { username: 'example' };
-    fetch('http://localhost:9090/addOrderFromUser', {
-      method: 'POST', // or 'PUT’ 
-      headers: {
-      'Content-Type': 'application/json',
-    },
-      body: JSON.stringify(order),
+ 
+
+    axios({
+      method: 'GET',
+      url: 'http://localhost:9090/addOrderFromUser',
+      params: {
+        user_id: 1,
+        order_price: 100
+      }
+    }).then(response =>{
+      console.log(response)
     })
-    .then((response)=> response.json()) 
-    .then((data) => {
-    console.log('Success:', data);
+    .catch(error => {
+      console.log(error)
+      console.log("写入order失败！")
+      // this.$notify({
+      //     title: '提示信息', message: '账号或密码错误', type: 'error'
+      // })
   })
-  .catch((error) => {
-    console.error('Error:', error);
-  });
+
   }
 }
