@@ -4,7 +4,7 @@ import '../css/Cart.css';
 import '../components/CartItem'
 import CartItem from '../components/CartItem';
 import axios from 'axios';
-import {useState, useEffect} from 'react';
+import { useState, useEffect } from 'react';
 
 function formatPrice(price) {
   if (typeof price !== "number") {
@@ -31,15 +31,18 @@ export default class Carts extends React.Component {
     super()
     this.state = {
       books: [
-        { id: 1, name: "Harry Poter", datas: 'J·K·Rowling', price: 50, numbers: 1 },
-        // { id: 2, name: "Three Body", datas: 'CiXing Liu', price: 45, numbers: 1 },
-        // { id: 3, name: "Pride and Prejudice", datas: 'Jane Austen', price: 70, numbers: 2 },
+        { id: 10, name: "Harry", datas: 'J·K·Rowling', price: 50, numbers: 400, },
+        // { id: 20, name: "Three Body", datas: 'CiXing Liu', price: 45, numbers: 400 ,},
+        // { id: 30, name: "Pride and Prejudice", datas: 'Jane Austen', price: 70, numbers: 400, },
         // { id: 4, name: "Steve Jobs", datas: 'Walter Isaacson', price: 115, numbers: 1 },
         // { id: 1, name: "Harry Poter", datas: 'J·K·Rowling', price: 50, numbers: 1 },
         // { id: 2, name: "Three Body", datas: 'CiXing Liu', price: 45, numbers: 1 },
         // { id: 3, name: "Pride and Prejudice", datas: 'Jane Austen', price: 70, numbers: 2 },
         // { id: 4, name: "Steve Jobs", datas: 'Walter Isaacson', price: 115, numbers: 1 },
       ],
+      totalPrice: 0,
+      order_id: 0,
+      user_id:1
     }
     console.log(this.state);
   }
@@ -126,7 +129,7 @@ export default class Carts extends React.Component {
               {/* <Button style={{ marginLeft: 550, backgroundColor: 'black' ,color:'white' }}>总价格:{this.getTotalprice()}</Button> */}
               <h4 class="col text-right" style={{ color: '#000' }}  > {this.getTotalprice()}</h4>
             </div>
-            <button class="cartBtn" onClick={this.test}>CHECKOUT</button>
+            <button class="cartBtn" onClick={this.handleCheckOut}>CHECKOUT</button>
           </div>
         </div>
       </div>
@@ -157,21 +160,15 @@ export default class Carts extends React.Component {
     let totalPrice = this.state.books.reduce((pre, item) => {
       return pre + item.price * item.numbers
     }, 0)
+    this.state.totalPrice = totalPrice
     return formatPrice(totalPrice)
   }
 
 
 
 
-  test(){
-  // super();
-  const values = {
-    user_id:1,
-    order_price: 100
-  };
-
- 
-
+  test() {
+    // super();
     axios({
       method: 'GET',
       url: 'http://localhost:9090/addOrderFromUser',
@@ -179,16 +176,67 @@ export default class Carts extends React.Component {
         user_id: 1,
         order_price: 100
       }
-    }).then(response =>{
+    }).then(response => {
       console.log(response)
     })
-    .catch(error => {
+      .catch(error => {
+        console.log(error)
+        console.log("写入order失败！")
+      })
+  }
+
+  handleCheckOut = e => {
+    e.preventDefault();
+    axios({
+      method: 'GET',
+      url: 'http://localhost:9090/addOrderFromUser',
+      params: {
+        user_id: this.state.user_id,
+        order_price:this.state.totalPrice,
+      }
+  }).then(response => {
+      console.log(response)
+      if (response.status === 200) {
+        this.state.order_id=response.data
+        console.log(this.state.order_id)
+        this.state.books.forEach((item) => {
+          axios({
+              method: 'GET',
+              url: 'http://localhost:9090/addOrderItem',
+              params: {
+                order_id: response.data,
+                book_id: item.id,
+                book_name:item.name,
+                book_num: 1,
+                // book_num: item.numbers,
+                book_price: item.price
+              }
+          }).then(response => {
+              console.log(response)
+          }).catch(error => {
+              console.log(error)
+          })
+      });
+
+
+
+
+
+
+
+
+
+
+      }
+  }).catch(error => {
       console.log(error)
-      console.log("写入order失败！")
-      // this.$notify({
-      //     title: '提示信息', message: '账号或密码错误', type: 'error'
-      // })
   })
 
-  }
+
+    
+    alert("下单成功");
+};
+
+
+
 }
