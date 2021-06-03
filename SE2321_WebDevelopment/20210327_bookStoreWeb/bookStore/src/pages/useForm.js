@@ -16,7 +16,7 @@ const useForm = (callback, validate) => {
     const check= () => {
         axios({
             method: 'GET',
-            url: 'http://localhost:9090/checkGotoHome',
+            url: 'http://localhost:9090/login',
             params: {
                 username: values.username,
                 password: values.password
@@ -26,7 +26,7 @@ const useForm = (callback, validate) => {
             if (response.status === 200) {
                 // this.$notify({ title: '提示信息', message: '登录成功', type: 'success'
                 //                 // })
-                alert("登陆成功");
+                alert(response.data.msg);
                 // this.$global.username = this.input_username
                 // this.$global.password = this.input_password // 跳转
                 // this.$router.push('Home')

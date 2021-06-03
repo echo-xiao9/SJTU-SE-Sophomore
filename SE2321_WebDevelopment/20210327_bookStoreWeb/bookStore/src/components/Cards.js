@@ -29,7 +29,7 @@ function Cards() {
         : Object.values(books).map((i) => (
             <CardItem 
             id={i.id} 
-            text={i.bookname} 
+            text={i.name} 
             author={i.author} 
             price={i.price} 
             ISBN ={i.isbn} 
@@ -48,7 +48,7 @@ function Cards() {
             .map((i) => (
               <CardItem 
               id={i.id} 
-              text={i.bookname} 
+              text={i.name} 
               author={i.author} 
               price={i.price} 
               ISBN ={i.isbn} 
@@ -67,7 +67,7 @@ function Cards() {
             <div className='cards__container'>
                 <div className='cards__wrapper'>
                     <ul className='cards__items'>
-                        <CardItem
+                        {/* <CardItem
                             src='images/3bodyCoverSingle.jpeg'
                             text='Three body'
                             label='novel'
@@ -76,7 +76,7 @@ function Cards() {
                             price = '$50'
                             ISBN = '978-7-107-18618-1'
                             inventory = '100'
-                        />
+                        /> */}
                     {cards}
                     
                     </ul>
