@@ -6,4 +6,5 @@ public interface OrderDao {
     Order findOne(Integer id);
 
     List<Order> getOrders();
+    Order addOrderFromUser(Integer user_id, Integer order_price);
 }

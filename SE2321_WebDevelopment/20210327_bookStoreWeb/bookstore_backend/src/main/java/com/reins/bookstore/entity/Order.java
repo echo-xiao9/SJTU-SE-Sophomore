@@ -22,4 +22,10 @@ public class Order {
     private int orderId;
     private int user_id;
     private int order_price;
+
+    public Order(int user_id, int order_price) {
+        this.user_id = user_id;
+        this.order_price = order_price;
+    }
+
 }

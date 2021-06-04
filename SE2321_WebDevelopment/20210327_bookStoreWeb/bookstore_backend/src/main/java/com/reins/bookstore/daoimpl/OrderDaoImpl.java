@@ -22,4 +22,11 @@ public class OrderDaoImpl implements OrderDao {
         return orderRepository.getOrders();
     }
 
+    @Override
+    public Order addOrderFromUser(Integer user_id, Integer order_price) {
+        Order order= new Order(user_id, order_price);
+        orderRepository.save(order);
+        return order;
+    }
+
 }

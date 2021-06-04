@@ -6,4 +6,6 @@ public interface OrderService {
     Order findOrderById(Integer id);
 
     List<Order> getOrders();
+
+    Order addOrderFromUser(Integer user_id, Integer order_price);
 }

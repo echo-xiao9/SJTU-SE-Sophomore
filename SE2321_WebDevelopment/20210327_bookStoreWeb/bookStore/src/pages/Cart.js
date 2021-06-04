@@ -199,24 +199,25 @@ export default class Carts extends React.Component {
       if (response.status === 200) {
         this.state.order_id=response.data
         console.log(this.state.order_id)
-        this.state.books.forEach((item) => {
-          axios({
-              method: 'GET',
-              url: 'http://localhost:9090/addOrderItem',
-              params: {
-                order_id: response.data,
-                book_id: item.id,
-                book_name:item.name,
-                book_num: 1,
-                // book_num: item.numbers,
-                book_price: item.price
-              }
-          }).then(response => {
-              console.log(response)
-          }).catch(error => {
-              console.log(error)
-          })
-      });
+
+        // this.state.books.forEach((item) => {
+        //   axios({
+        //       method: 'GET',
+        //       url: 'http://localhost:9090/addOrderItem',
+        //       params: {
+        //         order_id: response.data,
+        //         book_id: item.id,
+        //         book_name:item.name,
+        //         book_num: 1,
+        //         // book_num: item.numbers,
+        //         book_price: item.price
+        //       }
+        //   }).then(response => {
+        //       console.log(response)
+        //   }).catch(error => {
+        //       console.log(error)
+        //   })
+      // });
 
 
 
