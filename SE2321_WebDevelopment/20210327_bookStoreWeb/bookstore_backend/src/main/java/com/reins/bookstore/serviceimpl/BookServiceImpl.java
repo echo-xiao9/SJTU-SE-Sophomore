@@ -6,6 +6,7 @@ import com.reins.bookstore.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -29,5 +30,10 @@ public class BookServiceImpl implements BookService {
     @Override
     public List<Book> getBooks() {
         return bookDao.getBooks();
+    }
+
+    @Override
+    public ArrayList getAdminBook() {
+        return bookDao.getAdminBook();
     }
 }

@@ -21,9 +21,36 @@ import javax.persistence.Table;
 @JsonIgnoreProperties(value = {"handler","hibernateLazyInitializer","fieldHandler"})
 public class User {
     @Id
-    private int userId;
+    private Integer userId;
     private String nickname;
     private String name;
     private String tel;
     private String address;
+    private Integer type;
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getTel() {
+        return tel;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public Integer getType() {
+        return type;
+    }
 }
+
+

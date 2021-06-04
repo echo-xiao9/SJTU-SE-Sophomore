@@ -57,7 +57,7 @@ import { Button } from '../components/Button';
                 <div class="col-lg-12 loginbttm">
                   <Button buttonStyle='btn--outline' onClick={handleSubmit}>Log in  </Button>
                   <Button buttonStyle='btn--outline'>Register</Button>
-                  <Button buttonStyle='btn--outline' buttonLink='/Administrator'>Administrator</Button>
+                  <Button buttonStyle='btn--outline' buttonLink='/AdminIndex'>Administrator</Button>
 
                 </div>
               </form>

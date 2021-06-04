@@ -19,13 +19,29 @@ import javax.persistence.Table;
 public class Order {
     @Id
     @Column(name = "id")
-    private int orderId;
-    private int user_id;
-    private int order_price;
+    private Integer orderId;
+    private Integer user_id;
+    private Integer order_price;
 
-    public Order(int user_id, int order_price) {
+    public Order(Integer user_id, Integer order_price) {
         this.user_id = user_id;
         this.order_price = order_price;
+    }
+
+    public Order(Integer orderId, Integer user_id, Integer order_price) {
+        this.orderId = orderId;
+        this.user_id = user_id;
+        this.order_price = order_price;
+    }
+
+    public Order() {
+    }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "orderId=" + orderId +
+                '}';
     }
 
 }

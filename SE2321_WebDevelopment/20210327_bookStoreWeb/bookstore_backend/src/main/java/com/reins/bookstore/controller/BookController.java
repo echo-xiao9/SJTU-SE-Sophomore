@@ -4,6 +4,7 @@ import com.reins.bookstore.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -32,4 +33,12 @@ public class BookController {
     public Book getBook(@RequestParam("id") Integer id){
         return bookService.findBookById(id);
     }
+
+    @GetMapping("/adminBook")
+    public ArrayList getAdminBook(){
+        return bookService.getAdminBook();
+    }
+
+
+
 }

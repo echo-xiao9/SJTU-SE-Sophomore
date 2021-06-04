@@ -35,5 +35,41 @@ public class Book {
     private String description;
     private Integer inventory;
     private String image;
+
+    public int getBookId() {
+        return bookId;
+    }
+
+    public String getIsbn() {
+        return isbn;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public Integer getInventory() {
+        return inventory;
+    }
+
+    public String getImage() {
+        return image;
+    }
 }
 

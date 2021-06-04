@@ -7,6 +7,8 @@ import com.reins.bookstore.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.reins.bookstore.entity.Order;
+
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -27,5 +29,10 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public Order addOrderFromUser(Integer user_id, Integer order_price) {
         return orderDao.addOrderFromUser( user_id,  order_price);
+    }
+
+    @Override
+    public ArrayList getAdminOrder() {
+        return orderDao.getAdminOrder();
     }
 }
