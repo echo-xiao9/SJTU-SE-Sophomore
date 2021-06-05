@@ -32,35 +32,35 @@ private:
     void getBloomFilter();
 public:
     uint64_t size;
-    uint64_t sTime;
-    uint64_t num;
+    time_t sTime;
+    num_t num;
     uint64_t curOff;
-    int64_t max;
-    int64_t min;
-    // Bloom Filter 10KB;
-    bool bloomFilter[10240]={0};
+    max_t max;
+    min_t min;
+    char bloomFilter[10240]={0};
     vector<string> data;
     // index
-    map<uint64_t, uint32_t> keyOff; //key and offset
+    map<key_t, off_t> keyOff; //key and offset
     SsTable(uint64_t time, Skiplist &skipList);
-//    uint64_t size(); //current byte
-   
-//    writeToFile(fstream file); //?
+
 };
 
 
-class Front{
-private:
-    //head 32B
-    uint64_t sTime;
-    uint64_t num;
-    int64_t max;
-    int64_t min;
-    // Bloom Filter 10KB;
-    bool bloomFilter[10240]={0};
-    // index
-    map<uint64_t, uint32_t> keyOff; //key and offset
-public:
-    Front(SsTable ssTable);
-};
+//class Front{
+//private:
+//    //head 32B
+//    uint64_t sTime;
+//    uint64_t num;
+//    int64_t max;
+//    int64_t min;
+//    // Bloom Filter 10KB;
+//    bool bloomFilter[10240]={0};
+//    // index
+//    map<key_t, uint32_t> keyOff; //key and offset
+//public:
+//    Front(SsTable ssTable);
+//};
+//
+    
+    
 #endif /* ssTable_h */
