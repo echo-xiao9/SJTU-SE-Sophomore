@@ -8,4 +8,6 @@ public interface CartService {
     List<Cart> getCart();
 
     List<Cart> clearCart();
+
+    Cart addToCart(String name, String author, Integer price, Integer number);
 }

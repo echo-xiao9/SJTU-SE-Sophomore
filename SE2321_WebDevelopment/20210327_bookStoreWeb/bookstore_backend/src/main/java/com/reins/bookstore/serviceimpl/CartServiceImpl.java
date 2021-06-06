@@ -22,4 +22,9 @@ public class CartServiceImpl implements CartService {
     public List<Cart> clearCart() {
         return cartDao.clearCart();
     }
+
+    @Override
+    public Cart addToCart(String name, String author, Integer price, Integer number) {
+        return cartDao.addToCart(name, author,price, number);
+    }
 }

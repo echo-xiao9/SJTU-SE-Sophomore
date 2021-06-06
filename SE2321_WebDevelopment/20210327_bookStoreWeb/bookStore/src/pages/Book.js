@@ -7,37 +7,46 @@ import { Component } from 'react';
 import qs from 'querystring';
 import axios from 'axios';
 
-class Book extends  Component {
-   getQueryVariable(variable) {
+class Book extends Component {
+
+  getQueryVariable(variable) {
     var query = window.location.search.substring(1);
     var vars = query.split('&');
+    var thisBook;
     for (var i = 0; i < vars.length; i++) {
-        var pair = vars[i].split('=');
-        if (decodeURIComponent(pair[0]) == variable) {
-            return decodeURIComponent(pair[1]);
-        }
+      var pair = vars[i].split('=');
+      if (decodeURIComponent(pair[0]) == variable) {
+        return decodeURIComponent(pair[1]);
+      }
     }
     console.log('Query variable %s not found', variable);
-}
+  }
 
 
   constructor(props) {
     super(props);
     this.state = {
-        book: []
+      book: []
     }
     const url = "http://localhost:9090/getBooks";
     axios.get(url).then((response) => {
-        const thisbook =response.data.find(x => x.isbn === this.getQueryVariable('isbn'));
-        this.setState({
-            book: thisbook
-        })
+      const thisbook = response.data.find(x => x.isbn === this.getQueryVariable('isbn'));
+      this.setState({
+        book: thisbook
+      })
+      this.thisBook = thisbook;
+      console.log("set thisBook");
+      console.log(this.thisBook);
     })
-    
-}
+  }
+
+
+
+
   render() {
+
     const bookoj = this.state.book;
-    console.log(bookoj);
+
     return (
       <div>
         {/* <title>W3.CSS Template</title>
@@ -65,25 +74,25 @@ and is wrapped around the whole page content, except for the footer in this exam
                 <img src="images/harryCover.jpg" alt="Nature" style={{ width: '100%' }} />
 
                 <img src={bookoj.image} />
-                
+
                 <div className="w3-container">
-                {/* <h3><b>Harry Potter (Books 1-7) </b></h3> */}
+                  {/* <h3><b>Harry Potter (Books 1-7) </b></h3> */}
                   <h3><b>{bookoj.name}</b></h3>
                   <h5> {bookoj.author}
-                  {/* <span className="w3-opacity">July 1, 2009</span> */}
+                    {/* <span className="w3-opacity">July 1, 2009</span> */}
                   </h5>
                 </div>
 
                 <div className="w3-container">
                   <p>{bookoj.description}
-                </p>
+                  </p>
                   <Button />
 
                   <div className="w3-row">
                     <div className="w3-col m8 s12">
                       <p>
-                        <button className="w3-button w3-white  "><b>Price: ${bookoj.price/100}</b></button>
-                        <button className="w3-button w3-white w3-border"><b>Add to cart »</b></button>
+                        <button className="w3-button w3-white  "><b>Price: ${bookoj.price / 100}</b></button>
+                        <button className="w3-button w3-white w3-border" onClick={this.addToCart}><b>Add to cart »</b></button>
                       </p>
                     </div>
                     <div className="w3-col m4 w3-hide-small">
@@ -126,8 +135,8 @@ and is wrapped around the whole page content, except for the footer in this exam
                 </div>
               </div> */}
               {/* END BLOG ENTRIES */}
-              
-               
+
+
             </div>
             {/* Introduction menu */}
 
@@ -138,13 +147,12 @@ and is wrapped around the whole page content, except for the footer in this exam
 
                 <div className="w3-container w3-white">
                   <h4><b>Product details</b></h4>
-                
+
                   <h6><b> Author :</b> {bookoj.author}</h6>
                   <h6><b> type :</b> {bookoj.type} </h6>
                   <h6><b> isbn:</b> {bookoj.isbn}</h6>
-            
                   <h6><b> price:</b> {bookoj.price}</h6>
-        
+
 
 
                 </div>
@@ -207,6 +215,27 @@ and is wrapped around the whole page content, except for the footer in this exam
       </div>
     );
   }
+  addToCart = e => {
+    axios({
+      method: 'GET',
+      url: 'http://localhost:9090/addToCart',
+      params: {
+        name: this.state.book.name,
+        author:this.state.book.author,
+        price:this.state.book.price,
+        number:1
+      }
+  }).then(response => {
+      console.log(response);
+      
+  }).catch(error => {
+      console.log(error)
+  })
+   
+};
+
+
+
 }
 
 
