@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.reins.bookstore.dao.OrderDao;
+import com.reins.bookstore.entity.OrderItem;
 import com.reins.bookstore.repository.OrderRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,13 +33,6 @@ public class OrderDaoImpl implements OrderDao {
     }
 
     @Override
-    public Order addOrderFromUser(Integer user_id, Integer order_price) {
-        Order order= new Order(user_id, order_price);
-        orderRepository.save(order);
-        return order;
-    }
-
-    @Override
     public ArrayList getAdminOrder() {
         List<Order> result = orderRepository.getOrders();
         System.out.println(result);
@@ -47,7 +41,6 @@ public class OrderDaoImpl implements OrderDao {
         while (it.hasNext()) {
             Order order = (Order) it.next();
             ArrayList<String> arrayList = new ArrayList<String>();
-            arrayList.add(order.getOrderId().toString());
             arrayList.add(order.getUser_id().toString());
             arrayList.add(order.getOrder_price().toString());
             ordersJson.add((JSONArray) JSONArray.toJSON(arrayList));
@@ -55,5 +48,13 @@ public class OrderDaoImpl implements OrderDao {
         String  ordersString = JSON.toJSONString(ordersJson, SerializerFeature.BrowserCompatible);
         return ordersJson;
     }
+
+    @Override
+    public Order addOrderFromUser(Integer user_id, Integer order_price, String date, String year, String month, String day) {
+        Order order= new Order(user_id, order_price, date,year, month, day);
+        orderRepository.save(order);
+        return order;
+    }
+
 
 }

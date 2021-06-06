@@ -14,6 +14,14 @@ const useForm = (callback, validate) => {
     const [isSubmitting, setIsSubmitting] = useState(false);
 
     const check= () => {
+        if(!values.username){
+          alert("用户名为空！");
+          return;
+        }
+        if(!values.password){
+          alert("密码为空！");
+          return;
+        }
         axios({
             method: 'GET',
             url: 'http://localhost:9090/login',
@@ -24,9 +32,10 @@ const useForm = (callback, validate) => {
         }).then(response => {
             console.log(response)
             if (response.status === 200) {
+              if(response.data.userType===0)alert("您的账号已经被禁用");
                 // this.$notify({ title: '提示信息', message: '登录成功', type: 'success'
                 //                 // })
-                alert(response.data.msg);
+                else alert(response.data.msg);
                 // this.$global.username = this.input_username
                 // this.$global.password = this.input_password // 跳转
                 // this.$router.push('Home')

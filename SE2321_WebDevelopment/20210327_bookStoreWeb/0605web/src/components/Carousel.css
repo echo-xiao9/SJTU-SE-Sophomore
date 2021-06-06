@@ -1,0 +1,70 @@
+body {
+  margin: 0;
+  background: lightgray;
+  /* text-align: center; */
+  font-family: sans-serif;
+  /* color: #fefefe; */
+}
+.container {
+  position: relative;
+  width: 500px;
+  margin: 20px auto 0 auto;
+  /* perspective: 1500px;  */
+}
+
+.carousel {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d; 
+  animation: rotate360 60s infinite forwards linear;
+}
+.carousel__face { 
+  position: absolute;
+  width: 480px;
+  height: 230px;
+  top: 20px;
+  left: 10px;
+  right: 10px;
+  background-size: cover;
+  box-shadow:inset 0 0 0 2000px rgba(0,0,0,0.0);
+  display: flex;
+}
+
+span {
+  margin: auto;
+  font-size: 2rem;
+}
+
+
+.carousel__face:nth-child(1) {
+  /* background-image: url("https://www.notion.so/img-17b51cd71e94425c9c15dcb169e8296a#752ff3c560dd4b979d2e0f0c13e379f5"); */
+  /* background-image: url("../../public/images/carPoster1.jpg"); */
+  background-image: url("http://r.photo.store.qq.com/psc?/V11fv0hk0pCaQ1/TmEUgtj9EK6.7V8ajmQrEMr0JMbRsOw2lqzLizyXvH8aS0xXEuOfdQAhjvdIPF5yaF0wWy.GUE*ZGsWZmBEDMC1EwUN0yCUQ.M1afpe9J04!/r");
+  transform: rotateY(  0deg) translateZ(430px); }
+.carousel__face:nth-child(2) { 
+  background-image: url("http://r.photo.store.qq.com/psc?/V11fv0hk0pCaQ1/TmEUgtj9EK6.7V8ajmQrEKh0OJsTZqhezUy55dIEIelsBrPZMsBR78lYUV.M8j1FUfR9*eYtEnM5c67X5Df9nkvTYeCWBljwBzMKd1tz*eo!/r");
+    transform: rotateY( 60deg) translateZ(430px); }
+.carousel__face:nth-child(3) {
+  background-image: url("http://r.photo.store.qq.com/psc?/V11fv0hk0pCaQ1/TmEUgtj9EK6.7V8ajmQrEN7uJW6KPCkVZW2wxLs3x1GnVFQshZwhYwlNTudUmvd63.25Ky.SDUrHgyQ437LOvGyHXBtbZvuXCy2DLNPzgwI!/r");
+  transform: rotateY( 120deg) translateZ(430px); }
+.carousel__face:nth-child(4) {
+  background-image: url("http://r.photo.store.qq.com/psc?/V11fv0hk0pCaQ1/TmEUgtj9EK6.7V8ajmQrEHyR9SRNcRh6A7gF2qA5fPsJbFMVGsHhV.olfYiMM2oqnovuxSUS4gu6fYoTen3cSSVr.5Jym9h6RG8ETqTL2FA!/r");
+  transform: rotateY(180deg) translateZ(430px); }
+.carousel__face:nth-child(5) { 
+  background-image: url("http://r.photo.store.qq.com/psc?/V11fv0hk0pCaQ1/TmEUgtj9EK6.7V8ajmQrEN0i8ysyt4x8u*9*z4bo74luzVB*fD72u7UWUpFo7PmpBpL4N3Twbn8aYOdps9k0gcRXfAH8*Gur3tyY6v37DPg!/r");
+ transform: rotateY(240deg) translateZ(430px); }
+.carousel__face:nth-child(6) { 
+  background-image: url("http://r.photo.store.qq.com/psc?/V11fv0hk0pCaQ1/TmEUgtj9EK6.7V8ajmQrEDYPeOWzqU1zPEqE8SxvQBoY0qfLYcwU18nkPUbgu5.kz8D70qUQneo7Y1V5W3EuD3qLBpIgJKUFSVsbpG0v3xo!/r");
+ transform: rotateY(300deg) translateZ(430px); }
+
+
+
+@keyframes rotate360 {
+  from {
+    transform: rotateY(0deg);
+  }
+  to {
+    transform: rotateY(-360deg);
+  }
+}

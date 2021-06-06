@@ -1,5 +1,6 @@
 package com.reins.bookstore.service;
 import com.reins.bookstore.entity.Order;
+import com.reins.bookstore.entity.OrderItem;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,7 +10,10 @@ public interface OrderService {
 
     List<Order> getOrders();
 
-    Order addOrderFromUser(Integer user_id, Integer order_price);
 
     ArrayList getAdminOrder();
+
+    Order addOrderFromUser(Integer user_id, Integer order_price, String date, String year, String month, String day);
+
+//    List<OrderItem> getOrderItems();
 }

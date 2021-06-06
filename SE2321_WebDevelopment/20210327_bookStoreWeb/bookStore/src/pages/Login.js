@@ -50,7 +50,6 @@ import { Button } from '../components/Button';
                       placeholder='Enter your password'
                       value={values.password}
                       onChange={handleChange}
-
                   />{errors.password && <p>{errors.password}</p>}
                 </div>
 

@@ -13,5 +13,4 @@ public interface UserDao {
 
     ArrayList getAdminUser();
 
-
 }

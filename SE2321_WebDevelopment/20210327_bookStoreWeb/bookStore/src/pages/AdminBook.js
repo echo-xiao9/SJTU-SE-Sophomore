@@ -124,6 +124,24 @@ class Excel extends React.Component {
         })
     }
 
+    saveBooks = () => {
+      // fetch("http://localhost:8080/se122_10_reactdb_war/BookManager")
+      fetch("http://localhost:9090/adminBook")
+          .then(response => response.json())
+          .then(data => {
+              // alert("data:" + data);
+              // const propertyValues = Object.entries(data);
+              // console.log(propertyValues);
+              this.setState({
+                  data:  data
+              });
+              
+          }).catch(function (ex) {
+          console.log('parsing failed', ex)
+      })
+  }
+    
+
     render = () => {
         return (
             <div>

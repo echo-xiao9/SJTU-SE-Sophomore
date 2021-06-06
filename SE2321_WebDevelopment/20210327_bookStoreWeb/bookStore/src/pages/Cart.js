@@ -10,9 +10,9 @@ function formatPrice(price) {
   if (typeof price !== "number") {
     price = Number("aaa") || 0
   }
+  price=price/100;
   return "¥" + price.toFixed(2)
 }
-
 
 const castyle = {
   width: 900,
@@ -30,21 +30,29 @@ export default class Carts extends React.Component {
   constructor() {
     super()
     this.state = {
-      books: [
-        { id: 10, name: "Harry", datas: 'J·K·Rowling', price: 50, numbers: 400, },
-        // { id: 20, name: "Three Body", datas: 'CiXing Liu', price: 45, numbers: 400 ,},
-        // { id: 30, name: "Pride and Prejudice", datas: 'Jane Austen', price: 70, numbers: 400, },
-        // { id: 4, name: "Steve Jobs", datas: 'Walter Isaacson', price: 115, numbers: 1 },
-        // { id: 1, name: "Harry Poter", datas: 'J·K·Rowling', price: 50, numbers: 1 },
-        // { id: 2, name: "Three Body", datas: 'CiXing Liu', price: 45, numbers: 1 },
-        // { id: 3, name: "Pride and Prejudice", datas: 'Jane Austen', price: 70, numbers: 2 },
-        // { id: 4, name: "Steve Jobs", datas: 'Walter Isaacson', price: 115, numbers: 1 },
-      ],
+      // books: [
+      //   { id: 10, name: "Harry", datas: 'J·K·Rowling', price: 50, number: 400, },
+      //   // { id: 20, name: "Three Body", datas: 'CiXing Liu', price: 45, number: 400 ,},
+      //   // { id: 30, name: "Pride and Prejudice", datas: 'Jane Austen', price: 70, number: 400, },
+      //   // { id: 4, name: "Steve Jobs", datas: 'Walter Isaacson', price: 115, number: 1 },
+      //   // { id: 1, name: "Harry Poter", datas: 'J·K·Rowling', price: 50, number: 1 },
+      //   // { id: 2, name: "Three Body", datas: 'CiXing Liu', price: 45, number: 1 },
+      //   // { id: 3, name: "Pride and Prejudice", datas: 'Jane Austen', price: 70, number: 2 },
+      //   // { id: 4, name: "Steve Jobs", datas: 'Walter Isaacson', price: 115, number: 1 },
+      // ],
+      books:[],
       totalPrice: 0,
       order_id: 0,
       user_id:1
     }
-    console.log(this.state);
+    const url = "http://localhost:9090/getCart";
+    axios.get(url).then((response) => {
+      const getBooks =response.data;
+      console.log(getBooks);
+      this.setState({
+          books: getBooks
+      })
+  })
   }
 
   renderBooks() {
@@ -79,12 +87,12 @@ export default class Carts extends React.Component {
                         <tr>
                           <td>{index + 1}</td>
                           <td>{item.name}</td>
-                          <td>{item.datas}</td>
+                          <td>{item.author}</td>
                           <td>{formatPrice(item.price)}</td>
                           <td>
                             <button onClick={() => this.changeBookCount(index, -1)} style={{ width: '15px' }}
-                              disabled={item.numbers == 1}>-</button>
-                            <>{item.numbers}</>
+                              disabled={item.number == 1}>-</button>
+                            <>{item.number}</>
 
                             <button onClick={() => this.changeBookCount(index, 1)} style={{ width: '15px' }} >+</button>
                           </td>
@@ -117,8 +125,8 @@ export default class Carts extends React.Component {
 
             <form>
               <p>SHIPPING</p> <select>
-                <option class="text-muted">Standard-Delivery- ¥5.00</option>
-                <option class="text-muted">Fast-Delivery- ¥10.00</option>
+                <option class="text-muted">Standard-Delivery- ¥0.00</option>
+                {/* <option class="text-muted">Fast-Delivery- ¥10.00</option> */}
               </select>
               <p>Remarks to merchants</p> <input type="text" id="grayInput" placeholder="Remarks" />
             </form>
@@ -141,12 +149,13 @@ export default class Carts extends React.Component {
   }
 
   render() {
-    const { books } = this.state
-    return books.length == 0 ? this.renderNone() : this.renderBooks()
+    const { books } = this.state.books
+    var len = this.state.books.length
+    return len == 0 ? this.renderNone() : this.renderBooks();
   }
   changeBookCount(index, count) {
     const newBooks = [...this.state.books]
-    newBooks[index].numbers += count
+    newBooks[index].number += count
     this.setState({
       books: newBooks
     })
@@ -158,47 +167,45 @@ export default class Carts extends React.Component {
   }
   getTotalprice() {
     let totalPrice = this.state.books.reduce((pre, item) => {
-      return pre + item.price * item.numbers
+      return pre + item.price * item.number
     }, 0)
     this.state.totalPrice = totalPrice
     return formatPrice(totalPrice)
   }
 
-
-
-
-  test() {
-    // super();
-    axios({
-      method: 'GET',
-      url: 'http://localhost:9090/addOrderFromUser',
-      params: {
-        user_id: 1,
-        order_price: 100
-      }
-    }).then(response => {
-      console.log(response)
+  removeAll(){
+    this.setState({
+      books:[]
     })
-      .catch(error => {
-        console.log(error)
-        console.log("写入order失败！")
-      })
+    const url = "http://localhost:9090/clearCart";
+    axios.get(url).then((response) => {
+      console.log("clear");
+      console.log(response);
+  })
   }
+
 
   handleCheckOut = e => {
     e.preventDefault();
+    this.removeAll();
+    var d=new Date();
+    // console.log("year:"+d.getFullYear());
     axios({
       method: 'GET',
       url: 'http://localhost:9090/addOrderFromUser',
       params: {
         user_id: this.state.user_id,
         order_price:this.state.totalPrice,
+        date:Date(),
+        year:d.getFullYear(),
+        month:d.getMonth(),
+        day: d.getDate()
       }
   }).then(response => {
-      console.log(response)
+      // console.log(response)
       if (response.status === 200) {
         this.state.order_id=response.data
-        console.log(this.state.order_id)
+        // console.log(this.state.order_id)
 
         // this.state.books.forEach((item) => {
         //   axios({
@@ -209,7 +216,7 @@ export default class Carts extends React.Component {
         //         book_id: item.id,
         //         book_name:item.name,
         //         book_num: 1,
-        //         // book_num: item.numbers,
+        //         // book_num: item.number,
         //         book_price: item.price
         //       }
         //   }).then(response => {
@@ -218,14 +225,6 @@ export default class Carts extends React.Component {
         //       console.log(error)
         //   })
       // });
-
-
-
-
-
-
-
-
 
 
       }

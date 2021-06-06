@@ -29,7 +29,6 @@ public class UserController {
     public List<User> getUsers(){return userService.getUsers();}
 
 
-
     @RequestMapping("/checkUser")
     public UserAuth checkUser(@RequestParam("username") String username,@RequestParam("password") String password){
         return userService.checkUser(username, password);

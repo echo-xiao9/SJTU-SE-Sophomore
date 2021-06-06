@@ -3,6 +3,7 @@ package com.reins.bookstore.serviceimpl;
 
 import com.reins.bookstore.dao.OrderDao;
 
+import com.reins.bookstore.entity.OrderItem;
 import com.reins.bookstore.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,13 +27,19 @@ public class OrderServiceImpl implements OrderService {
         return orderDao.getOrders();
     }
 
-    @Override
-    public Order addOrderFromUser(Integer user_id, Integer order_price) {
-        return orderDao.addOrderFromUser( user_id,  order_price);
-    }
 
     @Override
     public ArrayList getAdminOrder() {
         return orderDao.getAdminOrder();
     }
+
+    @Override
+    public Order addOrderFromUser(Integer user_id, Integer order_price, String date, String year, String month, String day) {
+        return orderDao.addOrderFromUser( user_id,  order_price, date, year, month, day);
+    }
+
+//    @Override
+//    public List<OrderItem> getOrderItems() {
+//        return orderDao.getOrderItems();
+//    }
 }
