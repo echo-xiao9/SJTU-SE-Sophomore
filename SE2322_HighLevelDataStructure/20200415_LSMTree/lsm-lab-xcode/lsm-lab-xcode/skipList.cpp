@@ -26,7 +26,6 @@ void Skiplist::init(){
         remove(cur->key);
         cur=nextNode;
     }
-    cout<<"clear!"<<endl;
     memSize=32+10*KB;
     num=0;
 }

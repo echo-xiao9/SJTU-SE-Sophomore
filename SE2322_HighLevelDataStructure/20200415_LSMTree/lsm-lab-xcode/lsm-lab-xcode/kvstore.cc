@@ -47,8 +47,11 @@ void KVStore::put(uint64_t key, const std::string &s)
     if(newSize > 2*MB){
         SsTable *newSsTable = new SsTable(curTime, slmSkip);
         curTime++;
+        string filename = getFileName(0, layerFiles[0]);
+        const char *p = filename.c_str();
+        
         // push the new sstable message to memory.
-        SsMsg newSsMsg(curTime,newSsTable->num, newSsTable->max, newSsTable->min,newSsTable->keyOff);
+        SsMsg newSsMsg(curTime,newSsTable->num, newSsTable->max, newSsTable->min,p,newSsTable->bloomFilter, newSsTable->keyOff);
         allSsMsg[0].push_back(newSsMsg);
         writeToFile(*newSsTable,0);
         merge();
@@ -62,12 +65,13 @@ void KVStore::put(uint64_t key, const std::string &s)
 void KVStore::putAgain(uint64_t key, const std::string &s,time_t stamp,int layer){
     int newSize =slmSkipMerge.memSize+12+s.length();
     if(newSize > 2*MB){
-        if(layer==1)
-            cout<<"layer1:"<<endl;
         SsTable *newSsTable = new SsTable(stamp, slmSkipMerge);
+        string filename = getFileName(layer, layerFilesIndex[layer]);
+        const char *p = filename.c_str();
         
         // push the new sstable message to memory.
-        SsMsg newSsMsg(curTime,newSsTable->num, newSsTable->max, newSsTable->min,newSsTable->keyOff);
+        SsMsg newSsMsg(curTime,newSsTable->num, newSsTable->max, newSsTable->min,
+                       p,newSsTable->bloomFilter, newSsTable->keyOff);
         allSsMsg[layer].push_back(newSsMsg);
         writeToFile(*newSsTable,layer);
         slmSkipMerge.init();
@@ -109,54 +113,48 @@ void KVStore::reset()
 
 void KVStore::writeToFile(SsTable &st,int layer){
     ofstream outfile;int numOfKey=0;
-    //合并还没写
     int first=0;
-    
-    string curFileDir1 = getFileName(layer, layerFiles[layer]);
-    //    if(fileExist(curFileDir1)) throw "the target file is not empty";
+    string curFileDir1 = getFileName(layer, layerFilesIndex[layer]);
+    layerFilesIndex[layer]++;
     cout<<"write to file:"<<curFileDir1<<endl;
-    outfile.open(curFileDir1,ios::out|ios::binary);
-    if(!outfile)
-        throw "can't open the file!";
+    try {
+        string dirPath=fileDir+"/level-"+to_string(layer);
+        if(!dirExists(dirPath.c_str())){
+            if(mkdir(dirPath.c_str())!=0)
+                throw "can't make direct correctly!";
+        }
+        outfile.open(curFileDir1,ios::out|ios::binary);
+        if(!outfile)
+            throw "can't open the file!";
+    } catch (string s) {
+        cout<<s;
+        return;
+    }
     outfile.write((char*)&st.sTime, 8);
     outfile.write((char*)&st.num, 8);
-
     outfile.write((char*)&st.min, 8);
     outfile.write((char*)&st.max, 8);
     // write bloom filter
     for (int i=0; i<10240; i++) {
         outfile.write(st.bloomFilter+i,1);
     }
-    cout<<st.num<<" "<<st.keyOff.size()<<endl;
     // write key and offset
-    for(map<uint64_t, uint32_t>::iterator it = st.keyOff.begin(); it != st.keyOff.end(); it++){
-//        first++;
-//        if(first==1)
-//            cout<<"first off should:"<<it->second<<endl;
-//        if(first==2)
-//            cout<<"second off should:"<<it->second<<endl;
-//        if(first==3)
-//            cout<<"third off should:"<<it->second<<endl;
+    for(auto it = st.keyOff.begin(); it != st.keyOff.end(); it++){
         outfile.write((char*)(&it->first),sizeof(it->first));
         outfile.write((char*)(&it->second),sizeof(it->second));
         numOfKey++;
     }
-    // write data ?
-    //    cout<<"real first offset: "<<outfile.tellp()<<endl;
     for(int i=0;i<st.data.size();i++){
         string curString=st.data[i];
         char* curString1=new char[curString.length()];
         strcpy(curString1,curString.c_str());
         for(int i=0;i<curString.length();i++){
-            outfile.write((char*)(&curString1[i]),curString.length());
+            outfile.write((char*)(&curString1[i]), curString.length());
         }
     }
     outfile.close();
-    
     layerFiles[layer]++;
-    //    cout<<"file size is:"<<GetFileSize("data/level-0/ssTable0.sst")<<"B "<< float(GetFileSize("data/level-0/ssTable0.sst"))/MB<<" MB";
-    //    cout<<endl;
-    //    if( layer==0 && layerFiles[layer]==3)merge();
+
 }
 
 uint64_t KVStore:: GetFileSize(const std::string& file_name){
@@ -227,7 +225,10 @@ void KVStore::mergeSstable(vector<string>intersectionFile, max_t maxKey, min_t m
     allKeyValTime.clear();
 
     // search for the sstable intersected with previos layer.
-    for(int i=0;i<allSsMsg[targetLayer].size();i++){
+    cout<<"第"<<targetLayer<<"层的开始合并的位置为："<<getBegin(targetLayer)<<endl;
+    for(int i=getBegin(targetLayer);
+        i<layerFiles[targetLayer]+getBegin(targetLayer);
+        i++){
         string filename =getFileName(targetLayer, i);
         stamp=allSsMsg[targetLayer][i].stamp;
         if(stamp>maxStamp)maxStamp=stamp;
@@ -239,10 +240,10 @@ void KVStore::mergeSstable(vector<string>intersectionFile, max_t maxKey, min_t m
         if(intersection)intersectionFile.push_back(filename);
     }
     // 读入keyoff vector, note: we should push the current sstable stamp together for comparasion
-    cout<<"intersectionFile"<<intersectionFile.size()<<endl;
+
     for(int i=0;i<intersectionFile.size();i++){
         ifstream inFile(intersectionFile[i],ios::in|ios::binary); //二进制读方式打开
-        cout<<"fileName:"<<intersectionFile[i]<<endl;
+
         if(!inFile)break;
         inFile.read((char *)&stamp, sizeof(stamp)); // time
         if(stamp>maxStamp)maxStamp=stamp;
@@ -255,13 +256,11 @@ void KVStore::mergeSstable(vector<string>intersectionFile, max_t maxKey, min_t m
         // we have read one pair key and off before.
         for(int i=0;i<num-1;i++){
             prevPos=inFile.tellg();
-            //            cout<<"prev_off"<<prev_off<<endl;
             inFile.read((char *)&key, sizeof(key));
             inFile.read((char *)&off, sizeof(off));
             inFile.seekg(prev_off);
             inFile.read((char *)&target, off-prev_off);
             allKeyValTime.push_back(keyValTime(prev_key, target,stamp));
-            //            cout<<"cur_off"<<off<<endl;
             // 必须回到原来的offset的位置
             inFile.seekg(prevPos+(sizeof(key)+sizeof(off)));
             prev_key = key;
@@ -272,151 +271,96 @@ void KVStore::mergeSstable(vector<string>intersectionFile, max_t maxKey, min_t m
         inFile.seekg(0, std::ios::end);
         off= inFile.tellg();
         inFile.read((char *)&target, off-prev_off);
-
         allKeyValTime.push_back(keyValTime(prev_key, target,stamp));
     }
-//        cout<<"最后一个prev_off: "<<prev_off<<"off: "<<off<<" target:"<<target<<endl;
-        
-        // 归并排序
-//        cout<<"size before merge:"<<allKeyValTime.size()<<endl;
+        // 归并排序得到新的有序数组allKeyValTime
         mergeSort(allKeyValTime);
-//        cout<<"size after merge:"<<allKeyValTime.size()<<endl;
+        // write to the kvstore, the stamp of every sstable= maxStamp
         for(int i=0;i<allKeyValTime.size();i++){
             putAgain(allKeyValTime[i].key, allKeyValTime[i].val, maxStamp,targetLayer);
         }
+    // the last sstable can <<2 mb
         if(slmSkipMerge.num){
             SsTable *newSsTable = new SsTable(stamp, slmSkipMerge);
-            SsMsg newSsMsg(maxStamp,newSsTable->num, newSsTable->max, newSsTable->min,newSsTable->keyOff);
+            string fileName = getFileName(targetLayer,layerFilesIndex[targetLayer]);
+            const char*p=fileName.c_str();
+            SsMsg newSsMsg(maxStamp,newSsTable->num, newSsTable->max, newSsTable->min, p,newSsTable->bloomFilter, newSsTable->keyOff);
             allSsMsg[targetLayer].push_back(newSsMsg);
             writeToFile(*newSsTable,targetLayer);
             slmSkipMerge.init();
         }
-        cout<<endl;
-        cout<<"num of" <<targetLayer<<" layer files:"<<layerFiles[targetLayer]<<endl;
         return;
-        
     }
-    
-    
     
 void KVStore::mergeFirstLayer(){
     head_t minKey = INT_MAX, maxKey = 0, minKeyTmp = 0, maxKeyTmp = 0, num=0,stamp=0,maxStamp=0;
     vector<string>intersectionFile;
-    vector<map<key_t, off_t>> allKeyOff;
+    vector<pair<key_t, off_t>> allKeyOff;
     vector<keyValTime> allKeyValTime;
     intersectionFile.clear();
     allKeyOff.clear();
     allKeyValTime.clear();
     //SSTable 中除了数据区外的 其他部分缓存在内存中
-    for(int i=0;i<=2;i++){
+    for(int i=getBegin(0);i<layerFilesIndex[0];i++){
         string filename =getFileName(0, i);
         intersectionFile.push_back(filename);
-        stamp=allSsMsg[0][i].stamp;
+        //?
+        stamp=allSsMsg[0][i-getBegin(0)].stamp;
         if(stamp>maxStamp)maxStamp=stamp;
-        num=allSsMsg[0][i].num;
-        maxKeyTmp = allSsMsg[0][i].max;
+        num=allSsMsg[0][i-getBegin(0)].num;
+        maxKeyTmp = allSsMsg[0][i-getBegin(0)].max;
         maxKey = (maxKey < maxKeyTmp)?maxKeyTmp:maxKey;
-        minKeyTmp =allSsMsg[0][i].min;
+        minKeyTmp =allSsMsg[0][i-getBegin(0)].min;
         minKey = (minKey > minKeyTmp)?minKeyTmp:minKey;
     }
 //    cout<<"min key:"<<minKey<<'\n'<<"max key:"<<maxKey<<endl;
     
     mergeSstable(intersectionFile, maxKey, minKey, maxStamp, 1);
+    for(int i=getBegin(0);i<layerFilesIndex[0];i++){
+        string filename = getFileName(0,i);
+        const char *p = filename.c_str();
+        rmfile(p);
+    }
     layerFiles[0]=0;
     allSsMsg[0].clear();
-    // find in level1
-//    int i=0;
-//    while (true) {
-//        if(allSsMsg[1].size()==0)break;
-//        string filename =getFileName(1, i);
-//        stamp=allSsMsg[1][i].stamp;
-//        if(stamp>maxStamp)maxStamp=stamp;
-//        num=allSsMsg[1][i].num;
-//        maxKeyTmp = allSsMsg[1][i].max;
-//        minKeyTmp =allSsMsg[1][i].min;
-//        //  check if intersect with the [min, max]
-//        bool intersection = !(minKeyTmp > maxKey || maxKeyTmp < minKey);
-//        if(intersection)intersectionFile.push_back(filename);
-//        i++;
-//    }
-//    // 读入keyoff vector
-//    for(int i=0;i<intersectionFile.size();i++){
-//        ifstream inFile(intersectionFile[i],ios::in|ios::binary); //二进制读方式打开
-//        cout<<"fileName:"<<intersectionFile[i]<<endl;
-//        if(!inFile)break;
-//        inFile.read((char *)&stamp, sizeof(stamp)); // time
-//        if(stamp>maxStamp)maxStamp=stamp;
-//        inFile.read((char *)&num, sizeof(num)); // num
-//        inFile.read((char *)&minKeyTmp, sizeof(minKeyTmp)); // min
-//        inFile.read((char *)&maxKeyTmp, sizeof(minKeyTmp)); // max
-//        inFile.read((char*)&bloom, 10240);
-//        inFile.read((char *)&prev_key, sizeof(prev_key));
-//        inFile.read((char *)&prev_off, sizeof(prev_off));
-//        for(int i=0;i<num-1;i++){
-//            prevPos=inFile.tellg();
-//            //            cout<<"prev_off"<<prev_off<<endl;
-//            inFile.read((char *)&key, sizeof(key));
-//            inFile.read((char *)&off, sizeof(off));
-//            inFile.seekg(prev_off);
-//            inFile.read((char *)&target, off-prev_off);
-//            allKeyValTime.push_back(keyValTime(prev_key, target,stamp));
-//            //            cout<<"cur_off"<<off<<endl;
-//            // 必须回到原来的offset的位置
-//            inFile.seekg(prevPos+(sizeof(key)+sizeof(off)));
-//            prev_key = key;
-//            prev_off = off;
-//        }
-//    }
-//
-//    // 归并排序
-//    cout<<"size before merge:"<<allKeyValTime.size()<<endl;
-//    mergeSort(allKeyValTime);
-//    cout<<"size after merge:"<<allKeyValTime.size()<<endl;
-//    for(int i=0;i<allKeyValTime.size();i++){
-//        putAgain(allKeyValTime[i].key, allKeyValTime[i].val, maxStamp,1);
-//    }
-//    if(slmSkipMerge.num){
-//        SsTable *newSsTable = new SsTable(stamp, slmSkipMerge);
-//        SsMsg newSsMsg(maxStamp,newSsTable->num, newSsTable->max, newSsTable->min,newSsTable->keyOff);
-//        allSsMsg[1].push_back(newSsMsg);
-//        writeToFile(*newSsTable,1);
-//        slmSkipMerge.init();
-//    }
-//    cout<<endl;
-//    cout<<"num of first layer files:"<<layerFiles[1]<<endl;
-//    return;
 }
 
 
 void KVStore::mergeOtherLayer(int layer){
     int more=0;
     head_t minKey = INT_MAX, maxKey = 0, minKeyTmp = 0, maxKeyTmp = 0, num=0,stamp=0,maxStamp=0;
+    int begin=getBegin(layer);
     vector<string>intersectionFile;
-    vector<map<key_t, off_t>> allKeyOff;
+    vector<pair<key_t, off_t>> allKeyOff;
     vector<keyValTime> allKeyValTime;
     intersectionFile.clear();
     allKeyOff.clear();
     allKeyValTime.clear();
     
     more=layerFiles[layer]-pow(2, layer+1);
-    for(int i=0;i<more;i++){
+    
+    
+    for(int i=getBegin(layer
+                       );i<begin+more;i++){
         string filename =getFileName(layer, i);
         intersectionFile.push_back(filename);
-        stamp=allSsMsg[layer][i].stamp;
+        stamp=allSsMsg[layer][i-begin].stamp;
         if(stamp>maxStamp)maxStamp=stamp;
-        num=allSsMsg[layer][i].num;
-        maxKeyTmp = allSsMsg[layer][i].max;
+        num=allSsMsg[layer][i-begin].num;
+        maxKeyTmp = allSsMsg[layer][i-begin].max;
         maxKey = (maxKey < maxKeyTmp)?maxKeyTmp:maxKey;
-        minKeyTmp =allSsMsg[layer][i].min;
+        minKeyTmp =allSsMsg[layer][i-begin].min;
         minKey = (minKey > minKeyTmp)?minKeyTmp:minKey;
     }
     mergeSstable(intersectionFile, maxKey, minKey, maxStamp, layer+1);
     layerFiles[layer]=pow(2,layer+1);
-    for(int i=0;i<more;i++){
-        cout<<"allSsMsg[layer].num:"<<allSsMsg[layer].size()<<endl;
+    // delete the file merged
+    for(int i=begin;i<more+begin;i++){
         allSsMsg[layer].erase(allSsMsg[layer].begin());
+        string filename =getFileName(layer, i);
+        const char*p = filename.c_str();
+        rmfile(p);
     }
-    cout<<"after erase allSsMsg[layer].num:"<<allSsMsg[layer].size()<<endl;
 }
 
 bool KVStore::checkLayer(int i){

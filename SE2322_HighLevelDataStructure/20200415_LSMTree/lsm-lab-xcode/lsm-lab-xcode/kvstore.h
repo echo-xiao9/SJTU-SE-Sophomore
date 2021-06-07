@@ -3,15 +3,17 @@
 #include "kvstore_api.h"
 #include "skipList.h"
 #include "ssTable.h"
+#include <cstring>
+#include "utils.h"
+#include "const.h"
 
-using namespace std;
-
+using namespace::utils;
+using namespace::std;
 class keyValTime{
 public:
     key_t key;
     string val;
     time_t stamp;
-    
     keyValTime(key_t Key, string Val, time_t Stamp):key(Key),val(Val), stamp(Stamp){}
 };
 
@@ -21,16 +23,30 @@ public:
     num_t num;
     max_t max;
     min_t min;
-    map<key_t, off_t> keyOff;
-    SsMsg(time_t Stamp, num_t Num, max_t Max, min_t Min,map<key_t, off_t> KeyOff):stamp(Stamp),num(Num),max(Max),min(Min),keyOff(KeyOff){}
-//    SsMsg(time_t Stamp, num_t Num, max_t Max, min_t Min):stamp(Stamp),num(Num),max(Max),min(Min){}
+    char fileName[100]="";
+    char bloom[10245]="";
+    vector<pair<key_t, off_t>> keyOff;
+    SsMsg(
+          time_t Stamp,
+          num_t Num,
+          max_t Max,
+          min_t Min,
+          const char* FileName,
+          char Bloom[],
+          vector<pair<key_t, off_t>> KeyOff
+          ):stamp(Stamp),num(Num),max(Max),min(Min),keyOff(KeyOff){
+        strcpy(fileName, FileName);
+        strcpy(bloom, Bloom);
+    }
 };
 
 class KVStore : public KVStoreAPI {
     // You can add your implementation here
 private:
     // the number of files in every layer.
-    int layerFiles[20]={0};
+    int layerFiles[max_level]={0};
+    // maxIndex+1 of every layer.
+    int layerFilesIndex[max_level]={0};
     Skiplist slmSkip;
     Skiplist slmSkipMerge;
     time_t curTime=0;
@@ -68,6 +84,8 @@ public:
     void mergeFirstLayer();
     void mergeOtherLayer(int layer);
     bool checkLayer(int i); // return 1 if layer is overweight;
-    
+    int getBegin(int layer){
+        return layerFilesIndex[layer]-layerFiles[layer];
+    }
                                  
 };

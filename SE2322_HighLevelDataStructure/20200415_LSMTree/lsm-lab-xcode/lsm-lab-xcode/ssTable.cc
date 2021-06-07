@@ -6,12 +6,6 @@
 //
 #include "ssTable.h"
 #include "MurmurHash3.h"
-//uint64_t sTime;
-//uint64_t num;
-//int64_t max;
-//int64_t min;
-//// Bloom Filter 10KB;
-//char bloomFilter[10240]={0};
 
 SsTable::SsTable(uint64_t time, Skiplist &skipList):sTime(time){
     keyOff.clear();
@@ -31,7 +25,7 @@ SsTable::SsTable(uint64_t time, Skiplist &skipList):sTime(time){
     max = cur->key;
     insert(cur->key, cur->val);
     getBloomFilter();
-    for(map<uint64_t, uint32_t>::iterator it =keyOff.begin();it!=keyOff.end();it++){
+    for(auto it =keyOff.begin();it!=keyOff.end();it++){
         it->second+=32+10240+num*12;
     }
     return;
@@ -50,7 +44,7 @@ bool SsTable::insert(const uint64_t& key, const string& val){
         data.pop_back();
         return false;
     }
-    keyOff.insert(make_pair(key, curOff));
+    keyOff.push_back(make_pair(key, curOff));
     //update offSet
     curOff += val.length();
     return true;
@@ -66,12 +60,3 @@ void SsTable::getBloomFilter(){
     }
 }
 
-//Front::Front(SsTable ssTable){
-//    sTime = ssTable.sTime;
-//    num = ssTable.num;
-//    max = ssTable.max;
-//    min = ssTable.min;
-//    for(int i=0;i<10240;i++)
-//    bloomFilter[i] = ssTable.bloomFilter[i];
-//    keyOff = ssTable.keyOff;
-//}

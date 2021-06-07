@@ -11,7 +11,6 @@
 #include <stdio.h>
 #include <fstream>
 #include <iostream>
-#include <map>
 #include "skipList.h"
 using namespace std;
 
@@ -40,27 +39,11 @@ public:
     char bloomFilter[10240]={0};
     vector<string> data;
     // index
-    map<key_t, off_t> keyOff; //key and offset
+    vector<pair<key_t, off_t>> keyOff; //key and offset
     SsTable(uint64_t time, Skiplist &skipList);
 
 };
 
-
-//class Front{
-//private:
-//    //head 32B
-//    uint64_t sTime;
-//    uint64_t num;
-//    int64_t max;
-//    int64_t min;
-//    // Bloom Filter 10KB;
-//    bool bloomFilter[10240]={0};
-//    // index
-//    map<key_t, uint32_t> keyOff; //key and offset
-//public:
-//    Front(SsTable ssTable);
-//};
-//
     
     
 #endif /* ssTable_h */
