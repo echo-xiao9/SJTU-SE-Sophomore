@@ -19,7 +19,7 @@ SsTable::SsTable(uint64_t time, Skiplist &skipList):sTime(time){
     if(skipList.num==0) return;
     cur = skipList.buttomHeadRight();
     min = cur->key;
-    while (cur && cur->right && insert(cur->key, cur->val)) {
+    while (cur && cur->val!="" && cur->right && insert(cur->key, cur->val)) {
         cur = cur->right;
     }
     max = cur->key;
@@ -46,17 +46,18 @@ bool SsTable::insert(const uint64_t& key, const string& val){
     }
     keyOff.push_back(make_pair(key, curOff));
     //update offSet
-    curOff += val.length();
+    curOff +=  val.length();
     return true;
 }
 
 void SsTable::getBloomFilter(){
     // bloomFilter[10240]
     uint32_t hash[4] = {0};
+    memset(bloomFilter, '0', 10240);
     for(auto it=keyOff.begin();it!=keyOff.end();it++){
         uint64_t key = it->first;
         MurmurHash3_x64_128(&key, sizeof(key), 1, hash);
-        for(int i=0;i<4;i++) bloomFilter[hash[i] % 10240]=1;
+        for(int i=0;i<4;i++) bloomFilter[hash[i] % 10240]='1';
     }
 }
 

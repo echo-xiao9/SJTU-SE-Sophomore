@@ -7,7 +7,7 @@
 //class CorrectnessTest : public Test {
 //private:
 //	const uint64_t SIMPLE_TEST_MAX = 512;
-//	const uint64_t LARGE_TEST_MAX = 10000;
+//	const uint64_t LARGE_TEST_MAX = 5000;
 //
 //	void regular_test(uint64_t max)
 //	{
@@ -31,7 +31,7 @@
 //		phase();
 //
 //		// Test after all insertions
-//		for (i = 0; i < max; ++i)
+//		for (i = 0; i < 10; ++i)
 //			EXPECT(std::string(i+1, 's'), store.get(i));
 ////            if(store.get(i)!=std::string(i+1, 's'))cout<<i<<" "<<store.get(i)<<endl;
 //            

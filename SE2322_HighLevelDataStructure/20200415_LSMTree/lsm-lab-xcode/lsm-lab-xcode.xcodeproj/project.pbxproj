@@ -11,7 +11,10 @@
 		E839252B2629327E00F0CAAD /* correctness.cc in Sources */ = {isa = PBXBuildFile; fileRef = E83925212629327E00F0CAAD /* correctness.cc */; };
 		E839252D2629327E00F0CAAD /* kvstore.cc in Sources */ = {isa = PBXBuildFile; fileRef = E83925292629327E00F0CAAD /* kvstore.cc */; };
 		E839252E2629327E00F0CAAD /* Makefile in Sources */ = {isa = PBXBuildFile; fileRef = E839252A2629327E00F0CAAD /* Makefile */; };
+		E847E53F266EF30600189F61 /* persistence.cc in Sources */ = {isa = PBXBuildFile; fileRef = E847E53E266EF30600189F61 /* persistence.cc */; };
+		E866BA8C266E4667009A0829 /* correctness.cc in Sources */ = {isa = PBXBuildFile; fileRef = E866BA8B266E4667009A0829 /* correctness.cc */; };
 		E886B83C26359B9000983E5D /* ssTable.cc in Sources */ = {isa = PBXBuildFile; fileRef = E886B83B26359B9000983E5D /* ssTable.cc */; };
+		E8C39B80266F27E600AAA73A /* correctness2.cc in Sources */ = {isa = PBXBuildFile; fileRef = E8C39B7F266F27E600AAA73A /* correctness2.cc */; };
 		E8D64F7A2636F3900089F185 /* myTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E8D64F792636F3900089F185 /* myTest.cpp */; };
 /* End PBXBuildFile section */
 
@@ -41,9 +44,12 @@
 		E83925282629327E00F0CAAD /* test.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = test.h; sourceTree = "<group>"; };
 		E83925292629327E00F0CAAD /* kvstore.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = kvstore.cc; sourceTree = "<group>"; };
 		E839252A2629327E00F0CAAD /* Makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
+		E847E53E266EF30600189F61 /* persistence.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = persistence.cc; sourceTree = "<group>"; };
+		E866BA8B266E4667009A0829 /* correctness.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = correctness.cc; sourceTree = "<group>"; };
 		E886B839263598B000983E5D /* ssTable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ssTable.h; sourceTree = "<group>"; };
 		E886B83B26359B9000983E5D /* ssTable.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ssTable.cc; sourceTree = "<group>"; };
 		E8B3708526676A6800EBF200 /* const.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = const.h; sourceTree = "<group>"; };
+		E8C39B7F266F27E600AAA73A /* correctness2.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = correctness2.cc; sourceTree = "<group>"; };
 		E8D64F792636F3900089F185 /* myTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = myTest.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -87,6 +93,9 @@
 				E839252A2629327E00F0CAAD /* Makefile */,
 				E83925272629327E00F0CAAD /* MurmurHash3.h */,
 				E83925222629327E00F0CAAD /* README.md */,
+				E866BA8B266E4667009A0829 /* correctness.cc */,
+				E8C39B7F266F27E600AAA73A /* correctness2.cc */,
+				E847E53E266EF30600189F61 /* persistence.cc */,
 				E83925282629327E00F0CAAD /* test.h */,
 				E83925202629327E00F0CAAD /* utils.h */,
 				E81913DE26297DBC000BFECD /* skipList.h */,
@@ -155,10 +164,13 @@
 			files = (
 				E839252B2629327E00F0CAAD /* correctness.cc in Sources */,
 				E8D64F7A2636F3900089F185 /* myTest.cpp in Sources */,
+				E8C39B80266F27E600AAA73A /* correctness2.cc in Sources */,
 				E886B83C26359B9000983E5D /* ssTable.cc in Sources */,
 				E839252E2629327E00F0CAAD /* Makefile in Sources */,
 				E80C3BF3266632AD001B8F4C /* skipList.cpp in Sources */,
+				E866BA8C266E4667009A0829 /* correctness.cc in Sources */,
 				E839252D2629327E00F0CAAD /* kvstore.cc in Sources */,
+				E847E53F266EF30600189F61 /* persistence.cc in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

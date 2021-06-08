@@ -19,6 +19,6 @@ const uint32_t MB = 1048576;
 #define num_t  uint64_t
 #define min_t  uint64_t
 #define max_t  uint64_t
-#define max_level 10
-
+#define max_level 30
+#define max_len 102400
 #endif /* const_h */

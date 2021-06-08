@@ -104,6 +104,9 @@ bool Skiplist::remove(const uint64_t& key) {
                     head = headBelow;
                 }
                 //纵向处理
+                if(target==NULL){
+                    cout<<"target is deleted!";
+                }
                 delete target;
                 num--;
                 target = below;

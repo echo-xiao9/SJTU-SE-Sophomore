@@ -15,6 +15,7 @@ public:
     string val;
     time_t stamp;
     keyValTime(key_t Key, string Val, time_t Stamp):key(Key),val(Val), stamp(Stamp){}
+    keyValTime(){};
 };
 
 class SsMsg{
@@ -49,12 +50,14 @@ private:
     int layerFilesIndex[max_level]={0};
     Skiplist slmSkip;
     Skiplist slmSkipMerge;
-    time_t curTime=0;
+    time_t curTime=1;
+    int maxLayer;
 //    vector<Front> frontList; // front stored in memory table. X
     vector<vector<SsMsg>> allSsMsg;
     vector<SsTable> memTable; // it will be delete after test!
     string fileDir;
     string getFileName(int layer, int num);
+    string getDirName(int layer);
     bool fileExist(string fileDir);
 public:
     void updateMemTable();
@@ -78,14 +81,17 @@ public:
     
     uint64_t  GetFileSize(const std::string& file_name);
     void merge();
-    void mergeSort(vector<keyValTime>&v);
-    void mergeBoth(vector<keyValTime>&left,vector<keyValTime>&right, vector<keyValTime>&v);
-    void mergeSstable(vector<string>intersectionFile, max_t maxKey, min_t minKey, time_t maxStamp,int targetLayer);
+    void mergeSort(vector<keyValTime>&v,int isLastLayer);
+    void mergeBoth(vector<keyValTime>&left,vector<keyValTime>&right, vector<keyValTime>&v, int isLastLayer);
+    // return value if find the key in current sstable,"" not find,
+    string readSstable(string &fileName,vector<keyValTime> &allKeyValTime,time_t &maxStamp, key_t targetKey, int needFind);
+    void mergeSstable(vector<string>intersectionFile, max_t &maxKey, min_t &minKey, time_t &maxStamp,int targetLayer);
     void mergeFirstLayer();
     void mergeOtherLayer(int layer);
     bool checkLayer(int i); // return 1 if layer is overweight;
     int getBegin(int layer){
         return layerFilesIndex[layer]-layerFiles[layer];
     }
+    bool checkInBloomFilter(key_t key, const char (&bloom)[10245]);
                                  
 };
