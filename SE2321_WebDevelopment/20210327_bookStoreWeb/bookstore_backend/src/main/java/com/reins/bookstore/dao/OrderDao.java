@@ -15,5 +15,6 @@ public interface OrderDao {
 
     Order addOrderFromUser(Integer user_id, Integer order_price, String date, String year, String month, String day);
 
-//    List<OrderItem> getOrderItems();
+    List<OrderItem> getOrderItems(Integer order_id);
+
 }

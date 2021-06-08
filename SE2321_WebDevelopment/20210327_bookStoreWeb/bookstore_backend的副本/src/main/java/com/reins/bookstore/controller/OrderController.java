@@ -26,7 +26,10 @@ public class OrderController {
     public List<OrderItem> getOrderItems(@RequestParam(required = false)Integer order_id){
         return orderService.getOrderItems(order_id);
     }
-
+//    @GetMapping("/getOrderItems")
+//    public List<OrderItem>getOrderItems(){
+//        return orderService.getOrderItems();
+//    }
 
 
     @GetMapping("/addOrderFromUser")

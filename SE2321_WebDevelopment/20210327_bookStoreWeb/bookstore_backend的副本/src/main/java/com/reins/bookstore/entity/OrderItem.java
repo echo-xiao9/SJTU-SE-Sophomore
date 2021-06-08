@@ -10,13 +10,13 @@ import javax.persistence.*;
 
 @Data
 @Entity
-@Table(name = "order_items")
+@Table(name = "OrderItems")
 @JsonIgnoreProperties(value = {"handler","hibernateLazyInitializer","fieldHandler"})
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,property = "itemId")
 public class OrderItem {
 
     @Id
-    @Column(name = "itme_id")
+    @Column(name = "itemId")
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Integer itemId;
 
@@ -24,8 +24,8 @@ public class OrderItem {
 //    @JoinColumn(name="order_id")
 //    private Order order;
 
-    private Integer order_id;
-    private Integer book_id;
+    private Integer orderId;
+    private Integer bookId;
     private Integer book_num;
     private String book_name;
     private Integer book_price;
@@ -38,13 +38,8 @@ public class OrderItem {
 //        return order;
 //    }
 
-
-    public Integer getOrder_id() {
-        return order_id;
-    }
-
-    public Integer getBook_id() {
-        return book_id;
+    public Integer getBookId() {
+        return bookId;
     }
 
     public Integer getBook_num() {
@@ -59,9 +54,9 @@ public class OrderItem {
         return book_price;
     }
 
-    public OrderItem(Integer order_id, Integer book_id, Integer book_num, String book_name, Integer book_price) {
-        this.order_id = order_id;
-        this.book_id = book_id;
+    public OrderItem(Integer orderId, Integer bookId, Integer book_num, String book_name, Integer book_price) {
+        this.orderId = orderId;
+        this.bookId = bookId;
         this.book_num = book_num;
         this.book_name = book_name;
         this.book_price = book_price;
@@ -71,5 +66,7 @@ public class OrderItem {
     }
 
 
-
+    //    public Integer getOrder_id() {
+//        return order_id;
+//    }
 }

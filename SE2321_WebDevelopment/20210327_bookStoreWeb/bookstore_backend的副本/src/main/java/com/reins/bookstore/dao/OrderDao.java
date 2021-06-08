@@ -1,14 +1,15 @@
-package com.reins.bookstore.service;
+package com.reins.bookstore.dao;
 import com.reins.bookstore.entity.Order;
 import com.reins.bookstore.entity.OrderItem;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public interface OrderService {
-    Order findOrderById(Integer id);
+public interface OrderDao {
+    Order findOne(Integer id);
 
     List<Order> getOrders();
+
 
     ArrayList getAdminOrder();
 
@@ -16,4 +17,5 @@ public interface OrderService {
 
     List<OrderItem> getOrderItems(Integer order_id);
 
+//    List<OrderItem> getOrderItems();
 }
