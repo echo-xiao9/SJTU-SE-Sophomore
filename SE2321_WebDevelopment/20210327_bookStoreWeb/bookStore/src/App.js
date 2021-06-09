@@ -4,7 +4,8 @@ import './App.css';
 import Home from './pages/Home';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Carts from './pages/Cart';
-import Order from './pages/Order';
+// import Order from './pages/Order';
+import Order from './pages/Orders';
 import Login from './pages/Login';
 import Book from './pages/Book'
 import Administrator from './pages/Administrator';
