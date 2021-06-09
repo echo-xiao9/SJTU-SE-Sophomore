@@ -41,6 +41,7 @@ public:
     }
     ~SsMsg(){
         keyOff.clear();
+        vector<pair<key_t, off_t>>().swap(keyOff);
     }
 };
 
@@ -92,10 +93,10 @@ public:
     
     void merge();
     void mergeSort(vector<keyValTime>&v,int isLastLayer);
-    
+
     void mergeBoth(vector<keyValTime>&left,vector<keyValTime>&right, vector<keyValTime>&v, int isLastLayer);
     
-    void mergeSstable(vector<string>intersectionFile, max_t &maxKey, min_t &minKey, time_t &maxStamp,int targetLayer);
+    void mergeSstable(vector<string>&intersectionFile, max_t &maxKey, min_t &minKey, time_t &maxStamp,int targetLayer);
     
     void mergeFirstLayer();
     

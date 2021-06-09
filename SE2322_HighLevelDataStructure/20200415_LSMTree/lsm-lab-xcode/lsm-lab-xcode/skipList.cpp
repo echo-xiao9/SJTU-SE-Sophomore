@@ -16,16 +16,28 @@ Skiplist::Skiplist() {
 }
 
 void Skiplist::init(){
-    Node*cur=head;
-    Node*nextNode=nullptr;
-    while (cur->down)cur=cur->down; //转到最底层
-    cur=cur->right;
-    while (cur&& cur->val!="") {
-        if(!cur->right)nextNode=NULL;
-        else nextNode=cur->right;
-        remove(cur->key);
-        cur=nextNode;
+//    Node*cur=head;
+//    Node*nextNode=nullptr;
+//    while (cur->down)cur=cur->down; //转到最底层
+//    cur=cur->right;
+//    while (cur&& cur->val!="") {
+//        if(!cur->right)nextNode=NULL;
+//        else nextNode=cur->right;
+//        remove(cur->key);
+//        cur=nextNode;
+//    }
+    Node*cur=head;Node *delHead;
+    while(cur){
+        while (cur->right) {
+            Node* del=cur->right;
+            cur->right = del->right;
+            delete del;
+        }
+        delHead=cur;
+        cur=cur->down;
+        delete delHead;
     }
+    head=new Node();
     memSize=32+10*KB;
     num=0;
 }
@@ -146,4 +158,20 @@ Node* Skiplist::buttomHeadRight(){
     Node*cur=head;
     while (cur->down)cur=cur->down; //turn to buttom.
     return cur->right;
+}
+
+Skiplist::~Skiplist(){
+//    Node*cur=head;Node *delHead;
+//    while(cur){
+//        while (cur->right) {
+//            Node* del=cur->right;
+//            cur->right = del->right;
+//            delete del;
+//        }
+//        delHead=cur;
+//        cur=cur->down;
+//        delete delHead;
+//    }
+    init();
+    delete head;
 }

@@ -63,8 +63,7 @@ void KVStore::put(uint64_t key, const std::string &s)
         curTime++;
         merge();
         slmSkip.init();
-        newSsTable->data.clear();
-        newSsTable->keyOff.clear();
+        vector<string>().swap(newSsTable->data);
         delete newSsTable;
     }
     slmSkip.put(key, s);
@@ -85,6 +84,7 @@ void KVStore::putAgain(uint64_t key, const std::string &s,time_t stamp,int layer
         allSsMsg[layer].push_back(newSsMsg);
         writeToFile(*newSsTable,layer);
         slmSkipMerge.init();
+        vector<string>().swap(newSsTable->data);
         delete newSsTable;
     }
     slmSkipMerge.put(key, s);
@@ -290,10 +290,13 @@ void KVStore::mergeSort(vector<keyValTime>&v, int isLastLayer){
     mergeSort(left,isLastLayer);
     mergeSort(right,isLastLayer);
     mergeBoth(left, right,v,isLastLayer);
+    vector<keyValTime>().swap(left);
+    vector<keyValTime>().swap(right);
 }
 
 void KVStore::mergeBoth(vector<keyValTime>&left,vector<keyValTime>&right,vector<keyValTime>&v, int isLastLayer){
     v.clear();
+    vector<keyValTime>().swap(v);
     int i=0,j=0;
     keyValTime tmp=keyValTime();
     //?
@@ -311,10 +314,12 @@ void KVStore::mergeBoth(vector<keyValTime>&left,vector<keyValTime>&right,vector<
     }
     for(i;i<left.size();i++)v.push_back(left[i]);
     for(j;j<right.size();j++)v.push_back(right[j]);
+    vector<keyValTime>().swap(left);
+    vector<keyValTime>().swap(right);
     return;
 }
 
-void KVStore::mergeSstable(vector<string>intersectionFile, max_t &maxKey, min_t &minKey, time_t &maxStamp,int targetLayer){
+void KVStore::mergeSstable(vector<string>&intersectionFile, max_t &maxKey, min_t &minKey, time_t &maxStamp,int targetLayer){
     time_t stamp=0;
     max_t maxKeyTmp=0;
     min_t minKeyTmp=0;
@@ -322,6 +327,7 @@ void KVStore::mergeSstable(vector<string>intersectionFile, max_t &maxKey, min_t 
     int isLastLayer=0;
     vector<keyValTime> allKeyValTime;
     allKeyValTime.clear();
+    vector<keyValTime>().swap(allKeyValTime);
     if(targetLayer==maxLayer)isLastLayer=1;
     // search for the sstable intersected with previos layer.
     
@@ -362,6 +368,8 @@ void KVStore::mergeSstable(vector<string>intersectionFile, max_t &maxKey, min_t 
         writeToFile(*newSsTable,targetLayer);
         slmSkipMerge.init();
     }
+    allKeyValTime.clear();
+    vector<keyValTime>().swap(allKeyValTime);
     return;
 }
 
@@ -442,6 +450,7 @@ void KVStore::mergeFirstLayer(){
     intersectionFile.clear();
     allKeyOff.clear();
     allKeyValTime.clear();
+
     int begin=getBegin(0);
     //SSTable 中除了数据区外的 其他部分缓存在内存中
     // get maxKey minKey and maxStamp of layer0
@@ -466,6 +475,10 @@ void KVStore::mergeFirstLayer(){
     }
     layerFiles[0]=0;
     allSsMsg[0].clear();
+    vector<SsMsg>().swap(allSsMsg[0]);
+    vector<string>().swap(intersectionFile);
+    vector<pair<key_t, off_t>>().swap(allKeyOff);
+    vector<keyValTime>().swap(allKeyValTime);
 }
 
 
@@ -479,6 +492,7 @@ void KVStore::mergeOtherLayer(int layer){
     intersectionFile.clear();
     allKeyOff.clear();
     allKeyValTime.clear();
+    
     
     more=layerFiles[layer]-pow(2, layer+1);
     for(int i=getBegin(layer
@@ -502,6 +516,10 @@ void KVStore::mergeOtherLayer(int layer){
         const char*p = filename.c_str();
         rmfile(p);
     }
+    vector<string>().swap(intersectionFile);
+    vector<pair<key_t, off_t>>().swap(allKeyOff);
+    vector<keyValTime>().swap(allKeyValTime);
+    
 }
 
 bool KVStore::checkLayer(int i){

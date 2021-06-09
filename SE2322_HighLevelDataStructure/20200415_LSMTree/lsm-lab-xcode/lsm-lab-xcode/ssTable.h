@@ -44,6 +44,8 @@ public:
     ~SsTable(){
         data.clear();
         keyOff.clear();
+        vector<string>().swap(data);
+        vector<pair<key_t, off_t>>().swap(keyOff);
     }
 };
 
