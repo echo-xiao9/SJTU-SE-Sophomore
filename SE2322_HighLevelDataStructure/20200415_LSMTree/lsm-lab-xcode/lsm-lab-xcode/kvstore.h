@@ -39,6 +39,9 @@ public:
         strcpy(fileName, FileName);
         strcpy(bloom, Bloom);
     }
+    ~SsMsg(){
+        keyOff.clear();
+    }
 };
 
 class KVStore : public KVStoreAPI {
@@ -64,7 +67,10 @@ public:
     
     KVStore(const std::string &dir);
     
-    ~KVStore();
+    ~KVStore(){
+        allSsMsg.clear();
+        memTable.clear();
+    }
     
     void put(uint64_t key, const std::string &s) override;
     
@@ -80,14 +86,21 @@ public:
     void writeToFile(SsTable &st,int layer);
     
     uint64_t  GetFileSize(const std::string& file_name);
-    void merge();
-    void mergeSort(vector<keyValTime>&v,int isLastLayer);
-    void mergeBoth(vector<keyValTime>&left,vector<keyValTime>&right, vector<keyValTime>&v, int isLastLayer);
     // return value if find the key in current sstable,"" not find,
     string readSstable(string &fileName,vector<keyValTime> &allKeyValTime,time_t &maxStamp, key_t targetKey, int needFind);
+    
+    
+    void merge();
+    void mergeSort(vector<keyValTime>&v,int isLastLayer);
+    
+    void mergeBoth(vector<keyValTime>&left,vector<keyValTime>&right, vector<keyValTime>&v, int isLastLayer);
+    
     void mergeSstable(vector<string>intersectionFile, max_t &maxKey, min_t &minKey, time_t &maxStamp,int targetLayer);
+    
     void mergeFirstLayer();
+    
     void mergeOtherLayer(int layer);
+    
     bool checkLayer(int i); // return 1 if layer is overweight;
     int getBegin(int layer){
         return layerFilesIndex[layer]-layerFiles[layer];

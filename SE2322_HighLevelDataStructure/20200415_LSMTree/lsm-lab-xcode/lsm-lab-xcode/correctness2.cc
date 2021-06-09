@@ -26,8 +26,10 @@
 //		// Test multiple key-value pairs
 //		for (i = 0; i < max; ++i) {
 //			store.put(i, std::string(i+1, 's'));
+//            if(store.get(i)!=std::string(i+1, 's'))cout<<i<<endl;
 //			EXPECT(std::string(i+1, 's'), store.get(i));
 //		}
+//        
 //		phase();
 //
 //		// Test after all insertions

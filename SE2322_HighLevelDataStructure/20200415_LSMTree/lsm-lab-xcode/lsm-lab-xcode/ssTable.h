@@ -41,7 +41,10 @@ public:
     // index
     vector<pair<key_t, off_t>> keyOff; //key and offset
     SsTable(uint64_t time, Skiplist &skipList);
-
+    ~SsTable(){
+        data.clear();
+        keyOff.clear();
+    }
 };
 
     

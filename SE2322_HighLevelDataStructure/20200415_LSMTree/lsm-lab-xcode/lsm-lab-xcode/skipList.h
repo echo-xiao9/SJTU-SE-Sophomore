@@ -40,7 +40,10 @@ public:
     int64_t getMax();
     int64_t getMin();
     Node* buttomHeadRight();
-    
+    ~Skiplist(){
+        init();
+        delete head;
+    }
 };
 
 

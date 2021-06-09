@@ -16,9 +16,6 @@ KVStore::KVStore(const std::string &dir): KVStoreAPI(dir),fileDir(dir)
     reset();
 }
 
-KVStore::~KVStore(){
-}
-
 
 string KVStore::getFileName(int layer, int num){
     string curFileDir = fileDir+"/level-"+to_string(layer)+"/ssTable"+to_string(num)+".sst";
@@ -50,10 +47,11 @@ bool KVStore::fileExist(string fileDir){
  */
 void KVStore::put(uint64_t key, const std::string &s)
 {
+    SsTable *newSsTable;
     // If the 2MB limit is reached after insertion, the SSTables are generated
     int newSize =slmSkip.memSize+12+s.length();
     if(newSize > 2*MB){
-        SsTable *newSsTable = new SsTable(curTime, slmSkip);
+        newSsTable = new SsTable(curTime, slmSkip);
         string filename = getFileName(0, layerFilesIndex[0]);
         const char *p = filename.c_str();
         
@@ -61,9 +59,13 @@ void KVStore::put(uint64_t key, const std::string &s)
         SsMsg newSsMsg(curTime,newSsTable->num, newSsTable->max, newSsTable->min,p,newSsTable->bloomFilter, newSsTable->keyOff);
         allSsMsg[0].push_back(newSsMsg);
         writeToFile(*newSsTable,0);
+        
         curTime++;
         merge();
         slmSkip.init();
+        newSsTable->data.clear();
+        newSsTable->keyOff.clear();
+        delete newSsTable;
     }
     slmSkip.put(key, s);
     
@@ -83,6 +85,7 @@ void KVStore::putAgain(uint64_t key, const std::string &s,time_t stamp,int layer
         allSsMsg[layer].push_back(newSsMsg);
         writeToFile(*newSsTable,layer);
         slmSkipMerge.init();
+        delete newSsTable;
     }
     slmSkipMerge.put(key, s);
     return;
@@ -144,13 +147,21 @@ std::string KVStore::get(uint64_t key)
  */
 bool KVStore::del(uint64_t key)
 {
-    //need to find in ssTable later!
-    if(slmSkip.remove(key))return true;
-    if(get(key)!=""){
-        put(key, "~DELETED~");
-        return true;
-    }
-    return false;
+//    need to find in ssTable later!
+//    if(slmSkip.remove(key)){
+//        put(key, "~DELETED~");
+//        return true;
+//    }
+//    if(get(key)!=""){
+//        put(key, "~DELETED~");
+//        return true;
+//    }
+//    return false;
+    if(get(key)=="")return false;
+    if(slmSkip.get(key)=="~DELETED~")return true;
+    slmSkip.remove(key);
+    put(key, "~DELETED~");
+    return true;
 }
 
 /**
@@ -470,8 +481,6 @@ void KVStore::mergeOtherLayer(int layer){
     allKeyValTime.clear();
     
     more=layerFiles[layer]-pow(2, layer+1);
-    
-    
     for(int i=getBegin(layer
                        );i<begin+more;i++){
         string filename =getFileName(layer, i);

@@ -46,6 +46,10 @@ string Skiplist::get(const uint64_t& key) {
 void Skiplist::put(const uint64_t& key, const string& val) {
     vector<Node*> pathList;    //从上至下记录搜索路径
     Node *p = head;
+    int tmp=key;
+    while (get(key)!=""){
+        remove(key);
+    }
     //找到最底层的key值小于传入的key的节点
     while(p){
         while(p->right && p->right->key < key){
@@ -53,6 +57,7 @@ void Skiplist::put(const uint64_t& key, const string& val) {
         }
         pathList.push_back(p);
         p = p->down;
+        
     }
     bool insertUp = true;
     Node* downNode= nullptr;
@@ -87,6 +92,7 @@ bool Skiplist::remove(const uint64_t& key) {
         }
         if(cur->right && cur->right->key == key){
             flag=true;
+//            if(cur->right->val=="~DELETED~")return false;
             pred = cur;
             target = cur->right;
             below = target->down;
@@ -107,6 +113,7 @@ bool Skiplist::remove(const uint64_t& key) {
                 if(target==NULL){
                     cout<<"target is deleted!";
                 }
+                
                 delete target;
                 num--;
                 target = below;
