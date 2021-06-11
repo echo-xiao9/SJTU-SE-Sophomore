@@ -17,4 +17,5 @@ public interface OrderDao {
 
     List<OrderItem> getOrderItems(Integer order_id);
 
+    ArrayList getAdminAllOrder();
 }

@@ -5,9 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * @ClassName User
@@ -21,6 +19,7 @@ import javax.persistence.Table;
 @JsonIgnoreProperties(value = {"handler","hibernateLazyInitializer","fieldHandler"})
 public class User {
     @Id
+    @GeneratedValue(strategy= GenerationType.SEQUENCE,generator="user_id")
     private Integer userId;
     private String nickname;
     private String name;
@@ -50,6 +49,17 @@ public class User {
 
     public Integer getType() {
         return type;
+    }
+
+    public User(String nickname, String name, String tel, String address, Integer type) {
+        this.nickname = nickname;
+        this.name = name;
+        this.tel = tel;
+        this.address = address;
+        this.type = type;
+    }
+
+    public User() {
     }
 }
 

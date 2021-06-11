@@ -46,6 +46,7 @@ public class OrderController {
         return orderService.getAdminOrder();
     }
 
-
+    @GetMapping("/getAdminAllOrder")
+    public ArrayList getAdminAllOrder(){return orderService.getAdminAllOrder();}
 
 }

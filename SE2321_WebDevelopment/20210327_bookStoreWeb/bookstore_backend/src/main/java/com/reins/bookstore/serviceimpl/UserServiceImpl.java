@@ -38,4 +38,16 @@ public class UserServiceImpl implements UserService {
     public List<User> getUsers() {
         return userDao.getUsers();
     }
+
+    @Override
+    public User adminUserChange(Integer user_id, String name, String nickname, String tel, String address, Integer type) {
+        return userDao.adminUserChange(user_id, name,nickname,tel,address, type);
+    }
+
+    @Override
+    public UserAuth adminUserAuthChange(String name, Integer type) {
+        return userDao.adminUserAuthChange(name,type);
+    }
+
+
 }

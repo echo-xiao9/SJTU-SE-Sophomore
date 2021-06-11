@@ -31,6 +31,8 @@ public class UserController {
 
     @RequestMapping("/checkUser")
     public UserAuth checkUser(@RequestParam("username") String username,@RequestParam("password") String password){
+        System.out.println("check Users");
+        System.out.println(userService.checkUser(username, password));
         return userService.checkUser(username, password);
     }
 
@@ -39,5 +41,17 @@ public class UserController {
         return userService.getAdminUser();
     }
 
+
+    @GetMapping("/adminUserChange")
+   public User adminUserChange(@RequestParam("user_id")  Integer user_id,
+                               @RequestParam("name") String name,
+                               @RequestParam("nickname") String nickname,
+                               @RequestParam("tel") String tel,
+                               @RequestParam("address") String address,
+                               @RequestParam Integer type){
+        userService.adminUserAuthChange(name, type);
+        return userService.adminUserChange(user_id, name,nickname,tel,address, type);
+
+    }
 
 }

@@ -114,11 +114,10 @@ class Excel extends React.Component {
             .then(data => {
                 // alert("data:" + data);
                 // const propertyValues = Object.entries(data);
-                // console.log(propertyValues);
+           
                 this.setState({
                     data:  data
                 });
-                
             }).catch(function (ex) {
             console.log('parsing failed', ex)
         })
@@ -179,6 +178,21 @@ class Excel extends React.Component {
             </tr>
         );
     };
+    renderLine = (idx,rowidx, content) => {
+    
+      // if (!this.state.search) {
+      //     return null;
+      // }
+      return (
+        <td key={idx} data-row={rowidx}>{content}</td>
+      );
+  };
+
+    // renderLine = (idx,rowidx, content) =>{
+    //   return (<td key={idx} data-row={rowidx}>{content}</td>;
+    //   );
+    // }
+
 
     renderTable = () => {
         return (
@@ -193,6 +207,7 @@ class Excel extends React.Component {
                     }, this)
                 }</tr>
                 </thead>
+         
                 <tbody onDoubleClick={this.showEditor}>
                 {this.renderSearch()}
                 {this.state.data.map(function (row, rowidx) {
@@ -208,7 +223,13 @@ class Excel extends React.Component {
                                         </form>
                                     );
                                 }
-                                return <td key={idx} data-row={rowidx}>{content}</td>;
+                                // console.log(idx);
+                                this.renderLine(idx,rowidx, content);
+                                console.log(this.state.data[rowidx][4]);
+                                {if(this.state.data[rowidx][4]%2==0)return <td class="even" key={idx} data-row={rowidx}>{content}</td>;}
+                                {if(this.state.data[rowidx][4]%2==1)return <td class="odd" key={idx} data-row={rowidx}>{content}</td>;}
+                                // // {if(this.state.data[rowidx][4]%2==0)return <td key={idx} data-row={rowidx}>{content}</td>;}
+                                // return <td key={idx} data-row={rowidx}>{content}</td>;
                             }, this)}
                         </tr>
                     );

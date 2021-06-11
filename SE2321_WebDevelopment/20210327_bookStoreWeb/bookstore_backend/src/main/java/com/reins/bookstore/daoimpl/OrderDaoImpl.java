@@ -64,7 +64,45 @@ public class OrderDaoImpl implements OrderDao {
         System.out.println("before get items");
         return orderItemRepository.getOrderItemsByOrderId(order_id);
     }
+    public ArrayList getOrderItemsList(Integer order_id){
+        List<OrderItem> orderItemList = getOrderItems(order_id);
+        ArrayList<JSONArray> orderItemJson = new ArrayList<JSONArray>();
+        Iterator<OrderItem> it= orderItemList.iterator();
+        while (it.hasNext()) {
+            OrderItem orderItem =(OrderItem) it.next();
+            ArrayList<String> arrayList=new ArrayList<String>();
+            arrayList.add(orderItem.getBook_id().toString());
+            arrayList.add(orderItem.getBook_name());
+            arrayList.add(orderItem.getBook_price().toString());
+            arrayList.add(orderItem.getBook_num().toString());
+            orderItemJson.add((JSONArray) JSONArray.toJSON(arrayList));
+        }
+        return orderItemJson;
+    }
 
+
+    @Override
+    public ArrayList getAdminAllOrder() {
+        List<Order> result = orderRepository.getOrders();
+        System.out.println(result);
+        Iterator<Order> it = result.iterator();
+        ArrayList<JSONArray> ordersJson = new ArrayList<JSONArray>();
+        while (it.hasNext()) {
+            Order order = (Order) it.next();
+            ArrayList<String> arrayList = new ArrayList<String>();
+            arrayList.add(order.getOrder_price().toString());
+            arrayList.add(order.getUser_id().toString());
+            arrayList.add(order.getYear());
+            arrayList.add(order.getMonth());
+            arrayList.add(order.getDay());
+            arrayList.add(order.getOrderId().toString());
+//            arrayList.add(getOrderItems(order.getOrderId()).toString());
+//            arrayList.add((JSONArray)JSONArray.toJSON(getOrderItemsList(order.getOrderId())));
+            ordersJson.add((JSONArray) JSONArray.toJSON(arrayList));
+        }
+//        String  ordersString = JSON.toJSONString(ordersJson, SerializerFeature.BrowserCompatible);
+        return ordersJson;
+    }
 
 
 }

@@ -33,7 +33,7 @@ import { Button } from '../components/Button';
 
                   <input
                       class="form-control"
-                      type='text'
+                      type="username"
                       name='username'
                       placeholder='Enter your username'
                       value={values.username}

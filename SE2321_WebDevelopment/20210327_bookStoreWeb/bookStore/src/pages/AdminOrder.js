@@ -114,9 +114,6 @@ class Excel extends React.Component {
         fetch("http://localhost:9090/adminOrder")
             .then(response => response.json())
             .then(data => {
-                // alert("data:" + data);
-                // const propertyValues = Object.entries(data);
-                // console.log(propertyValues);
                 this.setState({
                     data:  data
                 });

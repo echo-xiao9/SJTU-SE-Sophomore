@@ -13,7 +13,7 @@ import AdminUser from './pages/AdminUser';
 import AdminBook from './pages/AdminBook';
 import AdminOrder from './pages/AdminOrder';
 import AdminIndex from './pages/AdminIndex'
-
+import Table from './pages/OrderTest'
 function App() {
   return (
     <>
@@ -29,7 +29,8 @@ function App() {
           <Route path ='/AdminBook' component={AdminBook}/>
           <Route path ='/AdminUser' component={AdminUser}/>
           <Route path ='/AdminIndex' component={AdminIndex}/>
-          <Route path ='/AdminOrder' component={AdminOrder}/>
+          {/* <Route path ='/AdminOrder' component={AdminOrder}/> */}
+          <Route path ='/AdminOrder' component={Table}/>
         </Switch>
       </Router>
     </>

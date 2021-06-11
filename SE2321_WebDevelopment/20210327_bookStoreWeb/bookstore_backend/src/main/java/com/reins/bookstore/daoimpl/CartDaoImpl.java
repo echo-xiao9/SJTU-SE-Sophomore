@@ -33,15 +33,14 @@ public class CartDaoImpl implements CartDao {
 //        System.out.println(cart);
 
             if (cart == null) {
-                System.out.println("before new!");
                 Cart c = new Cart(name, author, price, number);
                 cartRepository.save(c);
                 return c;
             }
             else {
-                System.out.println("before update!");
+
                 Cart c = cartRepository.getCartByName(name);
-                System.out.println(c);
+
                 Integer num = c.getNumber() + 1;
                 cartRepository.deleteByName(c.getName());
                 Cart c2 = new Cart(name, author, price, num);

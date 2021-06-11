@@ -32,7 +32,7 @@ const useForm = (callback, validate) => {
         }).then(response => {
             console.log(response)
             if (response.status === 200) {
-              if(response.data.userType===0)alert("您的账号已经被禁用");
+              if(response.data.data.userType===0)alert("您的账号已经被禁用");
                 // this.$notify({ title: '提示信息', message: '登录成功', type: 'success'
                 //                 // })
                 else alert(response.data.msg);

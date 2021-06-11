@@ -15,7 +15,7 @@ function formatPrice(price) {
 }
 
 const castyle = {
-  width: 900,
+  width: 800,
   // height: 240,
   // marginLeft: 180,
   marginTop: 60,
@@ -151,7 +151,8 @@ export default class Carts extends React.Component {
   render() {
     const { books } = this.state.books
     var len = this.state.books.length
-    return len == 0 ? this.renderNone() : this.renderBooks();
+    return this.renderBooks();
+    // return len == 0 ? this.renderNone() : this.renderBooks();
   }
   changeBookCount(index, count) {
     const newBooks = [...this.state.books]

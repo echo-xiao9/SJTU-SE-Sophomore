@@ -54,7 +54,7 @@ body {
     text-align: left;
 }
 
-input[type=text] {
+/* input[type=text] {
     background-color:rgb(36, 36, 36);
     border: none;
     border-bottom: 2px solid #0DB8DE;
@@ -65,7 +65,7 @@ input[type=text] {
     margin-bottom: 20px;
     padding-left: 40px;
     color: #ECF0F5;
-}
+} */
 
 input[type=password] {
     background-color:rgb(36, 36, 36);
@@ -79,6 +79,18 @@ input[type=password] {
     margin-bottom: 20px;
     color: #ECF0F5;
 }
+input[type=username] {
+  background-color:rgb(36, 36, 36);
+  border: none;
+  border-bottom: 2px solid #0DB8DE;
+  border-top: 0px;
+  border-radius: 0px;
+  font-weight: bold;
+  outline: 0;
+  padding-left: 40px;
+  margin-bottom: 20px;
+  color: #ECF0F5;
+}
 
 .form-group {
     margin-bottom: 40px;
@@ -86,7 +98,7 @@ input[type=password] {
     text-align: center;
 }
 
-.form-control:focus {
+/* .form-control:focus {
     border-color: inherit;
     -webkit-box-shadow: none;
     box-shadow: none;
@@ -94,7 +106,7 @@ input[type=password] {
     outline: 0;
     background-color: #42545e;
     color: #ECF0F5;
-}
+} */
 
 input:focus {
     outline: none;

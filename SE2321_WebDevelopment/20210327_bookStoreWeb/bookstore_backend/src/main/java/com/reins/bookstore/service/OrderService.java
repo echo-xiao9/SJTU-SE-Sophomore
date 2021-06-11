@@ -16,4 +16,7 @@ public interface OrderService {
 
     List<OrderItem> getOrderItems(Integer order_id);
 
+    ArrayList getAdminAllOrder();
+
+//    ArrayList getAdminOrderItems();
 }

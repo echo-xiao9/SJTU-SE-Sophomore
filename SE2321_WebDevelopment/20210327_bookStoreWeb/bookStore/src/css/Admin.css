@@ -4,7 +4,18 @@ input {
   font: 16px Arial;
 }
 
-td {
+td .odd{
+  border-top: 1px solid black;
+  cursor: cell;
+  padding: 5px;
+}
+td.even{
+  border-top: 1px solid black;
+  cursor: cell;
+  padding: 5px;
+  background-color: #d4d4d4;
+}
+td .normal{
   border-top: 1px solid black;
   cursor: cell;
   padding: 5px;

@@ -23,7 +23,7 @@ import java.util.List;
  * @Date 2019/11/7 13:19
  */
 @Repository
-public class UserDaoImpl implements UserDao {
+public class UserDaoImpl<data1> implements UserDao {
 
     @Autowired
     UserAuthRepository userAuthRepository;
@@ -54,10 +54,57 @@ public class UserDaoImpl implements UserDao {
             arrayList.add(user.getName());
             arrayList.add(user.getNickname());
             arrayList.add(user.getTel());
+            arrayList.add(user.getAddress());
             arrayList.add(user.getType().toString());
             usersJson.add((JSONArray) JSONArray.toJSON(arrayList));
         }
         return usersJson;
+    }
+
+//    @Override
+//    public User adminUserChange(String name, Integer type) {
+//        System.out.println("type");
+//        System.out.println(type);
+//        userRepository.adminUserChange (type,name);
+//        return userRepository.getUserByName(name);
+//    }
+
+    @Override
+    public User adminUserChange(Integer user_id, String name, String nickname, String tel, String address, Integer type){
+        System.out.println("type");
+        System.out.println(type);
+        System.out.println("before update!");
+        User user = userRepository.getUserByName(name);
+        if(user==null){
+            User u=new User(nickname, name,tel,address,type);
+            userRepository.save(u);
+            return u;
+        }
+        else {
+            System.out.println("find one by name");
+            userRepository.deleteByName(name);
+            User u2 = new User(nickname, name,tel,address,type);
+            userRepository.save(u2);
+            return u2;
+        }
+    }
+
+    public UserAuth adminUserAuthChange( String name, Integer type){
+        UserAuth ua= userAuthRepository.getUserAuthByUserName(name);
+        String password;
+        if(ua!=null) password= ua.getPassword();
+        else password="123456";
+        System.out.println("password");
+        System.out.println(password);
+        userAuthRepository.deleteByUsername(name);
+        UserAuth ua2=  new UserAuth(name,password,type);
+        userAuthRepository.save(ua2);
+        return ua2;
+    }
+
+    public User getUserByName(String name)
+    {
+        return userRepository.getUserByName(name);
     }
 
 
