@@ -12,8 +12,12 @@ import Administrator from './pages/Administrator';
 import AdminUser from './pages/AdminUser';
 import AdminBook from './pages/AdminBook';
 import AdminOrder from './pages/AdminOrder';
-import AdminIndex from './pages/AdminIndex'
-import Table from './pages/OrderTest'
+import AdminIndex from './pages/AdminIndex';
+import AdminOrders from './pages/AdminOrders';
+import UserOrder from './pages/UserOrders';
+
+
+
 function App() {
   return (
     <>
@@ -24,13 +28,14 @@ function App() {
           <Route path='/Carts' component={Carts} />
           <Route path='/Login' component={Login} />
           <Route path='/Book' component={Book} />
-          <Route path='/Order' component={Order} />
+          <Route path='/Order' component={UserOrder} />
           {/* <Route path ='/Administrator' component={Administrator}/> */}
           <Route path ='/AdminBook' component={AdminBook}/>
           <Route path ='/AdminUser' component={AdminUser}/>
           <Route path ='/AdminIndex' component={AdminIndex}/>
           {/* <Route path ='/AdminOrder' component={AdminOrder}/> */}
-          <Route path ='/AdminOrder' component={Table}/>
+          <Route path ='/AdminOrder' component={AdminOrders}/>
+
         </Switch>
       </Router>
     </>
