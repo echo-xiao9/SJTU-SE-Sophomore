@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		E80C3BF3266632AD001B8F4C /* skipList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E80C3BF2266632AD001B8F4C /* skipList.cpp */; };
+		E8291A582671A06F00F34E70 /* persistence的副本.cc in Sources */ = {isa = PBXBuildFile; fileRef = E8291A572671A06F00F34E70 /* persistence的副本.cc */; };
 		E839252B2629327E00F0CAAD /* correctness.cc in Sources */ = {isa = PBXBuildFile; fileRef = E83925212629327E00F0CAAD /* correctness.cc */; };
 		E839252D2629327E00F0CAAD /* kvstore.cc in Sources */ = {isa = PBXBuildFile; fileRef = E83925292629327E00F0CAAD /* kvstore.cc */; };
 		E839252E2629327E00F0CAAD /* Makefile in Sources */ = {isa = PBXBuildFile; fileRef = E839252A2629327E00F0CAAD /* Makefile */; };
@@ -33,6 +34,7 @@
 /* Begin PBXFileReference section */
 		E80C3BF2266632AD001B8F4C /* skipList.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = skipList.cpp; sourceTree = "<group>"; };
 		E81913DE26297DBC000BFECD /* skipList.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = skipList.h; sourceTree = "<group>"; };
+		E8291A572671A06F00F34E70 /* persistence的副本.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "persistence的副本.cc"; sourceTree = "<group>"; };
 		E83925052629320000F0CAAD /* lsm-lab-xcode */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "lsm-lab-xcode"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E83925202629327E00F0CAAD /* utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = utils.h; sourceTree = "<group>"; };
 		E83925212629327E00F0CAAD /* correctness.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = correctness.cc; sourceTree = "<group>"; };
@@ -96,6 +98,7 @@
 				E866BA8B266E4667009A0829 /* correctness.cc */,
 				E8C39B7F266F27E600AAA73A /* correctness2.cc */,
 				E847E53E266EF30600189F61 /* persistence.cc */,
+				E8291A572671A06F00F34E70 /* persistence的副本.cc */,
 				E83925282629327E00F0CAAD /* test.h */,
 				E83925202629327E00F0CAAD /* utils.h */,
 				E81913DE26297DBC000BFECD /* skipList.h */,
@@ -163,6 +166,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E839252B2629327E00F0CAAD /* correctness.cc in Sources */,
+				E8291A582671A06F00F34E70 /* persistence的副本.cc in Sources */,
 				E8D64F7A2636F3900089F185 /* myTest.cpp in Sources */,
 				E8C39B80266F27E600AAA73A /* correctness2.cc in Sources */,
 				E886B83C26359B9000983E5D /* ssTable.cc in Sources */,

@@ -52,8 +52,7 @@ private:
     int layerFiles[max_level]={0};
     // maxIndex+1 of every layer.
     int layerFilesIndex[max_level]={0};
-    Skiplist slmSkip;
-    Skiplist slmSkipMerge;
+    
     time_t curTime=1;
     int maxLayer;
 //    vector<Front> frontList; // front stored in memory table. X
@@ -64,6 +63,8 @@ private:
     string getDirName(int layer);
     bool fileExist(string fileDir);
 public:
+    Skiplist slmSkip;
+    Skiplist slmSkipMerge;
     void updateMemTable();
     
     KVStore(const std::string &dir);
@@ -81,6 +82,8 @@ public:
     std::string get(uint64_t key) override;
     
     bool del(uint64_t key) override;
+    
+    void recover();
     
     void reset() override;
     

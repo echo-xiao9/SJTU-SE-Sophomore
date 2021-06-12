@@ -35,7 +35,6 @@
 //		// Test after all insertions
 //		for (i = 0; i < 10; ++i)
 //			EXPECT(std::string(i+1, 's'), store.get(i));
-////            if(store.get(i)!=std::string(i+1, 's'))cout<<i<<" "<<store.get(i)<<endl;
 //            
 //		phase();
 //

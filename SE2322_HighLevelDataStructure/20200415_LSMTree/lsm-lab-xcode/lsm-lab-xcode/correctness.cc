@@ -7,12 +7,13 @@
 //class CorrectnessTest : public Test {
 //private:
 //    const uint64_t SIMPLE_TEST_MAX = 512;
-//    const uint64_t LARGE_TEST_MAX = 1024 * 64;
+//    const uint64_t LARGE_TEST_MAX = 4000;
 //
 //    void regular_test(uint64_t max)
 //    {
 //        uint64_t i;
-//
+//        store.reset();
+//        int flag1,flag2,flag3=0;
 //        // Test a single key
 //        EXPECT(not_found, store.get(1));
 //        store.put(1, "SE");
@@ -26,25 +27,44 @@
 //        // Test multiple key-value pairs
 //        for (i = 0; i < max; ++i) {
 //            store.put(i, std::string(i+1, 's'));
-//            EXPECT(std::string(i+1, 's'), store.get(i));
+////            EXPECT(std::string(i+1, 's'), store.get(i));
 //        }
 //        phase();
 //
 //        // Test after all insertions
-//        for (i = 0; i < max; ++i)
-//            EXPECT(std::string(i+1, 's'), store.get(i));
-//        phase();
+////        for (i = 0; i < max; ++i)
+////            EXPECT(std::string(i+1, 's'), store.get(i));
+////        phase();
 //
+//        cout<<"part1 begin"<<endl;
 //        // Test deletions
 //        for (i = 0; i < max; i+=2)
-//            EXPECT(true, store.del(i));
+//            if(true!=store.del(i))
+//                cout<<i<<" ";
+//        cout<<"part1 OK"<<endl;
 //
-//        for (i = 0; i < max; ++i)
-//            EXPECT((i & 1) ? std::string(i+1, 's') : not_found,
-//                   store.get(i));
+////        cout<<"part2 begin"<<endl;
+////        for (i = 0; i < max; ++i){
+////            if(i&1){
+////                if(store.get(i)!=std::string(i+1, 's') )
+////                    cout<<"part2 bug:"<<i<<endl;
+////            }
+////            else{
+////                if(store.get(i)!="")
+////                    cout<<"part2 bug:"<<i<<endl;
+////            }
+////        }
 //
-//        for (i = 1; i < max; ++i)
-//            EXPECT(i & 1, store.del(i));
+//
+////            EXPECT((i & 1) ? std::string(i+1, 's') : not_found,
+////                   store.get(i));
+//        cout<<"part2 end"<<endl;
+//        cout<<"part3 begin"<<endl;
+//        for (i = 1; i < max; ++i){
+//            if((i&1)!=store.del(i))
+//                cout<<i<<endl;
+//        }
+////            EXPECT(i & 1, store.del(i));
 //
 //        phase();
 //
@@ -84,3 +104,4 @@
 //
 //    return 0;
 //}
+//

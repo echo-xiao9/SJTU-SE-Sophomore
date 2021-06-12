@@ -61,49 +61,9 @@ const useForm = (callback, validate) => {
 
 
     const handleSubmit = e => {
-        // e.preventDefault();
-        // console.log("-------------------------")
-        // console.log(values.username)
-        // console.log(values.password)
         check();
-        // axios({
-        //     method: 'GET',
-        //     url: 'http://localhost:9090/checkGotoHome',
-        //     params: {
-        //         username: values.username,
-        //         password: values.password
-        //     }
-        // }).then(response => {
-        //     console.log(response)
-        //     if (response.status === 200) {
-        //         //message.success("登录成功").then(r => 0);
-        //         this.router.push('/Home');
-        //     }
-        // }).catch(error => {
-        //     console.log(error)
-        //     if(Object.keys(errors).length === 0) message.success("登录成功").then(r => 0);
-        //     else message.error("用户名或密码错误").then(r => -1);
-        // })
-        //
-        // //  axios.get('http://localhost:9090/getUsers')
-        // //     .then(
-        // //         (response) => {
-        // //     console.log(response);
-        // // }
-        // setErrors(validate(values));
-        // setIsSubmitting(true);
     };
 
-    // useEffect(
-    //     () => {
-    //         if (Object.keys(errors).length === 0 && isSubmitting) {
-    //             console.log('Received values of form: ', values);
-    //             //userService.login(values);
-    //             callback();
-    //         }
-    //     },
-    //     [errors]
-    // );
 
     return {handleChange, handleSubmit, values, errors};
 };
