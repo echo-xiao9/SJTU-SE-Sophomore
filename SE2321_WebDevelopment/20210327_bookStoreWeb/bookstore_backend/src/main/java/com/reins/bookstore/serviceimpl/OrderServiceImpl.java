@@ -48,4 +48,9 @@ public class OrderServiceImpl implements OrderService {
         return orderDao.getAdminAllOrder();
     }
 
+    @Override
+    public ArrayList getHotSelling(String from, String to) {
+        return orderDao.getHotSelling(from,  to);
+    }
+
 }

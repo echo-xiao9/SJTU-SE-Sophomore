@@ -104,5 +104,35 @@ public class OrderDaoImpl implements OrderDao {
         return ordersJson;
     }
 
+    public List<Order>getOrderBetween(String from, String to){
+        List<Order>orderList=orderRepository.getOrders();
+        List<Order> result = new ArrayList<>();
+        System.out.println("get order");
+        for(Order item:orderList){
+            if(item.getDate().compareTo(to)<=0 && item.getDate().compareTo(from)>=0) {
+                System.out.println(item.getDate());
+                System.out.println(item);
+                result.add(item);
+            }
+        }
+
+        return result;
+    }
+
+    @Override
+    public ArrayList getHotSelling(String from, String to) {
+        System.out.println("get order item");
+        List<Order> orderList=getOrderBetween(from,to);
+        List<OrderItem>orderItemList = new ArrayList<>();
+        for(Order order:orderList){
+            List<OrderItem>orderItemListSingle = orderItemRepository.getOrderItemsByOrderId(order.getOrderId());
+            orderItemList.addAll(orderItemListSingle);
+        }
+        System.out.println(orderItemList);
+        return null;
+    }
+
+
+
 
 }

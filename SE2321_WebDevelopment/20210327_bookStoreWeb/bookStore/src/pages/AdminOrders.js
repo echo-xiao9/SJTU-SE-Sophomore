@@ -254,7 +254,8 @@ dateSelectBook(){
     var month=allOrders[i].month;
     if(month.length==1)month="0"+month;
     var date= allOrders[i].year+"-"+month+"-"+allOrders[i].day;
-    // console.log(date);
+    // console.log("date is:");
+    // console.log(this.state.to);
     // if(date<=this.state.to)console.log(date+"<"+this.state.to);
     // else console.log(date+">"+this.state.to);
     if(date<=this.state.to && date>=this.state.from){

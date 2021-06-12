@@ -49,5 +49,14 @@ public class OrderController {
     @GetMapping("/getAdminAllOrder")
     public ArrayList getAdminAllOrder(){return orderService.getAdminAllOrder();}
 
+    @GetMapping("/getHotSelling")
+    public ArrayList getHotSelling(
+            @RequestParam String from,
+            @RequestParam String to
+    ){
+        return orderService.getHotSelling(from, to);
+    }
+
+
 
 }

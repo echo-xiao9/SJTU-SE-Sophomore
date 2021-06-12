@@ -18,4 +18,6 @@ public interface OrderDao {
     List<OrderItem> getOrderItems(Integer order_id);
 
     ArrayList getAdminAllOrder();
+
+    ArrayList getHotSelling(String from, String to);
 }

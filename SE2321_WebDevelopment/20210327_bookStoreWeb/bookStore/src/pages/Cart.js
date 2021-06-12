@@ -184,12 +184,20 @@ export default class Carts extends React.Component {
       console.log(response);
   })
   }
-
+  getDate(){
+    var date = new Date();       
+  var mon = date.getMonth() + 1;       
+  var day = date.getDate();
+  var currDate = date.getFullYear() + "-"+ (mon<10?"0"+mon:mon) + "-"+(day<10?"0"+day:day);
+  console.log(currDate);
+  return currDate;
+  }
 
   handleCheckOut = e => {
     e.preventDefault();
     this.removeAll();
     var d=new Date();
+    var normalDate=this.getDate();
     // console.log("year:"+d.getFullYear());
     axios({
       method: 'GET',
@@ -197,7 +205,7 @@ export default class Carts extends React.Component {
       params: {
         user_id: this.state.user_id,
         order_price:this.state.totalPrice,
-        date:Date(),
+        date:normalDate,
         year:d.getFullYear(),
         month:d.getMonth(),
         day: d.getDate()
