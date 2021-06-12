@@ -39,6 +39,22 @@ public class BookController {
         return bookService.getAdminBook();
     }
 
+    @GetMapping("/addBook")
+    public Book addBook(
+            @RequestParam("isbn") String isbn,
+            @RequestParam("name") String name,
+            @RequestParam("type")String type,
+            @RequestParam("author")String author,
+            @RequestParam("price") Integer price,
+            @RequestParam("description")String description,
+            @RequestParam("inventory") Integer inventory,
+            @RequestParam("image") String image
+    ){return bookService.addBook(isbn,name,type,author,price,description,inventory,image);}
+
+    @GetMapping("/deleteBook")
+    public Book deleteBook(@RequestParam("bookId") Integer bookId){
+        return bookService.deleteBook(bookId);
+    }
 
 
 }

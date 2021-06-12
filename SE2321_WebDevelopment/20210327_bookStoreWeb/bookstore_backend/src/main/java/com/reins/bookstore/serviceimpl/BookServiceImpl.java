@@ -36,4 +36,15 @@ public class BookServiceImpl implements BookService {
     public ArrayList getAdminBook() {
         return bookDao.getAdminBook();
     }
+
+    @Override
+    public Book addBook( String isbn, String name, String type, String author, Integer price, String description, Integer inventory, String image) {
+        return bookDao.addBook( isbn,  name,  type,  author,  price,  description,  inventory,  image);
+
+    }
+
+    @Override
+    public Book deleteBook(Integer bookId) {
+        return bookDao.deleteBook( bookId);
+    }
 }

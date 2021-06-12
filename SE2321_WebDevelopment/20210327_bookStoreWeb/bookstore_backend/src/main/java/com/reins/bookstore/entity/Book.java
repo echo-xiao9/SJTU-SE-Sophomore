@@ -6,10 +6,7 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.Data;
 
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * @ClassName Book
@@ -26,17 +23,18 @@ public class Book {
 
     @Id
     @Column(name = "id")
-    private int bookId;
+    @GeneratedValue(strategy= GenerationType.SEQUENCE,generator="cart_id")
+    private Integer bookId;
     private String isbn;
     private String name;
     private String type;
     private String author;
-    private Double price;
+    private Integer price;
     private String description;
     private Integer inventory;
     private String image;
 
-    public int getBookId() {
+    public Integer getBookId() {
         return bookId;
     }
 
@@ -56,7 +54,7 @@ public class Book {
         return author;
     }
 
-    public Double getPrice() {
+    public Integer getPrice() {
         return price;
     }
 
@@ -70,6 +68,20 @@ public class Book {
 
     public String getImage() {
         return image;
+    }
+
+    public Book(String isbn, String name, String type, String author, Integer price, String description, Integer inventory, String image) {
+        this.isbn = isbn;
+        this.name = name;
+        this.type = type;
+        this.author = author;
+        this.price = price;
+        this.description = description;
+        this.inventory = inventory;
+        this.image = image;
+    }
+
+    public Book() {
     }
 }
 

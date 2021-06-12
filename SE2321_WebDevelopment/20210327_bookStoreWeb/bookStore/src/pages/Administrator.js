@@ -42,10 +42,6 @@ const rows = [
   createData('KitKat', 'Bob', 26, '978-7-107-18618-9', 7),
 ];
 
-
-
-
-
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
     return -1;

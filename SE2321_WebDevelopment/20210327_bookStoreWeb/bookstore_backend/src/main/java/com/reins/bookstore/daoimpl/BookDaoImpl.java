@@ -13,6 +13,7 @@ import com.alibaba.fastjson.JSON;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * @ClassName BookDaoImpl
@@ -47,15 +48,39 @@ public class BookDaoImpl implements BookDao {
         while (it.hasNext()) {
             Book book = (Book) it.next();
             ArrayList<String> arrayList = new ArrayList<String>();
-            arrayList.add(book.getName());
-            arrayList.add(book.getAuthor());
+
+            arrayList.add(book.getBookId().toString());
             arrayList.add(book.getIsbn());
-            arrayList.add(book.getImage());
+            arrayList.add(book.getName());
+            arrayList.add(book.getType());
+            arrayList.add(book.getAuthor());
+            arrayList.add(book.getPrice().toString());
             arrayList.add(book.getInventory().toString());
+            arrayList.add(book.getImage());
+            arrayList.add(book.getDescription());
+
             booksJson.add((JSONArray) JSONArray.toJSON(arrayList));
         }
         String  booksString = JSON.toJSONString(booksJson, SerializerFeature.BrowserCompatible);
         return booksJson;
+    }
+
+    @Override
+    public Book addBook( String isbn, String name, String type, String author, Integer price, String description, Integer inventory, String image) {
+        Book book= new Book(isbn,name, type, author, price, description, inventory, image);
+        bookRepository.save(book);
+        return book;
+    }
+
+    @Override
+    public Book deleteBook(Integer bookId) {
+        Optional<Book> b=bookRepository.findById(bookId);
+        bookRepository.deleteById(bookId);
+            //isPresent方法用来检查Optional实例中是否包含值
+            if (b.isPresent()) {
+                //在Optional实例内调用get()返回已存在的值
+                return b.get();
+            }else return null;
     }
 
 }

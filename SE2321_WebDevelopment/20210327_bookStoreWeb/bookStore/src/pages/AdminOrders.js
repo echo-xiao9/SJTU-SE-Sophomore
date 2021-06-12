@@ -271,7 +271,7 @@ dateSelectBook(){
   this.render();
 }
 
-  render() {
+render() {
     // this.logRow();
     return (
       <div>

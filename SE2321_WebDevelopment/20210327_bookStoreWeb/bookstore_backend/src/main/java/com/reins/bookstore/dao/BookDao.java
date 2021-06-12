@@ -11,4 +11,8 @@ public interface BookDao {
     List<Book> getBooks();
 
     ArrayList getAdminBook();
+
+    Book addBook(String isbn, String name, String type, String author, Integer price, String description, Integer inventory, String image);
+
+    Book deleteBook(Integer bookId);
 }
