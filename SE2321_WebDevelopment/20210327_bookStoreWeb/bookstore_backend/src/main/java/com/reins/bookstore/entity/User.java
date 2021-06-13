@@ -26,6 +26,7 @@ public class User {
     private String tel;
     private String address;
     private Integer type;
+    private Integer boughtNum;
 
     public Integer getUserId() {
         return userId;
@@ -51,6 +52,8 @@ public class User {
         return type;
     }
 
+
+
     public User(String nickname, String name, String tel, String address, Integer type) {
         this.nickname = nickname;
         this.name = name;
@@ -60,6 +63,11 @@ public class User {
     }
 
     public User() {
+    }
+
+    public User(Integer userId,Integer boughtNum) {
+        this.userId = userId;
+        this.boughtNum=boughtNum;
     }
 }
 

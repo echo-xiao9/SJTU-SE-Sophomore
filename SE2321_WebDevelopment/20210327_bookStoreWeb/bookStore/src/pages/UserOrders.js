@@ -21,14 +21,14 @@ export default class UserOrder extends React.Component {
     this.state = {
       orders: [],
       newOrders:[],
-      user_id:1
+      user_id:localStorage.getItem('userId')
     }
     const url = "http://localhost:9090/getAdminAllOrder";
     axios.get(url).then((response) => {
       const data = response.data;
       this.setState({
         orders: data,
-        user_id:1
+        user_id:this.state.user_id
       })
      
       // console.log(this.state.orders);

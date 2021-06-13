@@ -20,5 +20,7 @@ public interface OrderService {
 
     ArrayList getHotSelling(String from, String to);
 
+    ArrayList getHotUsers(String from, String to);
+
 //    ArrayList getAdminOrderItems();
 }

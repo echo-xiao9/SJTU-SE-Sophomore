@@ -15,8 +15,8 @@ import AdminOrder from './pages/AdminOrder';
 import AdminIndex from './pages/AdminIndex';
 import AdminOrders from './pages/AdminOrders';
 import UserOrder from './pages/UserOrders';
-
-
+import HotSelling from './pages/HotSelling';
+import HotUsers from './pages/HotUsers';
 
 function App() {
   return (
@@ -35,7 +35,8 @@ function App() {
           <Route path ='/AdminIndex' component={AdminIndex}/>
           {/* <Route path ='/AdminOrder' component={AdminOrder}/> */}
           <Route path ='/AdminOrder' component={AdminOrders}/>
-
+          <Route path ='/HotSelling' component={HotSelling}/>
+          <Route path ='/getHotUsers' component={HotUsers}/>
         </Switch>
       </Router>
     </>

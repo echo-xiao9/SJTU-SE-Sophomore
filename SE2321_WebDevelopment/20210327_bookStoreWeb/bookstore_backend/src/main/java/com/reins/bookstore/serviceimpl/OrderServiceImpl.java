@@ -53,4 +53,9 @@ public class OrderServiceImpl implements OrderService {
         return orderDao.getHotSelling(from,  to);
     }
 
+    @Override
+    public ArrayList getHotUsers(String from, String to) {
+        return orderDao.getHotUsers(from,to);
+    }
+
 }

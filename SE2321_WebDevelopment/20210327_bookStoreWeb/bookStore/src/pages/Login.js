@@ -7,6 +7,22 @@ import { Button } from '../components/Button';
 
 
 
+function renderAdmin(){
+    console.log(localStorage.getItem('userType'));
+    if(localStorage.getItem('userType')=='1')return  <Button buttonStyle='btn--outline' buttonLink='/AdminIndex'>Administrator</Button>;
+    else return null;
+  
+}
+function renderLogOut(){
+  console.log(localStorage.getItem('userType'));
+  if(localStorage.getItem('userType')!=null)return  <Button buttonStyle='btn--outline' onClick={logOut}>Log Out</Button>;
+}
+function logOut(){
+  localStorage.removeItem('userId');
+  localStorage.removeItem('userType');
+  localStorage.removeItem('username');
+
+}
   const SignUp = ({submitForm}) => {
     const {handleChange, handleSubmit, values, errors} = useForm(
         submitForm,
@@ -56,8 +72,10 @@ import { Button } from '../components/Button';
                 <div class="col-lg-12 loginbttm">
                   <Button buttonStyle='btn--outline' onClick={handleSubmit}>Log in  </Button>
                   <Button buttonStyle='btn--outline'>Register</Button>
-                  <Button buttonStyle='btn--outline' buttonLink='/AdminIndex'>Administrator</Button>
-
+                  
+                  {/* <Button buttonStyle='btn--outline' buttonLink='/AdminIndex'>Administrator</Button> */}
+                {renderAdmin()}
+                {renderLogOut()}
                 </div>
               </form>
             </div>

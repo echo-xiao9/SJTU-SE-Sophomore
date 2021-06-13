@@ -54,12 +54,7 @@ export default class Orders extends React.Component {
   processData() {
     this.state.orders.map((line) => {
       var lineRow = new Array();
-      // console.log(line[6]);
-      // var rows=this.createRow(line[6].book_id,line[6].book_name,line[6].book_price,line[6].book_num);
-      // var rows2=this.createData(line[0],line[1],line[2]);
-      // console.log(rows);
-      // console.log(line[5]);
-      const url = "http://localhost:9090/getAdminAllOrder";
+
       axios({
         method: 'GET',
         url: 'http://localhost:9090/getOrderItems',
@@ -325,4 +320,5 @@ render() {
       </div>
     );
   }
+
 }

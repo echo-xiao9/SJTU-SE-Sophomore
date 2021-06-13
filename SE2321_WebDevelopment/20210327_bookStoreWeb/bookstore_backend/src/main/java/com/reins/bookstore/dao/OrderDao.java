@@ -20,4 +20,7 @@ public interface OrderDao {
     ArrayList getAdminAllOrder();
 
     ArrayList getHotSelling(String from, String to);
+
+
+    ArrayList getHotUsers(String from, String to);
 }

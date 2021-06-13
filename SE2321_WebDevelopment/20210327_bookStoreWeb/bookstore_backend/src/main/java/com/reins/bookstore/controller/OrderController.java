@@ -57,6 +57,11 @@ public class OrderController {
         return orderService.getHotSelling(from, to);
     }
 
-
-
+    @GetMapping("/getHotUsers")
+    public ArrayList getHotUsers(
+        @RequestParam String from,
+        @RequestParam String to
+    ){
+        return orderService.getHotUsers(from, to);
+    }
 }

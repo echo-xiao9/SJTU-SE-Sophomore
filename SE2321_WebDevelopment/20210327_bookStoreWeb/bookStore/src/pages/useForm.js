@@ -35,10 +35,19 @@ const useForm = (callback, validate) => {
               if(response.data.data.userType===0)alert("您的账号已经被禁用");
                 // this.$notify({ title: '提示信息', message: '登录成功', type: 'success'
                 //                 // })
-                else alert(response.data.msg);
-                // this.$global.username = this.input_username
-                // this.$global.password = this.input_password // 跳转
-                // this.$router.push('Home')
+                else {
+                  alert(response.data.msg);
+                  var userId=response.data.data.userId;
+                  var userType=response.data.data.userType;
+                  var username=response.data.data.username;
+                  console.log(userType);
+                  localStorage.setItem('userId',userId);
+                  localStorage.setItem('userType',userType);
+                  localStorage.setItem('username',username);
+                  console.log(localStorage.getItem('userType'));
+                  
+
+                }
             }
         }).catch(error => {
             console.log(error)

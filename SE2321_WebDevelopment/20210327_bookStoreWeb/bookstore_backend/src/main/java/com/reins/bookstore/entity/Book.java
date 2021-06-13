@@ -82,6 +82,15 @@ public class Book {
     }
 
     public Book() {
+        this.inventory=0;
     }
+
+    public Book(String name, Integer inventory,Integer bookId) {
+        this.name = name;
+        this.inventory = inventory;
+        this.bookId=bookId;
+    }
+
+
 }
 

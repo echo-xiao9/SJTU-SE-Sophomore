@@ -6,6 +6,15 @@ import Pagination from './Pagination'
 import Carousel from "../components/Carousel";
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { Button } from '../components/Button';
+
+
+function changeTarget(e){
+
+}
+function search(){
+
+}
 
 function Cards() {
   let { keyword } = useParams();
@@ -21,7 +30,6 @@ function Cards() {
     fetchBooks();
   }, []);
   var cards;
-  console.log(books);
   if (typeof keyword == "undefined")
     cards =
       books == null
@@ -57,13 +65,17 @@ function Cards() {
               label={i.type}
               path= '/Book'
               />
-            ));
+            ))
+  
 
     return (
         <div className='cards'>
             <h1>Have a look at our best seller!</h1>
-            <SearchBox />
+            {/* <SearchBox /> */}
+            <input type="text" onChange={changeTarget} placeholder="ISBN" ></input>
+            <Button onClick={search} > Search</Button>
             <Carousel />
+           
             <div className='cards__container'>
                 <div className='cards__wrapper'>
                     <ul className='cards__items'>
