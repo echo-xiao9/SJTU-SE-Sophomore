@@ -20,10 +20,6 @@ public class OrderItem {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Integer itemId;
 
-//    @ManyToOne
-//    @JoinColumn(name="order_id")
-//    private Order order;
-
     private Integer order_id;
     private Integer book_id;
     private Integer book_num;
@@ -34,9 +30,6 @@ public class OrderItem {
         return itemId;
     }
 
-//    public Order getOrder() {
-//        return order;
-//    }
 
 
     public Integer getOrder_id() {

@@ -58,4 +58,14 @@ public class OrderServiceImpl implements OrderService {
         return orderDao.getHotUsers(from,to);
     }
 
+    @Override
+    public ArrayList getUserHotSelling(String from, String to, Integer user_id) {
+        return orderDao.getUserHotSelling(from,to,user_id);
+    }
+
+    @Override
+    public OrderItem addOrderItem(Integer order_id, Integer book_id, Integer book_num, String book_name, Integer book_price) {
+        return orderDao.addOrderItem(order_id,book_id, book_num, book_name, book_price);
+    }
+
 }

@@ -1,9 +1,5 @@
 package com.reins.bookstore.daoimpl;
-
-import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.serializer.SerializerFeature;
-import com.reins.bookstore.constant.Constant;
 import com.reins.bookstore.dao.UserDao;
 import com.reins.bookstore.entity.User;
 import com.reins.bookstore.entity.UserAuth;
@@ -22,6 +18,7 @@ import java.util.List;
  * @Author thunderBoy
  * @Date 2019/11/7 13:19
  */
+
 @Repository
 public class UserDaoImpl<data1> implements UserDao {
 

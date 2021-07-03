@@ -22,5 +22,9 @@ public interface OrderService {
 
     ArrayList getHotUsers(String from, String to);
 
+    ArrayList getUserHotSelling(String from, String to, Integer user_id);
+
+    OrderItem addOrderItem(Integer order_id, Integer book_id, Integer book_num, String book_name, Integer book_price);
+
 //    ArrayList getAdminOrderItems();
 }

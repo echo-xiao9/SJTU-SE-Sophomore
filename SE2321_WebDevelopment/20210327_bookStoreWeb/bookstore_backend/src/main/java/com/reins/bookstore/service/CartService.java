@@ -9,5 +9,5 @@ public interface CartService {
 
     List<Cart> clearCart();
 
-    Cart addToCart(String name, String author, Integer price, Integer number);
+    Cart addToCart(String name, String author, Integer price, Integer number,Integer bookId);
 }

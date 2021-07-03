@@ -7,6 +7,7 @@ import com.reins.bookstore.dao.OrderDao;
 import com.reins.bookstore.entity.Book;
 import com.reins.bookstore.entity.OrderItem;
 import com.reins.bookstore.entity.User;
+import com.reins.bookstore.repository.BookRepository;
 import com.reins.bookstore.repository.OrderItemRepository;
 import com.reins.bookstore.repository.OrderRepository;
 
@@ -23,6 +24,9 @@ public class OrderDaoImpl implements OrderDao {
     private OrderRepository orderRepository;
     @Autowired
     private OrderItemRepository orderItemRepository;
+
+    @Autowired
+    private BookRepository bookRepository;
 
     @Override
     public Order findOne(Integer id) {
@@ -80,7 +84,6 @@ public class OrderDaoImpl implements OrderDao {
         return orderItemJson;
     }
 
-
     @Override
     public ArrayList getAdminAllOrder() {
         List<Order> result = orderRepository.getOrders();
@@ -117,21 +120,15 @@ public class OrderDaoImpl implements OrderDao {
         return result;
     }
 
-    @Override
-    public ArrayList getHotSelling(String from, String to) {
-        List<Order> orderList = getOrderBetween(from, to);
-        List<OrderItem> orderItemList = new ArrayList<>();
-        ArrayList<Book> resultArr = new ArrayList<>();
-        for (Order order : orderList) {
-            List<OrderItem> orderItemListSingle = orderItemRepository.getOrderItemsByOrderId(order.getOrderId());
-            orderItemList.addAll(orderItemListSingle);
-        }
 
+    public ArrayList getHotBook(List<OrderItem> orderItemList) {
+        ArrayList<Book> resultArr = new ArrayList<>();
         for (OrderItem item : orderItemList) {
             String itemName = item.getBook_name();
             Integer itemNum = item.getBook_num();
             Integer itemBookId = item.getBook_id();
-;            boolean flag = false;
+            Integer itemPrice=item.getBook_price();
+            boolean flag = false;
             for (Book it : resultArr) {
                 if (it.getName().equals(itemName)) {
                     it.setInventory(it.getInventory() + itemNum);
@@ -140,7 +137,7 @@ public class OrderDaoImpl implements OrderDao {
                 }
             }
             if (flag == false) {
-                Book newBook = new Book(itemName, itemNum,itemBookId);
+                Book newBook = new Book(itemName, itemNum,itemBookId,itemPrice);
                 resultArr.add(newBook);
             }
         }
@@ -151,8 +148,21 @@ public class OrderDaoImpl implements OrderDao {
     }
 
     @Override
+    public ArrayList getHotSelling(String from, String to) {
+        List<Order> orderList = getOrderBetween(from, to);
+        List<OrderItem> orderItemList = new ArrayList<>();
+        ArrayList<Book> resultArr = new ArrayList<>();
+        for (Order order : orderList) {
+            List<OrderItem> orderItemListSingle = orderItemRepository.getOrderItemsByOrderId(order.getOrderId());
+            orderItemList.addAll(orderItemListSingle);
+        }
+        return getHotBook(orderItemList);
+    }
+
+    @Override
     public ArrayList getHotUsers(String from, String to) {
         List<Order> orderList = getOrderBetween(from, to);
+
         System.out.println("orderList:");
         System.out.println(orderList);
         List<OrderItem> orderItemList = new ArrayList<>();
@@ -182,6 +192,27 @@ public class OrderDaoImpl implements OrderDao {
         Collections.sort(resultArr, (User a1, User a2) -> a2.getBoughtNum()-a1.getBoughtNum());
         return resultArr;
     }
+
+    @Override
+    public ArrayList getUserHotSelling(String from, String to, Integer user_id) {
+        List<Order> orderList = getOrderBetween(from, to);
+        List<Order> userOrderList=new ArrayList<>();
+        List<OrderItem> orderItemList = new ArrayList<>();
+        for (Order order : orderList) {
+            List<OrderItem> orderItemListSingle = orderItemRepository.getOrderItemsByOrderId(order.getOrderId());
+            orderItemList.addAll(orderItemListSingle);
+        }
+
+        return getHotBook(orderItemList);
+    }
+
+    @Override
+    public OrderItem addOrderItem(Integer order_id, Integer book_id, Integer book_num, String book_name, Integer book_price) {
+        OrderItem orderItem=new OrderItem(order_id,book_id, book_num, book_name, book_price);
+        orderItemRepository.save(orderItem);
+        return orderItem;
+    }
+
 }
 
 

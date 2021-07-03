@@ -28,10 +28,10 @@ public class CartController {
             @RequestParam(required = false) String name,
             @RequestParam(required = false) String author,
             @RequestParam(required = false) Integer price,
-            @RequestParam(required = false) Integer number
+            @RequestParam(required = false) Integer number,
+            @RequestParam(required = false) Integer bookId
             ){
-        return cartService.addToCart(name, author,price, number);
-
+        return cartService.addToCart(name, author,price, number,bookId);
     }
 
 

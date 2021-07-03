@@ -21,6 +21,7 @@ public class Cart {
     private String author;
     private Integer price;
     private Integer number;
+    private Integer bookId;
 
     public Cart(String name, String author, Integer price, Integer number) {
         this.name = name;
@@ -30,6 +31,15 @@ public class Cart {
     }
 
     public Cart() {
+    }
+
+    public Cart(String name, String author, Integer price, Integer number, Integer bookId) {
+
+        this.name = name;
+        this.author = author;
+        this.price = price;
+        this.number = number;
+        this.bookId = bookId;
     }
 
     public Integer getCartId() {
@@ -50,5 +60,9 @@ public class Cart {
 
     public Integer getNumber() {
         return number;
+    }
+
+    public Integer getBookId() {
+        return bookId;
     }
 }

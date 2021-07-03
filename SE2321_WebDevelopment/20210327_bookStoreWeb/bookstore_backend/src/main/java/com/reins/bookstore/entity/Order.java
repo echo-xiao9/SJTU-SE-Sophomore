@@ -23,8 +23,6 @@ public class Order {
     private Integer user_id;
     private Integer order_price;
 
-//    @OneToMany(mappedBy = "order", cascade = {CascadeType.PERSIST,CascadeType.REMOVE}, fetch = FetchType.LAZY)
-//    private  Set<OrderItem> orderItems;
 
     public Order(Integer user_id, Integer order_price, String date, String year, String month, String day) {
         this.user_id = user_id;
@@ -35,29 +33,13 @@ public class Order {
         this.day = day;
     }
 
-
-//    public Set<OrderItem> getOrderItems() { return orderItems; }
-
     private String date;
     private String year;
     private String month;
     private String day;
 
 
-
     public Order() {
 
     }
-
-//    public Order(Integer user_id, Integer order_price, Set<OrderItem> orderItems, String date, String year, String month, String day) {
-//        this.user_id = user_id;
-//        this.order_price = order_price;
-////        this.orderItems = orderItems;
-//        this.date = date;
-//        this.year = year;
-//        this.month = month;
-//        this.day = day;
-//    }
-
-
 }

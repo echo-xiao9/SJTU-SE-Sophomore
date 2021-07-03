@@ -40,6 +40,16 @@ public class OrderController {
         System.out.println("addOrder");
         return orderService.addOrderFromUser(user_id, order_price,date, year, month, day);
     }
+    @GetMapping("/addOrderItem")
+    public OrderItem addOrderItem(
+            @RequestParam(required = false)  Integer order_id,
+            @RequestParam(required = false)  Integer book_id,
+            @RequestParam(required = false)  Integer book_num,
+            @RequestParam(required = false)  String book_name,
+            @RequestParam(required = false)  Integer book_price
+    ){
+        return orderService.addOrderItem(order_id, book_id,book_num,book_name,book_price);
+    }
 
     @GetMapping("/adminOrder")
     public ArrayList getAdminOrder(){
@@ -64,4 +74,16 @@ public class OrderController {
     ){
         return orderService.getHotUsers(from, to);
     }
+
+    @GetMapping("/getUserHotSelling")
+    public ArrayList getHotUsers(
+            @RequestParam String from,
+            @RequestParam String to,
+            @RequestParam Integer user_id
+
+    ){
+        return orderService.getUserHotSelling(from, to,user_id);
+    }
+
+
 }
