@@ -3,11 +3,11 @@ import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import '../css/Admin.css';
 import {Button} from '../components/Button'
-import { BrowserRouter, Route, Link } from "react-router-dom" 
+import { BrowserRouter} from "react-router-dom" 
 import axios from 'axios';
 
 const data = [];
-const headers = ["User Id", "name", "nick name", "tel","address", "type (0: forbidden  1: Customer 2: Administrator)"];
+const headers = ["User Id", "user name", "email", "type (0: forbidden  1: Customer 2: Administrator)"];
 class Excel extends React.Component {
 
     constructor(props) {
@@ -52,38 +52,19 @@ class Excel extends React.Component {
         let input = e.target.firstChild;
         let data = this.state.data.slice();
         data[this.state.edit.row][this.state.edit.cell] = input.value;
-        this.setState({
-            edit: null,
-            data: data,
-        });
-        console.log("save!");
-        console.log(this.state.edit.row);
-        console.log(this.state.edit.cell);
-        console.log("name!");
-        console.log(data[this.state.edit.row][1]);
-        if(this.state.edit.cell===5){
+    
+        if(this.state.edit.cell===3){
           axios({
             method: 'GET',
             url: 'http://localhost:9090/adminUserChange',
             params: {
                 user_id:data[this.state.edit.row][0],
                 name:data[this.state.edit.row][1],
-                nickname:data[this.state.edit.row][2],
-                tel:data[this.state.edit.row][3],
-                address:data[this.state.edit.row][4],
-                type:data[this.state.edit.row][5]
+                email:data[this.state.edit.row][2],
+                type:data[this.state.edit.row][3]
             }
         }).then(response => {
-            console.log(response)
-            // if (response.status === 200) {
-            //   if(response.data.data.userType===0)alert("您的账号已经被禁用");
-            //     // this.$notify({ title: '提示信息', message: '登录成功', type: 'success'
-            //     //                 // })
-            //     else alert(response.data.msg);
-            //     // this.$global.username = this.input_username
-            //     // this.$global.password = this.input_password // 跳转
-            //     // this.$router.push('Home')
-            // }
+            console.log(response);
         })
         }
     };
@@ -142,15 +123,12 @@ class Excel extends React.Component {
         fetch("http://localhost:9090/adminUser")
             .then(response => response.json())
             .then(data => {
-                // alert("data:" + data);
-                // const propertyValues = Object.entries(data);
-                console.log(data);
                 this.setState({
                     data:  data
                 });
                 
             }).catch(function (ex) {
-            console.log('parsing failed', ex)
+            console.log('parsing failed', ex);
         })
     }
 

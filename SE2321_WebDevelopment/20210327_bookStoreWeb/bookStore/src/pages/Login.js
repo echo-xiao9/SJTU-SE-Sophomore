@@ -11,7 +11,6 @@ function renderAdmin(){
     console.log(localStorage.getItem('userType'));
     if(localStorage.getItem('userType')=='1')return  <Button buttonStyle='btn--outline' buttonLink='/AdminIndex'>Administrator</Button>;
     else return null;
-  
 }
 function renderLogOut(){
   console.log(localStorage.getItem('userType'));
@@ -48,7 +47,8 @@ function logOut(){
                   {/*<input type="text" class="form-control" />*/}
 
                   <input
-                      class="form-control"
+                      // class="form-control"
+                      class="login"
                       type="username"
                       name='username'
                       placeholder='Enter your username'
@@ -60,6 +60,7 @@ function logOut(){
                 <div class="form-group">
                   <label class="form-control-label">PASSWORD</label>
                   <input
+                  
                       className='form-control'
                       type="password"
                       name='password'
@@ -70,8 +71,8 @@ function logOut(){
                 </div>
 
                 <div class="col-lg-12 loginbttm">
-                  <Button buttonStyle='btn--outline' onClick={handleSubmit}>Log in  </Button>
-                  <Button buttonStyle='btn--outline'>Register</Button>
+                  <Button buttonStyle='btn--outline' onClick={handleSubmit} >Log in  </Button>
+                  <Button buttonStyle='btn--outline'buttonLink="/Register" >Register</Button>
                   
                   {/* <Button buttonStyle='btn--outline' buttonLink='/AdminIndex'>Administrator</Button> */}
                 {renderAdmin()}

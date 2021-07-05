@@ -4,16 +4,8 @@ import BasicTable from "../components/OrderCard"
 import axios from "axios"
 import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
-import Container from '@material-ui/core/Container';
 import Button from '../components/Button'
 
 export default class Orders extends React.Component {
@@ -28,7 +20,7 @@ export default class Orders extends React.Component {
       to:"2021-06-11"
     }
 
-    const url = "http://localhost:9090/getAdminAllOrder";
+    const url = "http://localhost:9090/getOrders";
     axios.get(url).then((response) => {
       const data = response.data;
       this.setState({
@@ -39,8 +31,8 @@ export default class Orders extends React.Component {
         to:this.state.to
       })
 
-      // console.log(this.state.orders);
-      this.processData();
+      console.log(this.state.orders);
+      // this.processData();
       this.updateInput = this.updateInput.bind(this);
       this.search = this.search.bind(this);
       this.reset = this.reset.bind(this);
@@ -86,13 +78,10 @@ export default class Orders extends React.Component {
     return { orderPrice, user_id, year, month, day, order_id, row };
   }
 
-  logRow() {
-    console.log(this.objList);
-  }
 
 
   fetchData() {
-    const url = "http://localhost:9090/getAdminAllOrder";
+    const url = "http://localhost:9090/getOrders";
     axios.get(url).then((response) => {
       const data = response.data;
       return data;
@@ -174,48 +163,6 @@ export default class Orders extends React.Component {
 
 
 
-  // renderSearchResult() {
-  //   return (
-  //     <div>
-  //       <h1> Order</h1>
-
-  //       <form className={this.classes.container} noValidate>
-  //         <TextField
-  //           id="date"
-  //           label="Birthday"
-  //           type="date"
-  //           defaultValue="2017-05-24"
-  //           className={this.classes.textField}
-  //           InputLabelProps={{
-  //             shrink: true,
-  //           }}
-  //         />
-  //       </form>
-
-
-
-
-  //       <input type="text" onChange={this.updateInput} placeholder="Book Name?" ></input>
-  //       <Button onClick={this.search} className="">Search</Button>
-  //       <Button buttonStyle ='btn--primary'>Reset</Button>
-
-
-
-  //       {this.state.newOrders.map((obj) => (
-  //         <BasicTable
-  //           orderPrice={obj.orderPrice}
-  //           user_id={obj.user_id}
-  //           year={obj.year}
-  //           month={obj.month}
-  //           day={obj.day}
-  //           order_id={obj.order_id}
-  //           rows={obj.row}
-  //         />
-  //       )
-  //       )}
-  //     </div>
-  //   )
-  // }
 
 handleFromChange(e){
   this.setState({
@@ -304,16 +251,17 @@ render() {
         />
         <Button onClick={this.dateSelectBook}>select</Button>
         </Grid>
-        {this.state.newOrders.map((obj) => (
+        {this.state.orders.map((obj) => (
           <BasicTable
-            orderPrice={obj.orderPrice}
+            orderPrice={obj.order_price}
             user_id={obj.user_id}
             year={obj.year}
             month={obj.month}
             day={obj.day}
-            order_id={obj.order_id}
-            rows={obj.row}
+            order_id={obj.orderId}
+            rows={obj.orderItemList}
           />
+          
         )
         )}
 

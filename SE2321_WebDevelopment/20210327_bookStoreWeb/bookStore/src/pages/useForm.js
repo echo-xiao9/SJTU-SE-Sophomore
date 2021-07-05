@@ -45,8 +45,14 @@ const useForm = (callback, validate) => {
                   localStorage.setItem('userType',userType);
                   localStorage.setItem('username',username);
                   console.log(localStorage.getItem('userType'));
+                 
+          <script type="text/javascript">
+　　function jumurl(){
+　　window.location.href = 'http://localhost:3000'
+　　}
+　　setTimeout(jumurl,3000);
+　　</script>
                   
-
                 }
             }
         }).catch(error => {

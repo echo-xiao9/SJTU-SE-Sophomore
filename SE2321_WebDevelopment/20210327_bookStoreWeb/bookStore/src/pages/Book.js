@@ -218,6 +218,8 @@ and is wrapped around the whole page content, except for the footer in this exam
     );
   }
   addToCart = e => {
+    console.log("book:");
+    console.log(this.state.book);
     axios({
       method: 'GET',
       url: 'http://localhost:9090/addToCart',
@@ -225,7 +227,8 @@ and is wrapped around the whole page content, except for the footer in this exam
         name: this.state.book.name,
         author:this.state.book.author,
         price:this.state.book.price,
-        number:1
+        number:1,
+        bookId:this.state.book.bookId
       }
   }).then(response => {
       console.log(response);

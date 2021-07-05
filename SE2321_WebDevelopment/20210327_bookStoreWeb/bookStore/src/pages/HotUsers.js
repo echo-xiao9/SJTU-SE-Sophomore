@@ -16,6 +16,10 @@ export default class HotUsers extends React.Component {
       to:"2021-05-04"
     }
   
+    this.handleFromChange=this.handleFromChange.bind(this);
+    this.handleToChange=this.handleToChange.bind(this);
+    this.getHotUser=this.getHotUser.bind(this);
+
       axios({
         method: 'GET',
         url: 'http://localhost:9090/getHotUsers',
@@ -28,8 +32,33 @@ export default class HotUsers extends React.Component {
         this.state.users=response.data;
       })
     }
+
+    handleFromChange(e){
+      this.state.from=e.target.value;
+    }
+    
+    handleToChange(e){
+      this.state.to=e.target.value;
+    }
+
     
 
+    getHotUser(){
+       axios({
+        method: 'GET',
+        url: 'http://localhost:9090/getHotUsers',
+        params: {
+          from:this.state.from,
+          to:this.state.to
+        }
+      }).then(response => {
+       console.log(response);
+        this.state.users=response.data;
+      })
+      this.render();
+    }
+    
+    
 
   render() {
     return (
@@ -62,7 +91,7 @@ export default class HotUsers extends React.Component {
           }}
 
         />
-        <Button onClick={this.dateSelectBook}>select</Button>
+        <Button onClick={this.getHotUser}>select</Button>
         </Grid>
 
           <BasicTable

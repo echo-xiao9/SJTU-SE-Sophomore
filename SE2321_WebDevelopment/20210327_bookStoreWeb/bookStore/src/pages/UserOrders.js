@@ -2,17 +2,6 @@ import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import BasicTable from "../components/OrderCard"
 import axios from "axios"
-import { Link } from 'react-router-dom';
-import { makeStyles } from '@material-ui/core/styles';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
-
-
 
 export default class UserOrder extends React.Component {
 
@@ -30,8 +19,8 @@ export default class UserOrder extends React.Component {
         orders: data,
         user_id:this.state.user_id
       })
-     
-      // console.log(this.state.orders);
+      console.log("orders")
+      console.log(this.state.orders);
       this.processData();
     })
   }
@@ -41,7 +30,7 @@ export default class UserOrder extends React.Component {
     this.state.orders.map((line)=>{
       if(line[1]==this.state.user_id){
       var lineRow =new Array();
-      // console.log(line[6]);
+      console.log(line[5]);
       // var rows=this.createRow(line[6].book_id,line[6].book_name,line[6].book_price,line[6].book_num);
       // var rows2=this.createData(line[0],line[1],line[2]);
       // console.log(rows);
@@ -54,8 +43,9 @@ export default class UserOrder extends React.Component {
           order_id:line[5]
         }
       }).then(response=>{
+        // console.log("response");
+        // console.log(response);
         var row=response.data;
-     
         var singleOrder=this.createOrderData(line[0],line[1],line[2],line[3],line[4],line[5],row);
         console.log("single Order:")
         console.log(singleOrder);
@@ -73,10 +63,6 @@ export default class UserOrder extends React.Component {
   
   }
 
-
-  // createData(book_name, book_price, book_num ) {
-  //   return { book_name, book_price, book_num };
-  // }
  
 
   createOrderData(orderPrice,user_id,year,month,day, order_id,row){
@@ -142,6 +128,7 @@ export default class UserOrder extends React.Component {
             order_id={obj.order_id}
             rows={obj.row}
           />
+          
         )
         )}
 

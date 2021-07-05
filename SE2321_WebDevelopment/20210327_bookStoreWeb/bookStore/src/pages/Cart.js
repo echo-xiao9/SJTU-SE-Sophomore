@@ -44,11 +44,12 @@ export default class Carts extends React.Component {
       totalPrice: 0,
       order_id: 0,
       user_id:1
+
     }
     const url = "http://localhost:9090/getCart";
     axios.get(url).then((response) => {
       const getBooks =response.data;
-      console.log(getBooks);
+      // console.log(getBooks);
       this.setState({
           books: getBooks
       })
@@ -189,13 +190,13 @@ export default class Carts extends React.Component {
   var mon = date.getMonth() + 1;       
   var day = date.getDate();
   var currDate = date.getFullYear() + "-"+ (mon<10?"0"+mon:mon) + "-"+(day<10?"0"+day:day);
-  console.log(currDate);
+  // console.log(currDate);
   return currDate;
   }
 
   handleCheckOut = e => {
     e.preventDefault();
-    this.removeAll();
+
     var d=new Date();
     var normalDate=this.getDate();
     // console.log("year:"+d.getFullYear());
@@ -211,17 +212,38 @@ export default class Carts extends React.Component {
         day: d.getDate()
       }
   }).then(response => {
-      // console.log(response)
+    console.log("response");
+      console.log(response)
       if (response.status === 200) {
-        this.state.order_id=response.data
 
+        this.state.order_id=response.data.orderId;
+        console.log("orderId");
+        console.log(this.state.order_id);
+        
+        for(var book in this.state.books){
+          console.log("book:");
+          var i=this.state.books[book];
+          console.log(i);
+          axios({
+            method: 'GET',
+            url: 'http://localhost:9090/addOrderItem',
+            params: {
+              order_id: this.state.order_id,
+              book_id:i.book_id,
+              book_num:i.number,
+              book_name:i.name,
+              book_price:i.price
+            }
+        }).then(response=>{
+          // console.log(response);
+        })
+        }
+        this.removeAll();
       }
   }).catch(error => {
       console.log(error)
   })
     alert("下单成功");
 };
-
-
 
 }

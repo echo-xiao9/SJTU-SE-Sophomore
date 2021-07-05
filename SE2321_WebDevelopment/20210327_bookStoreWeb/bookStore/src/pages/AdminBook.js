@@ -24,7 +24,7 @@ export default class Excel extends React.Component {
       edit: null, // [row index, cell index],
       search: false,
       preSearchData: null,
-      headers: ["Book id", "ISBN", "Name", "Type", "Author", "Price", "Inventory", "Image", "Description"],
+      headers: ["Book id", "ISBN", "Name", "Type", "Author", "Price/￥", "Inventory", "Image", "Description"],
       newBook:['1','989-9799-98','BookName','noval','alice','2000','200','images/xx.png','good'],
       
     };
@@ -74,10 +74,27 @@ export default class Excel extends React.Component {
     let input = e.target.firstChild;
     let data = this.state.data.slice();
     data[this.state.edit.row][this.state.edit.cell] = input.value;
-    this.setState({
-      edit: null,
-      data: data,
-    });
+  
+      axios({
+        method: 'GET',
+        url: 'http://localhost:9090/changeBook',
+        params: {
+            id:data[this.state.edit.row][0],
+            isbn:data[this.state.edit.row][1],
+            name:data[this.state.edit.row][2],
+            type:data[this.state.edit.row][3],
+            author:data[this.state.edit.row][4],
+            price:data[this.state.edit.row][5],
+            description:data[this.state.edit.row][8],
+            inventory:data[this.state.edit.row][6],
+            image:data[this.state.edit.row][7]
+            
+        }
+    }).then(response => {
+        console.log(response);
+    })
+    
+
   };
 
   toggleSearch = () => {
@@ -216,9 +233,7 @@ export default class Excel extends React.Component {
   }
 
   changeDeleteTarget(e){
-    // console.log(e.target.value);
     this.state.deleteTarget=e.target.value;
-    
   }
 
   deleteBook(){
@@ -227,7 +242,7 @@ export default class Excel extends React.Component {
     console.log(this.state.deleteTarget);
     for(var i in this.state.data){
       var book=this.state.data[i];
-      if(book[0]==this.state.deleteTarget){
+      if(book[0]===this.state.deleteTarget){
         flag=1;
         console.log(book);
         console.log(this.state.data);
@@ -239,7 +254,7 @@ export default class Excel extends React.Component {
     // console.log(this.state.data);
     console.log("target:");
     console.log(this.state.deleteTarget);
-    if(flag==1){
+    if(flag===1){
       axios({
         method: 'GET',
         url: 'http://localhost:9090/deleteBook',
@@ -280,7 +295,7 @@ export default class Excel extends React.Component {
         </table>
         <table>
         <input type="text" onChange={this.changeDeleteTarget} placeholder="book id" ></input>
-        <input type="text" onChange={this.addBookDescription2} placeholder="Description" ></input>
+
         <Button onClick={this.deleteBook} > Delete </Button>
         </table>
 
@@ -335,9 +350,8 @@ export default class Excel extends React.Component {
     //     return null;
     // }
     return (
-      <td key={idx} data-row={rowidx}>{content}</td>
-    );
-  };
+      <td key={idx} data-row={rowidx}>{content}</td>);
+  }
 
   renderTable = () => {
     return (
@@ -369,13 +383,21 @@ export default class Excel extends React.Component {
 
                     );
                   }
-                  // console.log(idx);
+                  console.log("content");
+                  console.log(rowidx);
+                  console.log(idx);
+                  console.log(content);
                   this.renderLine(idx, rowidx, content);
-                  // console.log(this.state.data[rowidx][4]);
-                  // {if(this.state.data[rowidx][4]%2==0)return <td class="even" key={idx} data-row={rowidx}>{content}</td>;}
-                  // {if(this.state.data[rowidx][4]%2==1)return <td class="odd" key={idx} data-row={rowidx}>{content}</td>;}
-                  // {if(this.state.data[rowidx][4]%2==0)return <td key={idx} data-row={rowidx}>{content}</td>;}
-                  return <td key={idx} data-row={rowidx}>{content}</td>;
+                  if(idx===7){
+                      return(
+                        <div>
+                          <td key={idx} data-row={rowidx}>{content}</td>
+                          <img src={content} alt='book image' />
+                        </div>
+                        
+                      )
+                  }
+                  return <td key={idx} data-row={rowidx}>{content}</td>
                 }, this)}
               </tr>
             );
@@ -385,6 +407,10 @@ export default class Excel extends React.Component {
     );
   }
 };
+
+
+
+
 
 // Excel
 //     .propTypes = {

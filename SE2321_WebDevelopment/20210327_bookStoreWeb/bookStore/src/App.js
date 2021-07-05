@@ -4,19 +4,18 @@ import './App.css';
 import Home from './pages/Home';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Carts from './pages/Cart';
-// import Order from './pages/Order';
-import Order from './pages/Orders';
 import Login from './pages/Login';
+import Register from './pages/Register';
 import Book from './pages/Book'
-import Administrator from './pages/Administrator';
 import AdminUser from './pages/AdminUser';
 import AdminBook from './pages/AdminBook';
-import AdminOrder from './pages/AdminOrder';
 import AdminIndex from './pages/AdminIndex';
 import AdminOrders from './pages/AdminOrders';
 import UserOrder from './pages/UserOrders';
 import HotSelling from './pages/HotSelling';
 import HotUsers from './pages/HotUsers';
+import Statistics from './pages/Statistics';
+import pageTwo from './pages/Home2';
 
 function App() {
   return (
@@ -27,7 +26,9 @@ function App() {
           <Route path='/' exact component={Home} />
           <Route path='/Carts' component={Carts} />
           <Route path='/Login' component={Login} />
+          <Route path ='/Register' component={Register}/>
           <Route path='/Book' component={Book} />
+          <Route path='/page2' component={pageTwo} />
           <Route path='/Order' component={UserOrder} />
           {/* <Route path ='/Administrator' component={Administrator}/> */}
           <Route path ='/AdminBook' component={AdminBook}/>
@@ -37,6 +38,8 @@ function App() {
           <Route path ='/AdminOrder' component={AdminOrders}/>
           <Route path ='/HotSelling' component={HotSelling}/>
           <Route path ='/getHotUsers' component={HotUsers}/>
+          <Route path ='/Statistics' component={Statistics}/>
+          
         </Switch>
       </Router>
     </>

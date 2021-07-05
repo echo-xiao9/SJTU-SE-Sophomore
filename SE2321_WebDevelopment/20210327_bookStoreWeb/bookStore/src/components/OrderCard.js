@@ -20,6 +20,7 @@ const useStyles = makeStyles({
 export default  function BasicTable(props) {
   const classes = useStyles();
 
+  console.log(props);
 
   return (
     <TableContainer component={Paper} align="center">
@@ -35,12 +36,14 @@ export default  function BasicTable(props) {
         </TableHead>
         <TableBody>
           {props.rows.map((row) => (
-            <TableRow key={row.name}>
+            
+            <TableRow key={row.book.name}>
+
               <TableCell component="th" scope="row"align="center">
                 {row.book_id}
               </TableCell>
-              <TableCell align="center">{row.book_name}</TableCell>
-              <TableCell align="center">{row.book_price}</TableCell>
+              <TableCell align="center">{row.book.name}</TableCell>
+              <TableCell align="center">{row.book.price/100}</TableCell>
               <TableCell align="center">{row.book_num}</TableCell>
               {/* <TableCell align="right">{row.protein}</TableCell> */}
             </TableRow>
@@ -50,7 +53,7 @@ export default  function BasicTable(props) {
          <TableBody>
           <TableRow component={Paper}>
             <TableCell align="center">Order ID:{props.order_id}</TableCell>
-            <TableCell align="center">total prices：{props.orderPrice}</TableCell>
+            <TableCell align="center">total prices：{props.orderPrice/100}</TableCell>
             <TableCell align="center">time:{props.year}-{props.month}-{props.day}</TableCell>
             <TableCell align="center">User Id:{props.user_id}</TableCell>
             {/* <TableCell align="right">Protein&nbsp;(g)</TableCell> */}
@@ -60,6 +63,7 @@ export default  function BasicTable(props) {
       </Table>
       
     </TableContainer>
+  
   );
 }
 
