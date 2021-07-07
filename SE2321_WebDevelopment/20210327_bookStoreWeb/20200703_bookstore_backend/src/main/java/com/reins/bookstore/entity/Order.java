@@ -27,20 +27,14 @@ public class Order {
     @OneToMany(mappedBy = "order", cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, fetch = FetchType.LAZY)
     private List<OrderItem> orderItemList;
 
-    public Order(Integer user_id, Integer order_price, String date, String year, String month, String day) {
+    public Order(Integer user_id, Integer order_price, String date) {
         this.user_id = user_id;
         this.order_price = order_price;
         this.date = date;
-        this.year = year;
-        this.month = month;
-        this.day = day;
+
     }
 
     private String date;
-    private String year;
-    private String month;
-    private String day;
-
 
     public Order() {
     }

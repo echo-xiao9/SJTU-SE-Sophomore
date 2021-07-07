@@ -10,6 +10,10 @@ public interface OrderDao {
 
     List<Order> getOrders();
 
+    Order addOrderFromUser(Integer user_id, Integer order_price, String date);
+
+    OrderItem addOrderItem(Integer order_id, Integer book_id, Integer book_num);
+
 
 //    ArrayList getAdminOrder();
 //

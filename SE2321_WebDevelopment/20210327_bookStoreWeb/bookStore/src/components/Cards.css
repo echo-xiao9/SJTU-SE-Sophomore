@@ -1,29 +1,32 @@
 .cards {
   padding: 4rem;
   background: #fff;
+  background-color: #fff;
 }
 
 h1 {
   text-align: center;
 }
 
-.cards__container {
+.cards__container{
   display: flex;
   flex-flow: column;
   align-items: center;
-  max-width: 1120px;
-  width: 90%;
+  /* max-width: 1120px; */
+  width: 100%;
   margin: 0 auto;
-  margin-top: 300px;
+ 
   background-color: #fff;
 }
 
 .cards__wrapper {
+   margin-top: 300px;
   position: relative;
   margin: 50px 0 45px;
 }
 
 .cards__items {
+  margin-top: 300px;
   margin-bottom: 24px;
 }
 

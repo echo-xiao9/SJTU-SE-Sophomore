@@ -6,12 +6,12 @@ import HeroSection from '../components/HeroSection';
 import Footer from '../components/Footer';
 import  Pagination from '../components/Pagination';
 import CardItem from'../components/CardItem';
+import Button from '../components/Button';
 
 function Home() {
   return (
     <>
       <HeroSection />
-       
       <Cards2  page="2" />
       <Footer />
       <Pagination />

@@ -36,6 +36,15 @@ table {
   margin-top: 40px;
 }
 
+.adminImageWrapper{
+  /* min-width: 50%; */
+  max-width: 200px;
+  word-wrap:break-word ;
+  
+}
+.adminImage{
+  min-width: 100%;
+}
 .toolbar {
   margin-left: 20px;
   margin-top: 40px;

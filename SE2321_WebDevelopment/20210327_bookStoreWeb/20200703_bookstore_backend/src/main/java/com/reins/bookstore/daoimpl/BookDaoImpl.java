@@ -96,4 +96,23 @@ public class BookDaoImpl implements BookDao {
         return b;
     }
 
+    @Override
+    public List<Book> getBooks1() {
+        List<Book>bookList = new ArrayList<Book>();
+        for(int i=1;i<=4;i++){
+            bookList.add(bookRepository.findById(i).get());
+        }
+
+        return bookList;
+    }
+
+    @Override
+    public List<Book> getBooks2() {
+        List<Book>bookList = new ArrayList<Book>();
+        for(int i=5;i<=8;i++){
+            bookList.add(bookRepository.findById(i).get());
+        }
+        return bookList;
+    }
+
 }

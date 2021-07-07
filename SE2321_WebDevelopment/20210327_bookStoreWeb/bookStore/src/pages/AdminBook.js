@@ -390,11 +390,11 @@ export default class Excel extends React.Component {
                   this.renderLine(idx, rowidx, content);
                   if(idx===7){
                       return(
-                        <div>
-                          <td key={idx} data-row={rowidx}>{content}</td>
-                          <img src={content} alt='book image' />
+                        <div className="adminImage">
+                          <td className="adminImageWrapper" key={idx} data-row={rowidx}>{content}</td>
+                          <img src={content} alt='book image' className="adminImage" />
+                          
                         </div>
-                        
                       )
                   }
                   return <td key={idx} data-row={rowidx}>{content}</td>

@@ -1,6 +1,8 @@
 package com.reins.bookstore.daoimpl;
 
 import com.reins.bookstore.dao.OrderDao;
+import com.reins.bookstore.entity.Book;
+import com.reins.bookstore.entity.OrderItem;
 import com.reins.bookstore.repository.BookRepository;
 import com.reins.bookstore.repository.OrderItemRepository;
 import com.reins.bookstore.repository.OrderRepository;
@@ -16,7 +18,10 @@ import java.util.*;
 public class OrderDaoImpl implements OrderDao {
     @Autowired
     private OrderRepository orderRepository;
-
+    @Autowired
+    private OrderItemRepository orderItemRepository;
+    @Autowired
+    private BookRepository bookRepository;
 
     @Override
     public Order findOne(Integer id) {
@@ -31,7 +36,22 @@ public class OrderDaoImpl implements OrderDao {
 
     }
 
-//
+    @Override
+    public Order addOrderFromUser(Integer user_id, Integer order_price, String date) {
+        Order newOrder=new Order(user_id,order_price,date);
+        orderRepository.save(newOrder);
+        return newOrder;
+    }
+
+    @Override
+    public OrderItem addOrderItem(Integer order_id, Integer book_id, Integer book_num) {
+        Book b=bookRepository.findById(book_id).get();
+        Order order=orderRepository.findById(order_id).get();
+        OrderItem orderItem=new OrderItem(order,b,book_num);
+        orderItemRepository.save(orderItem);
+        return orderItem;
+    }
+
 //    @Override
 //    public ArrayList getAdminOrder() {
 //        List<Order> result = orderRepository.getOrders();

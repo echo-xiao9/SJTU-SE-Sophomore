@@ -66,6 +66,13 @@ public class OrderItem {
 //        this.book_price = book_price;
     }
 
+
+    public OrderItem(Order order, Book book, Integer book_num) {
+        this.order = order;
+        this.book = book;
+        this.book_num = book_num;
+    }
+
     public OrderItem() {
     }
 

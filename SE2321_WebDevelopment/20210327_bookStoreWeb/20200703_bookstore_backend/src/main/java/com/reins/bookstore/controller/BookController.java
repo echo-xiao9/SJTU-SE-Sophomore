@@ -19,10 +19,14 @@ public class BookController {
     @Autowired
     private BookService bookService;
 
-    //    @RequestMapping("/getBooks")
-//    public List<Book> getBooks(@RequestBody Map<String, String> params) {
-//        return bookService.getBooks();
-//    }
+    @GetMapping("/getBooks1")
+    public List<Book> getBooks1()
+    { return bookService.getBooks1();}
+
+    @GetMapping("/getBooks2")
+    public List<Book> getBooks2()
+    { return bookService.getBooks2();}
+
     @GetMapping("/getBooks")
     public List<Book> getBooks() {
         return bookService.getBooks();

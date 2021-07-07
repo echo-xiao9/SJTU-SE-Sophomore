@@ -1,15 +1,9 @@
 import React from 'react';
 import './Cards.css';
 import CardItem from './CardItem';
-import SearchBox from './SearchBox'
-import Pagination from './Pagination'
-import Carousel from "../components/Carousel";
-import { useParams } from "react-router-dom";
-import { useState, useEffect } from "react";
 import { Button } from '../components/Button';
-import { render } from '@testing-library/react';
 import axios from 'axios'
-
+import Carousel from "./Carousel";
 
 export default class Orders extends React.Component {
 
@@ -21,21 +15,24 @@ export default class Orders extends React.Component {
     }
     this.updateInput = this.updateInput.bind(this);
     this.search = this.search.bind(this);
-
-
-
-    const url = "http://localhost:9090/getBooks";
+    
+    var query = window.location.href;
+    console.log(query);
+    var url = "http://localhost:9090/getBooks2";
+    if(query==="http://localhost:3000/") {
+      url = "http://localhost:9090/getBooks1";
+  }
     axios.get(url).then((response) => {
       const books = response.data;
       this.setState({
         book: books
       })
-
       console.log(this.state.book);
 
     })
   }
 
+ 
   updateInput(e) {
     console.log(e.target.value);
 
@@ -43,13 +40,12 @@ export default class Orders extends React.Component {
     console.log(this.state.targetBookName);
   }
   search() {
-    if (this.state.targetBookName.length == 0) {
+    if (this.state.targetBookName.length === 0) {
       alert("please input target book name!");
       return;
     }
     var allBook = this.state.book;
     var result = [];
-    console.log(allBook);
     for (var i in allBook) {
       if (allBook[i].name == this.state.targetBookName) {
         result.push(allBook[i]);
@@ -62,18 +58,11 @@ export default class Orders extends React.Component {
 
   }
   renderMore(){
-    if(this.props.page=="2"){
-      return (<CardItem
-      src='images/3bodyCoverSingle.jpeg'
-      text='Three body'
-      label='novel'
-      path='/Book'
-      author = 'J·K·Rowling'
-      price = '$50'
-      ISBN = '978-7-107-18618-1'
-      inventory = '100'
-  />)
-    }
+    var query = window.location.href;
+    if(query==="http://localhost:3000/") {
+      return <Button  buttonStyle='btn--test' buttonLink='/page2'>Next Page</Button>;
+  }
+  else  return <Button  buttonStyle='btn--test' buttonLink='/page1'>Previous Page</Button>;
   }
 
 
@@ -81,17 +70,14 @@ export default class Orders extends React.Component {
     // this.logRow();
     return (
       <div>
-
-
         <div className='cards__container'>
         <h1> Books</h1>
               <input type="text" onChange={this.updateInput} placeholder="Book Name?" ></input>
               <Button onClick={this.search} className="">Search</Button>
               <Button>Reset</Button>
+              <Carousel />
           <div className='cards__wrapper'>
             <ul className='cards__items'>
-             
-
               {this.state.book.map((i) => (
                 <CardItem
                   id={i.bookId}
@@ -106,9 +92,8 @@ export default class Orders extends React.Component {
                 />
               )
               )}
-              {this.renderMore()}
-
             </ul>
+            {this.renderMore()}
           </div>
         </div>
       </div>

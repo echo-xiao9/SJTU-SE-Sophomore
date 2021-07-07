@@ -29,6 +29,16 @@ public class OrderServiceImpl implements OrderService {
         return orderList;
     }
 
+    @Override
+    public Order addOrderFromUser(Integer user_id, Integer order_price, String date) {
+        return orderDao.addOrderFromUser(user_id,order_price,date);
+    }
+
+    @Override
+    public OrderItem addOrderItem(Integer order_id, Integer book_id, Integer book_num) {
+        return orderDao.addOrderItem(order_id,book_id,book_num);
+    }
+
 
 //    @Override
 //    public ArrayList getAdminOrder() {

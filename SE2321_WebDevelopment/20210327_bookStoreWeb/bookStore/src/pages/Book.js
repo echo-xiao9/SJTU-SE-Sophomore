@@ -15,7 +15,7 @@ class Book extends Component {
     var thisBook;
     for (var i = 0; i < vars.length; i++) {
       var pair = vars[i].split('=');
-      if (decodeURIComponent(pair[0]) == variable) {
+      if (decodeURIComponent(pair[0]) === variable) {
         return decodeURIComponent(pair[1]);
       }
     }
@@ -40,7 +40,6 @@ class Book extends Component {
     })
   }
 
-  
 
 
 
@@ -68,14 +67,14 @@ and is wrapped around the whole page content, except for the footer in this exam
             <p> <span className="w3-tag">{bookoj.name}</span></p>
           </header>
           {/* Grid */}
+          
           <div className="w3-row">
             {/* Blog entries */}
             <div className="w3-col l8 s12">
               {/* Blog entry */}
               <div className="w3-card-4 w3-margin w3-white" style={{ maxWidth: '1400px' }}>
-                <img src="images/harryCover.jpg" alt="Nature" style={{ width: '100%' }} />
-
-                <img src={bookoj.image} />
+                {/* <img src="images/harryCover.jpg" alt="Nature" style={{ width: '100%' }} /> */}
+                {/* <img src={bookoj.image} alt="book image" style={{ width: '100%' }} /> */}
 
                 <div className="w3-container">
                   {/* <h3><b>Harry Potter (Books 1-7) </b></h3> */}
@@ -93,6 +92,7 @@ and is wrapped around the whole page content, except for the footer in this exam
                   <div className="w3-row">
                     <div className="w3-col m8 s12">
                       <p>
+                        
                         <button className="w3-button w3-white  "><b>Price: ${bookoj.price / 100}</b></button>
                         <button className="w3-button w3-white w3-border" onClick={this.addToCart}><b>Add to cart »</b></button>
                       </p>
@@ -145,9 +145,10 @@ and is wrapped around the whole page content, except for the footer in this exam
             <div className="w3-col l4">
               {/* About Card */}
               <div className="w3-card w3-margin w3-margin-top">
-                <img src="images/harryPoster.jpg" style={{ width: '100%' }} />
+             
 
                 <div className="w3-container w3-white">
+                   <img src={bookoj.image} alt="book image" style={{ width: '100%' }} />
                   <h4><b>Product details</b></h4>
 
                   <h6><b> Author :</b> {bookoj.author}</h6>
@@ -231,8 +232,7 @@ and is wrapped around the whole page content, except for the footer in this exam
         bookId:this.state.book.bookId
       }
   }).then(response => {
-      console.log(response);
-      
+      alert("Successfully add a book to cart!");
   }).catch(error => {
       console.log(error)
   })

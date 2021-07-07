@@ -52,4 +52,14 @@ public class BookServiceImpl implements BookService {
     public Book changeBook(Integer id, String isbn, String name, String type, String author, Integer price, String description, Integer inventory, String image) {
         return bookDao.changeBook( id,isbn,  name,  type,  author,  price,  description,  inventory,  image);
     }
+
+    @Override
+    public List<Book> getBooks1() {
+        return bookDao.getBooks1();
+    }
+
+    @Override
+    public List<Book> getBooks2() {
+        return bookDao.getBooks2();
+    }
 }

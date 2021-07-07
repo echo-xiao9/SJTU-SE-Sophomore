@@ -1,6 +1,5 @@
 import React from 'react';
 import '../App.css';
-import Cards from '../components/Cards';
 import Cards2 from '../components/Cards2';
 import HeroSection from '../components/HeroSection';
 import Footer from '../components/Footer';
@@ -12,7 +11,6 @@ function Home() {
     <>
       <HeroSection />
       <Cards2 />
-      <Button buttonLink='/page2'>next</Button>
       <Footer />
       <Pagination />
      
