@@ -22,6 +22,8 @@ public interface OrderDao {
 
     List<Order> getAdminBookOrders(String bookName);
 
+    Object getAdminDateOrder(String from, String to);
+
 
 //    ArrayList getAdminOrder();
 //

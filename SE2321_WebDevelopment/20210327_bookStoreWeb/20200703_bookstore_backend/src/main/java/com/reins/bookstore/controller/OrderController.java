@@ -46,6 +46,14 @@ public class OrderController {
         return JSON.toJSONString(orderService.getUserDateOrder(user_id,from,to),SerializerFeature.DisableCircularReferenceDetect);
     }
 
+    @GetMapping("/getAdminDateOrder")
+    public String getAdminDateOrder(
+                                   @RequestParam(required = false)String from,
+                                   @RequestParam(required = false)String to
+    ){
+        return JSON.toJSONString(orderService.getAdminDateOrder(from,to),SerializerFeature.DisableCircularReferenceDetect);
+    }
+
     @GetMapping("/addOrderFromUser")
     public Order addOrderFromUser (@RequestParam(required = false) Integer user_id,
                                    @RequestParam (required = false) Integer order_price,

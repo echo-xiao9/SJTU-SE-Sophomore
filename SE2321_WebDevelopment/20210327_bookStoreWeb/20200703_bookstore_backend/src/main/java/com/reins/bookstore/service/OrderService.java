@@ -22,6 +22,8 @@ public interface OrderService {
 
     List<Order> getAdminBookOrders(String bookName);
 
+    Object getAdminDateOrder(String from, String to);
+
 //    ArrayList getAdminOrder();
 
 //    Order addOrderFromUser(Integer user_id, Integer order_price, String date, String year, String month, String day);

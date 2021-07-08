@@ -7,6 +7,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import Button from '../components/Button'
+import TableContainer from '@material-ui/core/TableContainer';
+
 
 export default class Orders extends React.Component {
 
@@ -16,8 +18,8 @@ export default class Orders extends React.Component {
       orders: [],
       newOrders: [],
       bookName: "",
-      from:  "2021-05-10",
-      to:"2021-06-11"
+      from:  "2021-05-03",
+      to:"2021-06-20"
     }
 
     const url = "http://localhost:9090/getOrders";
@@ -118,10 +120,12 @@ export default class Orders extends React.Component {
 
 
 
-  reset() {
-    const url = "http://localhost:9090/getAdminAllOrder";
+  reset=()=> {
+    const url = "http://localhost:9090/getOrders";
     axios.get(url).then((response) => {
       const data = response.data;
+      console.log("reset");
+      console.log(response.data);
       this.setState({
         orders: data,
         newOrders: this.state.newOrders,
@@ -129,14 +133,18 @@ export default class Orders extends React.Component {
         from:this.state.from,
         to:this.state.to
       })
-
-      // console.log(this.state.orders);
+      console.log("orders");
+      console.log(this.state.orders);
       this.processData();
       this.updateInput = this.updateInput.bind(this);
       this.search = this.search.bind(this);
     })
     this.render();
   }
+
+
+
+  
   useStyles = makeStyles((theme) => ({
     container: {
       display: 'flex',
@@ -148,9 +156,6 @@ export default class Orders extends React.Component {
       width: 200,
     },
   }));
-
-
-
 
 handleFromChange(e){
   this.setState({
@@ -174,26 +179,31 @@ handleToChange(e){
   console.log(this.state.to);
 }
 
-dateSelectBook(){
+dateSelectBook=()=>{
+  var i;
+  var to=this.state.to;
+  var arr=to.split("-");
+  for(i=1;i<=2;i++)if(arr[i].length===1)arr[i]="0"+arr[i];
+  var newTo=arr[0]+'-'+arr[1]+'-'+arr[2];
 
-  var allOrders = this.state.newOrders;
-  var result = [];
-  for (var i in allOrders) {
-    var month=allOrders[i].month;
-    if(month.length==1)month="0"+month;
-    var date= allOrders[i].year+"-"+month+"-"+allOrders[i].day;
-    if(date<=this.state.to && date>=this.state.from){
-      result.push(allOrders[i]);
+  var from=this.state.from;
+  var arr2=from.split("-");
+  for(i=1;i<=2;i++)if(arr2[i].length===1)arr2[i]="0"+arr2[i];
+  var newFrom=arr2[0]+'-'+arr2[1]+'-'+arr2[2];
+
+  axios({
+    method: 'GET',
+    url: 'http://localhost:9090/getAdminDateOrder',
+    params: {
+      from:newFrom,
+      to:newTo
     }
-  }
-  this.setState({
-    orders: this.state.orders,
-    newOrders: result,
-    bookName: this.state.bookName,
-    from:this.state.from,
-    to:this.state.to
-  });
-  this.render();
+  }).then(response => {
+    console.log("response data");
+    console.log(response.data);
+    this.setState({orders:response.data});
+    console.log(this.state.orders);
+  })
 }
 
 render() {
@@ -202,17 +212,17 @@ render() {
       <div>
       
           <h1> Order</h1>
+          <TableContainer align="center" marginTop="10">
           <input type="text" onChange={this.updateInput} placeholder="Book Name?" ></input>
           <Button onClick={this.search} className="">Search</Button>
-        <Button>Reset</Button>
-
-          <Grid container justify="space-around"  style={{ width: '50vh' }}>
-      
+          <Button onClick={this.reset}>Reset</Button>
+          </TableContainer>
+          <TableContainer align="center" marginTop="10">
         <TextField
           id="date"
           label="From"
           type="date"
-          defaultValue="2021-05-10"
+          defaultValue="2021-05-03"
           InputLabelProps={{
             shrink: true,
           }}
@@ -224,7 +234,7 @@ render() {
           label="To"
           type="date"
           ref="myField"
-          defaultValue="2021-06-11"
+          defaultValue="2021-06-20"
           onChange={this.handleToChange}
           InputLabelProps={{
             shrink: true,
@@ -232,7 +242,7 @@ render() {
 
         />
         <Button onClick={this.dateSelectBook}>select</Button>
-        </Grid>
+        </TableContainer>
         {this.state.orders.map((obj) => (
           <BasicTable
             orderPrice={obj.order_price}

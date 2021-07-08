@@ -75,6 +75,19 @@ public class OrderDaoImpl implements OrderDao {
     }
 
     @Override
+    public Object getAdminDateOrder(String from, String to) {
+        List<Order> userOrder=getOrders();
+        List<Order> result = new ArrayList<Order>();
+
+        for(Order item:userOrder){
+            if(item.getDate().compareTo(from)>=0 && item.getDate().compareTo(to)<=0){
+                result.add(item);
+            }
+        }
+        return result;
+    }
+
+    @Override
     public List<Order> getUserDateOrder(Integer user_id, String from, String to) {
         List<Order> userOrder=getUserOrders(user_id);
         List<Order> result = new ArrayList<Order>();
@@ -86,7 +99,6 @@ public class OrderDaoImpl implements OrderDao {
         }
         return result;
     }
-
 
 
     @Override

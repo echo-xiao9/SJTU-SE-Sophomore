@@ -49,13 +49,18 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    public List<Order> getAdminBookOrders(String bookName) {
+        return orderDao.getAdminBookOrders(bookName);
+    }
+
+    @Override
     public List<Order> getUserDateOrder(Integer user_id, String from, String to) {
         return orderDao.getUserDateOrder(user_id,from,to);
     }
 
     @Override
-    public List<Order> getAdminBookOrders(String bookName) {
-        return orderDao.getAdminBookOrders(bookName);
+    public Object getAdminDateOrder(String from, String to) {
+        return orderDao.getAdminDateOrder(from,to);
     }
 
 
