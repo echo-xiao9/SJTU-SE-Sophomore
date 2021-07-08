@@ -9,7 +9,7 @@ import { Button } from '../components/Button';
 
 function renderAdmin(){
     console.log(localStorage.getItem('userType'));
-    if(localStorage.getItem('userType')=='1')return  <Button buttonStyle='btn--outline' buttonLink='/AdminIndex'>Administrator</Button>;
+    if(localStorage.getItem('userType')==='1')return  <Button buttonStyle='btn--outline' buttonLink='/AdminIndex'>Administrator</Button>;
     else return null;
 }
 function renderLogOut(){
@@ -47,7 +47,7 @@ function logOut(){
                   {/*<input type="text" class="form-control" />*/}
 
                   <input
-                      // class="form-control"
+                  
                       class="login"
                       type="username"
                       name='username'
@@ -94,5 +94,4 @@ function logOut(){
 }
 
 export default SignUp;
-
 

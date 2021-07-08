@@ -88,7 +88,6 @@ export default class Excel extends React.Component {
             description:data[this.state.edit.row][8],
             inventory:data[this.state.edit.row][6],
             image:data[this.state.edit.row][7]
-            
         }
     }).then(response => {
         console.log(response);
@@ -111,6 +110,16 @@ export default class Excel extends React.Component {
       });
     }
   };
+
+  updateInput(event) {
+    this.setState({
+      orders: this.state.orders,
+      newOrders: this.state.newOrders,
+      bookName: event.target.value,
+      from: this.state.from,
+      to: this.state.to
+    });
+  }
 
   search = (e) => {
     let needle = e.target.value.toLowerCase();
@@ -278,6 +287,7 @@ export default class Excel extends React.Component {
       <>
       <table>
         <tr>
+        <input type="text" onChange={this.updateInput} placeholder="Book Name?" ></input>
         {/* <input type="text" onChange={this.addBookId} placeholder="Book id" ></input> */}
         <input type="text" onChange={this.addBookISBN} placeholder="ISBN" ></input>
         <input type="text" onChange={this.addBookName} placeholder="Name" ></input>

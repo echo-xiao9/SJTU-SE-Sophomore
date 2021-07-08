@@ -14,6 +14,14 @@ public interface OrderService {
 
     OrderItem addOrderItem(Integer order_id, Integer book_id, Integer book_num);
 
+    List<Order> getUserOrders(Integer user_id);
+
+    List<Order> getUserBookOrders(Integer user_id, String bookName);
+
+    List<Order> getUserDateOrder(Integer user_id, String from, String to);
+
+    List<Order> getAdminBookOrders(String bookName);
+
 //    ArrayList getAdminOrder();
 
 //    Order addOrderFromUser(Integer user_id, Integer order_price, String date, String year, String month, String day);

@@ -25,7 +25,6 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public List<Order> getOrders() {
         List<Order> orderList=orderDao.getOrders();
-        System.out.println(1);
         return orderList;
     }
 
@@ -37,6 +36,26 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public OrderItem addOrderItem(Integer order_id, Integer book_id, Integer book_num) {
         return orderDao.addOrderItem(order_id,book_id,book_num);
+    }
+
+    @Override
+    public List<Order> getUserOrders(Integer user_id) {
+        return orderDao.getUserOrders(user_id);
+    }
+
+    @Override
+    public List<Order> getUserBookOrders(Integer user_id, String bookName) {
+        return orderDao.getUserBookOrders(user_id,bookName);
+    }
+
+    @Override
+    public List<Order> getUserDateOrder(Integer user_id, String from, String to) {
+        return orderDao.getUserDateOrder(user_id,from,to);
+    }
+
+    @Override
+    public List<Order> getAdminBookOrders(String bookName) {
+        return orderDao.getAdminBookOrders(bookName);
     }
 
 

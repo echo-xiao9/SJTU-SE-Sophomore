@@ -37,6 +37,59 @@ public class OrderDaoImpl implements OrderDao {
     }
 
     @Override
+    public List<Order> getUserOrders(Integer user_id) {
+        return orderRepository.findByUserId(user_id);
+    }
+
+    @Override
+    public List<Order> getUserBookOrders(Integer user_id, String bookName) {
+        List<Order> userOrder=getUserOrders(user_id);
+        List<Order> result = new ArrayList<Order>();
+        
+        for(Order item:userOrder){
+            List<OrderItem> userOrderItemList=item.getOrderItemList();
+            for(OrderItem orderItem1:userOrderItemList) {
+                if (orderItem1.getBook().getName().equals(bookName)) {
+                    result.add(item);
+                    break;
+                }
+            }
+        }
+        return result;
+    }
+    @Override
+    public List<Order> getAdminBookOrders( String bookName) {
+        List<Order> orderList=getOrders();
+        List<Order> result = new ArrayList<Order>();
+
+        for(Order item:orderList){
+            List<OrderItem> userOrderItemList=item.getOrderItemList();
+            for(OrderItem orderItem1:userOrderItemList) {
+                if (orderItem1.getBook().getName().equals(bookName)) {
+                    result.add(item);
+                    break;
+                }
+            }
+        }
+        return result;
+    }
+
+    @Override
+    public List<Order> getUserDateOrder(Integer user_id, String from, String to) {
+        List<Order> userOrder=getUserOrders(user_id);
+        List<Order> result = new ArrayList<Order>();
+
+        for(Order item:userOrder){
+            if(item.getDate().compareTo(from)>=0 && item.getDate().compareTo(to)<=0){
+                result.add(item);
+            }
+        }
+        return result;
+    }
+
+
+
+    @Override
     public Order addOrderFromUser(Integer user_id, Integer order_price, String date) {
         Order newOrder=new Order(user_id,order_price,date);
         orderRepository.save(newOrder);
@@ -51,6 +104,8 @@ public class OrderDaoImpl implements OrderDao {
         orderItemRepository.save(orderItem);
         return orderItem;
     }
+
+
 
 //    @Override
 //    public ArrayList getAdminOrder() {

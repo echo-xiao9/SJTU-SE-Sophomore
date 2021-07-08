@@ -36,9 +36,7 @@ export default  function BasicTable(props) {
         </TableHead>
         <TableBody>
           {props.rows.map((row) => (
-            
             <TableRow key={row.book.name}>
-
               <TableCell component="th" scope="row"align="center">
                 {row.book_id}
               </TableCell>
@@ -54,7 +52,7 @@ export default  function BasicTable(props) {
           <TableRow component={Paper}>
             <TableCell align="center">Order ID:{props.order_id}</TableCell>
             <TableCell align="center">total prices：{props.orderPrice/100}</TableCell>
-            <TableCell align="center">time:{props.year}-{props.month}-{props.day}</TableCell>
+            <TableCell align="center">time:{props.date}</TableCell>
             <TableCell align="center">User Id:{props.user_id}</TableCell>
             {/* <TableCell align="right">Protein&nbsp;(g)</TableCell> */}
           </TableRow>

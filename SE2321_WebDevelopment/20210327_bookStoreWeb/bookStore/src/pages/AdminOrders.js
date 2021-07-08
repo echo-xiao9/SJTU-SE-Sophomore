@@ -33,7 +33,7 @@ export default class Orders extends React.Component {
 
       console.log(this.state.orders);
       // this.processData();
-      this.updateInput = this.updateInput.bind(this);
+      this.updateInput=this.updateInput.bind(this);
       this.search = this.search.bind(this);
       this.reset = this.reset.bind(this);
       this.handleFromChange=this.handleFromChange.bind(this);
@@ -56,8 +56,7 @@ export default class Orders extends React.Component {
       }).then(response => {
         var row = response.data;
         var singleOrder = this.createOrderData(line[0], line[1], line[2], line[3], line[4], line[5], row);
-        // console.log("single Order:")
-        // console.log(singleOrder);
+
         this.state.newOrders.push(singleOrder);
         this.setState({
           orders: this.state.orders,
@@ -66,7 +65,8 @@ export default class Orders extends React.Component {
           from:this.state.from,
           to:this.state.to
         });
-        // console.log(this.state.newOrders);
+
+        console.log(this.state.bookName);
       })
     })
     // console.log(this.state.newOrders);
@@ -86,50 +86,38 @@ export default class Orders extends React.Component {
       const data = response.data;
       return data;
     })
-
   }
-
-
-
-  updateInput(event) {
-    this.setState({
-      orders: this.state.orders,
-      newOrders: this.state.newOrders,
-      bookName: event.target.value,
-      from:this.state.from,
-      to:this.state.to
-    });
-    // console.log(this.state);
+  updateInput = (event) => {
+    // this.state.bookName=event.target.value;
+    this.setState({bookName:event.target.value});
+    console.log(event.target.value);
     // console.log(event.target.value);
   }
 
   search() {
-    if (this.state.bookName.length == 0) {
+    if (this.state.bookName.length === 0) {
       alert("please input target book name!");
       return;
     }
-    // console.log(this.state.bookName);
-    var allOrders = this.state.newOrders;
-    var result = [];
-    for (var i in allOrders) {
-      // console.log(allOrders[i]);
-      var row = allOrders[i].row;
-      for (var j in row) {
-        if (row[j].book_name == this.state.bookName) {
-          result.push(allOrders[i]);
-          break;
-        }
+
+    axios({
+      method: 'GET',
+      url: 'http://localhost:9090/getAdminBookOrders',
+      params: {
+        bookName: this.state.bookName
       }
-    }
-    this.setState({
-      orders: this.state.orders,
-      newOrders: result,
-      bookName: this.state.bookName,
-      from:this.state.from,
-      to:this.state.to
-    });
-    this.render();
+    }).then(response => {
+      console.log("response data");
+      console.log(response.data);
+      this.setState({orders:response.data});
+      console.log(this.state.orders);
+    })
   }
+
+
+
+
+
   reset() {
     const url = "http://localhost:9090/getAdminAllOrder";
     axios.get(url).then((response) => {
@@ -187,19 +175,13 @@ handleToChange(e){
 }
 
 dateSelectBook(){
-  // console.log(this.state);
 
   var allOrders = this.state.newOrders;
   var result = [];
   for (var i in allOrders) {
-    // console.log(allOrders[i]);
     var month=allOrders[i].month;
     if(month.length==1)month="0"+month;
     var date= allOrders[i].year+"-"+month+"-"+allOrders[i].day;
-    // console.log("date is:");
-    // console.log(this.state.to);
-    // if(date<=this.state.to)console.log(date+"<"+this.state.to);
-    // else console.log(date+">"+this.state.to);
     if(date<=this.state.to && date>=this.state.from){
       result.push(allOrders[i]);
     }
@@ -254,10 +236,8 @@ render() {
         {this.state.orders.map((obj) => (
           <BasicTable
             orderPrice={obj.order_price}
-            user_id={obj.user_id}
-            year={obj.year}
-            month={obj.month}
-            day={obj.day}
+            user_id={obj.userId}
+            date={obj.date}
             order_id={obj.orderId}
             rows={obj.orderItemList}
           />

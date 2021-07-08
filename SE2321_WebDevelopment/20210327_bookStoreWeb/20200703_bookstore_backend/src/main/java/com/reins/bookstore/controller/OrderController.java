@@ -20,6 +20,32 @@ public class OrderController {
         return JSON.toJSONString(orderService.getOrders(), SerializerFeature.DisableCircularReferenceDetect);
     }
 
+    @GetMapping("/getUserOrders")
+    public String getUserOrders(@RequestParam(required = false) Integer user_id){
+        return JSON.toJSONString(orderService.getUserOrders(user_id), SerializerFeature.DisableCircularReferenceDetect);
+    }
+
+    @GetMapping("/getUserBookOrders")
+    public String getUserBookOrders(@RequestParam(required = false)Integer user_id,
+                                    @RequestParam(required = false)String bookName){
+        return JSON.toJSONString(orderService.getUserBookOrders(user_id,bookName),SerializerFeature.DisableCircularReferenceDetect);
+    }
+
+    @GetMapping("/getAdminBookOrders")
+    public String getAdminBookOrders(
+                                    @RequestParam(required = false)String bookName){
+        return JSON.toJSONString(orderService.getAdminBookOrders(bookName),SerializerFeature.DisableCircularReferenceDetect);
+    }
+
+
+    @GetMapping("/getUserDateOrder")
+    public String getUserDateOrder(@RequestParam(required = false)Integer user_id,
+                                    @RequestParam(required = false)String from,
+                                    @RequestParam(required = false)String to
+    ){
+        return JSON.toJSONString(orderService.getUserDateOrder(user_id,from,to),SerializerFeature.DisableCircularReferenceDetect);
+    }
+
     @GetMapping("/addOrderFromUser")
     public Order addOrderFromUser (@RequestParam(required = false) Integer user_id,
                                    @RequestParam (required = false) Integer order_price,
@@ -28,6 +54,7 @@ public class OrderController {
         System.out.println("addOrder");
         return orderService.addOrderFromUser(user_id, order_price,date);
     }
+
     @GetMapping("/addOrderItem")
     public OrderItem addOrderItem(
             @RequestParam(required = false)  Integer order_id,

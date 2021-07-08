@@ -21,14 +21,14 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "order_id")
     private Integer orderId;
-    private Integer user_id;
+    private Integer userId;
     private Integer order_price;
 
     @OneToMany(mappedBy = "order", cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, fetch = FetchType.LAZY)
     private List<OrderItem> orderItemList;
 
     public Order(Integer user_id, Integer order_price, String date) {
-        this.user_id = user_id;
+        this.userId = user_id;
         this.order_price = order_price;
         this.date = date;
 

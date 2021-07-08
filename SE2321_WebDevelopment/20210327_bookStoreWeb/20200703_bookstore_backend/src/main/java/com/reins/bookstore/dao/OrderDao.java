@@ -14,6 +14,14 @@ public interface OrderDao {
 
     OrderItem addOrderItem(Integer order_id, Integer book_id, Integer book_num);
 
+    List<Order> getUserOrders(Integer user_id);
+
+    List<Order> getUserBookOrders(Integer user_id, String bookName);
+
+    List<Order> getUserDateOrder(Integer user_id, String from, String to);
+
+    List<Order> getAdminBookOrders(String bookName);
+
 
 //    ArrayList getAdminOrder();
 //

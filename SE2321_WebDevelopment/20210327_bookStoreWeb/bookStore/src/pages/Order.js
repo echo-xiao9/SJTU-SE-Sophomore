@@ -46,7 +46,6 @@ function Order() {
           </div>
         </Link>
         <div className="title-total">
-          {/* <div className="title">Harry Potter (Books 1-7)</div>  */}
           <h2>Harry Potter (Books 1-7)</h2>
           <h2 className="orderPrice"> $49.99</h2>
           <div className="desc">author: J. K. Rowling</div>

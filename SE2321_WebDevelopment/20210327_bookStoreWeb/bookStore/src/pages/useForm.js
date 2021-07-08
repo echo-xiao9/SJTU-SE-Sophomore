@@ -40,10 +40,12 @@ const useForm = (callback, validate) => {
                   var userId=response.data.data.userId;
                   var userType=response.data.data.userType;
                   var username=response.data.data.username;
+                  console.log("userType");
                   console.log(userType);
                   localStorage.setItem('userId',userId);
                   localStorage.setItem('userType',userType);
                   localStorage.setItem('username',username);
+                  console.log("userType");
                   console.log(localStorage.getItem('userType'));
                  
           <script type="text/javascript">
