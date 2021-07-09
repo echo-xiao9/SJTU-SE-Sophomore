@@ -12,7 +12,6 @@ class Book extends Component {
   getQueryVariable(variable) {
     var query = window.location.search.substring(1);
     var vars = query.split('&');
-    var thisBook;
     for (var i = 0; i < vars.length; i++) {
       var pair = vars[i].split('=');
       if (decodeURIComponent(pair[0]) === variable) {
@@ -28,20 +27,19 @@ class Book extends Component {
     this.state = {
       book: []
     }
-    const url = "http://localhost:9090/getBooks";
-    axios.get(url).then((response) => {
-      const thisbook = response.data.find(x => x.isbn === this.getQueryVariable('isbn'));
+    axios({
+      method: 'GET',
+      url: 'http://localhost:9090/getSingleBook',
+      params: {
+        isbn:this.getQueryVariable("isbn")
+      }
+    }).then(response => {
+      // const thisbook = response.data.find(x => x.isbn === this.getQueryVariable('isbn'));
       this.setState({
-        book: thisbook
+        book: response.data
       })
-      this.thisBook = thisbook;
-      console.log("set thisBook");
-      console.log(this.thisBook);
     })
   }
-
-
-
 
 
   render() {
@@ -218,6 +216,7 @@ and is wrapped around the whole page content, except for the footer in this exam
       </div>
     );
   }
+
   addToCart = e => {
     console.log("book:");
     console.log(this.state.book);
@@ -238,8 +237,6 @@ and is wrapped around the whole page content, except for the footer in this exam
   })
    
 };
-
-
 
 }
 

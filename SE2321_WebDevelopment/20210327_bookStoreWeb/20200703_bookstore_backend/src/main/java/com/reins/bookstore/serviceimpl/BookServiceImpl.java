@@ -28,8 +28,8 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public List<Book> getBooks() {
-        return bookDao.getBooks();
+    public List<Book> getBooks(Integer page) {
+        return bookDao.getBooks(page);
     }
 
     @Override
@@ -54,12 +54,8 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public List<Book> getBooks1() {
-        return bookDao.getBooks1();
+    public Book getSingleBook(String isbn) {
+        return bookDao.getSingleBook(isbn);
     }
 
-    @Override
-    public List<Book> getBooks2() {
-        return bookDao.getBooks2();
-    }
 }

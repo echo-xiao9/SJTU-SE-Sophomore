@@ -33,8 +33,13 @@ public class BookDaoImpl implements BookDao {
     }
 
     @Override
-    public List<Book> getBooks() {
-        return bookRepository.getBooks();
+    public List<Book> getBooks(Integer page) {
+
+        List<Book>bookList = new ArrayList<Book>();
+        for(int i=4*page-3;i<=4*page;i++){
+            bookList.add(bookRepository.findById(i).get());
+        }
+        return bookList;
     }
 
     @Override
@@ -97,22 +102,8 @@ public class BookDaoImpl implements BookDao {
     }
 
     @Override
-    public List<Book> getBooks1() {
-        List<Book>bookList = new ArrayList<Book>();
-        for(int i=1;i<=4;i++){
-            bookList.add(bookRepository.findById(i).get());
-        }
-
-        return bookList;
-    }
-
-    @Override
-    public List<Book> getBooks2() {
-        List<Book>bookList = new ArrayList<Book>();
-        for(int i=5;i<=8;i++){
-            bookList.add(bookRepository.findById(i).get());
-        }
-        return bookList;
+    public Book getSingleBook(String isbn) {
+        return bookRepository.findByIsbn(isbn);
     }
 
 }

@@ -15,7 +15,6 @@ import UserOrder from './pages/UserOrders';
 import HotSelling from './pages/HotSelling';
 import HotUsers from './pages/HotUsers';
 import Statistics from './pages/Statistics';
-import pageTwo from './pages/Home2';
 
 function App() {
   return (
@@ -24,11 +23,11 @@ function App() {
         <Navbar />
         <Switch>
           <Route path='/' exact component={Home} />
+          <Route path='/page' exact component={Home} />
           <Route path='/Carts' component={Carts} />
           <Route path='/Login' component={Login} />
           <Route path ='/Register' component={Register}/>
           <Route path='/Book' component={Book} />
-          <Route path='/page2' component={pageTwo} />
           <Route path='/Order' component={UserOrder} />
           {/* <Route path ='/Administrator' component={Administrator}/> */}
           <Route path ='/AdminBook' component={AdminBook}/>

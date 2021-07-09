@@ -10,7 +10,7 @@ public interface BookService {
 
     Book findBookById(Integer id);
 
-    List<Book> getBooks();
+    List<Book> getBooks(Integer page);
 
     ArrayList getAdminBook();
 
@@ -20,7 +20,5 @@ public interface BookService {
 
     Book changeBook(Integer id, String isbn, String name, String type, String author, Integer price, String description, Integer inventory, String image);
 
-    List<Book> getBooks1();
-
-    List<Book> getBooks2();
+    Book getSingleBook(String isbn);
 }

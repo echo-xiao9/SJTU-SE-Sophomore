@@ -19,17 +19,9 @@ public class BookController {
     @Autowired
     private BookService bookService;
 
-    @GetMapping("/getBooks1")
-    public List<Book> getBooks1()
-    { return bookService.getBooks1();}
-
-    @GetMapping("/getBooks2")
-    public List<Book> getBooks2()
-    { return bookService.getBooks2();}
-
     @GetMapping("/getBooks")
-    public List<Book> getBooks() {
-        return bookService.getBooks();
+    public List<Book> getBooks(@RequestParam("page") Integer page) {
+        return bookService.getBooks(page);
     }
 
     @GetMapping("/getBook")
@@ -59,6 +51,10 @@ public class BookController {
         return bookService.deleteBook(bookId);
     }
 
+    @GetMapping("/getSingleBook")
+    public Book getSingleBook(@RequestParam("isbn")String isbn){
+        return bookService.getSingleBook(isbn);
+    }
     @GetMapping("/changeBook")
     public Book changeBook(
             @RequestParam("id") Integer id,

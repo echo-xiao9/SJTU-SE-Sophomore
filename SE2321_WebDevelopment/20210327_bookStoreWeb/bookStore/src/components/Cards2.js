@@ -4,6 +4,7 @@ import CardItem from './CardItem';
 import { Button } from '../components/Button';
 import axios from 'axios'
 import Carousel from "./Carousel";
+import Pagination from"./Pagination";
 
 export default class Orders extends React.Component {
 
@@ -18,11 +19,15 @@ export default class Orders extends React.Component {
     
     var query = window.location.href;
     console.log(query);
-    var url = "http://localhost:9090/getBooks2";
-    if(query==="http://localhost:3000/") {
-      url = "http://localhost:9090/getBooks1";
-  }
-    axios.get(url).then((response) => {
+    console.log("props");
+    console.log(props);
+    axios({
+      method: 'GET',
+      url: 'http://localhost:9090/getBooks',
+      params: {
+        page:props.props
+      }
+    }).then(response => {
       const books = response.data;
       this.setState({
         book: books
@@ -57,13 +62,6 @@ export default class Orders extends React.Component {
     this.render();
 
   }
-  renderMore(){
-    var query = window.location.href;
-    if(query==="http://localhost:3000/") {
-      return <Button  buttonStyle='btn--test' buttonLink='/page2'>Next Page</Button>;
-  }
-  else  return <Button  buttonStyle='btn--test' buttonLink='/page1'>Previous Page</Button>;
-  }
 
 
   render() {
@@ -93,7 +91,8 @@ export default class Orders extends React.Component {
               )
               )}
             </ul>
-            {this.renderMore()}
+      
+            <Pagination/>
           </div>
         </div>
       </div>
