@@ -1,4 +1,4 @@
-import './Pagination.css';
+import '../css/Pagination.css';
 
 
 function Pagination() {

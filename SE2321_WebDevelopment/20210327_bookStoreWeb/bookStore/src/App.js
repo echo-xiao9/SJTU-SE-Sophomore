@@ -38,7 +38,6 @@ function App() {
           <Route path ='/HotSelling' component={HotSelling}/>
           <Route path ='/getHotUsers' component={HotUsers}/>
           <Route path ='/Statistics' component={Statistics}/>
-          
         </Switch>
       </Router>
     </>

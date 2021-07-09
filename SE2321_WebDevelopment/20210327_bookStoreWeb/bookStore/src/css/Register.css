@@ -67,6 +67,19 @@ color:green;
 	padding: 2rem 1rem 0;
 } 
 
+#register   {
+  background-color:rgb(255, 255, 255);
+  border: none;
+  border-bottom: 2px solid #2c2c2c;
+  border-top: 0px;
+  border-radius: 0px;
+  font-weight: bold;
+  outline: 0;
+  padding-left: 10px;
+  margin-bottom: 20px;
+  color: #131313;
+}
+
 .input {
 	display: flex;
 	flex-direction: column-reverse;

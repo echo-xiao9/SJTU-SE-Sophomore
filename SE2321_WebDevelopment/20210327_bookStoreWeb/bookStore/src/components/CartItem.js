@@ -1,4 +1,4 @@
-import "./CartItem.css";
+import "../css/CartItem.css";
 import { Link } from "react-router-dom";
 
 const CartItem = (props) => {

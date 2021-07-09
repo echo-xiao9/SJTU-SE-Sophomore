@@ -146,19 +146,19 @@ export default class Register extends React.Component {
               <div class="input">
 
                 {this.checkEmail()}
-                <input type="email" onChange={this.handleEmailChange} />
+                <input type="email"  id="register" onChange={this.handleEmailChange} />
                 <label class="input-label">Email</label>
               </div>
 
               <div class="input">
 
-                <input type="password" class="input-field" required onChange={this.handlePswChange} />
+                <input type="password" id="register" required onChange={this.handlePswChange} />
                 <label class="input-label">Password</label>
               </div>
 
               <div class="input">
 
-                <input type="password" class="input-field" required onChange={this.handlePsw2Change} />
+                <input type="password" id="register" class="input-field" required onChange={this.handlePsw2Change} />
                 <label class="input-label">Input password again</label>
               </div>
               {this.checkMatch()}

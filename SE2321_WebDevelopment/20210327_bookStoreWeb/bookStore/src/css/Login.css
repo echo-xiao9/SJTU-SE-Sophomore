@@ -67,7 +67,7 @@ body {
     color: #ECF0F5;
 } */
 
-.login input[type=password] {
+ input[type=password] {
     background-color:rgb(36, 36, 36);
     border: none;
     border-bottom: 2px solid #0DB8DE;
