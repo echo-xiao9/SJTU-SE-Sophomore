@@ -100,6 +100,4 @@ public class UserDaoImpl<data1> implements UserDao {
         return newUser;
     }
 
-
-
 }

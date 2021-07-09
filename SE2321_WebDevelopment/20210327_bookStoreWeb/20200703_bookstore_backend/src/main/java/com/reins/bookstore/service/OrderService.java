@@ -1,6 +1,8 @@
 package com.reins.bookstore.service;
+import com.reins.bookstore.entity.HotSelling;
 import com.reins.bookstore.entity.Order;
 import com.reins.bookstore.entity.OrderItem;
+import com.reins.bookstore.entity.UserHotSelling;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,11 +34,11 @@ public interface OrderService {
 
 //    ArrayList getAdminAllOrder();
 //
-//    ArrayList getHotSelling(String from, String to);
+List<HotSelling>  getHotSelling(String from, String to);
 //
-//    ArrayList getHotUsers(String from, String to);
+List<HotSelling> getHotUsers(String from, String to);
 //
-//    ArrayList getUserHotSelling(String from, String to, Integer user_id);
+UserHotSelling getUserHotSelling(String from, String to, Integer user_id);
 //
 //    OrderItem addOrderItem(Integer order_id, Integer book_id, Integer book_num, String book_name, Integer book_price);
 

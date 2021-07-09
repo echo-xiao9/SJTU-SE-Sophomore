@@ -1,15 +1,15 @@
 package com.reins.bookstore.daoimpl;
 
+import com.alibaba.fastjson.JSONArray;
 import com.reins.bookstore.dao.OrderDao;
-import com.reins.bookstore.entity.Book;
-import com.reins.bookstore.entity.OrderItem;
+import com.reins.bookstore.entity.*;
 import com.reins.bookstore.repository.BookRepository;
 import com.reins.bookstore.repository.OrderItemRepository;
 import com.reins.bookstore.repository.OrderRepository;
 
+import com.reins.bookstore.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import com.reins.bookstore.entity.Order;
 
 import java.util.*;
 
@@ -22,6 +22,9 @@ public class OrderDaoImpl implements OrderDao {
     private OrderItemRepository orderItemRepository;
     @Autowired
     private BookRepository bookRepository;
+
+    @Autowired
+    private UserRepository userRepository;
 
     @Override
     public Order findOne(Integer id) {
@@ -117,7 +120,7 @@ public class OrderDaoImpl implements OrderDao {
         return orderItem;
     }
 
-
+// can be commit
 
 //    @Override
 //    public ArrayList getAdminOrder() {
@@ -136,12 +139,6 @@ public class OrderDaoImpl implements OrderDao {
 //        return ordersJson;
 //    }
 //
-//    @Override
-//    public Order addOrderFromUser(Integer user_id, Integer order_price, String date, String year, String month, String day) {
-//        Order order = new Order(user_id, order_price, date, year, month, day);
-//        orderRepository.save(order);
-//        return order;
-//    }
 //
 //    @Override
 //    public List<OrderItem> getOrderItems(Integer order_id) {
@@ -188,27 +185,25 @@ public class OrderDaoImpl implements OrderDao {
 //        return ordersJson;
 //    }
 //
-//    public List<Order> getOrderBetween(String from, String to) {
-//        List<Order> orderList = orderRepository.getOrders();
-//        List<Order> result = new ArrayList<>();
-//        for (Order item : orderList) {
-//            if (item.getDate().compareTo(to) <= 0 && item.getDate().compareTo(from) >= 0) {
-//
-//                result.add(item);
-//            }
-//        }
-//
-//        return result;
-//    }
+    public List<Order> getOrderBetween(String from, String to) {
+        List<Order> orderList = orderRepository.getOrders();
+        List<Order> result = new ArrayList<>();
+        for (Order item : orderList) {
+            if (item.getDate().compareTo(to) <= 0 && item.getDate().compareTo(from) >= 0) {
+                result.add(item);
+            }
+        }
+        return result;
+    }
 //
 //
 //    public ArrayList getHotBook(List<OrderItem> orderItemList) {
 //        ArrayList<Book> resultArr = new ArrayList<>();
 //        for (OrderItem item : orderItemList) {
-//            String itemName = item.getBook_name();
+//            String itemName = item.getBook().getName();
 //            Integer itemNum = item.getBook_num();
-//            Integer itemBookId = item.getBook_id();
-//            Integer itemPrice=item.getBook_price();
+//            Integer itemBookId = item.getBook().getBookId();
+//            Integer itemPrice=item.getBook().getPrice();
 //            boolean flag = false;
 //            for (Book it : resultArr) {
 //                if (it.getName().equals(itemName)) {
@@ -222,57 +217,94 @@ public class OrderDaoImpl implements OrderDao {
 //                resultArr.add(newBook);
 //            }
 //        }
-////        resultArr.sort(Comparator.comparing(Book::getInventory));
+////      resultArr.sort(Comparator.comparing(Book::getInventory));
 //        Collections.sort(resultArr, (Book a1, Book a2) -> a2.getInventory()-a1.getInventory());
 //        System.out.println(resultArr);
 //        return resultArr;
 //    }
 //
-//    @Override
-//    public ArrayList getHotSelling(String from, String to) {
-//        List<Order> orderList = getOrderBetween(from, to);
-//        List<OrderItem> orderItemList = new ArrayList<>();
-//        ArrayList<Book> resultArr = new ArrayList<>();
-//        for (Order order : orderList) {
-//            List<OrderItem> orderItemListSingle = orderItemRepository.getOrderItemsByOrderId(order.getOrderId());
-//            orderItemList.addAll(orderItemListSingle);
-//        }
-//        return getHotBook(orderItemList);
-//    }
-//
-//    @Override
-//    public ArrayList getHotUsers(String from, String to) {
-//        List<Order> orderList = getOrderBetween(from, to);
-//
-//        System.out.println("orderList:");
-//        System.out.println(orderList);
-//        List<OrderItem> orderItemList = new ArrayList<>();
-//        ArrayList<User> resultArr = new ArrayList<>();
-//        for (Order order : orderList) {
-//            boolean flag=false;
-//            Integer userId=order.getUser_id();
-//            System.out.println("UserId:");
-//            System.out.println(userId);
-//            Integer singleOrderNum=0;
-//            List<OrderItem> orderItemListSingle = orderItemRepository.getOrderItemsByOrderId(order.getOrderId());
-//            for(OrderItem orderItem:orderItemListSingle){
-//                singleOrderNum+=orderItem.getBook_num();
-//            }
-//            for(User user:resultArr){
-//                if(user.getUserId().equals(userId)) {
-//                    user.setBoughtNum(user.getBoughtNum()+singleOrderNum);
-//                    flag=true;
-//                    break;
-//                }
-//            }
-//            if(flag==false){
-//                User newUser=new User(userId,singleOrderNum);
-//                resultArr.add(newUser);
-//            }
-//        }
-//        Collections.sort(resultArr, (User a1, User a2) -> a2.getBoughtNum()-a1.getBoughtNum());
-//        return resultArr;
-//    }
+    @Override
+    public List<HotSelling> getHotSelling(String from, String to) {
+        List<Order> orderList = getOrderBetween(from, to);
+        List<HotSelling> hotBooks=new ArrayList<>();
+        for (Order order : orderList) {
+            List<OrderItem> orderItemList=order.getOrderItemList();
+            for(OrderItem item:orderItemList){
+                boolean flag=false;
+                String bookName=item.getBook().getName();
+                for(HotSelling hotSelling:hotBooks){
+                    if(hotSelling.getName().equals(bookName)){
+                        flag=true;
+                        hotSelling.setNum(hotSelling.getNum()+item.getBook_num());
+                        break;
+                    }
+                }
+                if(!flag){
+                    HotSelling newHotSelling =new HotSelling(bookName,item.getBook_num());
+                    hotBooks.add(newHotSelling);
+                }
+            }
+        }
+        return hotBooks;
+    }
+
+    @Override
+    public List<HotSelling> getHotUsers(String from, String to) {
+        List<Order> orderList = getOrderBetween(from, to);
+        List<HotSelling> hotUsers=new ArrayList<>();
+        for (Order order : orderList) {
+            Integer userId=order.getUserId();
+            User user=userRepository.findById(userId).get();
+            boolean find=false;
+            for(HotSelling hotSelling: hotUsers){
+                if(hotSelling.getName().equals(user.getName())){
+                    hotSelling.setNum(hotSelling.getNum()+order.getOrder_price()); // update the price
+                    find=true;
+                    break;
+                }
+            }
+            if(!find){
+                HotSelling newHotSelling=new HotSelling(user.getName(),order.getOrder_price());
+                hotUsers.add(newHotSelling);
+            }
+        }
+        Collections.sort(hotUsers,(HotSelling h1,HotSelling h2)-> h2.getNum()-h1.getNum());
+        return hotUsers;
+    }
+
+    @Override
+    public UserHotSelling getUserHotSelling(String from, String to, Integer user_id) {
+        List<Order> orderList = getOrderBetween(from, to);
+        List<HotSelling> hotBooks=new ArrayList<>();
+        Integer totalNum = 0;
+        Integer totalPrice = 0;
+
+        for(Order order:orderList ){
+            Integer userId=order.getUserId();
+            if(userId.equals(user_id)){
+                List<OrderItem> orderItemList=order.getOrderItemList();
+                for(OrderItem item:orderItemList){
+                    totalNum += item.getBook_num();
+                    totalPrice += item.getBook().getPrice();
+                    boolean flag=false;
+                    String bookName=item.getBook().getName();
+                    for(HotSelling hotSelling:hotBooks){
+                        if(hotSelling.getName().equals(bookName)){
+                            flag=true;
+
+                            hotSelling.setNum(hotSelling.getNum()+item.getBook_num());
+                            break;
+                        }
+                    }
+                    if(!flag){
+                        HotSelling newHotSelling =new HotSelling(bookName,item.getBook_num());
+                        hotBooks.add(newHotSelling);
+                    }
+                }
+            }
+        }
+        return new UserHotSelling(hotBooks,totalPrice,totalNum);
+    }
 //
 //    @Override
 //    public ArrayList getUserHotSelling(String from, String to, Integer user_id) {

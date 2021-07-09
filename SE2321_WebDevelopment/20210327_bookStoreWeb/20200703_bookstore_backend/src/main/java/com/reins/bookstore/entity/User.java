@@ -24,7 +24,6 @@ public class User {
     private String name;
     private Integer type;
     private String email;
-
     public User() {
     }
 

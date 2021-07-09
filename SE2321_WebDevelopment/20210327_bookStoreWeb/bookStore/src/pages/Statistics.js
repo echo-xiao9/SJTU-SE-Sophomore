@@ -2,31 +2,32 @@
 
 
 import React from 'react';
-
-import Grid from '@material-ui/core/Grid';
+import TableContainer from '@material-ui/core/TableContainer';
 import TextField from '@material-ui/core/TextField';
 import Button from '../components/Button';
 import PerchaseExcel from "../components/PerchaseExcel";
 import axios from "axios"
 
-export default class Statistics extends React.Component {
+
+export default class HotSelling extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      books:[],
+      userHotSelling:[],
       from:  "2021-04-05",
       to:"2021-05-04",
       totalPrice:0,
-      totalBook:0
+      totalNum:0
     }
-    this.handleToChange=this.handleToChange.bind(this);
+  
     this.handleFromChange=this.handleFromChange.bind(this);
-    this.processData=this.processData.bind(this);
-    this.dateSelectBook=this.processData.bind(this);
+    this.handleToChange=this.handleToChange.bind(this);
+    this.getHotUser=this.getHotUser.bind(this);
+
       axios({
         method: 'GET',
-        url: 'http://localhost:9090/getHotSelling',
+        url: 'http://localhost:9090/getUserHotSelling',
         params: {
           from:this.state.from,
           to:this.state.to,
@@ -34,54 +35,51 @@ export default class Statistics extends React.Component {
         }
       }).then(response => {
        console.log(response);
-        this.state.books=response.data;
+        this.state.userHotSelling=response.data.hotSellingList;
+        this.state.totalNum=response.data.totalNum;
+        this.state.totalPrice=response.data.totalPrice;
+       
+
       })
+
+    }
+
+    handleFromChange(e){
+      this.state.from=e.target.value;
     }
     
-  processData(){
-    this.state.totalBook=0;
-    this.state.totalPrice=0;
-    this.state.books.map((book)=>{
-      this.state.totalBook+=parseInt(book.inventory);
-      this.state.totalPrice+=parseInt(book.price)*parseInt(book.inventory);
-    })
-  }
+    handleToChange(e){
+      this.state.to=e.target.value;
+    }
 
-  dateSelectBook(){
-    axios({
-      method: 'GET',
-      url: 'http://localhost:9090/getHotSelling',
-      params: {
-        from:this.state.from,
-        to:this.state.to,
-        user_id:localStorage.getItem('userId')
-      }
-    }).then(response => {
-     console.log(response);
-      this.state.books=response.data;
-    })
-    this.processData();
-    this.render();
-  }
+    
 
-
-  handleFromChange(e){
-    this.state.from=e.target.value;
-  }
-  
-  handleToChange(e){
-    this.state.to=e.target.value;
-  }
+    getHotUser=()=>{
+      axios({
+        method: 'GET',
+        url: 'http://localhost:9090/getUserHotSelling',
+        params: {
+          from:this.state.from,
+          to:this.state.to,
+          user_id:localStorage.getItem('userId')
+        }
+      }).then(response => {
+        console.log("response data");
+        console.log(response.data);
+        this.state.userHotSelling=response.data.hotSellingList;
+        this.state.totalNum=response.data.totalNum;
+        this.state.totalPrice=response.data.totalPrice;
+        console.log("userHot");
+        console.log(this.state.userHotSelling);
+      })
+    }
 
   render() {
-    // this.logRow();
     return (
       <div>
-      
-          <h1> Purchases</h1>
-       
-          <Grid container justify="space-around"  style={{ width: '100vh' }}>
-      
+          <h1> Hot User Board</h1>
+         <TableContainer  align="center" marginTop="10">
+
         <TextField
           id="date"
           label="From"
@@ -105,15 +103,14 @@ export default class Statistics extends React.Component {
           }}
 
         />
-        <Button onClick={this.dateSelectBook}>select</Button>
-        </Grid>
-
+        <Button onClick={this.getHotUser}>select</Button>
+        </TableContainer>
           <PerchaseExcel
-         
-            rows={ this.state.books}
+            rows={ this.state.userHotSelling}
+            totalPrice={this.state.totalPrice}
+            totalNum={this.state.totalNum}
           />
-        <h4>The Total book number:{this.state.totalBook}</h4>
-        <h4>The total price:{this.state.totalPrice/100}¥</h4>
+  
       </div>
     );
   }

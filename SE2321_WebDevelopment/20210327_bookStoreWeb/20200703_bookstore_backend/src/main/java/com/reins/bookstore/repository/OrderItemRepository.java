@@ -1,5 +1,6 @@
 package com.reins.bookstore.repository;
 
+import com.reins.bookstore.entity.Order;
 import com.reins.bookstore.entity.OrderItem;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -15,5 +16,6 @@ public interface OrderItemRepository extends JpaRepository<OrderItem,Integer> {
 //
 //    @Query(value = "SELECT i FROM OrderItem i where i.order_id = :order_id")
 //    List<OrderItem> getOrderItemsByOrderId(Integer order_id);
+
 
 }

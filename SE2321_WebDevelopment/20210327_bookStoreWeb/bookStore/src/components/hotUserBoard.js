@@ -27,30 +27,26 @@ export default  function BasicTable(props) {
 
         <TableHead>
           <TableRow>
-            <TableCell align="center">User Id</TableCell>
-            <TableCell align="center">Number</TableCell>
+            <TableCell align="center">User Name</TableCell>
+            <TableCell align="center">Total Purchase Amount / $</TableCell>
+          
           
           </TableRow>
         </TableHead>
-
         <TableBody>
         {props.rows.map((row) => (
             <TableRow key={row.name}>
            
-              <TableCell align="center">{row.userId}</TableCell>
-              <TableCell align="center">{row.boughtNum}</TableCell>
+              <TableCell align="center">{row.name}</TableCell>
+              <TableCell align="center">{row.num/100}</TableCell>
               {/* <TableCell align="center">{row.inventory}</TableCell> */}
               {/* <TableCell align="center">{row.num}</TableCell> */}
               {/* <TableCell align="right">{row.protein}</TableCell> */}
             </TableRow>
           ))}
-
-
-
-
-
-
          </TableBody>
+
+   
 
       </Table>
       

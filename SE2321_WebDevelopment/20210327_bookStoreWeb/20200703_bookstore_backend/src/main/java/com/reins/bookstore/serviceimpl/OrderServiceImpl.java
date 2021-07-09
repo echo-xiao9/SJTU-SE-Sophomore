@@ -3,7 +3,9 @@ package com.reins.bookstore.serviceimpl;
 
 import com.reins.bookstore.dao.OrderDao;
 
+import com.reins.bookstore.entity.HotSelling;
 import com.reins.bookstore.entity.OrderItem;
+import com.reins.bookstore.entity.UserHotSelling;
 import com.reins.bookstore.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -84,15 +86,21 @@ public class OrderServiceImpl implements OrderService {
 //        return orderDao.getAdminAllOrder();
 //    }
 //
-//    @Override
-//    public ArrayList getHotSelling(String from, String to) {
-//        return orderDao.getHotSelling(from,  to);
-//    }
+    @Override
+    public List<HotSelling> getHotSelling(String from, String to) {
+        return orderDao.getHotSelling(from, to);
+    }
 //
-//    @Override
-//    public ArrayList getHotUsers(String from, String to) {
-//        return orderDao.getHotUsers(from,to);
-//    }
+    @Override
+    public List<HotSelling> getHotUsers(String from, String to) {
+        return orderDao.getHotUsers(from,to);
+    }
+
+    @Override
+    public UserHotSelling getUserHotSelling(String from, String to, Integer user_id) {
+        return orderDao.getUserHotSelling(from,to,user_id);
+    }
+
 //
 //    @Override
 //    public ArrayList getUserHotSelling(String from, String to, Integer user_id) {

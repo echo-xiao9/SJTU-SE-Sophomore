@@ -27,7 +27,7 @@ export default  function BasicTable(props) {
 
         <TableHead>
           <TableRow>
-            <TableCell align="center">Book ID</TableCell>
+
             <TableCell align="center">Book Name</TableCell>
             <TableCell align="center">Number</TableCell>
           
@@ -38,9 +38,8 @@ export default  function BasicTable(props) {
         {props.rows.map((row) => (
             <TableRow key={row.name}>
            
-              <TableCell align="center">{row.bookId}</TableCell>
               <TableCell align="center">{row.name}</TableCell>
-              <TableCell align="center">{row.inventory}</TableCell>
+              <TableCell align="center">{row.num}</TableCell>
               {/* <TableCell align="center">{row.num}</TableCell> */}
               {/* <TableCell align="right">{row.protein}</TableCell> */}
             </TableRow>

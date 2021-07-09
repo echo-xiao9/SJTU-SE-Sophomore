@@ -5,13 +5,14 @@ import TextField from '@material-ui/core/TextField';
 import Button from '../components/Button';
 import BasicTable from "../components/hotUserBoard";
 import axios from "axios"
+import TableContainer from '@material-ui/core/TableContainer';
 
 export default class HotUsers extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      users:[],
+      hotSelling:[],
       from:  "2021-04-05",
       to:"2021-05-04"
     }
@@ -29,7 +30,7 @@ export default class HotUsers extends React.Component {
         }
       }).then(response => {
        console.log(response);
-        this.state.users=response.data;
+        this.state.hotSelling=response.data;
       })
     }
 
@@ -43,7 +44,7 @@ export default class HotUsers extends React.Component {
 
     
 
-    getHotUser(){
+    getHotUser=()=>{
        axios({
         method: 'GET',
         url: 'http://localhost:9090/getHotUsers',
@@ -63,11 +64,9 @@ export default class HotUsers extends React.Component {
   render() {
     return (
       <div>
-      
           <h1> Hot User Board</h1>
-       
-          <Grid container justify="space-around"  style={{ width: '100vh' }}>
-      
+         <TableContainer  align="center" marginTop="10">
+
         <TextField
           id="date"
           label="From"
@@ -92,10 +91,9 @@ export default class HotUsers extends React.Component {
 
         />
         <Button onClick={this.getHotUser}>select</Button>
-        </Grid>
-
+        </TableContainer>
           <BasicTable
-            rows={ this.state.users}
+            rows={ this.state.hotSelling}
           />
   
       </div>

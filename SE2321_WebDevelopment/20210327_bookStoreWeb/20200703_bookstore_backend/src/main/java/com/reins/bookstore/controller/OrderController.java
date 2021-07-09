@@ -2,13 +2,18 @@ package com.reins.bookstore.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.serializer.SerializerFeature;
+import com.reins.bookstore.entity.HotSelling;
 import com.reins.bookstore.entity.Order;
 import com.reins.bookstore.entity.OrderItem;
+import com.reins.bookstore.entity.UserHotSelling;
 import com.reins.bookstore.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 public class OrderController {
@@ -72,40 +77,31 @@ public class OrderController {
     ){
         return orderService.addOrderItem(order_id, book_id,book_num);
     }
+// can be comment
 
-//    @GetMapping("/adminOrder")
-//    public ArrayList getAdminOrder(){
-//        return orderService.getAdminOrder();
-//    }
+    @GetMapping("/getHotSelling")
+    public List<HotSelling>  getHotSelling(
+            @RequestParam String from,
+            @RequestParam String to
+    ){
+        return orderService.getHotSelling(from, to);
+    }
 //
-//    @GetMapping("/getAdminAllOrder")
-//    public ArrayList getAdminAllOrder(){return orderService.getAdminAllOrder();}
+    @GetMapping("/getHotUsers")
+    public List<HotSelling> getHotUsers(
+        @RequestParam String from,
+        @RequestParam String to
+    ){
+        return orderService.getHotUsers(from, to);
+    }
 //
-//    @GetMapping("/getHotSelling")
-//    public ArrayList getHotSelling(
-//            @RequestParam String from,
-//            @RequestParam String to
-//    ){
-//        return orderService.getHotSelling(from, to);
-//    }
-//
-//    @GetMapping("/getHotUsers")
-//    public ArrayList getHotUsers(
-//        @RequestParam String from,
-//        @RequestParam String to
-//    ){
-//        return orderService.getHotUsers(from, to);
-//    }
-//
-//    @GetMapping("/getUserHotSelling")
-//    public ArrayList getHotUsers(
-//            @RequestParam String from,
-//            @RequestParam String to,
-//            @RequestParam Integer user_id
-//
-//    ){
-//        return orderService.getUserHotSelling(from, to,user_id);
-//    }
-
+    @GetMapping("/getUserHotSelling")
+    public UserHotSelling getUserHotSelling(
+            @RequestParam String from,
+            @RequestParam String to,
+            @RequestParam Integer user_id
+    ){
+        return orderService.getUserHotSelling(from, to, user_id);
+    }
 
 }

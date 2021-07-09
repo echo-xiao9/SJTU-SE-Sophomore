@@ -22,7 +22,6 @@ import java.util.List;
 @JsonIgnoreProperties(value = {"handler","hibernateLazyInitializer","fieldHandler"})
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,property = "bookId")
 public class Book {
-
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy= GenerationType.SEQUENCE)
@@ -78,6 +77,10 @@ public class Book {
         return image;
     }
 
+    public List<OrderItem> getOrderItemList() {
+        return orderItemList;
+    }
+
     public Book(String isbn, String name, String type, String author, Integer price, String description, Integer inventory, String image) {
         this.isbn = isbn;
         this.name = name;
@@ -87,6 +90,10 @@ public class Book {
         this.description = description;
         this.inventory = inventory;
         this.image = image;
+    }
+
+    public Book(String name,Integer inventory, Integer bookId,Integer price) {
+        this.bookId = bookId;
     }
 
     public Book() {
