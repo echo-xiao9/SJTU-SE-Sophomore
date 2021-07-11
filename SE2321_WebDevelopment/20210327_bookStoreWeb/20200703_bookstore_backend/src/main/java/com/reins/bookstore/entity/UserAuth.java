@@ -3,7 +3,6 @@ package com.reins.bookstore.entity;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-import lombok.Data;
 
 import javax.persistence.*;
 
@@ -21,7 +20,6 @@ import javax.persistence.*;
 public class UserAuth {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.SEQUENCE,generator="user_id")
     private Integer userId;
     private String username;
 
@@ -55,6 +53,12 @@ public class UserAuth {
         return userType;
     }
 
+    public UserAuth(Integer userId, String username, String password, Integer userType) {
+        this.userId = userId;
+        this.username = username;
+        this.password = password;
+        this.userType = userType;
+    }
 
     public UserAuth(String username, String password, Integer userType) {
         this.username = username;

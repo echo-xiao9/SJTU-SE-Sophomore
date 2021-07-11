@@ -26,21 +26,10 @@ public interface OrderService {
 
     Object getAdminDateOrder(String from, String to);
 
-//    ArrayList getAdminOrder();
+    List<HotSelling>  getHotSelling(String from, String to);
 
-//    Order addOrderFromUser(Integer user_id, Integer order_price, String date, String year, String month, String day);
+    List<HotSelling> getHotUsers(String from, String to);
 
-//    List<OrderItem> getOrderItems(Integer order_id);
+    UserHotSelling getUserHotSelling(String from, String to, Integer user_id);
 
-//    ArrayList getAdminAllOrder();
-//
-List<HotSelling>  getHotSelling(String from, String to);
-//
-List<HotSelling> getHotUsers(String from, String to);
-//
-UserHotSelling getUserHotSelling(String from, String to, Integer user_id);
-//
-//    OrderItem addOrderItem(Integer order_id, Integer book_id, Integer book_num, String book_name, Integer book_price);
-
-//    ArrayList getAdminOrderItems();
 }

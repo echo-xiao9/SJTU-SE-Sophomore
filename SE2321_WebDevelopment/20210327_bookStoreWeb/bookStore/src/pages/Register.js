@@ -93,6 +93,7 @@ export default class Register extends React.Component {
       return (<h7 class="ok">Valid user name!</h7>);}
     return (<h7 class="error">Invalid user name!</h7>);
   }
+  
   registerButtonClicked(){
     if(this.state.nameValid===1 && 
       this.state.emailValid===1 &&
@@ -137,9 +138,9 @@ export default class Register extends React.Component {
                   name='username'
                   // value={values.username}
                   onChange={this.handleUsernameChange}
+                  id="register"
                 />
-           
-                <label class="input-label">user name</label>
+                <label class="input-label" >user name</label>
 
               </div>
 

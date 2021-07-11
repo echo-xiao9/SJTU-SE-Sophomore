@@ -20,6 +20,15 @@ export default class Orders extends React.Component {
       to:"2021-06-20"
     }
 
+    if(localStorage.getItem("userId")===null){
+      alert("please log in!");
+      <script type="text/javascript">
+　　function jumurl(){
+　　window.location.href = 'http://localhost:3000/login'
+　　}
+　　setTimeout(jumurl,3000);
+　　</script>
+    }
     axios({
       method: 'GET',
       url: 'http://localhost:9090/getUserOrders',

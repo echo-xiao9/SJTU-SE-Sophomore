@@ -1,5 +1,5 @@
 import React from 'react';
-import '../App.css';
+import '../css/App.css';
 import '../css/Cart.css';
 import '../components/CartItem'
 import CartItem from '../components/CartItem';
@@ -16,10 +16,7 @@ function formatPrice(price) {
 
 const castyle = {
   width: 800,
-  // height: 240,
-  // marginLeft: 180,
   marginTop: 60,
-  // backgroundColor: blueGrey[50],
   textAlign: 'center',
 }
 
@@ -30,32 +27,43 @@ export default class Carts extends React.Component {
   constructor() {
     super()
     this.state = {
-      // books: [
-      //   { id: 10, name: "Harry", datas: 'J·K·Rowling', price: 50, number: 400, },
-      //   // { id: 20, name: "Three Body", datas: 'CiXing Liu', price: 45, number: 400 ,},
-      //   // { id: 30, name: "Pride and Prejudice", datas: 'Jane Austen', price: 70, number: 400, },
-      //   // { id: 4, name: "Steve Jobs", datas: 'Walter Isaacson', price: 115, number: 1 },
-      //   // { id: 1, name: "Harry Poter", datas: 'J·K·Rowling', price: 50, number: 1 },
-      //   // { id: 2, name: "Three Body", datas: 'CiXing Liu', price: 45, number: 1 },
-      //   // { id: 3, name: "Pride and Prejudice", datas: 'Jane Austen', price: 70, number: 2 },
-      //   // { id: 4, name: "Steve Jobs", datas: 'Walter Isaacson', price: 115, number: 1 },
-      // ],
       books:[],
       totalPrice: 0,
       order_id: 0,
       user_id:1
-
     }
+    if(localStorage.getItem("userId")===null){
+      alert("please log in!");
+      <script type="text/javascript">
+　　function jumurl(){
+　　window.location.href = 'http://localhost:3000/login'
+　　}
+　　setTimeout(jumurl,3000);
+　　</script>
+    }
+
+
+
+
     const url = "http://localhost:9090/getCart";
     axios.get(url).then((response) => {
       const getBooks =response.data;
-      // console.log(getBooks);
       this.setState({
           books: getBooks
       })
   })
   }
 
+  changePage(){
+    if(localStorage.getItem("userId")===null){
+      <script type="text/javascript">
+　　function jumurl(){
+　　window.location.href = 'http://localhost:3000/login'
+　　}
+　　setTimeout(jumurl,3000);
+　　</script>
+    }
+  }
   renderBooks() {
     return (
       <div class="card">
@@ -103,16 +111,9 @@ export default class Carts extends React.Component {
                   }
                 </tbody>
               </table>
-              {/* <h2 style={{ marginLeft: 850, backgroundColor: blueGrey[50], }}>总价格:{this.getTotalprice()}</h2> */}
-              {/* <Button style={{ marginLeft: 550, backgroundColor: 'black' ,color:'white' }}>总价格:{this.getTotalprice()}</Button> */}
+           
             </div>
-            {/* <div class="back-to-shop">
-
-              <a href="/">
-                back to shop;
-             </a>
-        
-            </div> */}
+ 
           </div>
           <div class="col-md-4 summary">
             <div>
@@ -120,8 +121,7 @@ export default class Carts extends React.Component {
             </div>
 
             <div class="row">
-              {/* <div class="col" style={{ paddingRight: '0px' }}>ITEMS 3</div> */}
-              {/* <div class="col text-right">&euro; 132.00</div> */}
+           
             </div>
 
             <form>
@@ -198,27 +198,28 @@ export default class Carts extends React.Component {
     e.preventDefault();
     var d=new Date();
     var normalDate=this.getDate();
+    if(this.state.totalPrice ===0){
+      alert("The shopping cart is empty!");
+      return;
+    }
     axios({
       method: 'GET',
       url: 'http://localhost:9090/addOrderFromUser',
       params: {
         user_id: this.state.user_id,
         order_price:this.state.totalPrice,
-        date:normalDate,
+        date:normalDate
       }
   }).then(response => {
     console.log("response");
       console.log(response)
       if (response.status === 200) {
-
         this.state.order_id=response.data.orderId;
         console.log("orderId");
         console.log(this.state.order_id);
-        
         for(var book in this.state.books){
           console.log("book:");
           var i=this.state.books[book];
-          
           console.log(i);
           axios({
             method: 'GET',
@@ -226,7 +227,7 @@ export default class Carts extends React.Component {
             params: {
               order_id: this.state.order_id,
               book_id:i.bookId,
-              book_num:i.number,
+              book_num:i.number
             }
         }).then(response=>{
           console.log(response.data);
@@ -236,8 +237,7 @@ export default class Carts extends React.Component {
         alert("Place an order successfully.");
       }
   }).catch(error => {
-      console.log(error)
+      console.log(error);
   })
-    alert("下单成功");
 };
 }

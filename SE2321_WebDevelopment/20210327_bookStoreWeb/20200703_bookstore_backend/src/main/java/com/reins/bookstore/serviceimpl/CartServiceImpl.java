@@ -27,6 +27,4 @@ public class CartServiceImpl implements CartService {
     public Cart addToCart(String name, String author, Integer price, Integer number, Integer bookId) {
         return cartDao.addToCart(name, author,price, number, bookId);
     }
-
-
 }

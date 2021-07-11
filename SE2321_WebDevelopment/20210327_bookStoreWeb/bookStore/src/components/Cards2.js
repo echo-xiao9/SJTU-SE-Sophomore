@@ -1,7 +1,8 @@
 import React from 'react';
-import './Cards.css';
+import '../css/Cards.css';
 import CardItem from './CardItem';
 import { Button } from '../components/Button';
+
 import axios from 'axios'
 import Carousel from "./Carousel";
 import Pagination from"./Pagination";

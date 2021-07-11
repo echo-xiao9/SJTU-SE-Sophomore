@@ -96,7 +96,7 @@ export default class Orders extends React.Component {
     // console.log(event.target.value);
   }
 
-  search() {
+  search=()=> {
     if (this.state.bookName.length === 0) {
       alert("please input target book name!");
       return;

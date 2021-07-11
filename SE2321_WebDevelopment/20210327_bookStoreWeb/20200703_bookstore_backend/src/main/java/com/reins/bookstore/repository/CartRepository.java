@@ -16,11 +16,6 @@ public interface CartRepository extends JpaRepository<Cart, Integer> {
     void deleteByName(String name);
 
 
-    @Modifying
-    @Query("update Cart c set c.number=:number where c.name=:name")
-    void updateCartNumber(@Param("number") Integer number ,@Param("name") String name);
-
-
     @Query("select p from Cart p where  p.name=:name")
     Cart getCartByName(@Param("name") String name);
 

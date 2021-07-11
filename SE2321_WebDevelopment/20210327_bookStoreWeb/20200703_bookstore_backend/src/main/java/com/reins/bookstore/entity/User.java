@@ -32,6 +32,5 @@ public class User {
         this.type = type;
         this.email = email;
     }
+
 }
-
-

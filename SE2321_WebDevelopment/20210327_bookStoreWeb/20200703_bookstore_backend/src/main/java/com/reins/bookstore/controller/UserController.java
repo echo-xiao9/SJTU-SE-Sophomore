@@ -49,7 +49,6 @@ public class UserController {
         return userService.getAdminUser();
     }
 
-
     @GetMapping("/adminUserChange")
    public User adminUserChange(@RequestParam("user_id")  Integer user_id,
                                @RequestParam("name") String name,

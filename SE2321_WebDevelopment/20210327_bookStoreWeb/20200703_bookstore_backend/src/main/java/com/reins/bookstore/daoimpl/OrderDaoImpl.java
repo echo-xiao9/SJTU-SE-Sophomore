@@ -117,74 +117,11 @@ public class OrderDaoImpl implements OrderDao {
         Order order=orderRepository.findById(order_id).get();
         OrderItem orderItem=new OrderItem(order,b,book_num);
         orderItemRepository.save(orderItem);
+        b.setInventory(b.getInventory()-book_num);
+        bookRepository.save(b);
         return orderItem;
     }
 
-// can be commit
-
-//    @Override
-//    public ArrayList getAdminOrder() {
-//        List<Order> result = orderRepository.getOrders();
-//        System.out.println(result);
-//        Iterator<Order> it = result.iterator();
-//        ArrayList<JSONArray> ordersJson = new ArrayList<JSONArray>();
-//        while (it.hasNext()) {
-//            Order order = (Order) it.next();
-//            ArrayList<String> arrayList = new ArrayList<String>();
-//            arrayList.add(order.getUser_id().toString());
-//            arrayList.add(order.getOrder_price().toString());
-//            ordersJson.add((JSONArray) JSONArray.toJSON(arrayList));
-//        }
-//        String ordersString = JSON.toJSONString(ordersJson, SerializerFeature.BrowserCompatible);
-//        return ordersJson;
-//    }
-//
-//
-//    @Override
-//    public List<OrderItem> getOrderItems(Integer order_id) {
-//        System.out.println("before get items");
-//        return orderItemRepository.getOrderItemsByOrderId(order_id);
-//    }
-//
-//    public ArrayList getOrderItemsList(Integer order_id) {
-//        List<OrderItem> orderItemList = getOrderItems(order_id);
-//        ArrayList<JSONArray> orderItemJson = new ArrayList<JSONArray>();
-//        Iterator<OrderItem> it = orderItemList.iterator();
-//        while (it.hasNext()) {
-//            OrderItem orderItem = (OrderItem) it.next();
-//            ArrayList<String> arrayList = new ArrayList<String>();
-//            arrayList.add(orderItem.getBook_id().toString());
-//            arrayList.add(orderItem.getBook_name());
-//            arrayList.add(orderItem.getBook_price().toString());
-//            arrayList.add(orderItem.getBook_num().toString());
-//            orderItemJson.add((JSONArray) JSONArray.toJSON(arrayList));
-//        }
-//        return orderItemJson;
-//    }
-//
-//    @Override
-//    public ArrayList getAdminAllOrder() {
-//        List<Order> result = orderRepository.getOrders();
-//        System.out.println(result);
-//        Iterator<Order> it = result.iterator();
-//        ArrayList<JSONArray> ordersJson = new ArrayList<JSONArray>();
-//        while (it.hasNext()) {
-//            Order order = (Order) it.next();
-//            ArrayList<String> arrayList = new ArrayList<String>();
-//            arrayList.add(order.getOrder_price().toString());
-//            arrayList.add(order.getUser_id().toString());
-//            arrayList.add(order.getYear());
-//            arrayList.add(order.getMonth());
-//            arrayList.add(order.getDay());
-//            arrayList.add(order.getOrderId().toString());
-////            arrayList.add(getOrderItems(order.getOrderId()).toString());
-////            arrayList.add((JSONArray)JSONArray.toJSON(getOrderItemsList(order.getOrderId())));
-//            ordersJson.add((JSONArray) JSONArray.toJSON(arrayList));
-//        }
-////        String  ordersString = JSON.toJSONString(ordersJson, SerializerFeature.BrowserCompatible);
-//        return ordersJson;
-//    }
-//
     public List<Order> getOrderBetween(String from, String to) {
         List<Order> orderList = orderRepository.getOrders();
         List<Order> result = new ArrayList<>();
@@ -195,34 +132,7 @@ public class OrderDaoImpl implements OrderDao {
         }
         return result;
     }
-//
-//
-//    public ArrayList getHotBook(List<OrderItem> orderItemList) {
-//        ArrayList<Book> resultArr = new ArrayList<>();
-//        for (OrderItem item : orderItemList) {
-//            String itemName = item.getBook().getName();
-//            Integer itemNum = item.getBook_num();
-//            Integer itemBookId = item.getBook().getBookId();
-//            Integer itemPrice=item.getBook().getPrice();
-//            boolean flag = false;
-//            for (Book it : resultArr) {
-//                if (it.getName().equals(itemName)) {
-//                    it.setInventory(it.getInventory() + itemNum);
-//                    flag = true;
-//                    break;
-//                }
-//            }
-//            if (flag == false) {
-//                Book newBook = new Book(itemName, itemNum,itemBookId,itemPrice);
-//                resultArr.add(newBook);
-//            }
-//        }
-////      resultArr.sort(Comparator.comparing(Book::getInventory));
-//        Collections.sort(resultArr, (Book a1, Book a2) -> a2.getInventory()-a1.getInventory());
-//        System.out.println(resultArr);
-//        return resultArr;
-//    }
-//
+
     @Override
     public List<HotSelling> getHotSelling(String from, String to) {
         List<Order> orderList = getOrderBetween(from, to);
@@ -245,6 +155,7 @@ public class OrderDaoImpl implements OrderDao {
                 }
             }
         }
+        Collections.sort(hotBooks,(HotSelling b1,HotSelling b2)->b2.getNum()-b1.getNum());
         return hotBooks;
     }
 
@@ -303,28 +214,9 @@ public class OrderDaoImpl implements OrderDao {
                 }
             }
         }
+        Collections.sort(hotBooks,(HotSelling b1,HotSelling b2)->b2.getNum()-b1.getNum());
         return new UserHotSelling(hotBooks,totalPrice,totalNum);
     }
-//
-//    @Override
-//    public ArrayList getUserHotSelling(String from, String to, Integer user_id) {
-//        List<Order> orderList = getOrderBetween(from, to);
-//        List<Order> userOrderList=new ArrayList<>();
-//        List<OrderItem> orderItemList = new ArrayList<>();
-//        for (Order order : orderList) {
-//            List<OrderItem> orderItemListSingle = orderItemRepository.getOrderItemsByOrderId(order.getOrderId());
-//            orderItemList.addAll(orderItemListSingle);
-//        }
-//
-//        return getHotBook(orderItemList);
-//    }
-//
-//    @Override
-//    public OrderItem addOrderItem(Integer order_id, Integer book_id, Integer book_num, String book_name, Integer book_price) {
-//        OrderItem orderItem=new OrderItem(order_id,book_id, book_num, book_name, book_price);
-//        orderItemRepository.save(orderItem);
-//        return orderItem;
-//    }
 
 }
 

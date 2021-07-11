@@ -1,5 +1,5 @@
 import React from 'react';
-import '../App.css';
+import '../css/App.css';
 import '../css/Login.css';
 import validate from './validateInfo';
 import useForm from './useForm';
@@ -12,16 +12,18 @@ function renderAdmin(){
     if(localStorage.getItem('userType')==='1')return  <Button buttonStyle='btn--outline' buttonLink='/AdminIndex'>Administrator</Button>;
     else return null;
 }
+
 function renderLogOut(){
   console.log(localStorage.getItem('userType'));
   if(localStorage.getItem('userType')!=null)return  <Button buttonStyle='btn--outline' onClick={logOut}>Log Out</Button>;
 }
+
 function logOut(){
   localStorage.removeItem('userId');
   localStorage.removeItem('userType');
   localStorage.removeItem('username');
-
 }
+
   const SignUp = ({submitForm}) => {
     const {handleChange, handleSubmit, values, errors} = useForm(
         submitForm,
@@ -85,10 +87,6 @@ function logOut(){
         </div>
       </div>
       </div> 
-
-
-
-
 
   );
 }

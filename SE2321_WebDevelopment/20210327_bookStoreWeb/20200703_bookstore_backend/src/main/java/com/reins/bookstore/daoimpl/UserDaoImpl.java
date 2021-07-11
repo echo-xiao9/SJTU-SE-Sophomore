@@ -94,9 +94,12 @@ public class UserDaoImpl<data1> implements UserDao {
     @Override
     public User addUser(String username, String password, String email) {
         User newUser= new User(username,2,email);
-        UserAuth newUserAuth=new UserAuth(username,password,2);
         userRepository.save(newUser);
+        User userGot=userRepository.getUserByName(username);
+        Integer id=userGot.getUserId();
+        UserAuth newUserAuth=new UserAuth(id, username,password,2);
         userAuthRepository.save(newUserAuth);
+        System.out.println(newUserAuth);
         return newUser;
     }
 
