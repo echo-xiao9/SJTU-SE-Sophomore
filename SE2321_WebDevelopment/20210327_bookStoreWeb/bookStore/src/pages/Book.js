@@ -218,6 +218,15 @@ and is wrapped around the whole page content, except for the footer in this exam
   }
 
   addToCart = e => {
+    if(localStorage.getItem("userId")===null){
+      alert("please log in!");
+      <script type="text/javascript">
+　　function jumurl(){
+　　window.location.href = 'http://localhost:3000/login'
+　　}
+　　setTimeout(jumurl,3000);
+　　</script>
+    }
     console.log("book:");
     console.log(this.state.book);
     axios({
@@ -228,7 +237,8 @@ and is wrapped around the whole page content, except for the footer in this exam
         author:this.state.book.author,
         price:this.state.book.price,
         number:1,
-        bookId:this.state.book.bookId
+        bookId:this.state.book.bookId,
+        userId:localStorage.getItem('userId')
       }
   }).then(response => {
       alert("Successfully add a book to cart!");

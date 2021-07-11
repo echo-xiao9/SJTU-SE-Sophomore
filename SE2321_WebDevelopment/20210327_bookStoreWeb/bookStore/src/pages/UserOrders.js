@@ -16,8 +16,8 @@ export default class Orders extends React.Component {
       orders: [],
       newOrders: [],
       bookName: "",
-      from:  "2021-05-03",
-      to:"2021-06-20"
+      from:  "2021-04-05",
+      to:"2021-07-12"
     }
 
     if(localStorage.getItem("userId")===null){
@@ -169,12 +169,8 @@ handleFromChange(e){
   console.log(this.state.from);
 }
 
-handleToChange(e){
+handleToChange=(e)=>{
   this.setState({
-    orders: this.state.orders,
-    newOrders: this.state.newOrders,
-    bookName: this.state.bookName,
-    from:this.state.from,
     to:e.target.value
   })
   console.log(this.state.to);
@@ -224,7 +220,7 @@ render() {
           id="date"
           label="From"
           type="date"
-          defaultValue="2021-05-03"
+          defaultValue="2021-04-05"
           InputLabelProps={{
             shrink: true,
           }}
@@ -236,7 +232,7 @@ render() {
           label="To"
           type="date"
           ref="myField"
-          defaultValue="2021-06-20"
+          defaultValue="2021-07-12"
           onChange={this.handleToChange}
           InputLabelProps={{
             shrink: true,

@@ -14,7 +14,7 @@ export default class HotUsers extends React.Component {
     this.state = {
       hotSelling:[],
       from:  "2021-04-05",
-      to:"2021-05-04"
+      to:"2021-07-12"
     }
   
     this.handleFromChange=this.handleFromChange.bind(this);
@@ -71,7 +71,7 @@ export default class HotUsers extends React.Component {
           id="date"
           label="From"
           type="date"
-          defaultValue="2021-05-10"
+          defaultValue="2021-04-05"
           InputLabelProps={{
             shrink: true,
           }}
@@ -83,7 +83,7 @@ export default class HotUsers extends React.Component {
           label="To"
           type="date"
           ref="myField"
-          defaultValue="2021-06-11"
+          defaultValue="2021-07-12"
           onChange={this.handleToChange}
           InputLabelProps={{
             shrink: true,

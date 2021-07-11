@@ -19,6 +19,14 @@ public class CartController {
         return cartService.getCart();
     }
 
+    @GetMapping("/getUserCart")
+        public List<Cart> getUserCart(
+                @RequestParam("userId") Integer userId
+    ){
+        return cartService.getUserCart(userId);
+    }
+
+
     @GetMapping("/clearCart")
     public List<Cart> clearCart(){
         return cartService.clearCart();
@@ -30,9 +38,10 @@ public class CartController {
             @RequestParam(required = false) String author,
             @RequestParam(required = false) Integer price,
             @RequestParam(required = false) Integer number,
-            @RequestParam(required = false) Integer bookId
+            @RequestParam(required = false) Integer bookId,
+            @RequestParam(required = false) Integer userId
             ){
-        return cartService.addToCart(name, author,price, number,bookId);
+        return cartService.addToCart(name, author,price, number,bookId,userId);
     }
 
 

@@ -45,11 +45,16 @@ export default class Carts extends React.Component {
 
 
 
-    const url = "http://localhost:9090/getCart";
-    axios.get(url).then((response) => {
-      const getBooks =response.data;
+    axios({
+      method: 'GET',
+      url: 'http://localhost:9090/getUserCart',
+      params: {
+        userId: localStorage.getItem("userId")
+      }
+  }).then(response => {
+    console.log(response.data);
       this.setState({
-          books: getBooks
+          books: response.data
       })
   })
   }
@@ -206,7 +211,7 @@ export default class Carts extends React.Component {
       method: 'GET',
       url: 'http://localhost:9090/addOrderFromUser',
       params: {
-        user_id: this.state.user_id,
+        user_id: localStorage.getItem("userId"),
         order_price:this.state.totalPrice,
         date:normalDate
       }

@@ -26,24 +26,23 @@ public class CartDaoImpl implements CartDao {
 
     @Override
     public Cart addToCart(String name, String author,  Integer price, Integer number, Integer
-                          bookId) {
+                          bookId,Integer userId) {
         Cart cart = cartRepository.getCartByName(name);
-//        System.out.println(cart);
 
             if (cart == null) {
-                Cart c = new Cart(name, author, price, number,bookId);
-                System.out.println("new cart");
-                System.out.println(c);
+                Cart c = new Cart(name, author, price, number,bookId,userId);
                 cartRepository.save(c);
                 return c;
             }
             else {
-                Cart c = cartRepository.getCartByName(name);
-                Integer num = c.getNumber() + 1;
-                cartRepository.deleteByName(c.getName());
-                Cart c2 = new Cart(name, author, price, num,bookId);
-                cartRepository.save(c2);
-                return c2;
+                cart.setNumber(cart.getNumber() + 1);
+                cartRepository.save(cart);
+                return cart;
             }
         }
+
+    @Override
+    public List<Cart> getUserCart(Integer userId) {
+        return cartRepository.findByUserId(userId);
+    }
 }
