@@ -24,7 +24,7 @@ import java.util.List;
 public class Book {
     @Id
     @Column(name = "id")
-    @GeneratedValue(strategy= GenerationType.SEQUENCE)
+    @GeneratedValue(strategy= GenerationType.SEQUENCE,generator="id")
     private Integer bookId;
     private String isbn;
     private String name;

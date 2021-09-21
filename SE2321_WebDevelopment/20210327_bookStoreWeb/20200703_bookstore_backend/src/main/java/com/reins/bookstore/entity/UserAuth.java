@@ -68,4 +68,12 @@ public class UserAuth {
 
     public UserAuth() {
     }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setUserType(Integer userType) {
+        this.userType = userType;
+    }
 }

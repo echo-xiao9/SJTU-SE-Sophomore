@@ -15,8 +15,7 @@ public interface UserService {
 
     List<User> getUsers();
 
-
-    UserAuth adminUserAuthChange(String name, Integer type);
+    UserAuth adminUserAuthChange(Integer user_id, Integer type);
 
     User getUserByName(String username);
 

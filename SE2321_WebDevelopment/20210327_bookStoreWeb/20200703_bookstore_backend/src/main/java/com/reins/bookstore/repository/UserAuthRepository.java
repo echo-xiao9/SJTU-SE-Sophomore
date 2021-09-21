@@ -17,6 +17,8 @@ public interface UserAuthRepository extends JpaRepository<UserAuth,String>{
     @Query("select p from UserAuth p where  p.username=:username")
     UserAuth getUserAuthByUserName(@Param("username") String username);
 
+    @Query("select p from UserAuth p where  p.userId=:userId")
+    UserAuth getUserAuthByUserId(@Param("userId") Integer userId);
 
     @Transactional
     void deleteByUsername(String username);

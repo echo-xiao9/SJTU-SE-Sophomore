@@ -111,13 +111,9 @@ export default class Excel extends React.Component {
     }
   };
 
-  updateInput(event) {
+  updateInput=(event) =>{
     this.setState({
-      orders: this.state.orders,
-      newOrders: this.state.newOrders,
-      bookName: event.target.value,
-      from: this.state.from,
-      to: this.state.to
+      bookName: event.target.value
     });
   }
 
@@ -181,38 +177,38 @@ export default class Excel extends React.Component {
       })
   }
   
-  addBookId(e){
+  addBookId=(e)=>{
     this.state.newBook[0]=e.target.value;
   }
-  addBookISBN(e){
+  addBookISBN=(e)=>{
     this.state.newBook[1]=e.target.value;
   }
-  addBookName(e){
+  addBookName=(e)=>{
     this.state.newBook[2]=e.target.value;
   }
-  addBookType(e){
+  addBookType=(e)=>{
     this.state.newBook[3]=e.target.value;
   }
-  addBookAuthor(e){
+  addBookAuthor=(e)=>{
     this.state.newBook[4]=e.target.value;
   }
-  addBookPrice(e){
+  addBookPrice=(e)=>{
     this.state.newBook[5]=e.target.value;
     console.log(this.state.newBook[5]);
   }
-  addBookInventory(e){
+  addBookInventory=(e)=>{
     this.state.newBook[6]=e.target.value;
   }
-  addBookImage(e){
+  addBookImage=(e)=>{
     this.state.newBook[7]=e.target.value;
     // console.log(this.state.newBook);
   }
-  addBookDescription(e){
+  addBookDescription=(e)=>{
     this.state.newBook[8]=e.target.value;
     // console.log(this.state.newBook);
   }
 
-  saveNewBook(){
+  saveNewBook=()=>{
 
     let newBook =  this.state.newBook.slice();
     newBook[0]= String(this.state.data.length+1);
@@ -241,7 +237,7 @@ export default class Excel extends React.Component {
   })
   }
 
-  changeDeleteTarget(e){
+  changeDeleteTarget=(e)=>{
     this.state.deleteTarget=e.target.value;
   }
 

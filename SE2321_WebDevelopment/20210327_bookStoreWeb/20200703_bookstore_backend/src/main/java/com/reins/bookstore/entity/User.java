@@ -25,8 +25,6 @@ public class User {
     private Integer type;
     private String email;
 
-
-
     public User() {
     }
 
@@ -36,4 +34,15 @@ public class User {
         this.email = email;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setType(Integer type) {
+        this.type = type;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 }

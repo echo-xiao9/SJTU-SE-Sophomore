@@ -4,11 +4,13 @@ import com.reins.bookstore.dao.CartDao;
 import com.reins.bookstore.entity.Cart;
 import com.reins.bookstore.service.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@Scope("session")
 public class CartServiceImpl implements CartService {
     @Autowired
     private CartDao cartDao;

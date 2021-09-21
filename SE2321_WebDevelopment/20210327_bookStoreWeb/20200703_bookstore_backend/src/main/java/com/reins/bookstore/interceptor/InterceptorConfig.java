@@ -44,4 +44,5 @@ public class InterceptorConfig implements WebMvcConfigurer {
         source.registerCorsConfiguration("/**", buildConfig());
         return new CorsFilter(source);
     }
+
 }

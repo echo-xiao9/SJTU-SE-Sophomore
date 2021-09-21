@@ -26,11 +26,7 @@ export default class Orders extends React.Component {
     axios.get(url).then((response) => {
       const data = response.data;
       this.setState({
-        orders: data,
-        newOrders: this.state.newOrders,
-        bookName: this.state.bookName,
-        from:this.state.from,
-        to:this.state.to
+        orders: data
       })
 
       console.log(this.state.orders);
@@ -157,23 +153,16 @@ export default class Orders extends React.Component {
     },
   }));
 
-handleFromChange(e){
+handleFromChange=(e)=>{
   this.setState({
-    orders: this.state.orders,
-    newOrders: this.state.newOrders,
-    bookName: this.state.bookName,
-    from:e.target.value,
-    to:this.state.to
+    from:e.target.value
   })
   console.log(this.state.from);
 }
 
-handleToChange(e){
+handleToChange=(e)=>{
   this.setState({
-    orders: this.state.orders,
-    newOrders: this.state.newOrders,
-    bookName: this.state.bookName,
-    from:this.state.from,
+    
     to:e.target.value
   })
   console.log(this.state.to);

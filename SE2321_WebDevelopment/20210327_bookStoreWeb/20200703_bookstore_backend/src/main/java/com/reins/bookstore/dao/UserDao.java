@@ -13,7 +13,7 @@ public interface UserDao {
 
     ArrayList getAdminUser();
 
-    UserAuth adminUserAuthChange(String name, Integer type);
+    UserAuth adminUserAuthChange(Integer userId, Integer type);
 
     User getUserByName(String username);
 

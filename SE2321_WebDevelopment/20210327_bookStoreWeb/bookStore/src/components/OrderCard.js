@@ -27,7 +27,7 @@ export default  function BasicTable(props) {
       <Table className={classes.table} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell align="center">Book ID</TableCell>
+            <TableCell align="center"></TableCell>
             <TableCell align="center">Book Name</TableCell>
             <TableCell align="center">Price &nbsp;/￥</TableCell>
             <TableCell align="center">Number</TableCell>

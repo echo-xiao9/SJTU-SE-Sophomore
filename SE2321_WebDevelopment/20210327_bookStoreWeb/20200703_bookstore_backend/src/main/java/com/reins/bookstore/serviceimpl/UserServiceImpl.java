@@ -41,8 +41,8 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public UserAuth adminUserAuthChange(String name, Integer type) {
-        return userDao.adminUserAuthChange(name,type);
+    public UserAuth adminUserAuthChange(Integer userId, Integer type) {
+        return userDao.adminUserAuthChange(userId,type);
     }
 
     @Override

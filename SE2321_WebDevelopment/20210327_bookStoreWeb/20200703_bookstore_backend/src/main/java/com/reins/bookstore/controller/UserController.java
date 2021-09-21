@@ -54,8 +54,9 @@ public class UserController {
                                @RequestParam("name") String name,
                                @RequestParam("email") String email,
                                @RequestParam Integer type){
-        userService.adminUserAuthChange(name, type);
-        return userService.adminUserChange(user_id, name,email, type);
+        UserAuth ua=userService.adminUserAuthChange(user_id, type);
+        User u=userService.adminUserChange(user_id, name,email, type);
+        return u;
     }
 
 }

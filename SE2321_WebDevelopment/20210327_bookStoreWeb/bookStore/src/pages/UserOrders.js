@@ -158,13 +158,9 @@ export default class Orders extends React.Component {
     },
   }));
 
-handleFromChange(e){
+handleFromChange=(e)=>{
   this.setState({
-    orders: this.state.orders,
-    newOrders: this.state.newOrders,
-    bookName: this.state.bookName,
-    from:e.target.value,
-    to:this.state.to
+    from:e.target.value
   })
   console.log(this.state.from);
 }

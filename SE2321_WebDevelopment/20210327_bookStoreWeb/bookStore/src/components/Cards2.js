@@ -13,7 +13,8 @@ export default class Orders extends React.Component {
     super(props);
     this.state = {
       book: [],
-      targetBookName: ""
+      targetBookName: "",
+      page:1
     }
     this.updateInput = this.updateInput.bind(this);
     this.search = this.search.bind(this);
@@ -22,6 +23,9 @@ export default class Orders extends React.Component {
     console.log(query);
     console.log("props");
     console.log(props);
+    this.setState({
+      page: props.props
+    })
     axios({
       method: 'GET',
       url: 'http://localhost:9090/getBooks',
@@ -35,6 +39,25 @@ export default class Orders extends React.Component {
       })
       console.log(this.state.book);
 
+    })
+  }
+
+  reset=()=>{
+    console.log("page");
+    console.log(this.state.page);
+    axios({
+      method: 'GET',
+      url: 'http://localhost:9090/getBooks',
+      params: {
+        page:this.state.page
+      }
+    }).then(response => {
+      const books = response.data;
+      this.setState({
+        book: books
+      })
+      console.log(this.state.book);
+      this.render();
     })
   }
 
@@ -73,7 +96,7 @@ export default class Orders extends React.Component {
         <h1> Books</h1>
               <input type="text" onChange={this.updateInput} placeholder="Book Name?" ></input>
               <Button onClick={this.search} className="">Search</Button>
-              <Button>Reset</Button>
+              <Button onClick={this.reset}>Reset</Button>
               <Carousel />
           <div className='cards__wrapper'>
             <ul className='cards__items'>

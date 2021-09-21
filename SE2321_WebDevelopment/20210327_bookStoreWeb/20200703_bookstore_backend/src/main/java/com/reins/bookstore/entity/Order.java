@@ -24,7 +24,7 @@ public class Order {
     private Integer userId;
     private Integer order_price;
 
-    @OneToMany(mappedBy = "order", cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, fetch = FetchType.LAZY,orphanRemoval = true)
     private List<OrderItem> orderItemList;
 
     public Order(Integer user_id, Integer order_price, String date) {

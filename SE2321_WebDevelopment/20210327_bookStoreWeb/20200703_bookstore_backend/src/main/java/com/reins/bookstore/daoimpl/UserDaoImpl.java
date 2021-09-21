@@ -65,25 +65,21 @@ public class UserDaoImpl<data1> implements UserDao {
             return u;
         }
         else {
-            System.out.println("find one by name");
-            userRepository.deleteByName(name);
-            User u2 = new User(name,type,email);
-            userRepository.save(u2);
-            return u2;
+            user.setType(type);
+            userRepository.save(user);
+            return user;
         }
     }
 
-    public UserAuth adminUserAuthChange( String name, Integer type){
-        UserAuth ua= userAuthRepository.getUserAuthByUserName(name);
-        String password;
-        if(ua!=null) password= ua.getPassword();
-        else password="123456";
-        System.out.println("password");
-        System.out.println(password);
-        userAuthRepository.deleteByUsername(name);
-        UserAuth ua2=  new UserAuth(name,password,type);
-        userAuthRepository.save(ua2);
-        return ua2;
+    public UserAuth adminUserAuthChange( Integer userId, Integer type){
+        UserAuth ua= userAuthRepository.getUserAuthByUserId(userId);
+//        User user=userRepository.getUserByName(name);
+
+       ua.setUserType(type);
+        userAuthRepository.save(ua);
+//        user.setType(type);
+//        userRepository.save(user);
+        return ua;
     }
 
     public User getUserByName(String name)

@@ -11,12 +11,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.context.WebApplicationContext;
+import org.springframework.jms.core.JmsTemplate;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @RestController
 public class OrderController {
+    @Autowired
+    WebApplicationContext applicationContext;
     @Autowired
     private OrderService orderService;
     @GetMapping("/getOrders")
@@ -64,6 +68,7 @@ public class OrderController {
                                    @RequestParam (required = false) Integer order_price,
                                    @RequestParam(required = false)String date
     ) {
+        JmsTemplate jmsTemplate = applicationContext.getBean(JmsTemplate.class);
         System.out.println("addOrder");
         return orderService.addOrderFromUser(user_id, order_price,date);
     }

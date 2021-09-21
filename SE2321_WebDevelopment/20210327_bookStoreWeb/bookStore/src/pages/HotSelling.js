@@ -34,11 +34,11 @@ export default class HotSelling extends React.Component {
       })
     }
 
-    handleFromChange(e){
+    handleFromChange=(e)=>{
       this.state.from=e.target.value;
     }
     
-    handleToChange(e){
+    handleToChange=(e)=>{
       this.state.to=e.target.value;
     }
 
