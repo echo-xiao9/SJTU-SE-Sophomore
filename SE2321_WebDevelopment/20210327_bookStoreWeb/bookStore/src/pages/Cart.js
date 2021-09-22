@@ -2,9 +2,8 @@ import React from 'react';
 import '../css/App.css';
 import '../css/Cart.css';
 import '../components/CartItem'
-import CartItem from '../components/CartItem';
 import axios from 'axios';
-import { useState, useEffect } from 'react';
+
 
 function formatPrice(price) {
   if (typeof price !== "number") {
@@ -184,11 +183,11 @@ export default class Carts extends React.Component {
     this.setState({
       books:[]
     })
-    const url = "http://localhost:9090/clearCart";
-    axios.get(url).then((response) => {
-      console.log("clear");
-      console.log(response);
-  })
+    // const url = "http://localhost:9090/clearCart";
+  //   axios.get(url).then((response) => {
+  //     console.log("clear");
+  //     console.log(response);
+  // })
   }
   getDate(){
     var date = new Date();       
@@ -213,31 +212,31 @@ export default class Carts extends React.Component {
       params: {
         user_id: localStorage.getItem("userId"),
         order_price:this.state.totalPrice,
-        date:normalDate
+        date:normalDate,
       }
   }).then(response => {
     console.log("response");
       console.log(response)
       if (response.status === 200) {
-        this.state.order_id=response.data.orderId;
-        console.log("orderId");
-        console.log(this.state.order_id);
-        for(var book in this.state.books){
-          console.log("book:");
-          var i=this.state.books[book];
-          console.log(i);
-          axios({
-            method: 'GET',
-            url: 'http://localhost:9090/addOrderItem',
-            params: {
-              order_id: this.state.order_id,
-              book_id:i.bookId,
-              book_num:i.number
-            }
-        }).then(response=>{
-          console.log(response.data);
-        })
-        }
+        // this.state.order_id=response.data.orderId;
+        // console.log("orderId");
+        // console.log(this.state.order_id);
+        // for(var book in this.state.books){
+        //   console.log("book:");
+        //   var i=this.state.books[book];
+        //   console.log(i);
+        //   axios({
+        //     method: 'GET',
+        //     url: 'http://localhost:9090/addOrderItem',
+        //     params: {
+        //       order_id: this.state.order_id,
+        //       book_id:i.bookId,
+        //       book_num:i.number
+        //     }
+        // }).then(response=>{
+        //   console.log(response.data);
+        // })
+        // }
         this.removeAll();
         alert("Place an order successfully.");
       }

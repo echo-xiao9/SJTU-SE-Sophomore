@@ -6,6 +6,7 @@ import com.reins.bookstore.dao.OrderDao;
 
 import com.reins.bookstore.entity.*;
 import com.reins.bookstore.service.OrderService;
+import org.aspectj.weaver.ast.Or;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -37,6 +38,12 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public OrderItem addOrderItem(Integer order_id, Integer book_id, Integer book_num) {
         OrderItem result = orderDao.addOrderItem(order_id,book_id,book_num);
+        return result;
+    }
+
+    @Override
+    public OrderItem addOrderItem2(Order order, Integer book_id, Integer book_num) {
+        OrderItem result = orderDao.addOrderItem2(order,book_id,book_num);
         return result;
     }
 
@@ -78,6 +85,11 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public UserHotSelling getUserHotSelling(String from, String to, Integer user_id) {
         return orderDao.getUserHotSelling(from,to,user_id);
+    }
+
+    @Override
+    public List<OrderItem> getOrderItems(Integer order_id) {
+        return orderDao.getOrderItems(order_id);
     }
 
 

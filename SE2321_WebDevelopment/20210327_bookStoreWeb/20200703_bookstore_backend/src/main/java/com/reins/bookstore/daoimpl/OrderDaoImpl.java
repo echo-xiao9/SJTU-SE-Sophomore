@@ -8,6 +8,7 @@ import com.reins.bookstore.repository.OrderItemRepository;
 import com.reins.bookstore.repository.OrderRepository;
 
 import com.reins.bookstore.repository.UserRepository;
+import org.aspectj.weaver.ast.Or;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -41,8 +42,10 @@ public class OrderDaoImpl implements OrderDao {
 
     @Override
     public List<Order> getUserOrders(Integer user_id) {
-        return orderRepository.findByUserId(user_id);
+        List<Order> orderList = orderRepository.findByUserId(user_id);
+        return orderList;
     }
+
 
     @Override
     public List<Order> getUserBookOrders(Integer user_id, String bookName) {
@@ -115,11 +118,27 @@ public class OrderDaoImpl implements OrderDao {
     public OrderItem addOrderItem(Integer order_id, Integer book_id, Integer book_num) {
         Book b=bookRepository.findById(book_id).get();
         Order order=orderRepository.findById(order_id).get();
-        OrderItem orderItem=new OrderItem(order,b,book_num);
+        OrderItem orderItem=new OrderItem(order_id,book_id,book_num);
+        orderItem.setBook(bookRepository.findById(book_id).get());
+        orderItem.setOrder(orderRepository.findById(order_id).get());
         orderItemRepository.save(orderItem);
         b.setInventory(b.getInventory()-book_num);
         bookRepository.save(b);
         return orderItem;
+    }
+
+    @Override
+    public OrderItem addOrderItem2(Order order, Integer book_id, Integer book_num) {
+        Book b=bookRepository.findById(book_id).get();
+        OrderItem orderItem= new OrderItem(order,b,book_num);
+        orderItemRepository.save(new OrderItem(order,b,book_num));
+        return orderItem;
+    }
+
+    @Override
+    public List<OrderItem> getOrderItems(Integer order_id) {
+        Order order =orderRepository.getById(order_id);
+        return order.getOrderItemList();
     }
 
     public List<Order> getOrderBetween(String from, String to) {
@@ -217,6 +236,8 @@ public class OrderDaoImpl implements OrderDao {
         Collections.sort(hotBooks,(HotSelling b1,HotSelling b2)->b2.getNum()-b1.getNum());
         return new UserHotSelling(hotBooks,totalPrice,totalNum);
     }
+
+
 
 }
 

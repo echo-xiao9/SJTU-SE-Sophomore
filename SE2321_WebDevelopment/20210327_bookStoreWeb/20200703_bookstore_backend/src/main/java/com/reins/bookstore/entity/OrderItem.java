@@ -26,11 +26,13 @@ public class OrderItem {
     private Integer itemId;
 
 
-    @ManyToOne(cascade = {CascadeType.REFRESH,CascadeType.PERSIST, CascadeType.MERGE},fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JsonIgnoreProperties(ignoreUnknown = true, value = {"orderItemList"})
     @JoinColumn(name = "order_id")
     @JSONField(serialize = false)
     private Order order;
+
+
 
     @ManyToOne
     @JoinColumn(name = "book_id")
@@ -54,9 +56,20 @@ public class OrderItem {
         this.book_num = book_num;
     }
 
+
     public OrderItem() {
     }
 
+    public OrderItem(Integer order_id, Integer book_id, Integer book_num) {
+        this.book_num=book_num;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
+    }
 
 
+    public void setBook(Book book) {
+        this.book = book;
+    }
 }

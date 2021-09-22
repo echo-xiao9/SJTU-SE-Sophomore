@@ -37,6 +37,7 @@ export default class Orders extends React.Component {
       this.setState({
         book: books
       })
+      console.log("getBook result:"+response.data);
       console.log(this.state.book);
 
     })

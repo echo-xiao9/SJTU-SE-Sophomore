@@ -2,19 +2,15 @@ package com.reins.bookstore.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.serializer.SerializerFeature;
-import com.reins.bookstore.entity.HotSelling;
-import com.reins.bookstore.entity.Order;
-import com.reins.bookstore.entity.OrderItem;
-import com.reins.bookstore.entity.UserHotSelling;
+import com.reins.bookstore.entity.*;
 import com.reins.bookstore.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jms.core.JmsTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.WebApplicationContext;
-import org.springframework.jms.core.JmsTemplate;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -23,15 +19,30 @@ public class OrderController {
     WebApplicationContext applicationContext;
     @Autowired
     private OrderService orderService;
+
+
     @GetMapping("/getOrders")
     public String getOrders() {
 //        return orderService.getOrders();
+
         return JSON.toJSONString(orderService.getOrders(), SerializerFeature.DisableCircularReferenceDetect);
     }
+
+
 
     @GetMapping("/getUserOrders")
     public String getUserOrders(@RequestParam(required = false) Integer user_id){
         return JSON.toJSONString(orderService.getUserOrders(user_id), SerializerFeature.DisableCircularReferenceDetect);
+    }
+
+    @GetMapping("/getUserOrders1")
+    public java.util.List<Order> getUserOrders1(@RequestParam(required = false) Integer user_id){
+        return orderService.getUserOrders(user_id);
+//        return JSON.toJSONString(orderService.getUserOrders(user_id), SerializerFeature.DisableCircularReferenceDetect);
+    }
+    @GetMapping("/getOrderItem")
+    public List<OrderItem> getOrderItems(@RequestParam(required = false) Integer order_id){
+        return orderService.getOrderItems(order_id);
     }
 
     @GetMapping("/getUserBookOrders")
@@ -69,9 +80,12 @@ public class OrderController {
                                    @RequestParam(required = false)String date
     ) {
         JmsTemplate jmsTemplate = applicationContext.getBean(JmsTemplate.class);
-        System.out.println("addOrder");
-        return orderService.addOrderFromUser(user_id, order_price,date);
+        System.out.println("Sending an order message.");
+        Order order = new Order(user_id,order_price, date);
+        jmsTemplate.convertAndSend("orderBox", new Order(user_id,order_price, date));
+        return order;
     }
+
 
     @GetMapping("/addOrderItem")
     public OrderItem addOrderItem(

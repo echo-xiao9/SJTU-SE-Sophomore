@@ -19,8 +19,9 @@ const useStyles = makeStyles({
 
 export default  function BasicTable(props) {
   const classes = useStyles();
-
+  console.log("props")
   console.log(props);
+  if(!props.rows)return null;
 
   return (
     <TableContainer component={Paper} align="center">
@@ -35,7 +36,9 @@ export default  function BasicTable(props) {
           </TableRow>
         </TableHead>
         <TableBody>
+
           {props.rows.map((row) => (
+            
             <TableRow key={row.book.name}>
               <TableCell component="th" scope="row"align="center">
                 {row.book_id}
@@ -43,7 +46,6 @@ export default  function BasicTable(props) {
               <TableCell align="center">{row.book.name}</TableCell>
               <TableCell align="center">{row.book.price/100}</TableCell>
               <TableCell align="center">{row.book_num}</TableCell>
-              {/* <TableCell align="right">{row.protein}</TableCell> */}
             </TableRow>
           ))}
          </TableBody>

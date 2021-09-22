@@ -1,6 +1,7 @@
 package com.reins.bookstore.service;
 
 import com.reins.bookstore.entity.Cart;
+import org.springframework.context.annotation.Scope;
 
 import java.util.List;
 

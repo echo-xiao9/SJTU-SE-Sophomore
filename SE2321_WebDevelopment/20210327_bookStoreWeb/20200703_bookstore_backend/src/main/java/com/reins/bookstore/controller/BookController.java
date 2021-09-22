@@ -4,6 +4,7 @@ import com.reins.bookstore.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,7 +22,9 @@ public class BookController {
 
     @GetMapping("/getBooks")
     public List<Book> getBooks(@RequestParam("page") Integer page) {
-        return bookService.getBooks(page);
+        List<Book> bookList = bookService.getBooks(page);
+        System.out.println("bookList size:"+bookList.size());
+        return bookList;
     }
 
     @GetMapping("/getBook")

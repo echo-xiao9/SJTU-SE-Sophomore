@@ -3,8 +3,10 @@ package com.reins.bookstore.entity;
 
 import com.alibaba.fastjson.annotation.JSONField;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.fasterxml.jackson.annotation.*;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -18,13 +20,16 @@ import java.util.Set;
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,property = "orderId")
 public class Order {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy= GenerationType.SEQUENCE,generator="id")
     @Column(name = "order_id")
     private Integer orderId;
     private Integer userId;
     private Integer order_price;
 
-    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, fetch = FetchType.LAZY,orphanRemoval = true)
+    @JsonIgnore
+    @JSONField(serialize = false)
+    @JsonIgnoreProperties(value = {"order"}, ignoreUnknown = true)
+    @OneToMany(mappedBy = "order", cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, fetch = FetchType.LAZY)
     private List<OrderItem> orderItemList;
 
     public Order(Integer user_id, Integer order_price, String date) {
@@ -38,4 +43,27 @@ public class Order {
 
     public Order() {
     }
+
+    public void setOrderId(Integer orderId) {
+        this.orderId = orderId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
+    public void setOrder_price(Integer order_price) {
+        this.order_price = order_price;
+    }
+
+    public void setOrderItemList(List<OrderItem> orderItemList) {
+        this.orderItemList = orderItemList;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+
+
 }
