@@ -1,0 +1,32 @@
+﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppCommon.targets(36,5): warning MSB4211: 正在首次将属性“IntermediateOutputPath”设置为某个值，但已在“C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppCommon.targets (35,5)”处使用了该属性。
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Current\Bin\Microsoft.Common.CurrentVersion.targets(337,5): warning MSB4211: 正在首次将属性“CleanFile”设置为某个值，但已在“C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppCommon.targets (35,5)”处使用了该属性。
+  image_DXT.c
+C:\Users\dingshanchen\Desktop\Simple OpenGL Image Library\src\image_DXT.c(92,9): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  image_helper.c
+C:\Users\dingshanchen\Desktop\Simple OpenGL Image Library\src\image_helper.c(325,1): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
+C:\Users\dingshanchen\Desktop\Simple OpenGL Image Library\src\image_helper.c(366,58): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
+C:\Users\dingshanchen\Desktop\Simple OpenGL Image Library\src\image_helper.c(373,46): warning C4244: “=”: 从“float”转换到“int”，可能丢失数据
+C:\Users\dingshanchen\Desktop\Simple OpenGL Image Library\src\image_helper.c(415,58): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
+C:\Users\dingshanchen\Desktop\Simple OpenGL Image Library\src\image_helper.c(422,62): warning C4244: “=”: 从“float”转换到“int”，可能丢失数据
+  SOIL.c
+C:\Users\dingshanchen\Desktop\Simple OpenGL Image Library\src\SOIL.c(1719,36): warning C4018: “<=”: 有符号/无符号不匹配
+C:\Users\dingshanchen\Desktop\Simple OpenGL Image Library\src\SOIL.c(1729,19): warning C4018: “<”: 有符号/无符号不匹配
+C:\Users\dingshanchen\Desktop\Simple OpenGL Image Library\src\SOIL.c(1867,52): warning C4267: “函数”: 从“size_t”转换到“int”，可能丢失数据
+C:\Users\dingshanchen\Desktop\Simple OpenGL Image Library\src\SOIL.c(1841,6): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  stb_image_aug.c
+C:\Users\dingshanchen\Desktop\Simple OpenGL Image Library\src\stb_image_aug.c(177,14): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\dingshanchen\Desktop\Simple OpenGL Image Library\src\stb_image_aug.c(251,14): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\dingshanchen\Desktop\Simple OpenGL Image Library\src\stb_image_aug.c(303,14): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\dingshanchen\Desktop\Simple OpenGL Image Library\src\stb_image_aug.c(1557,14): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\dingshanchen\Desktop\Simple OpenGL Image Library\src\stb_image_aug.c(2394,14): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\dingshanchen\Desktop\Simple OpenGL Image Library\src\stb_image_aug.c(2709,14): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\dingshanchen\Desktop\Simple OpenGL Image Library\src\stb_image_aug.c(2995,14): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\dingshanchen\Desktop\Simple OpenGL Image Library\src\stb_image_aug.c(3209,14): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\dingshanchen\Desktop\Simple OpenGL Image Library\src\stb_image_aug.c(3548,14): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\dingshanchen\Desktop\Simple OpenGL Image Library\src\stb_image_aug.c(3644,14): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\dingshanchen\Desktop\Simple OpenGL Image Library\src\stbi_DDS_aug_c.h(362,19): warning C4018: “>”: 有符号/无符号不匹配
+C:\Users\dingshanchen\Desktop\Simple OpenGL Image Library\src\stbi_DDS_aug_c.h(366,19): warning C4018: “>”: 有符号/无符号不匹配
+C:\Users\dingshanchen\Desktop\Simple OpenGL Image Library\src\stbi_DDS_aug_c.h(390,19): warning C4018: “<”: 有符号/无符号不匹配
+C:\Users\dingshanchen\Desktop\Simple OpenGL Image Library\src\stbi_DDS_aug_c.h(427,19): warning C4018: “<”: 有符号/无符号不匹配
+C:\Users\dingshanchen\Desktop\Simple OpenGL Image Library\src\stbi_DDS_aug_c.h(498,14): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  SOIL.vcxproj -> C:\Users\dingshanchen\Desktop\Simple OpenGL Image Library\projects\VC9\x64\Release\SOIL.lib

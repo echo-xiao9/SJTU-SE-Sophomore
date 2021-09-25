@@ -1,0 +1,1 @@
+C:\Users\dingshanchen\Desktop\Simple OpenGL Image Library\projects\VC8\Release\SOIL.lib

@@ -1,0 +1,86 @@
+﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppCommon.targets(36,5): warning MSB4211: 正在首次将属性“IntermediateOutputPath”设置为某个值，但已在“C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppCommon.targets (35,5)”处使用了该属性。
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Current\Bin\Microsoft.Common.CurrentVersion.targets(337,5): warning MSB4211: 正在首次将属性“CleanFile”设置为某个值，但已在“C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppCommon.targets (35,5)”处使用了该属性。
+  autofit.c
+C:\Users\dingshanchen\Desktop\freetype-2.10.2\src\autofit\afscript.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:\Users\dingshanchen\Desktop\freetype-2.10.2\src\autofit\afblue.c(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:\Users\dingshanchen\Desktop\freetype-2.10.2\src\autofit\afblue.c(255,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:\Users\dingshanchen\Desktop\freetype-2.10.2\src\autofit\afscript.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:\Users\dingshanchen\Desktop\freetype-2.10.2\src\autofit\afscript.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:\Users\dingshanchen\Desktop\freetype-2.10.2\src\autofit\afscript.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:\Users\dingshanchen\Desktop\freetype-2.10.2\src\autofit\afscript.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:\Users\dingshanchen\Desktop\freetype-2.10.2\src\autofit\afscript.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+  ftbase.c
+  ftbbox.c
+  ftbdf.c
+  ftbitmap.c
+  ftcid.c
+  ftfstype.c
+  ftgasp.c
+  ftglyph.c
+  ftgxval.c
+  ftinit.c
+  ftmm.c
+  ftotval.c
+  ftpatent.c
+  ftpfr.c
+  ftstroke.c
+  ftsynth.c
+  ftsystem.c
+  fttype1.c
+  ftwinfnt.c
+  正在生成代码...
+C:\Users\dingshanchen\Desktop\freetype-2.10.2\src\base\ftstroke.c(1117): warning C4701: 使用了可能未初始化的局部变量“sigma”
+C:\Users\dingshanchen\Desktop\freetype-2.10.2\src\base\ftstroke.c(1022): warning C4701: 使用了可能未初始化的局部变量“sigma”
+  正在编译...
+  bdf.c
+  ftcache.c
+  cff.c
+  type1cid.c
+  ftgzip.c
+  ftlzw.c
+  pcf.c
+  pfr.c
+  psaux.c
+  pshinter.c
+  psmodule.c
+  raster.c
+  sfnt.c
+C:\Users\dingshanchen\Desktop\freetype-2.10.2\src\sfnt\sfwoff2.c(153,41): warning C4244: “=”: 从“const FT_Int”转换到“FT_UShort”，可能丢失数据
+C:\Users\dingshanchen\Desktop\freetype-2.10.2\src\sfnt\sfwoff2.c(160,45): warning C4244: “=”: 从“int”转换到“FT_UShort”，可能丢失数据
+C:\Users\dingshanchen\Desktop\freetype-2.10.2\src\sfnt\sfwoff2.c(317,37): warning C4100: “src_size”: 未引用的形参
+C:\Users\dingshanchen\Desktop\freetype-2.10.2\src\sfnt\sfwoff2.c(316,37): warning C4100: “src”: 未引用的形参
+C:\Users\dingshanchen\Desktop\freetype-2.10.2\src\sfnt\sfwoff2.c(315,37): warning C4100: “dst_size”: 未引用的形参
+C:\Users\dingshanchen\Desktop\freetype-2.10.2\src\sfnt\sfwoff2.c(314,37): warning C4100: “dst”: 未引用的形参
+C:\Users\dingshanchen\Desktop\freetype-2.10.2\src\sfnt\sfwoff2.c(594,44): warning C4244: “=”: 从“FT_Int”转换到“FT_Byte”，可能丢失数据
+C:\Users\dingshanchen\Desktop\freetype-2.10.2\src\sfnt\sfwoff2.c(599,34): warning C4244: “=”: 从“FT_Int”转换到“FT_Byte”，可能丢失数据
+C:\Users\dingshanchen\Desktop\freetype-2.10.2\src\sfnt\sfwoff2.c(613,40): warning C4244: “=”: 从“FT_Int”转换到“FT_Byte”，可能丢失数据
+C:\Users\dingshanchen\Desktop\freetype-2.10.2\src\sfnt\sfwoff2.c(636,39): warning C4244: “=”: 从“FT_Int”转换到“FT_Byte”，可能丢失数据
+C:\Users\dingshanchen\Desktop\freetype-2.10.2\src\sfnt\sfwoff2.c(640,9): warning C4244: “=”: 从“FT_Int”转换到“FT_Byte”，可能丢失数据
+C:\Users\dingshanchen\Desktop\freetype-2.10.2\src\sfnt\sfwoff2.c(649,39): warning C4244: “=”: 从“FT_Int”转换到“FT_Byte”，可能丢失数据
+C:\Users\dingshanchen\Desktop\freetype-2.10.2\src\sfnt\sfwoff2.c(653,9): warning C4244: “=”: 从“FT_Int”转换到“FT_Byte”，可能丢失数据
+C:\Users\dingshanchen\Desktop\freetype-2.10.2\src\sfnt\sfwoff2.c(706,5): warning C4244: “=”: 从“FT_Int”转换到“FT_Byte”，可能丢失数据
+C:\Users\dingshanchen\Desktop\freetype-2.10.2\src\sfnt\sfwoff2.c(707,5): warning C4244: “=”: 从“FT_Int”转换到“FT_Byte”，可能丢失数据
+C:\Users\dingshanchen\Desktop\freetype-2.10.2\src\sfnt\sfwoff2.c(708,5): warning C4244: “=”: 从“FT_Int”转换到“FT_Byte”，可能丢失数据
+C:\Users\dingshanchen\Desktop\freetype-2.10.2\src\sfnt\sfwoff2.c(709,5): warning C4244: “=”: 从“FT_Int”转换到“FT_Byte”，可能丢失数据
+C:\Users\dingshanchen\Desktop\freetype-2.10.2\src\sfnt\sfwoff2.c(1150,11): warning C4244: “=”: 从“FT_Int”转换到“FT_Byte”，可能丢失数据
+C:\Users\dingshanchen\Desktop\freetype-2.10.2\src\sfnt\sfwoff2.c(1459,9): warning C4244: “=”: 从“int”转换到“FT_Byte”，可能丢失数据
+C:\Users\dingshanchen\Desktop\freetype-2.10.2\src\sfnt\sfwoff2.c(1463,7): warning C4244: “=”: 从“int”转换到“FT_Byte”，可能丢失数据
+C:\Users\dingshanchen\Desktop\freetype-2.10.2\src\sfnt\ttcolr.c(127,50): warning C4018: “>”: 有符号/无符号不匹配
+C:\Users\dingshanchen\Desktop\freetype-2.10.2\src\sfnt\ttcolr.c(136,40): warning C4018: “>”: 有符号/无符号不匹配
+C:\Users\dingshanchen\Desktop\freetype-2.10.2\src\sfnt\ttcpal.c(121,40): warning C4018: “>”: 有符号/无符号不匹配
+C:\Users\dingshanchen\Desktop\freetype-2.10.2\src\sfnt\ttcpal.c(153,50): warning C4018: “>”: 有符号/无符号不匹配
+C:\Users\dingshanchen\Desktop\freetype-2.10.2\src\sfnt\ttcpal.c(174,50): warning C4018: “>”: 有符号/无符号不匹配
+C:\Users\dingshanchen\Desktop\freetype-2.10.2\src\sfnt\ttcpal.c(195,57): warning C4018: “>”: 有符号/无符号不匹配
+C:\Users\dingshanchen\Desktop\freetype-2.10.2\src\sfnt\ttload.c(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+  smooth.c
+  truetype.c
+C:\Users\dingshanchen\Desktop\freetype-2.10.2\src\truetype\ttobjs.c(982,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+  type1.c
+  type42.c
+  winfnt.c
+  正在生成代码...
+C:\Users\dingshanchen\Desktop\freetype-2.10.2\src\truetype\ttgxvar.c(2237): warning C4701: 使用了可能未初始化的局部变量“fvar_head”
+C:\Users\dingshanchen\Desktop\freetype-2.10.2\src\smooth\ftgrays.c(534): warning C4706: 条件表达式内的赋值
+  ftdebug.c
+    正在创建库 ..\..\..\objs\Win32\Debug\freetype.lib 和对象 ..\..\..\objs\Win32\Debug\freetype.exp
+  freetype.vcxproj -> C:\Users\dingshanchen\Desktop\freetype-2.10.2\builds\windows\visualc\..\..\..\objs\Win32\Debug\freetype.dll

@@ -1,0 +1,1 @@
+C:\Users\dingshanchen\Desktop\OpenGL+VS2019超完整配置包\Simple OpenGL Image Library\projects\VC9\Release\SOIL.lib

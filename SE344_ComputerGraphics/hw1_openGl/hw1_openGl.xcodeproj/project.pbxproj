@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		E831241626F1A10300B438D9 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E831241526F1A10300B438D9 /* main.cpp */; };
+		E831241E26F1A2F600B438D9 /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E831241D26F1A2F600B438D9 /* GLUT.framework */; };
+		E831242026F1A2FE00B438D9 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E831241F26F1A2FE00B438D9 /* OpenGL.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +27,9 @@
 /* Begin PBXFileReference section */
 		E831241226F1A10300B438D9 /* hw1_openGl */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = hw1_openGl; sourceTree = BUILT_PRODUCTS_DIR; };
 		E831241526F1A10300B438D9 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		E831241D26F1A2F600B438D9 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = System/Library/Frameworks/GLUT.framework; sourceTree = SDKROOT; };
+		E831241F26F1A2FE00B438D9 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
+		E831242126F1EB5500B438D9 /* libglfw.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libglfw.3.dylib; path = ../../../../../../../usr/local/Cellar/glfw/3.3.4/lib/libglfw.3.dylib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,6 +37,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E831242026F1A2FE00B438D9 /* OpenGL.framework in Frameworks */,
+				E831241E26F1A2F600B438D9 /* GLUT.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -43,6 +50,7 @@
 			children = (
 				E831241426F1A10300B438D9 /* hw1_openGl */,
 				E831241326F1A10300B438D9 /* Products */,
+				E831241C26F1A2F600B438D9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -60,6 +68,16 @@
 				E831241526F1A10300B438D9 /* main.cpp */,
 			);
 			path = hw1_openGl;
+			sourceTree = "<group>";
+		};
+		E831241C26F1A2F600B438D9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E831242126F1EB5500B438D9 /* libglfw.3.dylib */,
+				E831241F26F1A2FE00B438D9 /* OpenGL.framework */,
+				E831241D26F1A2F600B438D9 /* GLUT.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -239,7 +257,18 @@
 		E831241A26F1A10300B438D9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
+				HEADER_SEARCH_PATHS = (
+					/usr/local/Cellar/glfw/3.3.4/include,
+					"<Multiple",
+					"values>",
+				);
+				"HEADER_SEARCH_PATHS[arch=*]" = "";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/usr/local/Cellar/glfw/3.3.4/lib,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -247,7 +276,18 @@
 		E831241B26F1A10300B438D9 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
+				HEADER_SEARCH_PATHS = (
+					/usr/local/Cellar/glfw/3.3.4/include,
+					"<Multiple",
+					"values>",
+				);
+				"HEADER_SEARCH_PATHS[arch=*]" = "";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/usr/local/Cellar/glfw/3.3.4/lib,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

@@ -1,0 +1,2 @@
+C:\Users\dingshanchen\Desktop\freetype-2.10.2\objs\Win32\Debug\freetype.dll
+C:\Users\dingshanchen\Desktop\freetype-2.10.2\objs\Win32\Debug\freetype.pdb
