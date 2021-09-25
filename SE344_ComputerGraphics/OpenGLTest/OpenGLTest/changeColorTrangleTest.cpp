@@ -111,11 +111,11 @@ int main()
     // ------------------------------------------------------------------
     float firstTriangle[] = {
         -0.45f, -0.5f, 0.0f,  // left
-        -0.0f, -0.5f, 0.0f,  // right
-        -0.225f, 0.0f, 0.0f,  // top
+        0.45f, -0.5f, 0.0f,  // right
+        0.0f, 0.5f, 0.0f,  // top
     };
     float secondTriangle[] = {
-        0.0f, -0.5f, 0.0f,  // left
+        1.0f, -0.5f, 0.0f,  // left
         0.45f, -0.5f, 0.0f,  // right
         0.225f, 0.0f, 0.0f   // top
     };
@@ -154,7 +154,7 @@ int main()
 
         // render
         // ------
-        glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+        glClearColor(0.15f, 0.1f, 0.4f, 0.5f);
         glClear(GL_COLOR_BUFFER_BIT);
 
         // now when we draw the triangle we first use the vertex and orange fragment shader from the first program
@@ -171,12 +171,13 @@ int main()
         transform = glm::rotate(transform, (float)glfwGetTime(), glm::vec3(0.0f, 0.0f, 1.0f));
 
 
-        glUniform4f(vertexColorLocation, 0.0f, greenValue, 0.0f, 1.0f);
+        glUniform4f(vertexColorLocation, greenValue, 0.6, 0.8f, 1.0f);
         glDrawArrays(GL_TRIANGLES, 0, 3);    // this call should output an orange triangle
         // then we draw the second triangle using the data from the second VAO
         // when we draw the second triangle we want to use a different shader program so we switch to the shader program with our yellow fragment shader.
         glUseProgram(shaderProgramYellow);
         glBindVertexArray(VAOs[1]);
+        glUniform4f(vertexColorLocation, 0.3, greenValue, 0.8f, 1.0f);
         glDrawArrays(GL_TRIANGLES, 0, 3);    // this call should output a yellow triangle
 
 
