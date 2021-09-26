@@ -7,6 +7,10 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
+
+#include <iostream>
+using namespace std;
+
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void processInput(GLFWwindow *window);
 
@@ -36,6 +40,15 @@ void drawTriangle(unsigned int shaderProgram,unsigned int VAOs[],int index, int 
     if(flag==0)glPolygonMode(GL_FRONT_AND_BACK, GL_FILL); // set drawing to line
     else glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
     glDrawArrays(GL_TRIANGLES, 0, 3);
+}
+
+void setUpTriangle(unsigned int VAOs[], unsigned int VBOs[], int index,float triangle[]){
+    glBindVertexArray(VAOs[index]);    // note that we bind to a different VAO now
+    glBindBuffer(GL_ARRAY_BUFFER, VBOs[index]);    // and a different VBO
+//    glBufferData(GL_ARRAY_BUFFER, sizeof(triangle), triangle, GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, 36, triangle, GL_STATIC_DRAW);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, (void*)0); // because the vertex data is tightly packed we can also specify 0 as the vertex attribute's stride to let OpenGL figure it out
+    glEnableVertexAttribArray(0);
 }
 
 int main()
@@ -119,6 +132,9 @@ int main()
 
     // set up vertex data (and buffer(s)) and configure vertex attributes
     // ------------------------------------------------------------------
+    
+    
+    
     float firstTriangle[] = {
         -0.45f, -0.3897f, 0.0f,  // left
         0.45f,  -0.3897f, 0.0f,  // right
@@ -139,42 +155,33 @@ int main()
         0.15f, 0.01445, 0.0f,  // right
         0.1, 0.2165, 0.0f   // top
     };
+    float thirdTriangle[] = {
+        -0.03333,  -0.24536, 0.0f,
+        0.1167, -0.101, 0.0f,
+        -0.0833,  -0.0433, 0.0f,
+    };
+        
 
 
-
-    unsigned int VBOs[4], VAOs[4];
-    glGenVertexArrays(4, VAOs); // we can also generate multiple VAOs or buffers at the same time
-    glGenBuffers(4, VBOs);
+    unsigned int VBOs[9], VAOs[9];
+    glGenVertexArrays(9, VAOs); // we can also generate multiple VAOs or buffers at the same time
+    glGenBuffers(9, VBOs);
     // first triangle setup
     // --------------------
-    glBindVertexArray(VAOs[0]);
-    glBindBuffer(GL_ARRAY_BUFFER, VBOs[0]);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(firstTriangle), firstTriangle, GL_STATIC_DRAW);
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);    // Vertex attributes stay the same
-    glEnableVertexAttribArray(0);
+    setUpTriangle(VAOs, VBOs, 0, firstTriangle);
     // glBindVertexArray(0); // no need to unbind at all as we directly bind a different VAO the next few lines
     // second triangle setup
     // ---------------------
-    glBindVertexArray(VAOs[1]);    // note that we bind to a different VAO now
-    glBindBuffer(GL_ARRAY_BUFFER, VBOs[1]);    // and a different VBO
-    glBufferData(GL_ARRAY_BUFFER, sizeof(secondTriangle1), secondTriangle1, GL_STATIC_DRAW);
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, (void*)0); // because the vertex data is tightly packed we can also specify 0 as the vertex attribute's stride to let OpenGL figure it out
-    glEnableVertexAttribArray(0);
+    setUpTriangle(VAOs, VBOs, 1, secondTriangle1);
     
     // third
-    glBindVertexArray(VAOs[2]);    // note that we bind to a different VAO now
-    glBindBuffer(GL_ARRAY_BUFFER, VBOs[2]);    // and a different VBO
-    glBufferData(GL_ARRAY_BUFFER, sizeof(secondTriangle2), secondTriangle2, GL_STATIC_DRAW);
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, (void*)0); // because the vertex data is tightly packed we can also specify 0 as the vertex attribute's stride to let OpenGL figure it out
-    glEnableVertexAttribArray(0);
+    setUpTriangle(VAOs, VBOs, 2, secondTriangle2);
 
     // fourth
-    glBindVertexArray(VAOs[3]);    // note that we bind to a different VAO now
-    glBindBuffer(GL_ARRAY_BUFFER, VBOs[3]);    // and a different VBO
-    glBufferData(GL_ARRAY_BUFFER, sizeof(secondTriangle3), secondTriangle3, GL_STATIC_DRAW);
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, (void*)0); // because the vertex data is tightly packed we can also specify 0 as the vertex attribute's stride to let OpenGL figure it out
-    glEnableVertexAttribArray(0);
 
+    setUpTriangle(VAOs, VBOs, 3, secondTriangle3);
+
+    setUpTriangle(VAOs, VBOs, 4, thirdTriangle);
 
 
     // render loop
@@ -184,35 +191,43 @@ int main()
 
         float timeValue = glfwGetTime();
         float greenValue = sin(timeValue) / 2.0f + 0.5f;
-        
+        float greenValue2= sin(timeValue+0.5) / 2.0f + 0.5f;
+        float greenValue3= sin(timeValue+1) / 2.0f + 0.5f;
+//        float greenValue = sin(timeValue);
+//        float greenValue2= sin(timeValue+0.4);
+//        float greenValue3= sin(timeValue+0.8) ;
+        cout<<"timeValue:"<<timeValue<<endl;
         // input
         // -----
         processInput(window);
-
-        // render the first trriangle
-        // ------
-        glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);// set drawing to fill
         glClearColor(0.15f, 0.1f, 0.2f+greenValue/4, 0.5f);
         glClear(GL_COLOR_BUFFER_BIT);
-
-        // now when we draw the triangle we first use the vertex and orange fragment shader from the first program
-        glUseProgram(shaderProgramOrange);
-        // draw the first triangle using the data from our first VAO
-        glBindVertexArray(VAOs[0]);
         int vertexColorLocation = glGetUniformLocation(shaderProgramOrange, "ourColor");
         glm::mat4 transform = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
         transform = glm::translate(transform, glm::vec3(0.5f, -0.5f, 0.0f));
         transform = glm::rotate(transform, (float)glfwGetTime(), glm::vec3(0.0f, 0.0f, 1.0f));
-        glUniform4f(vertexColorLocation, greenValue, 0.6, 0.8f, 1.0f);
-        glDrawArrays(GL_TRIANGLES, 0, 3);    // this call should output an orange triangle
+        
+        // render the first trriangle
+        // ------
+        // now when we draw the triangle we first use the vertex and orange fragment shader from the first program
+//        glUseProgram(shaderProgramOrange);
+//        glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);// set drawing to fill
+//
+//        // draw the first triangle using the data from our first VAO
+//        glBindVertexArray(VAOs[0]);
+//        glUniform4f(vertexColorLocation, greenValue, 0.6, 0.8f, 1.0f);
+//        glDrawArrays(GL_TRIANGLES, 0, 3);    // this call should output an orange triangle
+        drawTriangle(shaderProgramOrange, VAOs,0, vertexColorLocation, greenValue, 0.6, 0.8, 1.0, 1);
 
         // when we draw the second triangle we want to use a different shader program so we switch to the shader program with our yellow fragment shader.
-        drawTriangle(shaderProgramYellow, VAOs,1, vertexColorLocation, 0.3, greenValue, 0.8, 1, 0);
+        drawTriangle(shaderProgramYellow, VAOs,1, vertexColorLocation, 0.3, 0.7, greenValue, 1, 0);
 
         // third one
-        drawTriangle(shaderProgramYellow, VAOs,2, vertexColorLocation, 0.3, greenValue, 0.8, 1, 0);
+        drawTriangle(shaderProgramYellow, VAOs,2, vertexColorLocation, 0.3, 0.7, greenValue2, 1, 0);
 
-        drawTriangle(shaderProgramYellow, VAOs,3, vertexColorLocation, greenValue, greenValue, 0.5, 1, 0);
+        drawTriangle(shaderProgramYellow, VAOs,3, vertexColorLocation, 0.3, 0.7, greenValue3, 1, 0);
+        
+        drawTriangle(shaderProgramOrange, VAOs,4, vertexColorLocation, greenValue, 0.6, 0.8, 1.0, 1);
 
 
 
