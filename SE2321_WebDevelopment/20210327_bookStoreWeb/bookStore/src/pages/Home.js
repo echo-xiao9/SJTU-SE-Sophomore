@@ -7,6 +7,7 @@ import HeroSection from '../components/HeroSection';
 import Footer from '../components/Footer';
 import  Pagination from '../components/Pagination';
 import Button from '../components/Button';
+import ChatRoom from './ChatRoom';
 
 class Home extends Component {
 
@@ -34,6 +35,7 @@ class Home extends Component {
     <div>
       <HeroSection />
       <Cards2 props={this.getQueryVariable('page')}/>
+      {/* <ChatRoom /> */}
       <Footer />
       <Pagination />
     </div>

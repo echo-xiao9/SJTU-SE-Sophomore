@@ -1,0 +1,27 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="SE3353_3_WebSocketChatRoom:war exploded">
+    <output-path>$PROJECT_DIR$/target/SE353_3_WebSocketChatRoom</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <exploded>true</exploded>
+        <module>SE3353_3_WebSocketChatRoom</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="root">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="SE3353_3_WebSocketChatRoom" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: org.glassfish:javax.json:1.1.4" />
+          <element id="library" level="project" name="Maven: javax.inject:javax.inject:1" />
+        </element>
+      </element>
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/target/SE353_3_WebSocketChatRoom/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="javaee-facet-resources" facet="SE3353_3_WebSocketChatRoom/web/Web" />
+    </root>
+  </artifact>
+</component>

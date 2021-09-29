@@ -1,6 +1,4 @@
 package com.reins.bookstore.entity;
-
-
 import com.alibaba.fastjson.annotation.JSONField;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -36,7 +34,6 @@ public class Order {
         this.userId = user_id;
         this.order_price = order_price;
         this.date = date;
-
     }
 
     private String date;

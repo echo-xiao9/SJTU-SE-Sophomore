@@ -15,6 +15,7 @@ import UserOrder from './pages/UserOrders';
 import HotSelling from './pages/HotSelling';
 import HotUsers from './pages/HotUsers';
 import Statistics from './pages/Statistics';
+import ChatRoom from './pages/ChatRoom';
 
 function App() {
   return (
@@ -38,6 +39,7 @@ function App() {
           <Route path ='/HotSelling' component={HotSelling}/>
           <Route path ='/getHotUsers' component={HotUsers}/>
           <Route path ='/Statistics' component={Statistics}/>
+          <Route path='/ChatRoom' component={ChatRoom}/>
         </Switch>
       </Router>
     </>

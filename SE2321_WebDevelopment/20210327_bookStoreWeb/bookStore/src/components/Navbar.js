@@ -76,6 +76,13 @@ function Navbar() {
               >
                 Statistics
               </Link>
+              <Link
+                to='/ChatRoom'
+                className='nav-links'
+                onClick={closeMobileMenu}
+              >
+                Chat Room
+              </Link>
             </li>
             </li>
           </ul>

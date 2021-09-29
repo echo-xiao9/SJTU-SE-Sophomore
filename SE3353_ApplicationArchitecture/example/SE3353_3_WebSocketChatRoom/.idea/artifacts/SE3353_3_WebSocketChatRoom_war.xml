@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="SE3353_3_WebSocketChatRoom:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>SE3353_3_WebSocketChatRoom</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="SE353_3_WebSocketChatRoom.war">
+      <element id="artifact" artifact-name="SE3353_3_WebSocketChatRoom:war exploded" />
+    </root>
+  </artifact>
+</component>

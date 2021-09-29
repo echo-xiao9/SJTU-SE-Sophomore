@@ -16,6 +16,7 @@ export default class Orders extends React.Component {
       targetBookName: "",
       page:1
     }
+
     this.updateInput = this.updateInput.bind(this);
     this.search = this.search.bind(this);
     
@@ -39,9 +40,22 @@ export default class Orders extends React.Component {
       })
       console.log("getBook result:"+response.data);
       console.log(this.state.book);
-
+      this.connect();
     })
   }
+
+  connect() {
+    this.textarea = document.getElementById("textarea");
+    this.wsconsole = document.getElementById("wsconsole");
+    this.userlist = document.getElementById("userlist");
+    this.wsocket = new WebSocket("ws://localhost:9090/websocketbot");
+    this.wsocket.onmessage = this.onMessage();
+    document.getElementById("name").focus();
+    document.getElementById("consolediv").style.visibility = 'hidden';
+}
+
+
+
 
   reset=()=>{
     console.log("page");
