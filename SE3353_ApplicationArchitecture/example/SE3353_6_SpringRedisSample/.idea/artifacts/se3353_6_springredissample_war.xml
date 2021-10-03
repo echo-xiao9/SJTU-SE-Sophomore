@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="se3353_6_springredissample:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>se3353_6_springredissample</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="se3353_6_springredissample-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="se3353_6_springredissample:war exploded" />
+    </root>
+  </artifact>
+</component>

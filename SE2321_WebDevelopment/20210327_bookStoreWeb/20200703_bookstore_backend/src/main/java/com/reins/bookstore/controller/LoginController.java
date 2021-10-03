@@ -27,7 +27,6 @@ import java.util.Map;
 @RestController
 public class LoginController {
 
-
     @Autowired
     private UserService userService;
 

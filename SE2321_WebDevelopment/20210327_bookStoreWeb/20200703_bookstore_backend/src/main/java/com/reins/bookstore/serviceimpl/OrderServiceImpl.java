@@ -62,10 +62,6 @@ public class OrderServiceImpl implements OrderService {
             OrderItem item = this.addOrderItem(order1.getOrderId(),c.getBookId(),c.getNumber());
         }
         getCartService.clearCart();
-        if(!user.getUserId().equals(order.getOrderId())){
-            System.out.println("the user is null");
-            throw new RuntimeException("error");
-        }
         System.out.println("Received order < order_id:"+order1.getOrderId() +" user_id:" +
                 order1.getUserId()+" order_price:"+order1.getOrder_price() +" date:" +order1.getDate() + ">");
         Order fullOrder= orderDao.findOne(order1.getOrderId());

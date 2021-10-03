@@ -4,6 +4,7 @@ import com.reins.bookstore.dao.BookDao;
 import com.reins.bookstore.entity.Book;
 import com.reins.bookstore.repository.BookRepository;
 //import net.sf.json.JSONArray;
+import com.reins.bookstore.utils.RedisUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -26,27 +27,51 @@ public class BookDaoImpl implements BookDao {
 
     @Autowired
     private BookRepository bookRepository;
+    @Autowired
+    RedisUtil redisUtil;
 
     @Override
     public Book findOne(Integer id){
-        return bookRepository.getOne(id);
+        Book book=null;
+        System.out.println("Searching Book: " + id + " in Redis");
+        Object b = redisUtil.get("book" + id);
+        if(b==null){
+            System.out.println("Book: "+id+" is not in Redis");
+            System.out.println("Searching Book: "+id+" in DB");
+            book = bookRepository.getById(id);
+            redisUtil.set("book"+id,JSONArray.toJSON(book));
+        }else{
+            book = JSONArray.parseObject(b.toString(),Book.class);
+            System.out.println("Book: "+id+" is in Redis");
+        }
+        return book;
     }
 
     @Override
     public List<Book> getBooks(Integer page) {
-
         List<Book>bookList = new ArrayList<Book>();
         for(int i=4*page-3;i<=4*page;i++){
-            bookList.add(bookRepository.findById(i).get());
+            bookList.add(this.findOne(i));
         }
         return bookList;
     }
 
     @Override
     public ArrayList getAdminBook() {
-        List<Book> result =bookRepository.getBooks();
 
-        Iterator<Book> it = result.iterator();
+        List<Book> allBooks=null;
+        System.out.println("Searching allBooks in Redis");
+        Object b = redisUtil.get("allBooks" );
+        if(b==null){
+            System.out.println("allBooks are not in Redis");
+            System.out.println("Search allBooks in DB");
+            allBooks = bookRepository.getBooks();
+            redisUtil.set("allBooks", JSONArray.toJSON(allBooks));
+        }else{
+            allBooks = JSONArray.parseArray(b.toString(),Book.class);
+            System.out.println("allBooks are in Redis");
+        }
+        Iterator<Book> it = allBooks.iterator();
         ArrayList<JSONArray> booksJson = new ArrayList<JSONArray>();
         while (it.hasNext()) {
             Book book = (Book) it.next();
@@ -86,9 +111,7 @@ public class BookDaoImpl implements BookDao {
 
     @Override
     public Book changeBook(Integer id,String isbn, String name, String type, String author, Integer price, String description, Integer inventory, String image) {
-        Optional<Book> modiBook=bookRepository.findById(id);
-        if(!modiBook.isPresent())return null;
-        Book b=modiBook.get();
+        Book b=this.findOne(id);
         b.setBookId(id);
         b.setIsbn(isbn);
         b.setName(name);
@@ -103,7 +126,15 @@ public class BookDaoImpl implements BookDao {
 
     @Override
     public Book getSingleBook(String isbn) {
-        return bookRepository.findByIsbn(isbn);
+        Book book=null;
+        Object b = redisUtil.get("BookISBN"+isbn );
+        if(b==null){
+            book=bookRepository.findByIsbn(isbn);
+            redisUtil.set("BookISBN"+isbn ,JSONArray.toJSON(book));
+        }else{
+            book= JSONArray.parseObject(b.toString(),Book.class);
+        }
+        return book;
     }
 
 

@@ -27,6 +27,7 @@ public class Order {
     @JsonIgnore
     @JSONField(serialize = false)
     @JsonIgnoreProperties(value = {"order"}, ignoreUnknown = true)
+
     @OneToMany(mappedBy = "order", cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, fetch = FetchType.LAZY)
     private List<OrderItem> orderItemList;
 

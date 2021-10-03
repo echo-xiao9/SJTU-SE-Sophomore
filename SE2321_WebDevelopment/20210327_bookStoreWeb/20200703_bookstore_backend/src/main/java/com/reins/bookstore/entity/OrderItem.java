@@ -32,8 +32,6 @@ public class OrderItem {
     @JSONField(serialize = false)
     private Order order;
 
-
-
     @ManyToOne
     @JoinColumn(name = "book_id")
     @NotNull

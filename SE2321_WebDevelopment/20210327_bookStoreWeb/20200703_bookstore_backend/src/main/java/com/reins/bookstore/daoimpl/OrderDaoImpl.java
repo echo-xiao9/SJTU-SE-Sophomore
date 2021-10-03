@@ -53,7 +53,7 @@ public class OrderDaoImpl implements OrderDao {
     public List<Order> getUserBookOrders(Integer user_id, String bookName) {
         List<Order> userOrder=getUserOrders(user_id);
         List<Order> result = new ArrayList<Order>();
-        
+
         for(Order item:userOrder){
             List<OrderItem> userOrderItemList=item.getOrderItemList();
             for(OrderItem orderItem1:userOrderItemList) {
@@ -244,6 +244,3 @@ public class OrderDaoImpl implements OrderDao {
 
 
 }
-
-
-
