@@ -6,12 +6,12 @@ import com.reins.bookstore.entity.*;
 import com.reins.bookstore.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jms.core.JmsTemplate;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.WebApplicationContext;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 public class OrderController {
@@ -86,6 +86,16 @@ public class OrderController {
         return order;
     }
 
+    @GetMapping("/addFullOrder")
+    public Order addFullOrder(@RequestParam(required = false) Integer user_id,
+                              @RequestParam (required = false) Integer order_price,
+                              @RequestParam(required = false)String date
+    ) {
+        return orderService.addFullOrder(new Order(user_id,order_price, date));
+    }
+
+
+
 
     @GetMapping("/addOrderItem")
     public OrderItem addOrderItem(
@@ -94,6 +104,7 @@ public class OrderController {
             @RequestParam(required = false)  Integer book_num
 
     ){
+
         return orderService.addOrderItem(order_id, book_id,book_num);
     }
 // can be comment
@@ -122,5 +133,7 @@ public class OrderController {
     ){
         return orderService.getUserHotSelling(from, to, user_id);
     }
+
+
 
 }

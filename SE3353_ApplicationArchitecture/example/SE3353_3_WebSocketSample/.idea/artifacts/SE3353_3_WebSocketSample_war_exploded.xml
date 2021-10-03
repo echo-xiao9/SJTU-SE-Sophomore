@@ -1,0 +1,23 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="SE3353_3_WebSocketSample:war exploded">
+    <output-path>$PROJECT_DIR$/target/SE343_6_WebSocketSample</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <exploded>true</exploded>
+        <module>SE3353_3_WebSocketSample</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="root">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="SE3353_3_WebSocketSample" />
+        </element>
+      </element>
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/target/SE343_6_WebSocketSample/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="javaee-facet-resources" facet="SE3353_3_WebSocketSample/web/Web" />
+    </root>
+  </artifact>
+</component>

@@ -5,6 +5,9 @@ import com.reins.bookstore.entity.Cart;
 import com.reins.bookstore.repository.CartRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+
 import java.util.List;
 
 @Repository
@@ -18,6 +21,7 @@ public class CartDaoImpl implements CartDao {
     }
 
     @Override
+    @Transactional(propagation= Propagation.SUPPORTS)
     public List<Cart> clearCart() {
         List<Cart> cartList = cartRepository.findAll();
         cartRepository.deleteAll();

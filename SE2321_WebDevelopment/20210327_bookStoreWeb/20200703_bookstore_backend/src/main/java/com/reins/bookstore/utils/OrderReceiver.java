@@ -25,14 +25,23 @@ public class OrderReceiver {
 
     @JmsListener(destination = "orderBox")//, containerFactory = "myFactory")
     public void receiveMessage(Order order) {
-        Order order1=orderService.addOrderFromUser(order.getUserId(), order.getOrder_price(),order.getDate());
-        List<Cart> cartList = getCartService.getCart();
-        for(Cart c:cartList){
-            System.out.println(order1.getOrderId()+" "+c.getBookId()+" "+ c.getNumber());
-            OrderItem item = orderService.addOrderItem(order1.getOrderId(),c.getBookId(),c.getNumber());
-        }
-        getCartService.clearCart();
-        System.out.println("Received order < order_id:"+order1.getOrderId() +" user_id:" + order1.getUserId()+" order_price:"+order1.getOrder_price() +" date:" +order1.getDate() + ">");
+//        Order order1=orderService.addOrderFromUser(order.getUserId(), order.getOrder_price(),order.getDate());
+//        List<Cart> cartList = getCartService.getCart();
+//        for(Cart c:cartList){
+//            System.out.println(order1.getOrderId()+" "+c.getBookId()+" "+ c.getNumber());
+//            OrderItem item = orderService.addOrderItem(order1.getOrderId(),c.getBookId(),c.getNumber());
+//        }
+//        getCartService.clearCart();
+//        System.out.println("Received order < order_id:"+order1.getOrderId() +" user_id:" +
+//                order1.getUserId()+" order_price:"+order1.getOrder_price() +" date:" +order1.getDate() + ">");
+//
+        orderService.addFullOrder(order);
+
+
     }
+
+
+
+
 
 }

@@ -1,0 +1,44 @@
+<!--
+
+    Copyright (c) 2013 Oracle and/or its affiliates. All rights reserved.
+
+    You may not modify, use, reproduce, or distribute this software except in
+    compliance with  the terms of the License at:
+    http://java.net/projects/javaeetutorial/pages/BerkeleyLicense
+
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title>Duke's WebSocket ETF</title>
+  <script type="text/javascript">
+      var wsocket;
+      function connect() {
+          wsocket = new WebSocket("ws://localhost:8080/SE3353_3_WebSocketSample_war/dukeetf");
+          wsocket.onmessage = onMessage;
+      }
+      function onMessage(evt) {
+          var arraypv = evt.data.split(",");
+          document.getElementById("price").innerHTML = arraypv[0];
+          document.getElementById("volume").innerHTML = arraypv[1];
+          //wsocket.send(data);
+      }
+      window.addEventListener("load", connect, false);
+  </script>
+</head>
+<body>
+    <h1>Duke's WebSocket ETF</h1>
+    <table>
+        <tr>
+            <td width="100">Ticker</td>
+            <td align="center">Price</td>
+            <td id="price" style="font-size:24pt;font-weight:bold;">--.--</td>
+        </tr>
+        <tr>
+            <td style="font-size:18pt;font-weight:bold;" width="100">DKEJ</td>
+            <td align="center">Volume</td>
+            <td id="volume" align="right">--</td>
+        </tr>
+    </table>
+</body>
+</html>

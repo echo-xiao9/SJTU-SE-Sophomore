@@ -7,9 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E822F9A927054250003EA3EC /* libglfw.3.3.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = E82C64F92700AFFC0031F201 /* libglfw.3.3.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		E822F9AA27054398003EA3EC /* libglfw.3.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E82C64F92700AFFC0031F201 /* libglfw.3.3.dylib */; };
 		E831243026F1ECF400B438D9 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E831242F26F1ECF400B438D9 /* main.cpp */; };
 		E831243826F1EDCD00B438D9 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E831243726F1EDCD00B438D9 /* OpenGL.framework */; };
-		E831243A26F1EE3900B438D9 /* libglfw.3.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E831243926F1EE3900B438D9 /* libglfw.3.3.dylib */; };
 		E831243C26F205B100B438D9 /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E831243B26F205B100B438D9 /* GLUT.framework */; };
 		E831244426F2202900B438D9 /* glad.c in Sources */ = {isa = PBXBuildFile; fileRef = E831244326F2202800B438D9 /* glad.c */; };
 		E8318AB126FACC8800720200 /* drawRect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E8318AB026FACC8800720200 /* drawRect.cpp */; };
@@ -31,19 +32,21 @@
 		E831242A26F1ECF400B438D9 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
-			dstPath = /usr/share/man/man1/;
-			dstSubfolderSpec = 0;
+			dstPath = "";
+			dstSubfolderSpec = 10;
 			files = (
+				E822F9A927054250003EA3EC /* libglfw.3.3.dylib in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		E82C64F82700AFE50031F201 /* Libraries */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Libraries; sourceTree = "<group>"; };
+		E82C64F92700AFFC0031F201 /* libglfw.3.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libglfw.3.3.dylib; path = Externals/Libraries/libglfw.3.3.dylib; sourceTree = "<group>"; };
 		E831242C26F1ECF400B438D9 /* OpenGLTest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = OpenGLTest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E831242F26F1ECF400B438D9 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		E831243726F1EDCD00B438D9 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
-		E831243926F1EE3900B438D9 /* libglfw.3.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libglfw.3.3.dylib; path = ../../../../../../../usr/local/Cellar/glfw/3.3.4/lib/libglfw.3.3.dylib; sourceTree = "<group>"; };
 		E831243B26F205B100B438D9 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = System/Library/Frameworks/GLUT.framework; sourceTree = SDKROOT; };
 		E831244126F21FB800B438D9 /* KHR */ = {isa = PBXFileReference; lastKnownFileType = folder; path = KHR; sourceTree = "<group>"; };
 		E831244226F21FB800B438D9 /* glad */ = {isa = PBXFileReference; lastKnownFileType = folder; path = glad; sourceTree = "<group>"; };
@@ -75,7 +78,7 @@
 			files = (
 				E831243C26F205B100B438D9 /* GLUT.framework in Frameworks */,
 				E831243826F1EDCD00B438D9 /* OpenGL.framework in Frameworks */,
-				E831243A26F1EE3900B438D9 /* libglfw.3.3.dylib in Frameworks */,
+				E822F9AA27054398003EA3EC /* libglfw.3.3.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -126,8 +129,8 @@
 		E831243626F1EDCC00B438D9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E82C64F92700AFFC0031F201 /* libglfw.3.3.dylib */,
 				E831243B26F205B100B438D9 /* GLUT.framework */,
-				E831243926F1EE3900B438D9 /* libglfw.3.3.dylib */,
 				E831243726F1EDCD00B438D9 /* OpenGL.framework */,
 			);
 			name = Frameworks;
@@ -136,8 +139,8 @@
 		E831243D26F21CA400B438D9 /* Externals */ = {
 			isa = PBXGroup;
 			children = (
+				E82C64F82700AFE50031F201 /* Libraries */,
 				E831244326F2202800B438D9 /* glad.c */,
-				E831244026F21CEA00B438D9 /* Libraries */,
 				E831243F26F21CCD00B438D9 /* Include */,
 			);
 			path = Externals;
@@ -153,13 +156,6 @@
 				E831244126F21FB800B438D9 /* KHR */,
 			);
 			name = Include;
-			sourceTree = "<group>";
-		};
-		E831244026F21CEA00B438D9 /* Libraries */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Libraries;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

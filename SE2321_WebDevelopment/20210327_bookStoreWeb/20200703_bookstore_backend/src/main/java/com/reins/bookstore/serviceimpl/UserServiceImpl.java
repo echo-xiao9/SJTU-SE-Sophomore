@@ -6,7 +6,11 @@ import com.reins.bookstore.entity.UserAuth;
 import com.reins.bookstore.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,6 +22,7 @@ import java.util.List;
  */
 
 @Service
+@TransactionAttribute(TransactionAttributeType.REQUIRED)
 public class UserServiceImpl implements UserService {
 
     @Autowired
@@ -58,6 +63,15 @@ public class UserServiceImpl implements UserService {
     @Override
     public User adminUserChange(Integer user_id, String name, String email, Integer type) {
         return userDao.adminUserChange(user_id,name,email,type);
+    }
+
+    @Override
+    @Transactional(propagation= Propagation.REQUIRED)
+    public User getUserById(Integer userId) {
+        User user= userDao.getUserById(userId);
+        if (user.getUserId()!=userId)
+            throw new RuntimeException();
+        return user;
     }
 
 

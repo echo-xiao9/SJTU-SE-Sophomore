@@ -20,4 +20,6 @@ public interface UserDao {
     User addUser(String username, String password, String email);
 
     User adminUserChange(Integer user_id, String name, String email, Integer type);
+
+    User getUserById(Integer userId);
 }

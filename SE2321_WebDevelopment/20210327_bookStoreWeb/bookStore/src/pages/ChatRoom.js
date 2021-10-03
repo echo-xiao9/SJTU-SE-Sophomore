@@ -7,7 +7,6 @@ export default class ChatRoom extends React.Component {
     super(props);
     this.state = {
       name:"",
-      username:"",
       input:"",
       join:"",
       wsconsole:"",
@@ -59,12 +58,7 @@ export default class ChatRoom extends React.Component {
         inputDisable: false
       });
 
-
-      this.setState({username: this.state.name});
       this.setState({wsconsole:this.state.wsconsole+ "<- " + jsonstr + "\n"});
-      // this.state.userName = this.state.name;
-      /* Update the Websocket console area */
-      // this.state.wsconsole += "<- " + jsonstr + "\n";
       console.log(this.state.wsconsole);
       // this.state.wsconsole.scrollTop = 999999;
     }

@@ -8,6 +8,7 @@ import Footer from '../components/Footer';
 import  Pagination from '../components/Pagination';
 import Button from '../components/Button';
 import ChatRoom from './ChatRoom';
+import axios from "axios";
 
 class Home extends Component {
 
@@ -24,6 +25,22 @@ class Home extends Component {
     // console.log('Query variable %s not found', variable);
   }
 
+  // test(){
+  //   var aa=[1,2,3];
+  //   axios({
+  //     method: 'POST',
+  //     url: 'http://localhost:9090/test',
+  //     params: {
+  //       array: JSON.stringify(aa)
+  //     },
+    
+
+  //   }).then(response => {
+  //    console.log(response);
+  //   })
+  // }
+
+
   constructor(props) {
     super(props);
     this.state = {
@@ -38,6 +55,7 @@ class Home extends Component {
       {/* <ChatRoom /> */}
       <Footer />
       <Pagination />
+
     </div>
     );
   }

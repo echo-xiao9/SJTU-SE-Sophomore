@@ -5,11 +5,14 @@ import com.reins.bookstore.entity.OrderItem;
 import com.reins.bookstore.entity.UserHotSelling;
 import org.aspectj.weaver.ast.Or;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
 public interface OrderService {
     Order findOrderById(Integer id);
+
+    Order addFullOrder(Order order);
 
     List<Order> getOrders();
 
@@ -34,6 +37,7 @@ public interface OrderService {
     List<HotSelling> getHotUsers(String from, String to);
 
     UserHotSelling getUserHotSelling(String from, String to, Integer user_id);
+
 
     List<OrderItem> getOrderItems(Integer order_id);
 }

@@ -1,0 +1,150 @@
+{
+  "buildCommand" : "prepareForIndexing",
+  "configuredTargets" : [
+    {
+      "guid" : "10ca86ee52b17c5e7559c046d3ec5dc13871faab4c3ea70ded58e09fa79333ad"
+    },
+    {
+      "guid" : "10ca86ee52b17c5e7559c046d3ec5dc148006df1cbf41e4fc2cc12865ae8c533"
+    },
+    {
+      "guid" : "10ca86ee52b17c5e7559c046d3ec5dc1c16758a5d6cb21222c14b7a904d29be5"
+    },
+    {
+      "guid" : "10ca86ee52b17c5e7559c046d3ec5dc1c2040c07c872b91d8cd9033bbb5c2fc6"
+    },
+    {
+      "guid" : "10ca86ee52b17c5e7559c046d3ec5dc15e1162139480abe2bc9bb60c60023f0f"
+    },
+    {
+      "guid" : "10ca86ee52b17c5e7559c046d3ec5dc1893114980505368de2933382f0c2c70d"
+    },
+    {
+      "guid" : "10ca86ee52b17c5e7559c046d3ec5dc168526b6b979cb6dc85ae7a53ed1a70ba"
+    },
+    {
+      "guid" : "10ca86ee52b17c5e7559c046d3ec5dc1bdfa2dbd10d72b9176f6f8c307773376"
+    },
+    {
+      "guid" : "10ca86ee52b17c5e7559c046d3ec5dc10668d55b6d2193215dac9bbbd50ea4e0"
+    },
+    {
+      "guid" : "10ca86ee52b17c5e7559c046d3ec5dc11933d46e1209f4df7782ad77685b84b2"
+    },
+    {
+      "guid" : "10ca86ee52b17c5e7559c046d3ec5dc19791b04bb7850da359ecbbd8b3372539"
+    },
+    {
+      "guid" : "10ca86ee52b17c5e7559c046d3ec5dc13f22407d9d52628113e33b7680c73f56"
+    },
+    {
+      "guid" : "10ca86ee52b17c5e7559c046d3ec5dc1df0f4b6b8d382f2a2a147e6ab5e2e46d"
+    },
+    {
+      "guid" : "10ca86ee52b17c5e7559c046d3ec5dc15d3b209faa991d84302b0152e4409245"
+    },
+    {
+      "guid" : "10ca86ee52b17c5e7559c046d3ec5dc156228637e078591d5d8d6b3cfaaad9d6"
+    },
+    {
+      "guid" : "10ca86ee52b17c5e7559c046d3ec5dc1d0f92108d4d03327d1a00b014df8253a"
+    },
+    {
+      "guid" : "10ca86ee52b17c5e7559c046d3ec5dc1123b84fae9727f8ae736ef9e9e7af455"
+    },
+    {
+      "guid" : "10ca86ee52b17c5e7559c046d3ec5dc152d146342c6c8f5f040a6bd7c10dba8f"
+    },
+    {
+      "guid" : "10ca86ee52b17c5e7559c046d3ec5dc110b792d8142a478936bf4af2b56575a6"
+    },
+    {
+      "guid" : "10ca86ee52b17c5e7559c046d3ec5dc129219518824b79cf3ca851d4086ba1cd"
+    },
+    {
+      "guid" : "10ca86ee52b17c5e7559c046d3ec5dc107682d7016fc2d25f03502594fcff3d5"
+    },
+    {
+      "guid" : "10ca86ee52b17c5e7559c046d3ec5dc16938f82ae916517fee73caac634c85d8"
+    },
+    {
+      "guid" : "10ca86ee52b17c5e7559c046d3ec5dc1d81c7cde857633be9ff4dadd99289b97"
+    },
+    {
+      "guid" : "10ca86ee52b17c5e7559c046d3ec5dc1d3ec459e0770038f9ce4ac1c7ff8ee54"
+    },
+    {
+      "guid" : "10ca86ee52b17c5e7559c046d3ec5dc1733868c2dac977b0d8bf478beb0ea74c"
+    },
+    {
+      "guid" : "10ca86ee52b17c5e7559c046d3ec5dc17b69f586657605b6d698184c120bb945"
+    },
+    {
+      "guid" : "10ca86ee52b17c5e7559c046d3ec5dc181f472de6eeacd8b2535a2acb53b9ac4"
+    },
+    {
+      "guid" : "10ca86ee52b17c5e7559c046d3ec5dc1f507b380476340f2237b7756ebb81639"
+    },
+    {
+      "guid" : "10ca86ee52b17c5e7559c046d3ec5dc1aba6ceda8b5ac0370f8391934d789dbf"
+    },
+    {
+      "guid" : "10ca86ee52b17c5e7559c046d3ec5dc1f004b53f93e6af1259fa861a74b4fb21"
+    },
+    {
+      "guid" : "10ca86ee52b17c5e7559c046d3ec5dc1320a43c6b8795222ddb9be5371251d16"
+    },
+    {
+      "guid" : "10ca86ee52b17c5e7559c046d3ec5dc12238d9f0b8a065f810617f07b92bdfcb"
+    },
+    {
+      "guid" : "10ca86ee52b17c5e7559c046d3ec5dc153ebc3db644c3d5f0c7b02556922f6cd"
+    },
+    {
+      "guid" : "10ca86ee52b17c5e7559c046d3ec5dc12124fc9cd0a579d4bf1aef59b188b1da"
+    }
+  ],
+  "continueBuildingAfterErrors" : true,
+  "enableIndexBuildArena" : false,
+  "hideShellScriptEnvironment" : false,
+  "parameters" : {
+    "action" : "build",
+    "activeArchitecture" : "x86_64",
+    "activeRunDestination" : {
+      "disableOnlyActiveArch" : false,
+      "platform" : "macosx",
+      "sdk" : "macosx11.3",
+      "sdkVariant" : "macos",
+      "supportedArchitectures" : [
+        "x86_64h",
+        "x86_64"
+      ],
+      "targetArchitecture" : "x86_64"
+    },
+    "arenaInfo" : {
+      "buildIntermediatesPath" : "",
+      "buildProductsPath" : "",
+      "derivedDataPath" : "/Users/kangyixiao/Library/Developer/Xcode/DerivedData",
+      "indexDataStoreFolderPath" : "/Users/kangyixiao/Library/Developer/Xcode/DerivedData/GLFW-amrqxekngfmezudkpwqzhxilbunh/Index/DataStore",
+      "indexEnableDataStore" : true,
+      "indexPCHPath" : "/Users/kangyixiao/Library/Developer/Xcode/DerivedData/GLFW-amrqxekngfmezudkpwqzhxilbunh/Index/PrecompiledHeaders",
+      "pchPath" : ""
+    },
+    "configurationName" : "Debug",
+    "overrides" : {
+      "synthesized" : {
+        "table" : {
+          "ENABLE_PREVIEWS" : "NO"
+        }
+      }
+    }
+  },
+  "qos" : "default",
+  "schemeCommand" : "launch",
+  "shouldCollectMetrics" : false,
+  "showNonLoggedProgress" : true,
+  "useDryRun" : true,
+  "useImplicitDependencies" : true,
+  "useLegacyBuildLocations" : false,
+  "useParallelTargets" : true
+}

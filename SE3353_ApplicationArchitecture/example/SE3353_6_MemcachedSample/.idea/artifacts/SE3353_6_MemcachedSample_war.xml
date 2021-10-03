@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="SE3353_6_MemcachedSample:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>SE3353_6_MemcachedSample</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="SE3353_6_MemcachedSample-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="SE3353_6_MemcachedSample:war exploded" />
+    </root>
+  </artifact>
+</component>

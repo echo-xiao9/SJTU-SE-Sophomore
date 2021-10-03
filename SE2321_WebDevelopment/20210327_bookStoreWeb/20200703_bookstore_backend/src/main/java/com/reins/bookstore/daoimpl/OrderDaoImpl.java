@@ -11,6 +11,8 @@ import com.reins.bookstore.repository.UserRepository;
 import org.aspectj.weaver.ast.Or;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
 
@@ -108,6 +110,7 @@ public class OrderDaoImpl implements OrderDao {
 
 
     @Override
+    @Transactional(propagation= Propagation.MANDATORY)
     public Order addOrderFromUser(Integer user_id, Integer order_price, String date) {
         Order newOrder=new Order(user_id,order_price,date);
         orderRepository.save(newOrder);
@@ -115,6 +118,7 @@ public class OrderDaoImpl implements OrderDao {
     }
 
     @Override
+    @Transactional(propagation=Propagation.REQUIRED)
     public OrderItem addOrderItem(Integer order_id, Integer book_id, Integer book_num) {
         Book b=bookRepository.findById(book_id).get();
         Order order=orderRepository.findById(order_id).get();

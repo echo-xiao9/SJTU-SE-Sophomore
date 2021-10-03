@@ -1,24 +1,38 @@
 package com.reins.bookstore.serviceimpl;
-
-
 import com.reins.bookstore.dao.BookDao;
 import com.reins.bookstore.dao.OrderDao;
 
 import com.reins.bookstore.entity.*;
+import com.reins.bookstore.service.GetCartService;
 import com.reins.bookstore.service.OrderService;
+import com.reins.bookstore.service.UserService;
 import org.aspectj.weaver.ast.Or;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
+
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 @Service
+@TransactionAttribute(TransactionAttributeType.REQUIRED)
 public class OrderServiceImpl implements OrderService {
     @Autowired
     private OrderDao orderDao;
     @Autowired
     private BookDao bookDao;
+    @Autowired
+    private GetCartService getCartService;
+    @Autowired
+    UserService userService;
+
+
+
     @Override
     public Order findOrderById(Integer id){
         return orderDao.findOne(id);
@@ -31,11 +45,36 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    @Transactional(propagation=Propagation.MANDATORY)
     public Order addOrderFromUser(Integer user_id, Integer order_price, String date) {
         return orderDao.addOrderFromUser(user_id,order_price,date);
     }
 
+
     @Override
+    @Transactional(propagation=Propagation.REQUIRED)
+    public Order addFullOrder(Order order){
+        Order order1=this.addOrderFromUser(order.getUserId(), order.getOrder_price(),order.getDate());
+        User user = userService.getUserById(order.getUserId());
+        List<Cart> cartList = getCartService.getCart();
+        for(Cart c:cartList){
+            System.out.println(order1.getOrderId()+" "+c.getBookId()+" "+ c.getNumber());
+            OrderItem item = this.addOrderItem(order1.getOrderId(),c.getBookId(),c.getNumber());
+        }
+        getCartService.clearCart();
+        if(!user.getUserId().equals(order.getOrderId())){
+            System.out.println("the user is null");
+            throw new RuntimeException("error");
+        }
+        System.out.println("Received order < order_id:"+order1.getOrderId() +" user_id:" +
+                order1.getUserId()+" order_price:"+order1.getOrder_price() +" date:" +order1.getDate() + ">");
+        Order fullOrder= orderDao.findOne(order1.getOrderId());
+        return fullOrder;
+    }
+
+
+    @Override
+    @Transactional(propagation=Propagation.REQUIRED)
     public OrderItem addOrderItem(Integer order_id, Integer book_id, Integer book_num) {
         OrderItem result = orderDao.addOrderItem(order_id,book_id,book_num);
         return result;

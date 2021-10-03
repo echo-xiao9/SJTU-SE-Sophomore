@@ -3,6 +3,9 @@ package com.reins.bookstore.service;
 import com.reins.bookstore.entity.User;
 import com.reins.bookstore.entity.UserAuth;
 
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,4 +25,6 @@ public interface UserService {
     User addUser(String username, String password, String email);
 
     User adminUserChange(Integer user_id, String name, String email, Integer type);
+
+    User getUserById(Integer userId);
 }

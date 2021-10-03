@@ -24,5 +24,6 @@ public class OrderItemMsg {
     }
 
     public OrderItemMsg() {
+
     }
 }
