@@ -6,9 +6,9 @@ import org.springframework.context.annotation.Scope;
 import java.util.List;
 
 public interface CartService {
-    List<Cart> getCart();
+//    List<Cart> getCart();
 
-    List<Cart> clearCart();
+    List<Cart> clearCart(Integer userId);
 
     Cart addToCart(String name, String author, Integer price, Integer number,Integer bookId, Integer userId);
 

@@ -15,14 +15,14 @@ public class CartServiceImpl implements CartService {
     @Autowired
     private CartDao cartDao;
 
-    @Override
-    public List<Cart> getCart() {
-        return cartDao.getCart();
-    }
+//    @Override
+//    public List<Cart> getCart() {
+//        return cartDao.getCart();
+//    }
 
     @Override
-    public List<Cart> clearCart() {
-        return cartDao.clearCart();
+    public List<Cart> clearCart(Integer userId) {
+        return cartDao.clearCart(userId);
     }
 
     @Override

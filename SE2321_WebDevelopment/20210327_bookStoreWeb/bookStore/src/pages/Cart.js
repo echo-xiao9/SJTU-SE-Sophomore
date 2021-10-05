@@ -167,9 +167,24 @@ export default class Carts extends React.Component {
     })
   }
   removeItem(index) {
+    console.log('removeItem');
+    console.log(this.state.books[index]);
+    axios({
+      method: 'GET',
+      url: 'http://localhost:9090/deleteCartItem',
+      params: {
+        cartId: this.state.books[index].cartId
+      }
+  }).then(response => {
+    console.log(response.data);
+  })
+  
+
+
     this.setState({
       books: this.state.books.filter((item, indey) => index != indey)
     })
+
   }
   getTotalprice() {
     let totalPrice = this.state.books.reduce((pre, item) => {
@@ -183,19 +198,14 @@ export default class Carts extends React.Component {
     this.setState({
       books:[]
     })
-    // const url = "http://localhost:9090/clearCart";
-  //   axios.get(url).then((response) => {
-  //     console.log("clear");
-  //     console.log(response);
-  // })
   }
   getDate(){
     var date = new Date();       
-  var mon = date.getMonth() + 1;       
-  var day = date.getDate();
-  var currDate = date.getFullYear() + "-"+ (mon<10?"0"+mon:mon) + "-"+(day<10?"0"+day:day);
-  // console.log(currDate);
-  return currDate;
+    var mon = date.getMonth() + 1;       
+    var day = date.getDate();
+    var currDate = date.getFullYear() + "-"+ (mon<10?"0"+mon:mon) + "-"+(day<10?"0"+day:day);
+    // console.log(currDate);
+    return currDate;
   }
 
   handleCheckOut = e => {

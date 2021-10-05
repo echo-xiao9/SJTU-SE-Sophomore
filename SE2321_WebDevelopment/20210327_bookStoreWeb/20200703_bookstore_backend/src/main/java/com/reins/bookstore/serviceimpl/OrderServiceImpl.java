@@ -56,12 +56,12 @@ public class OrderServiceImpl implements OrderService {
     public Order addFullOrder(Order order){
         Order order1=this.addOrderFromUser(order.getUserId(), order.getOrder_price(),order.getDate());
         User user = userService.getUserById(order.getUserId());
-        List<Cart> cartList = getCartService.getCart();
+        List<Cart> cartList = getCartService.getUserCart(order.getUserId());
         for(Cart c:cartList){
             System.out.println(order1.getOrderId()+" "+c.getBookId()+" "+ c.getNumber());
             OrderItem item = this.addOrderItem(order1.getOrderId(),c.getBookId(),c.getNumber());
         }
-        getCartService.clearCart();
+        getCartService.clearCart(order1.getUserId());
         System.out.println("Received order < order_id:"+order1.getOrderId() +" user_id:" +
                 order1.getUserId()+" order_price:"+order1.getOrder_price() +" date:" +order1.getDate() + ">");
         Order fullOrder= orderDao.findOne(order1.getOrderId());

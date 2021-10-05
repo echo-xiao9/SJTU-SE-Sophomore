@@ -2,6 +2,7 @@ package com.reins.bookstore.controller;
 
 import com.reins.bookstore.entity.Cart;
 import com.reins.bookstore.service.CartService;
+import com.reins.bookstore.service.GetCartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,13 +14,11 @@ import java.util.List;
 
 @RestController
 public class CartController {
-    // when the cartService become session, it can only be used as
-    // UserService userService = applicationContext.getBean(UserService.class); in func
-//    @Autowired
-//    private CartService cartService;
 
     @Autowired
     WebApplicationContext applicationContext;
+    @Autowired
+    GetCartService getCartService;
 
     @GetMapping("/addToCart")
     public Cart addToCart(
@@ -36,12 +35,6 @@ public class CartController {
         return cartService.addToCart(name, author,price, number,bookId,userId);
     }
 
-    @GetMapping("/getCart")
-    public List<Cart> getCart(){
-        CartService cartService = applicationContext.getBean(CartService.class);
-        return cartService.getCart();
-    }
-
     @GetMapping("/getUserCart")
         public List<Cart> getUserCart(
                 @RequestParam("userId") Integer userId
@@ -49,15 +42,11 @@ public class CartController {
         CartService cartService = applicationContext.getBean(CartService.class);
         return cartService.getUserCart(userId);
     }
-
-
-    @GetMapping("/clearCart")
-    public List<Cart> clearCart(){
-        CartService cartService = applicationContext.getBean(CartService.class);
-        return cartService.clearCart();
+    // return the rest cart list
+    @GetMapping("/deleteCartItem")
+        public Cart deleteCartItem(@RequestParam("cartId") Integer cartId){
+        return getCartService.deleteCartItem(cartId);
     }
-
-
 
 
 

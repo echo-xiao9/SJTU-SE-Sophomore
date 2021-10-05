@@ -17,15 +17,25 @@ public class GetCartServiceImpl implements GetCartService {
     @Autowired
     private CartDao cartDao;
 
+//    @Override
+//    public List<Cart> getCart() {
+//        return cartDao.getCart();
+//    }
+
     @Override
-    public List<Cart> getCart() {
-        return cartDao.getCart();
+    public List<Cart> getUserCart(Integer userId) {
+        return cartDao.getUserCart(userId);
     }
 
     @Override
     @Transactional(propagation= Propagation.SUPPORTS)
-    public List<Cart> clearCart() {
-        return cartDao.clearCart();
+    public List<Cart> clearCart(Integer userId) {
+        return cartDao.clearCart(userId);
+    }
+
+    @Override
+    public Cart deleteCartItem(Integer cartId) {
+        return cartDao.deleteCartItem(cartId);
     }
 
 }
