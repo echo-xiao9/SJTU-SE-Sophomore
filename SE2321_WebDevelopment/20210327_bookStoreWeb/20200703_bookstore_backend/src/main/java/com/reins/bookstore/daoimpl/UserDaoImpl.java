@@ -5,6 +5,7 @@ import com.reins.bookstore.entity.User;
 import com.reins.bookstore.entity.UserAuth;
 import com.reins.bookstore.repository.UserAuthRepository;
 import com.reins.bookstore.repository.UserRepository;
+import com.reins.bookstore.utils.RedisUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
@@ -29,21 +30,38 @@ public class UserDaoImpl implements UserDao {
 
     @Autowired
     UserRepository userRepository;
-
+    @Autowired
+    RedisUtil redisUtil;
 
     @Override
     public List<User> getUsers() {
-        return userRepository.getUsers();
+        List<User> allUsers=new ArrayList<User>();
+        Object ul=redisUtil.get("allUsers");
+        if(ul==null){
+            allUsers=userRepository.getUsers();
+            redisUtil.set("allUsers", JSONArray.toJSON(allUsers));
+        }else{
+            allUsers = JSONArray.parseArray(ul.toString(),User.class);
+        }
+       return allUsers;
     }
 
     @Override
     public UserAuth checkUser(String username, String password){
-        return userAuthRepository.checkUser(username,password);
+        Object ua=redisUtil.get("Auth"+username+"pass"+password);
+        UserAuth userAuth=new UserAuth();
+        if(ua==null){
+            userAuth = userAuthRepository.checkUser(username,password);
+            redisUtil.set("Auth"+username+"pass"+password, JSONArray.toJSON(userAuth));
+        }else{
+            userAuth =  JSONArray.parseObject(ua.toString(),UserAuth.class);
+        }
+        return userAuth;
     }
 
     @Override
     public ArrayList getAdminUser() {
-        List<User> result = userRepository.getUsers();
+        List<User> result = getUsers();
         Iterator<User> it = result.iterator();
         ArrayList<com.alibaba.fastjson.JSONArray> usersJson = new ArrayList<JSONArray>();
         while (it.hasNext()){
@@ -57,6 +75,11 @@ public class UserDaoImpl implements UserDao {
         }
         return usersJson;
     }
+    public void refreshUserCache(){
+        //refresh cache
+        List<User> allUsers=userRepository.getUsers();
+        redisUtil.set("allUsers", JSONArray.toJSON(allUsers));
+    }
 
 
     @Override
@@ -65,23 +88,23 @@ public class UserDaoImpl implements UserDao {
         if(user==null){
             User u=new User(name,type,email);
             userRepository.save(u);
+            refreshUserCache();
             return u;
         }
         else {
             user.setType(type);
             userRepository.save(user);
+            //refresh cache
+           refreshUserCache();
             return user;
         }
     }
 
     public UserAuth adminUserAuthChange( Integer userId, Integer type){
         UserAuth ua= userAuthRepository.getUserAuthByUserId(userId);
-//        User user=userRepository.getUserByName(name);
-
-       ua.setUserType(type);
+        ua.setUserType(type);
         userAuthRepository.save(ua);
-//        user.setType(type);
-//        userRepository.save(user);
+        redisUtil.set("Auth"+ua.getUsername()+"pass"+ua.getPassword(), JSONArray.toJSON(ua));
         return ua;
     }
 
@@ -99,22 +122,29 @@ public class UserDaoImpl implements UserDao {
         UserAuth newUserAuth=new UserAuth(id, username,password,2);
         userAuthRepository.save(newUserAuth);
         System.out.println(newUserAuth);
+        refreshUserCache();
+        redisUtil.set("Auth"+newUserAuth.getUsername()+"pass"+newUserAuth.getPassword(), JSONArray.toJSON(newUserAuth));
         return newUser;
     }
 
     @Override
     @Transactional(propagation= Propagation.REQUIRED)
     public User getUserById(Integer userId){
-        return userRepository.getById(userId);}
+        User user=new User();
+        Object u=redisUtil.get("user"+userId);
+        if(u==null){
+            user = userRepository.getById(userId);
+            redisUtil.set("user"+userId, JSONArray.toJSON(user));
+        }else{
+            user = JSONArray.parseObject(u.toString(),User.class);
+        }
+        return user;
+    }
 
     private AtomicInteger num = new AtomicInteger(0);
     @Override
     public Integer addHomePV() {
         return num.incrementAndGet();
     }
-
-
-
-
 
 }

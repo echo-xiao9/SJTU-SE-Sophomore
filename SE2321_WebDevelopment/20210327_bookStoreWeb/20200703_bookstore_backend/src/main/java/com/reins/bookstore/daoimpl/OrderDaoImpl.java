@@ -32,11 +32,6 @@ public class OrderDaoImpl implements OrderDao {
     @Autowired
     RedisUtil redisUtil;
 
-    @Override
-    public Order findOne(Integer id) {
-
-        return orderRepository.getById(id);
-    }
 
     @Override
     public List<Order> getOrders() {
@@ -57,9 +52,11 @@ public class OrderDaoImpl implements OrderDao {
         List<Order> userOrder=new ArrayList<Order>();
         Object ol=redisUtil.get("userOrder"+user_id);
         if(ol==null){
+            System.out.println("get user Order in DB ");
             userOrder =  orderRepository.findByUserId(user_id);
             redisUtil.set("userOrder"+user_id, JSONArray.toJSON(userOrder));
         }else{
+            System.out.println("get user Order in redis ");
             userOrder = JSONArray.parseArray(ol.toString(),Order.class);
         }
         return userOrder;
@@ -155,6 +152,20 @@ public class OrderDaoImpl implements OrderDao {
         return orderItem;
     }
 
+    @Override
+    public Order findOne(Integer id) {
+//        Object o = redisUtil.get("order"+id);
+//        Order order  =new Order();
+//        if(o==null){
+//            order =  orderRepository.getById(id);
+//            redisUtil.set("order"+id,JSONArray.toJSON(order));
+//        }else{
+//            order  =JSONArray.parseObject(o.toString(),Order.class);
+//        }
+        // there exist no orderItem in Json problem, so I use direct fetch from db.
+        Order order=orderRepository.getById(id);
+        return order;
+    }
 //    @Override
 //    public OrderItem addOrderItem2(Order order, Integer book_id, Integer book_num) {
 //        Book b=bookRepository.findById(book_id).get();
@@ -165,12 +176,12 @@ public class OrderDaoImpl implements OrderDao {
 
     @Override
     public List<OrderItem> getOrderItems(Integer order_id) {
-        Order order =orderRepository.getById(order_id);
+        Order order = this.findOne(order_id);
         return order.getOrderItemList();
     }
 
     public List<Order> getOrderBetween(String from, String to) {
-        List<Order> orderList = orderRepository.getOrders();
+        List<Order> orderList = this.getOrders();
         List<Order> result = new ArrayList<>();
         for (Order item : orderList) {
             if (item.getDate().compareTo(to) <= 0 && item.getDate().compareTo(from) >= 0) {
