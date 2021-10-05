@@ -42,9 +42,13 @@ List<HotSelling> getHotUsers(String from, String to);
 
     UserHotSelling getUserHotSelling(String from, String to, Integer user_id);
 
-    OrderItem addOrderItem2(Order order, Integer book_id, Integer book_num);
+//    OrderItem addOrderItem2(Order order, Integer book_id, Integer book_num);
 
     List<OrderItem> getOrderItems(Integer order_id);
+
+    void updateAllOrdersCache();
+
+    void updateUserOrderCache(Integer userId);
 
 //    OrderItem addOrderItem(Integer order_id, Integer book_id, Integer book_num, String book_name, Integer book_price);
 }

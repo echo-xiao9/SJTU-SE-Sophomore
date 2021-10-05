@@ -1,10 +1,8 @@
 import React, { Component } from "react";
-import ReactDOM from "react-dom";
 import BasicTable from "../components/OrderCard"
 import axios from "axios"
 import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import Button from '../components/Button'
 import TableContainer from '@material-ui/core/TableContainer';
@@ -19,7 +17,7 @@ export default class Orders extends React.Component {
       newOrders: [],
       bookName: "",
       from:  "2021-05-03",
-      to:"2021-06-20"
+      to:"2021-12-12"
     }
 
     const url = "http://localhost:9090/getOrders";
@@ -28,7 +26,7 @@ export default class Orders extends React.Component {
       this.setState({
         orders: data
       })
-
+      this.processData();
       console.log(this.state.orders);
       // this.processData();
       this.updateInput=this.updateInput.bind(this);
@@ -44,16 +42,17 @@ export default class Orders extends React.Component {
   processData() {
     this.state.orders.map((line) => {
       var lineRow = new Array();
-
       axios({
         method: 'GET',
-        url: 'http://localhost:9090/getOrderItems',
+        url: 'http://localhost:9090/getOrderItem',
         params: {
-          order_id: line[5]
+          order_id: line.orderId
         }
       }).then(response => {
+        console.log("row");
+        console.log(response.data);
         var row = response.data;
-        var singleOrder = this.createOrderData(line[0], line[1], line[2], line[3], line[4], line[5], row);
+        var singleOrder = this.createOrderData(line.order_price, line.userId, line.date, line.orderId, row);
 
         this.state.newOrders.push(singleOrder);
         this.setState({
@@ -63,8 +62,12 @@ export default class Orders extends React.Component {
           from:this.state.from,
           to:this.state.to
         });
-
-        console.log(this.state.bookName);
+        this.setState({orders:this.state.newOrders});
+        // this.state.orders =this.state.newOrders;
+      
+        console.log("orders");
+        console.log(this.state.orders);
+        return response.data;
       })
     })
     // console.log(this.state.newOrders);
@@ -72,9 +75,10 @@ export default class Orders extends React.Component {
   }
 
 
-  createOrderData(orderPrice, user_id, year, month, day, order_id, row) {
-    return { orderPrice, user_id, year, month, day, order_id, row };
+  createOrderData(orderPrice, userId, date, orderId, rows) {
+    return { orderPrice, userId, date, orderId, rows };
   }
+
 
 
 
@@ -129,8 +133,7 @@ export default class Orders extends React.Component {
         from:this.state.from,
         to:this.state.to
       })
-      console.log("orders");
-      console.log(this.state.orders);
+  
       this.processData();
       this.updateInput = this.updateInput.bind(this);
       this.search = this.search.bind(this);
@@ -223,7 +226,7 @@ render() {
           label="To"
           type="date"
           ref="myField"
-          defaultValue="2021-06-20"
+          defaultValue="2021-12-12"
           onChange={this.handleToChange}
           InputLabelProps={{
             shrink: true,
@@ -234,11 +237,12 @@ render() {
         </TableContainer>
         {this.state.orders.map((obj) => (
           <BasicTable
-            orderPrice={obj.order_price}
-            user_id={obj.userId}
-            date={obj.date}
-            order_id={obj.orderId}
-            rows={obj.orderItemList}
+          orderPrice={obj.orderPrice}
+          user_id={obj.userId}
+          date={obj.date}
+          order_id={obj.orderId}
+          // rows={this.processData(obj.orderId)}
+          rows={obj.rows}
           />
           
         )

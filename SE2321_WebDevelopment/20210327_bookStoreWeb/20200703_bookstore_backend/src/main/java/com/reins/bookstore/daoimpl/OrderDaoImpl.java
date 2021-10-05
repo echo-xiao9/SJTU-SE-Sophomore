@@ -8,6 +8,7 @@ import com.reins.bookstore.repository.OrderItemRepository;
 import com.reins.bookstore.repository.OrderRepository;
 
 import com.reins.bookstore.repository.UserRepository;
+import com.reins.bookstore.utils.RedisUtil;
 import org.aspectj.weaver.ast.Or;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -28,26 +29,41 @@ public class OrderDaoImpl implements OrderDao {
 
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    RedisUtil redisUtil;
 
     @Override
     public Order findOne(Integer id) {
-        return orderRepository.getOne(id);
+
+        return orderRepository.getById(id);
     }
 
     @Override
     public List<Order> getOrders() {
-        List<Order> orderList=orderRepository.getOrders();
-        System.out.println(1);
-        return orderList;
-
+        List<Order> allOrders=new ArrayList<Order>();
+        Object ol=redisUtil.get("allOrders");
+        if(ol==null){
+            allOrders = orderRepository.getOrders();
+            redisUtil.set("allOrders",JSONArray.toJSON(allOrders));
+        }
+        else{
+            allOrders=JSONArray.parseArray(ol.toString(),Order.class);
+        }
+        return allOrders;
     }
 
     @Override
     public List<Order> getUserOrders(Integer user_id) {
-        List<Order> orderList = orderRepository.findByUserId(user_id);
-        return orderList;
+        List<Order> userOrder=new ArrayList<Order>();
+        Object ol=redisUtil.get("userOrder"+user_id);
+        if(ol==null){
+            userOrder =  orderRepository.findByUserId(user_id);
+            redisUtil.set("userOrder"+user_id, JSONArray.toJSON(userOrder));
+        }else{
+            userOrder = JSONArray.parseArray(ol.toString(),Order.class);
+        }
+        return userOrder;
     }
-
 
     @Override
     public List<Order> getUserBookOrders(Integer user_id, String bookName) {
@@ -117,11 +133,19 @@ public class OrderDaoImpl implements OrderDao {
         return newOrder;
     }
 
+    public void updateAllOrdersCache(){
+        List<Order>allOrders = orderRepository.getOrders();
+        redisUtil.set("allOrders",JSONArray.toJSON(allOrders));
+    }
+    public void updateUserOrderCache(Integer userId){
+        List<Order> userOrder= orderRepository.findByUserId(userId);
+        redisUtil.set("userOrder"+userId, JSONArray.toJSON(userOrder));
+    }
+
     @Override
     @Transactional(propagation=Propagation.REQUIRED)
     public OrderItem addOrderItem(Integer order_id, Integer book_id, Integer book_num) {
         Book b=bookRepository.findById(book_id).get();
-        Order order=orderRepository.findById(order_id).get();
         OrderItem orderItem=new OrderItem(order_id,book_id,book_num);
         orderItem.setBook(bookRepository.findById(book_id).get());
         orderItem.setOrder(orderRepository.findById(order_id).get());
@@ -131,13 +155,13 @@ public class OrderDaoImpl implements OrderDao {
         return orderItem;
     }
 
-    @Override
-    public OrderItem addOrderItem2(Order order, Integer book_id, Integer book_num) {
-        Book b=bookRepository.findById(book_id).get();
-        OrderItem orderItem= new OrderItem(order,b,book_num);
-        orderItemRepository.save(new OrderItem(order,b,book_num));
-        return orderItem;
-    }
+//    @Override
+//    public OrderItem addOrderItem2(Order order, Integer book_id, Integer book_num) {
+//        Book b=bookRepository.findById(book_id).get();
+//        OrderItem orderItem= new OrderItem(order,b,book_num);
+//        orderItemRepository.save(new OrderItem(order,b,book_num));
+//        return orderItem;
+//    }
 
     @Override
     public List<OrderItem> getOrderItems(Integer order_id) {

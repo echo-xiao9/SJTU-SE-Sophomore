@@ -16,7 +16,7 @@ export default class HotSelling extends React.Component {
     this.state = {
       userHotSelling:[],
       from:  "2021-04-05",
-      to:"2021-07-12",
+      to:"2021-12-12",
       totalPrice:0,
       totalNum:0
     }
@@ -34,10 +34,11 @@ export default class HotSelling extends React.Component {
           user_id:localStorage.getItem('userId')
         }
       }).then(response => {
+      
        console.log(response);
-        this.state.userHotSelling=response.data.hotSellingList;
-        this.state.totalNum=response.data.totalNum;
-        this.state.totalPrice=response.data.totalPrice;
+       this.setState({userHotSelling:response.data.hotSellingList});
+        this.setState({totalNum:response.data.totalNum});
+        this.setState({totalPrice: response.data.totalPrice});
       })
     }
 
@@ -61,9 +62,12 @@ export default class HotSelling extends React.Component {
       }).then(response => {
         console.log("response data");
         console.log(response.data);
-        this.state.userHotSelling=response.data.hotSellingList;
-        this.state.totalNum=response.data.totalNum;
-        this.state.totalPrice=response.data.totalPrice;
+        this.setState({userHotSelling:response.data.hotSellingList});
+        this.setState({totalNum:response.data.totalNum});
+        this.setState({totalPrice: response.data.totalPrice});
+        // this.state.userHotSelling=response.data.hotSellingList;
+        // this.state.totalNum=response.data.totalNum;
+        // this.state.totalPrice=response.data.totalPrice;
         console.log("userHot");
         console.log(this.state.userHotSelling);
       })
@@ -91,7 +95,7 @@ export default class HotSelling extends React.Component {
           label="To"
           type="date"
           ref="myField"
-          defaultValue="2021-07-12"
+          defaultValue="2021-12-12"
           onChange={this.handleToChange}
           InputLabelProps={{
             shrink: true,

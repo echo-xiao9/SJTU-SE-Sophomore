@@ -20,7 +20,7 @@ public interface OrderService {
 
     OrderItem addOrderItem(Integer order_id, Integer book_id, Integer book_num);
 
-    OrderItem addOrderItem2(Order order, Integer book_id, Integer book_num);
+//    OrderItem addOrderItem2(Order order, Integer book_id, Integer book_num);
 
     List<Order> getUserOrders(Integer user_id);
 

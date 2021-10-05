@@ -25,13 +25,9 @@ public class OrderServiceImpl implements OrderService {
     @Autowired
     private OrderDao orderDao;
     @Autowired
-    private BookDao bookDao;
-    @Autowired
     private GetCartService getCartService;
     @Autowired
     UserService userService;
-
-
 
     @Override
     public Order findOrderById(Integer id){
@@ -65,6 +61,8 @@ public class OrderServiceImpl implements OrderService {
         System.out.println("Received order < order_id:"+order1.getOrderId() +" user_id:" +
                 order1.getUserId()+" order_price:"+order1.getOrder_price() +" date:" +order1.getDate() + ">");
         Order fullOrder= orderDao.findOne(order1.getOrderId());
+        orderDao.updateAllOrdersCache();
+        orderDao.updateUserOrderCache(order1.getUserId());
         return fullOrder;
     }
 
@@ -76,11 +74,11 @@ public class OrderServiceImpl implements OrderService {
         return result;
     }
 
-    @Override
-    public OrderItem addOrderItem2(Order order, Integer book_id, Integer book_num) {
-        OrderItem result = orderDao.addOrderItem2(order,book_id,book_num);
-        return result;
-    }
+//    @Override
+//    public OrderItem addOrderItem2(Order order, Integer book_id, Integer book_num) {
+//        OrderItem result = orderDao.addOrderItem2(order,book_id,book_num);
+//        return result;
+//    }
 
     @Override
     public List<Order> getUserOrders(Integer user_id) {

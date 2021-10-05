@@ -14,7 +14,7 @@ export default class HotSelling extends React.Component {
     this.state = {
       hotSelling:[],
       from:  "2021-04-05",
-      to:"2021-07-12"
+      to:"2021-12-12"
     }
   
     this.handleFromChange=this.handleFromChange.bind(this);
@@ -29,17 +29,18 @@ export default class HotSelling extends React.Component {
           to:this.state.to
         }
       }).then(response => {
+        console.log("hot selling");
        console.log(response);
-        this.state.hotSelling=response.data;
+        this.setState({hotSelling:response.data});
       })
     }
 
     handleFromChange=(e)=>{
-      this.state.from=e.target.value;
+      this.setState({from:e.target.value});
     }
     
     handleToChange=(e)=>{
-      this.state.to=e.target.value;
+      this.setState({to:e.target.value});
     }
 
     
@@ -53,10 +54,10 @@ export default class HotSelling extends React.Component {
           to:this.state.to
         }
       }).then(response => {
+        console.log("users")
        console.log(response);
-        this.state.users=response.data;
+       this.setState({users: response.data});
       })
-      this.render();
     }
     
     
@@ -83,7 +84,7 @@ export default class HotSelling extends React.Component {
           label="To"
           type="date"
           ref="myField"
-          defaultValue="2021-07-12"
+          defaultValue="2021-12-12"
           onChange={this.handleToChange}
           InputLabelProps={{
             shrink: true,
