@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -22,13 +22,14 @@ import java.util.List;
  */
 
 @Repository
-public class UserDaoImpl<data1> implements UserDao {
+public class UserDaoImpl implements UserDao {
 
     @Autowired
     UserAuthRepository userAuthRepository;
 
     @Autowired
     UserRepository userRepository;
+
 
     @Override
     public List<User> getUsers() {
@@ -105,5 +106,15 @@ public class UserDaoImpl<data1> implements UserDao {
     @Transactional(propagation= Propagation.REQUIRED)
     public User getUserById(Integer userId){
         return userRepository.getById(userId);}
+
+    private AtomicInteger num = new AtomicInteger(0);
+    @Override
+    public Integer addHomePV() {
+        return num.incrementAndGet();
+    }
+
+
+
+
 
 }

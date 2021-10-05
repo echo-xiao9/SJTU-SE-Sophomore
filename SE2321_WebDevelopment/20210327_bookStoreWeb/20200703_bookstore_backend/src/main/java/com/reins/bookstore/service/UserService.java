@@ -27,4 +27,6 @@ public interface UserService {
     User adminUserChange(Integer user_id, String name, String email, Integer type);
 
     User getUserById(Integer userId);
+
+    Integer addHomePV();
 }

@@ -13,6 +13,7 @@ import java.util.List;
 public interface CartRepository extends JpaRepository<Cart, Integer> {
     @Query("select c from Cart c")
     List<Cart> getCart();
+
     @Query("select p from Cart p where  p.name=:name")
     Cart getCartByName(@Param("name") String name);
 

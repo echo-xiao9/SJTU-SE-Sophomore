@@ -29,9 +29,9 @@ class Book extends Component {
     }
     axios({
       method: 'GET',
-      url: 'http://localhost:9090/getSingleBook',
+      url: 'http://localhost:9090/getBook',
       params: {
-        isbn:this.getQueryVariable("isbn")
+        id:this.getQueryVariable("bookId")
       }
     }).then(response => {
       // const thisbook = response.data.find(x => x.isbn === this.getQueryVariable('isbn'));

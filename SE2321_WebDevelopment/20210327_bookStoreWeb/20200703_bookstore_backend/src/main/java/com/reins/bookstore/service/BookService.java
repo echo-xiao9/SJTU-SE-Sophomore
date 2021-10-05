@@ -20,5 +20,4 @@ public interface BookService {
 
     Book changeBook(Integer id, String isbn, String name, String type, String author, Integer price, String description, Integer inventory, String image);
 
-    Book getSingleBook(String isbn);
 }

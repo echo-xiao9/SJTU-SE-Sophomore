@@ -58,5 +58,10 @@ public class UserController {
         User u=userService.adminUserChange(user_id, name,email, type);
         return u;
     }
+    @GetMapping("/addHomePV")
+    public synchronized Integer addHomePV(){
+        return userService.addHomePV();
+    }
+
 
 }

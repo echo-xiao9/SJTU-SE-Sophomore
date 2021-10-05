@@ -74,5 +74,10 @@ public class UserServiceImpl implements UserService {
         return user;
     }
 
+    @Override
+    public synchronized Integer addHomePV() {
+        return userDao.addHomePV();
+    }
+
 
 }

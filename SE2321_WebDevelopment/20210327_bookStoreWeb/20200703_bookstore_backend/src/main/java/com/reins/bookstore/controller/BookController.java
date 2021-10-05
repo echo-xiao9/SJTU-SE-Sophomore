@@ -54,10 +54,6 @@ public class BookController {
         return bookService.deleteBook(bookId);
     }
 
-    @GetMapping("/getSingleBook")
-    public Book getSingleBook(@RequestParam("isbn")String isbn){
-        return bookService.getSingleBook(isbn);
-    }
     @GetMapping("/changeBook")
     public Book changeBook(
             @RequestParam("id") Integer id,
@@ -70,6 +66,11 @@ public class BookController {
     @RequestParam("inventory") Integer inventory,
     @RequestParam("image") String image
     ){
+
+
+
+
+
             return bookService.changeBook(id,isbn,name,type,author,price,description,inventory,image);
     }
 }
