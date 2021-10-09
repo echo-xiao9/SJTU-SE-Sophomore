@@ -276,15 +276,16 @@ chfs_client::read(inum ino, size_t size, off_t off, std::string &data) {
      * your code goes here.
      * note: read using ec->get().
      */
-    std::string content;
-    ec->get(ino, content);
-
-    if ((unsigned int) off >= content.size()) {
+    printf("read ino: %llu, size: %lu, off: %lu", ino, size, off);
+    std::string buf;
+    ec->get(ino, buf);
+    printf("read buf: %s", buf.c_str());
+    if ((unsigned int) off >= buf.size()) {
         data.erase();
         return r;
     }
 
-    data = content.substr(off, size);
+    data = buf.substr(off, size);
     return r;
 }
 
@@ -299,13 +300,13 @@ chfs_client::write(inum ino, size_t size, off_t off, const char *data,
      * note: write using ec->put().
      * when off > length of original file, fill the holes with '\0'.
      */
-    
+    printf("write ino: %llu, size: %lu, off: %lu", ino, size, off);
     std::string buf;
     ec->get(ino, buf);
-    
+    printf("write buf: %s", buf.c_str());
     // off + write size <= file size
     if (off + size <= buf.size()) {
-        for (int i = off; i < off + size; i++) {
+        for (long unsigned int i = off; i < off + size; i++) {
             buf[i] = data[i - off];
         }
         bytes_written = size;
@@ -315,7 +316,7 @@ chfs_client::write(inum ino, size_t size, off_t off, const char *data,
 
     // off + write size > file size
     buf.resize(off + size);
-    for (int i = off; i < off + size; i++) {
+    for (long unsigned int i = off; i < off + size; i++) {
         buf[i] = data[i - off];
     }
     bytes_written = size;
