@@ -10,7 +10,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="SE3353_6_MemcachedSample" target="1.5" />
+      <module name="SE3353_6_MemcachedSample" target="8" />
     </bytecodeTargetLevel>
   </component>
 </project>

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		E822F9A927054250003EA3EC /* libglfw.3.3.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = E82C64F92700AFFC0031F201 /* libglfw.3.3.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		E822F9AA27054398003EA3EC /* libglfw.3.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E82C64F92700AFFC0031F201 /* libglfw.3.3.dylib */; };
+		E822F9C427054CEA003EA3EC /* libglfw3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E822F9C327054CEA003EA3EC /* libglfw3.a */; };
 		E831243026F1ECF400B438D9 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E831242F26F1ECF400B438D9 /* main.cpp */; };
 		E831243826F1EDCD00B438D9 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E831243726F1EDCD00B438D9 /* OpenGL.framework */; };
 		E831243C26F205B100B438D9 /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E831243B26F205B100B438D9 /* GLUT.framework */; };
@@ -42,6 +43,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		E822F9C327054CEA003EA3EC /* libglfw3.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libglfw3.a; path = Externals/Libraries/libglfw3.a; sourceTree = "<group>"; };
 		E82C64F82700AFE50031F201 /* Libraries */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Libraries; sourceTree = "<group>"; };
 		E82C64F92700AFFC0031F201 /* libglfw.3.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libglfw.3.3.dylib; path = Externals/Libraries/libglfw.3.3.dylib; sourceTree = "<group>"; };
 		E831242C26F1ECF400B438D9 /* OpenGLTest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = OpenGLTest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -79,6 +81,7 @@
 				E831243C26F205B100B438D9 /* GLUT.framework in Frameworks */,
 				E831243826F1EDCD00B438D9 /* OpenGL.framework in Frameworks */,
 				E822F9AA27054398003EA3EC /* libglfw.3.3.dylib in Frameworks */,
+				E822F9C427054CEA003EA3EC /* libglfw3.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -132,6 +135,7 @@
 				E82C64F92700AFFC0031F201 /* libglfw.3.3.dylib */,
 				E831243B26F205B100B438D9 /* GLUT.framework */,
 				E831243726F1EDCD00B438D9 /* OpenGL.framework */,
+				E822F9C327054CEA003EA3EC /* libglfw3.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -358,7 +362,6 @@
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					/usr/local/Cellar/glfw/3.3.4/lib,
 					"$(PROJECT_DIR)/Externals/Libraries",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -377,7 +380,6 @@
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					/usr/local/Cellar/glfw/3.3.4/lib,
 					"$(PROJECT_DIR)/Externals/Libraries",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
