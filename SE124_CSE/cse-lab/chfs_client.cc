@@ -132,11 +132,10 @@ int chfs_client::setattr(inum ino, size_t size)
      * according to the size (<, =, or >) content length.
      */
 
-
-
-
-
-
+  std::string buf;
+  ec->get(ino, buf);
+  buf.resize(size);
+  ec->put(ino,buf);
   return r;
 }
 
@@ -269,18 +268,59 @@ int chfs_client::readdir(inum dir, std::list<dirent> &list)
     return r;
 }
 
-int chfs_client::write(inum ino, size_t size, off_t off, const char *data,
-                       size_t &bytes_written)
-{
-  int r = OK;
+int
+chfs_client::read(inum ino, size_t size, off_t off, std::string &data) {
+    int r = OK;
 
-  /*
+    /*
+     * your code goes here.
+     * note: read using ec->get().
+     */
+    std::string content;
+    ec->get(ino, content);
+
+    if ((unsigned int) off >= content.size()) {
+        data.erase();
+        return r;
+    }
+
+    data = content.substr(off, size);
+    return r;
+}
+
+int
+chfs_client::write(inum ino, size_t size, off_t off, const char *data,
+        size_t &bytes_written)
+{
+    int r = OK;
+
+    /*
      * your code goes here.
      * note: write using ec->put().
      * when off > length of original file, fill the holes with '\0'.
      */
+    
+    std::string buf;
+    ec->get(ino, buf);
+    
+    // off + write size <= file size
+    if (off + size <= buf.size()) {
+        for (int i = off; i < off + size; i++) {
+            buf[i] = data[i - off];
+        }
+        bytes_written = size;
+        ec->put(ino, buf);
+        return r;
+    }
 
-  return r;
+    // off + write size > file size
+    buf.resize(off + size);
+    for (int i = off; i < off + size; i++) {
+        buf[i] = data[i - off];
+    }
+    bytes_written = size;
+    ec->put(ino, buf);
+    return r;
 }
 
 int chfs_client::unlink(inum parent, const char *name)

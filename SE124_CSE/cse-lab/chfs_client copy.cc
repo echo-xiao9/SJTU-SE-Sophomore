@@ -132,11 +132,10 @@ int chfs_client::setattr(inum ino, size_t size)
      * according to the size (<, =, or >) content length.
      */
 
-
-
-
-
-
+  std::string buf;
+  ec->get(ino, buf);
+  buf.resize(size);
+  ec->put(ino,buf);
   return r;
 }
 
@@ -151,7 +150,6 @@ int chfs_client::setattr(inum ino, size_t size)
 //   and the new file's attribute into @e->attr. Get the file's
 //   attributes with getattr().
 //
-// @return chfs_client::OK on success, and EXIST if @name already exists.
 
 int chfs_client::createFileOrDir(inum parent, const char *name, mode_t mode, inum &ino_out, int type)
 {
@@ -200,31 +198,36 @@ int chfs_client::mkdir(inum parent, const char *name, mode_t mode, inum &ino_out
   return r;
 }
 
-int chfs_client::lookup(inum parent, const char *name, bool &found, inum &ino_out)
+int
+chfs_client::lookup(inum parent, const char *name, bool &found, inum &ino_out)
 {
-  int r = OK;
-  printf("lookup parent: %llu, name: %s\n", parent, name);
-  std::list<dirent> list;
-  readdir(parent, list);
-  for (std::list<dirent>::const_iterator it = list.begin(); it != list.end(); ++it)
-  {
-     if (it->name.compare(name) == 0) {
-      found = true;
-      ino_out = it->inum;
-      return r;
-    }
-    found = false;
-    return r;
-  }
+    int r = OK;
 
-  /*
+    /*
      * your code goes here.
      * note: lookup file from parent dir according to name;
      * you should design the format of directory content.
      */
 
-  return r;
+    std::list<dirent> list;
+    printf("lookup parent: %llu, name: %s\n", parent, name);
+    readdir(parent, list);
+    found = false;
+    if (list.empty()) {
+        return r;
+    }
+
+    for (std::list<dirent>::iterator it = list.begin(); it != list.end(); it++) {
+        if (it->name.compare(name) == 0) {
+            ino_out = it->inum;
+            found = true;
+            return r;
+        }
+    }
+    return r;
 }
+
+
 
 int chfs_client::readdir(inum dir, std::list<dirent> &list)
 {
@@ -242,13 +245,13 @@ int chfs_client::readdir(inum dir, std::list<dirent> &list)
     ec->get(dir, buf);
 
     // traverse directory content
-    int name_start = 0;
-    int name_end = buf.find(':');
-    while (name_end != std::string::npos) {
-        std::string name = buf.substr(name_start, name_end - name_start);
-        int inum_start = name_end + 1;
-        int inum_end = buf.find('/', inum_start);
-        std::string inum = buf.substr(inum_start, inum_end - inum_start);
+    long unsigned int  nameStart = 0;
+    long unsigned int nameEnd = buf.find(':');
+    while (nameEnd != std::string::npos) {
+        std::string name = buf.substr(nameStart, nameEnd - nameStart);
+        int inumStart = nameEnd + 1;
+        int inumEnd = buf.find('/', inumStart);
+        std::string inum = buf.substr(inumStart, inumEnd - inumStart);
             
         struct dirent entry;
         entry.name = name;
@@ -256,24 +259,55 @@ int chfs_client::readdir(inum dir, std::list<dirent> &list)
 
         list.push_back(entry);
         
-        name_start = inum_end + 1;
-        name_end = buf.find(':', name_start);
+        nameStart = inumEnd + 1;
+        nameEnd = buf.find(':', nameStart);
     }
 
     return r;
 }
 
+
+
+
+int chfs_client::read(inum ino, size_t size, off_t off, std::string &data){
+  int r = OK;
+  std::string buf;
+  printf("read ino: %llu, size: %lu, off: %lu", ino, size, off);
+  ec->get(ino, buf);
+  printf("read buf: %s", buf.c_str());
+  // wether can work.
+  if(off>(long long)buf.size()){
+    data="";
+    return r;
+  }
+  if (off + size > buf.size()) {
+        data = buf.substr(off);
+        return r;
+    }
+  data = buf.substr(off, size);
+  return r;
+}
+
 int chfs_client::write(inum ino, size_t size, off_t off, const char *data,
                        size_t &bytes_written)
 {
-  int r = OK;
-
   /*
      * your code goes here.
      * note: write using ec->put().
      * when off > length of original file, fill the holes with '\0'.
      */
-
+  printf("write ino: %llu, size: %lu, off: %lu", ino, size, off);
+  int r = OK;
+  std::string buf;
+  ec->get(ino, buf);
+  printf("write buf: %s", buf.c_str());
+  // off + write size > file size
+  if(size+off>buf.size())buf.resize(size+off);
+  for(long unsigned int i=off; i<off+size;i++){
+    buf[i]=data[i-off]; // notion: it is i-off
+  }
+  ec->put(ino,buf);
+  bytes_written=size; // remember to set bytes_written
   return r;
 }
 

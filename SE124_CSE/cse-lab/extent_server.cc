@@ -26,7 +26,6 @@ int extent_server::create(uint32_t type, extent_protocol::extentid_t &id)
 int extent_server::put(extent_protocol::extentid_t id, std::string buf, int &)
 {
   id &= 0x7fffffff;
-  
   const char * cbuf = buf.c_str();
   int size = buf.size();
   // write to the given id inode
