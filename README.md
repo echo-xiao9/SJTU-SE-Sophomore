@@ -9,3 +9,4 @@ Code for all software engineering course assignments.
 | [SE2321 Web Development](https://github.com/echo-xiao9/SJTU-SE/tree/main/SE2321_WebDevelopment) |
 | [SE2322 HighLevelDataStructure](https://github.com/echo-xiao9/SJTU-SE/tree/main/SE2322_HighLevelDataStructure) |
 
+[![wakatime](https://wakatime.com/badge/github/echo-xiao9/SJTU-SE.svg)](https://wakatime.com/badge/github/echo-xiao9/SJTU-SE)
