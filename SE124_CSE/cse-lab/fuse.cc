@@ -162,7 +162,7 @@ fuseserver_read(fuse_req_t req, fuse_ino_t ino, size_t size,
 {
 #if 1
   std::string buf;
-    // Change the above "#if 0" to "#if 1", and your code goes here
+  
     int r;
     if ((r = chfs->read(ino, size, off, buf)) == chfs_client::OK) {
         fuse_reply_buf(req, buf.data(), buf.size());    
@@ -170,7 +170,6 @@ fuseserver_read(fuse_req_t req, fuse_ino_t ino, size_t size,
         fuse_reply_err(req, ENOENT);
     }
 
-    // Change the above "#if 0" to "#if 1", and your code goes here
 #else
     fuse_reply_err(req, ENOSYS);
 #endif
@@ -406,7 +405,17 @@ fuseserver_mkdir(fuse_req_t req, fuse_ino_t parent, const char *name,
     // Suppress compiler warning of unused e.
     (void) e;
 
-#if 0
+#if 1
+    int r;
+    if (( r = fuseserver_createhelper( parent, name, mode, &e, extent_protocol::T_DIR)) == chfs_client::OK) {
+        fuse_reply_entry(req, &e);    
+    } else {
+        if (r == chfs_client::EXIST) {
+            fuse_reply_err(req, EEXIST);
+        } else {
+            fuse_reply_err(req, ENOENT);
+        }
+    }
     // Change the above line to "#if 1", and your code goes here
 #else
     fuse_reply_err(req, ENOSYS);

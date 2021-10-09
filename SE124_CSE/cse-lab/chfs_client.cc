@@ -175,6 +175,7 @@ int chfs_client::createFileOrDir(inum parent, const char *name, mode_t mode, inu
 int chfs_client::create(inum parent, const char *name, mode_t mode, inum &ino_out)
 {
   int r = OK;
+  printf("create parent: %llu, name: %s\n", parent, name);
 
   /*
      * your code goes here.
@@ -189,6 +190,7 @@ int chfs_client::create(inum parent, const char *name, mode_t mode, inum &ino_ou
 int chfs_client::mkdir(inum parent, const char *name, mode_t mode, inum &ino_out)
 {
   int r = OK;
+  printf("mkdir parent: %llu, name: %s\n", parent, name);
 
   /*
      * your code goes here.
@@ -333,6 +335,23 @@ int chfs_client::unlink(inum parent, const char *name)
      * note: you should remove the file using ec->remove,
      * and update the parent directory content.
      */
+  printf("unlink parent: %llu, name: %s\n", parent, name);
+  bool found = false;
+  inum ino_out;
+  lookup(parent, name,found,ino_out);
+  if(!found) return r;
 
+  // remove the file
+  ec->remove(ino_out);
+
+  // update parent directory
+  std::string buf;
+  ec->get(parent, buf);
+
+  // find the key-value "name:inum/name:inum/name:inum/"
+  int name_start = buf.find(name);
+  int inum_after = buf.find('/', name_start);
+  buf.erase(name_start, inum_after - name_start + 1);
+  ec->put(parent, buf);
   return r;
 }
