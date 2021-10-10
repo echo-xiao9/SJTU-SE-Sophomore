@@ -30,7 +30,7 @@ int id() {
 // including owner, permissions, size, &c. The information is
 // much the same as that returned by the stat() system call.
 // The kernel needs attributes in many situations, and some
-// fuse functions (such as lookup) need to return ttributes
+// fuse functions (such as lookup) need to return attributes
 // as well as other information, so getattr() gets called a lot.
 //
 // ChFS fakes most of the attributes. It does provide more or
@@ -58,7 +58,7 @@ getattr(chfs_client::inum inum, struct stat &st)
         st.st_ctime = info.ctime;
         st.st_size = info.size;
         printf("   getattr -> %llu\n", info.size);
-    } else if (chfs->isdir(inum)) {
+    } else {
         chfs_client::dirinfo info;
         ret = chfs->getdir(inum, info);
         if(ret != chfs_client::OK)
@@ -69,19 +69,6 @@ getattr(chfs_client::inum inum, struct stat &st)
         st.st_mtime = info.mtime;
         st.st_ctime = info.ctime;
         printf("   getattr -> %lu %lu %lu\n", info.atime, info.mtime, info.ctime);
-    } else {
-        // need to add this after adding the symbolic link
-        chfs_client::fileinfo info;
-        ret = chfs->getfile(inum, info);
-        if(ret != chfs_client::OK)
-            return ret;
-        st.st_mode = S_IFLNK | 0777;
-        st.st_nlink = 1;
-        st.st_atime = info.atime;
-        st.st_mtime = info.mtime;
-        st.st_ctime = info.ctime;
-        st.st_size = info.size;
-        printf("   getattr -> link %llu\n", info.size);
     }
     return chfs_client::OK;
 }
@@ -459,47 +446,43 @@ fuseserver_unlink(fuse_req_t req, fuse_ino_t parent, const char *name)
 }
 
 void
-fuseserver_readlink(fuse_req_t req, fuse_ino_t ino) {
-    std::string buf;
-    
-    if (chfs->readlink(ino, buf) != chfs_client::OK) {
-        fuse_reply_err(req, ENOENT);
-        return;
-    }
-    fuse_reply_readlink(req, buf.c_str());
-}
-
-void
-fuseserver_symlink(fuse_req_t req, const char *link,
-                   fuse_ino_t parent, const char *name) {
-    chfs_client::inum id;
-    chfs_client::status stat;
+fuseserver_symlink(fuse_req_t req, const char *link, fuse_ino_t parent, const char *name)
+{
     struct fuse_entry_param e;
-
-    stat = chfs->symlink(parent, name, link, id);
-    if (stat != chfs_client::OK) {
-        if (stat == chfs_client::EXIST) {
-            fuse_reply_err(req, EEXIST);
-        } else {
-            fuse_reply_err(req, ENOENT);
-        }
-        return;
-    }
-
-    e.ino = id;
     e.attr_timeout = 0.0;
     e.entry_timeout = 0.0;
     e.generation = 0;
 
-    if (getattr(id, e.attr) != chfs_client::OK) {
-        fuse_reply_err(req, ENOENT);
-        return;
+    chfs_client::inum inum;
+    chfs_client::status ret;
+    printf("fuseserver_symlink start!/n");
+    if (( ret = chfs->symlink(parent, name, link, inum)) == chfs_client::OK) {
+        e.ino = inum;
+        getattr(inum, e.attr);
+        fuse_reply_entry(req, &e);    
+        printf("fuseserver_symlink OK!");
+    } else {
+      printf("fuseserver_symlink fail!");
+        if (ret == chfs_client::EXIST) {
+            fuse_reply_err(req, EEXIST);
+        } else {
+            fuse_reply_err(req, ENOENT);
+        }
     }
-
-    fuse_reply_entry(req, &e);
 }
 
-
+void
+fuseserver_readlink(fuse_req_t req, fuse_ino_t ino)
+{
+    std::string buf;
+    int r;
+    printf("fuseserver_readlink %lu!", ino);
+    if ((r = chfs->readlink(ino, buf)) == chfs_client::OK) {
+        fuse_reply_readlink(req, buf.c_str());    
+    } else {
+        fuse_reply_err(req, ENOENT);
+    }
+}
 
 
 void
@@ -559,8 +542,8 @@ main(int argc, char *argv[])
     fuseserver_oper.setattr    = fuseserver_setattr;
     fuseserver_oper.unlink     = fuseserver_unlink;
     fuseserver_oper.mkdir      = fuseserver_mkdir;
-    fuseserver_oper.readlink   = fuseserver_readlink;
     fuseserver_oper.symlink    = fuseserver_symlink;
+    fuseserver_oper.readlink   = fuseserver_readlink;
     /** Your code here for Lab.
      * you may want to add
      * routines here to implement symbolic link,

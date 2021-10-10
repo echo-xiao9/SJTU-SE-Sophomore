@@ -66,7 +66,22 @@ bool chfs_client::isfile(inum inum)
 bool chfs_client::isdir(inum inum)
 {
   // Oops! is this still correct when you implement symlink?
-  return !isfile(inum);
+  // return !isfile(inum);
+  extent_protocol::attr a;
+
+  if (ec->getattr(inum, a) != extent_protocol::OK)
+  {
+    printf("error getting attr\n");
+    return false;
+  }
+
+  if (a.type == extent_protocol::T_DIR)
+  {
+    printf("isfile: %lld is a dir\n", inum);
+    return true;
+  }
+  printf("isfile: %lld is not a dir\n", inum);
+  return false;
 }
 
 int chfs_client::getfile(inum inum, fileinfo &fin)
@@ -135,7 +150,7 @@ int chfs_client::setattr(inum ino, size_t size)
   std::string buf;
   ec->get(ino, buf);
   buf.resize(size);
-  ec->put(ino,buf);
+  ec->put(ino, buf);
   return r;
 }
 
@@ -150,8 +165,6 @@ int chfs_client::setattr(inum ino, size_t size)
 //   and the new file's attribute into @e->attr. Get the file's
 //   attributes with getattr().
 //
-
-
 
 int chfs_client::createFileOrDir(inum parent, const char *name, mode_t mode, inum &ino_out, int type)
 {
@@ -202,129 +215,135 @@ int chfs_client::mkdir(inum parent, const char *name, mode_t mode, inum &ino_out
   return r;
 }
 
-int
-chfs_client::lookup(inum parent, const char *name, bool &found, inum &ino_out)
+int chfs_client::lookup(inum parent, const char *name, bool &found, inum &ino_out)
 {
-    int r = OK;
+  int r = OK;
 
-    /*
+  /*
      * your code goes here.
      * note: lookup file from parent dir according to name;
      * you should design the format of directory content.
      */
 
-    std::list<dirent> list;
-    printf("lookup parent: %llu, name: %s\n", parent, name);
-    readdir(parent, list);
-    found = false;
-    if (list.empty()) {
-        return r;
-    }
-
-    for (std::list<dirent>::iterator it = list.begin(); it != list.end(); it++) {
-        if (it->name.compare(name) == 0) {
-            ino_out = it->inum;
-            found = true;
-            return r;
-        }
-    }
+  std::list<dirent> list;
+  printf("lookup parent: %llu, name: %s\n", parent, name);
+  readdir(parent, list);
+  found = false;
+  if (list.empty())
+  {
     return r;
+  }
+
+  for (std::list<dirent>::iterator it = list.begin(); it != list.end(); it++)
+  {
+    if (it->name.compare(name) == 0)
+    {
+      ino_out = it->inum;
+      found = true;
+      return r;
+    }
+  }
+  return r;
 }
-
-
 
 int chfs_client::readdir(inum dir, std::list<dirent> &list)
 {
   int r = OK;
 
-    /*
+  /*
      * your code goes here.
      * note: you should parse the dirctory content using your defined format,
      * and push the dirents to the list.
      */
-    // my format of dir content: "name:inum/name:inum/name:inum/"
+  // my format of dir content: "name:inum/name:inum/name:inum/"
 
-    // get directory content
-    std::string buf;
-    ec->get(dir, buf);
+  // get directory content
+  std::string buf;
+  ec->get(dir, buf);
 
-    // traverse directory content
-    long unsigned int  nameStart = 0;
-    long unsigned int nameEnd = buf.find(':');
-    while (nameEnd != std::string::npos) {
-        std::string name = buf.substr(nameStart, nameEnd - nameStart);
-        int inumStart = nameEnd + 1;
-        int inumEnd = buf.find('/', inumStart);
-        std::string inum = buf.substr(inumStart, inumEnd - inumStart);
-            
-        struct dirent entry;
-        entry.name = name;
-        entry.inum = n2i(inum);
+  // traverse directory content
+  long unsigned int nameStart = 0;
+  long unsigned int nameEnd = buf.find(':');
+  while (nameEnd != std::string::npos)
+  {
+    std::string name = buf.substr(nameStart, nameEnd - nameStart);
+    int inumStart = nameEnd + 1;
+    int inumEnd = buf.find('/', inumStart);
+    std::string inum = buf.substr(inumStart, inumEnd - inumStart);
 
-        list.push_back(entry);
-        
-        nameStart = inumEnd + 1;
-        nameEnd = buf.find(':', nameStart);
-    }
+    struct dirent entry;
+    entry.name = name;
+    entry.inum = n2i(inum);
 
-    return r;
+    list.push_back(entry);
+
+    nameStart = inumEnd + 1;
+    nameEnd = buf.find(':', nameStart);
+  }
+
+  return r;
 }
 
-int
-chfs_client::read(inum ino, size_t size, off_t off, std::string &data) {
-    int r = OK;
-
-    /*
-     * your code goes here.
-     * note: read using ec->get().
-     */
-    printf("read ino: %llu, size: %lu, off: %lu", ino, size, off);
-    std::string buf;
-    ec->get(ino, buf);
-    printf("read buf: %s", buf.c_str());
-    if ((unsigned int) off >= buf.size()) {
-        data.erase();
-        return r;
-    }
-
-    data = buf.substr(off, size);
-    return r;
-}
-
-int
-chfs_client::write(inum ino, size_t size, off_t off, const char *data,
-        size_t &bytes_written)
+int chfs_client::write(inum ino, size_t size, off_t off, const char *data,
+                       size_t &bytes_written)
 {
-    int r = OK;
+  int r = OK;
 
-    /*
+  /*
      * your code goes here.
      * note: write using ec->put().
      * when off > length of original file, fill the holes with '\0'.
      */
-    printf("write ino: %llu, size: %lu, off: %lu", ino, size, off);
-    std::string buf;
-    ec->get(ino, buf);
-    printf("write buf: %s", buf.c_str());
-    // off + write size <= file size
-    if (off + size <= buf.size()) {
-        for (long unsigned int i = off; i < off + size; i++) {
-            buf[i] = data[i - off];
-        }
-        bytes_written = size;
-        ec->put(ino, buf);
-        return r;
-    }
-
-    // off + write size > file size
-    buf.resize(off + size);
-    for (long unsigned int i = off; i < off + size; i++) {
-        buf[i] = data[i - off];
+  printf("write ino: %llu, size: %lu, off: %lu", ino, size, off);
+  std::string buf;
+  ec->get(ino, buf);
+  printf("write buf: %s", buf.c_str());
+  // off + write size <= file size
+  if (off + size <= buf.size())
+  {
+    for (long unsigned int i = off; i < off + size; i++)
+    {
+      buf[i] = data[i - off];
     }
     bytes_written = size;
     ec->put(ino, buf);
     return r;
+  }
+
+  // off + write size > file size
+  buf.resize(off + size);
+  for (long unsigned int i = off; i < off + size; i++)
+  {
+    buf[i] = data[i - off];
+  }
+  bytes_written = size;
+  ec->put(ino, buf);
+  return r;
 }
+
+
+int chfs_client::read(inum ino, size_t size, off_t off, std::string &data)
+{
+  int r = OK;
+
+  /*
+     * your code goes here.
+     * note: read using ec->get().
+     */
+  printf("read ino: %llu, size: %lu, off: %lu", ino, size, off);
+  std::string buf;
+  ec->get(ino, buf);
+  printf("read buf: %s", buf.c_str());
+  if ((unsigned int)off >= buf.size())
+  {
+    data.erase();
+    return r;
+  }
+
+  data = buf.substr(off, size);
+  return r;
+}
+
 
 int chfs_client::unlink(inum parent, const char *name)
 {
@@ -338,12 +357,12 @@ int chfs_client::unlink(inum parent, const char *name)
   printf("unlink parent: %llu, name: %s\n", parent, name);
   bool found = false;
   inum ino_out;
-  lookup(parent, name,found,ino_out);
-  if(!found) return r;
+  lookup(parent, name, found, ino_out);
+  if (!found)
+    return r;
 
   // remove the file
   ec->remove(ino_out);
-
   // update parent directory
   std::string buf;
   ec->get(parent, buf);
@@ -353,5 +372,80 @@ int chfs_client::unlink(inum parent, const char *name)
   int inum_after = buf.find('/', name_start);
   buf.erase(name_start, inum_after - name_start + 1);
   ec->put(parent, buf);
+  return r;
+}
+
+// bool chfs_client::issymlink(inum inum){
+//   int r;
+//   extent_protocol::attr a;
+//   EXT_RPC(ec->getattr(inum, a));
+//     if (a.type == extent_protocol::T_SYMLINK) {
+//         printf("issymlink: %lld is a symlink\n", inum);
+//         return true;
+//     }
+//     printf("issymlink: %lld is not a symlink\n", inum);
+//   release:
+//     return false;
+// }
+
+bool chfs_client::issymlink(inum inum)
+{
+  printf("issymlink inum: %lld\n", inum);
+  extent_protocol::attr a;
+
+  if (ec->getattr(inum, a) != extent_protocol::OK)
+  {
+    printf("error getting attr\n");
+    return false;
+  }
+
+  if (a.type == extent_protocol::T_SYMLINK)
+  {
+    printf("isfile: %lld is a symlink\n", inum);
+    return true;
+  }
+  printf("isfile: %lld is not a symlink\n", inum);
+  return false;
+}
+
+int chfs_client::symlink(inum parent, const char *name, const char *link, inum &ino_out)
+{
+  int r = OK;
+  printf("symlink parent: %llu, name: %s, link: %s", parent, name, link);
+
+  // check if symlink name has existed
+  bool found = false;
+  inum tmp; // not necessary
+  lookup(parent, name, found, tmp);
+  if (found)
+  {
+    // has existed
+    return EXIST;
+  }
+
+  // pick an inum and put the link to the new inode
+  // the biggest difference between symbolic link and hardlink is that
+  // symlink store the link to the path, while the hardlink stores
+  // the link to the data block.
+  ec->create(extent_protocol::T_SYMLINK, ino_out);
+  ec->put(ino_out, std::string(link));
+
+  // add an entry into parent
+  std::string buf;
+  ec->get(parent, buf);
+  buf.append(std::string(name) + ":" + filename(ino_out) + "/");
+  ec->put(parent, buf);
+
+  printf("finish symlink, put name:%s",name);
+  return r;
+}
+
+int chfs_client::readlink(inum ino, std::string &data)
+{
+  printf("readlink inum: %llu\n", ino);
+  int r = OK;
+  std::string buf;
+  ec->get(ino, buf);
+  data = buf;
   return r;
 }
