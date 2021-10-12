@@ -1,0 +1,88 @@
+SKIP NAVIGATION LINKS OVERVIEWPACKAGECLASSUSETREEDEPRECATEDHELP PREVNEXTFRAMESNO FRAMESALL CLASSES
+Lucene 8.4.1 demo API
+
+The demo module offers simple example code to show the features of Lucene.
+See: Description
+
+Packages
+Package	Description
+org.apache.lucene.demo	
+Demo applications for indexing and searching.
+org.apache.lucene.demo.facet	
+Facets example code.
+The demo module offers simple example code to show the features of Lucene.
+
+Apache Lucene - Building and Installing the Basic Demo
+
+About this Document
+About the Demo
+Setting your CLASSPATH
+Indexing Files
+About the code
+Location of the source
+IndexFiles
+Searching Files
+About this Document
+
+This document is intended as a "getting started" guide to using and running the Lucene demos. It walks you through some basic installation and configuration.
+
+About the Demo
+
+The Lucene command-line demo code consists of an application that demonstrates various functionalities of Lucene and how you can add Lucene to your applications.
+
+Setting your CLASSPATH
+
+First, you should download the latest Lucene distribution and then extract it to a working directory.
+
+You need four JARs: the Lucene JAR, the queryparser JAR, the common analysis JAR, and the Lucene demo JAR. You should see the Lucene JAR file in the core/ directory you created when you extracted the archive -- it should be named something like lucene-core-{version}.jar. You should also see files called lucene-queryparser-{version}.jar, lucene-analyzers-common-{version}.jar and lucene-demo-{version}.jar under queryparser, analysis/common/ and demo/, respectively.
+
+Put all four of these files in your Java CLASSPATH.
+
+Indexing Files
+
+Once you've gotten this far you're probably itching to go. Let's build an index! Assuming you've set your CLASSPATH correctly, just type:
+
+    java org.apache.lucene.demo.IndexFiles -docs {path-to-lucene}
+This will produce a subdirectory called index which will contain an index of all of the Lucene source code.
+To search the index type:
+
+    java org.apache.lucene.demo.SearchFiles
+You'll be prompted for a query. Type in a gibberish or made up word (for example: "supercalifragilisticexpialidocious"). You'll see that there are no maching results in the lucene source code. Now try entering the word "string". That should return a whole bunch of documents. The results will page at every tenth result and ask you whether you want more results.
+About the code
+
+In this section we walk through the sources behind the command-line Lucene demo: where to find them, their parts and their function. This section is intended for Java developers wishing to understand how to use Lucene in their applications.
+
+Location of the source
+
+The files discussed here are linked into this documentation directly:
+
+IndexFiles.java: code to create a Lucene index.
+SearchFiles.java: code to search a Lucene index.
+IndexFiles
+
+As we discussed in the previous walk-through, the IndexFiles class creates a Lucene Index. Let's take a look at how it does this.
+
+The main() method parses the command-line parameters, then in preparation for instantiating IndexWriter, opens a Directory, and instantiates StandardAnalyzer and IndexWriterConfig.
+
+The value of the -index command-line parameter is the name of the filesystem directory where all index information should be stored. If IndexFiles is invoked with a relative path given in the -index command-line parameter, or if the -index command-line parameter is not given, causing the default relative index path "index" to be used, the index path will be created as a subdirectory of the current working directory (if it does not already exist). On some platforms, the index path may be created in a different directory (such as the user's home directory).
+
+The -docs command-line parameter value is the location of the directory containing files to be indexed.
+
+The -update command-line parameter tells IndexFiles not to delete the index if it already exists. When -update is not given, IndexFiles will first wipe the slate clean before indexing any documents.
+
+Lucene Directorys are used by the IndexWriter to store information in the index. In addition to the FSDirectory implementation we are using, there are several other Directory subclasses that can write to RAM, to databases, etc.
+
+Lucene Analyzers are processing pipelines that break up text into indexed tokens, a.k.a. terms, and optionally perform other operations on these tokens, e.g. downcasing, synonym insertion, filtering out unwanted tokens, etc. The Analyzer we are using is StandardAnalyzer, which creates tokens using the Word Break rules from the Unicode Text Segmentation algorithm specified in Unicode Standard Annex #29; converts tokens to lowercase; and then filters out stopwords. Stopwords are common language words such as articles (a, an, the, etc.) and other tokens that may have less value for searching. It should be noted that there are different rules for every language, and you should use the proper analyzer for each. Lucene currently provides Analyzers for a number of different languages (see the javadocs under lucene/analysis/common/src/java/org/apache/lucene/analysis).
+
+The IndexWriterConfig instance holds all configuration for IndexWriter. For example, we set the OpenMode to use here based on the value of the -update command-line parameter.
+
+Looking further down in the file, after IndexWriter is instantiated, you should see the indexDocs() code. This recursive function crawls the directories and creates Document objects. The Document is simply a data object to represent the text content from the file as well as its creation time and location. These instances are added to the IndexWriter. If the -update command-line parameter is given, the IndexWriterConfig OpenMode will be set to OpenMode.CREATE_OR_APPEND, and rather than adding documents to the index, the IndexWriter will update them in the index by attempting to find an already-indexed document with the same identifier (in our case, the file path serves as the identifier); deleting it from the index if it exists; and then adding the new document to the index.
+
+Searching Files
+
+The SearchFiles class is quite simple. It primarily collaborates with an IndexSearcher, StandardAnalyzer, (which is used in the IndexFiles class as well) and a QueryParser. The query parser is constructed with an analyzer used to interpret your query text in the same way the documents are interpreted: finding word boundaries, downcasing, and removing useless words like 'a', 'an' and 'the'. The Query object contains the results from the QueryParser which is passed to the searcher. Note that it's also possible to programmatically construct a rich Query object without using the query parser. The query parser just enables decoding the Lucene query syntax into the corresponding Query object.
+
+SearchFiles uses the IndexSearcher.search(query,n) method that returns TopDocs with max n hits. The results are printed in pages, sorted by score (i.e. relevance).
+
+SKIP NAVIGATION LINKS OVERVIEWPACKAGECLASSUSETREEDEPRECATEDHELP PREVNEXTFRAMESNO FRAMESALL CLASSES
+Copyright ý 2000-2020 Apache Software Foundation. All Rights Reserved.
