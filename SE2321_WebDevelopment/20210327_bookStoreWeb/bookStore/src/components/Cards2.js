@@ -17,7 +17,6 @@ export default class Orders extends React.Component {
     }
     this.updateInput = this.updateInput.bind(this);
     this.search = this.search.bind(this);
-    
     var query = window.location.href;
     console.log(query);
     console.log("props");
@@ -64,27 +63,54 @@ export default class Orders extends React.Component {
  
   updateInput(e) {
     console.log(e.target.value);
-
     this.state.targetBookName = e.target.value;
     console.log(this.state.targetBookName);
   }
   search() {
-    if (this.state.targetBookName.length === 0) {
-      alert("please input target book name!");
-      return;
-    }
-    var allBook = this.state.book;
-    var result = [];
-    for (var i in allBook) {
-      if (allBook[i].name == this.state.targetBookName) {
-        result.push(allBook[i]);
-        break;
+    axios({
+      method: 'GET',
+      url: 'http://localhost:9090/searchBooks',
+      params: {
+        query:this.state.targetBookName
       }
+    }).then(response => {
+      console.log("search result:");
+      console.log(response.data);
+      this.setState({book:response.data});
+      console.log(this.state.book);
+    })
+
+  }
+  renderBooks(){
+    console.log("Books");
+    console.log(this.state.book);
+    if(!this.state.book){
+      alert("No matching book, please search again.");
+      return<h1>No matching book, please search again.</h1>
+    }else{
+      console.log("Books Xempty ");
+      console.log(this.state.book.size);
+      return (<div className='cards__wrapper'>
+      <ul className='cards__items'>
+        {this.state.book.map((i) => (
+          <CardItem
+            id={i.bookId}
+            text={i.name}
+            author={i.author}
+            price={i.price}
+            ISBN={i.isbn}
+            src={i.image}
+            inventory={i.inventory}
+            label={i.type}
+            path='/Book'
+          />
+        )
+        )}
+      </ul>
+
+      <Pagination/>
+    </div>);
     }
-
-    this.state.book = result;
-    this.render();
-
   }
 
 
@@ -94,30 +120,11 @@ export default class Orders extends React.Component {
       <div>
         <div className='cards__container'>
         <h1> Books</h1>
-              <input type="text" onChange={this.updateInput} placeholder="Book Name?" ></input>
+              <input type="text" onChange={this.updateInput} placeholder="search for book" ></input>
               <Button onClick={this.search} className="">Search</Button>
               <Button onClick={this.reset}>Reset</Button>
               <Carousel />
-          <div className='cards__wrapper'>
-            <ul className='cards__items'>
-              {this.state.book.map((i) => (
-                <CardItem
-                  id={i.bookId}
-                  text={i.name}
-                  author={i.author}
-                  price={i.price}
-                  ISBN={i.isbn}
-                  src={i.image}
-                  inventory={i.inventory}
-                  label={i.type}
-                  path='/Book'
-                />
-              )
-              )}
-            </ul>
-      
-            <Pagination/>
-          </div>
+          {this.renderBooks()}
         </div>
       </div>
     );

@@ -2,8 +2,6 @@ package com.reins.bookstore.utils;
 
 import com.reins.bookstore.entity.Cart;
 import com.reins.bookstore.entity.Order;
-import com.reins.bookstore.entity.OrderItem;
-import com.reins.bookstore.service.CartService;
 import com.reins.bookstore.service.GetCartService;
 import com.reins.bookstore.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;

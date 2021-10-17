@@ -12,6 +12,8 @@ public interface BookService {
 
     List<Book> getBooks(Integer page);
 
+    List<Book> searchBooks(String query);
+
     ArrayList getAdminBook();
 
     Book addBook(String isbn, String name, String type, String author, Integer price, String description, Integer inventory, String image);

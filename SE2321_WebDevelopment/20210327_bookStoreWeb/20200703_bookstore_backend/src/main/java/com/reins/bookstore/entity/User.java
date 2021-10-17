@@ -45,4 +45,20 @@ public class User {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Integer getType() {
+        return type;
+    }
+
+    public String getEmail() {
+        return email;
+    }
 }

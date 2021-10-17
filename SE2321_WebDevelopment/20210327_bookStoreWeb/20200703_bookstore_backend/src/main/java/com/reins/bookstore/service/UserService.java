@@ -3,9 +3,6 @@ package com.reins.bookstore.service;
 import com.reins.bookstore.entity.User;
 import com.reins.bookstore.entity.UserAuth;
 
-import javax.ejb.TransactionAttribute;
-import javax.ejb.TransactionAttributeType;
-import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 

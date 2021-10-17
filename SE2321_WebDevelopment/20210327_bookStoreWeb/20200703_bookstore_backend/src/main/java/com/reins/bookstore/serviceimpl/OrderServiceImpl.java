@@ -6,18 +6,15 @@ import com.reins.bookstore.entity.*;
 import com.reins.bookstore.service.GetCartService;
 import com.reins.bookstore.service.OrderService;
 import com.reins.bookstore.service.UserService;
-import org.aspectj.weaver.ast.Or;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+
+
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
-
-
-import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
 
 @Service
 @TransactionAttribute(TransactionAttributeType.REQUIRED)

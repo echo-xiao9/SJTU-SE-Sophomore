@@ -25,20 +25,6 @@ class Home extends Component {
     // console.log('Query variable %s not found', variable);
   }
 
-  // test(){
-  //   var aa=[1,2,3];
-  //   axios({
-  //     method: 'POST',
-  //     url: 'http://localhost:9090/test',
-  //     params: {
-  //       array: JSON.stringify(aa)
-  //     },
-    
-
-  //   }).then(response => {
-  //    console.log(response);
-  //   })
-  // }
 
 
   constructor(props) {

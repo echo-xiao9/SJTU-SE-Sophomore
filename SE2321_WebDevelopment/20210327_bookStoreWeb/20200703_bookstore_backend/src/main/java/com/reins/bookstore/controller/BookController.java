@@ -20,6 +20,10 @@ public class BookController {
     @Autowired
     private BookService bookService;
 
+    @GetMapping("/searchBooks")
+    public List<Book> searchBooks(@RequestParam("query") String query){
+        return bookService.searchBooks( query);
+    }
     @GetMapping("/getBooks")
     public List<Book> getBooks(@RequestParam("page") Integer page) {
         List<Book> bookList = bookService.getBooks(page);
@@ -67,10 +71,7 @@ public class BookController {
     @RequestParam("image") String image
     ){
 
-
-
-
-
             return bookService.changeBook(id,isbn,name,type,author,price,description,inventory,image);
     }
+
 }

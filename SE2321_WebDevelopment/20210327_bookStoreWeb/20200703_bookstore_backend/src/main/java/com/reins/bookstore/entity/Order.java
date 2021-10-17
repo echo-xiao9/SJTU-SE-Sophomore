@@ -62,6 +62,23 @@ public class Order {
         this.date = date;
     }
 
+    public Integer getOrderId() {
+        return orderId;
+    }
 
+    public Integer getUserId() {
+        return userId;
+    }
 
+    public Integer getOrder_price() {
+        return order_price;
+    }
+
+    public List<OrderItem> getOrderItemList() {
+        return orderItemList;
+    }
+
+    public String getDate() {
+        return date;
+    }
 }

@@ -3,6 +3,7 @@ package com.reins.bookstore.serviceimpl;
 import com.reins.bookstore.dao.BookDao;
 import com.reins.bookstore.entity.Book;
 import com.reins.bookstore.service.BookService;
+import com.reins.bookstore.utils.lucene.SearchFiles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -25,6 +26,8 @@ public class BookServiceImpl implements BookService {
 
     @Autowired
     private BookDao bookDao;
+    @Autowired
+    private SearchFiles searchFiles;
 
     @Override
     public Book findBookById(Integer id){
@@ -34,6 +37,18 @@ public class BookServiceImpl implements BookService {
     @Override
     public List<Book> getBooks(Integer page) {
         return bookDao.getBooks(page);
+    }
+
+    @Override
+    public List<Book> searchBooks(String query) {
+        List<Integer> bookIdList=new ArrayList<Integer>();
+        List<Book> bookList = new ArrayList<Book>();
+        bookIdList = searchFiles.searchBook(query);
+        if(bookIdList.size()==0)return null;
+        for(Integer item:bookIdList){
+            bookList.add(bookDao.findOne(item));
+        }
+        return bookList;
     }
 
     @Override
