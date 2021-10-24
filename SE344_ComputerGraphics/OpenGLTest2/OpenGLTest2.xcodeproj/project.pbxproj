@@ -11,11 +11,15 @@
 		E822F9C227054C00003EA3EC /* libglfw3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E822F9C127054C00003EA3EC /* libglfw3.a */; };
 		E822F9CA27054E78003EA3EC /* glad.c in Sources */ = {isa = PBXBuildFile; fileRef = E822F9C927054E78003EA3EC /* glad.c */; };
 		E822F9CE2705B3E3003EA3EC /* changeColorTrangleTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E822F9CD2705B3E3003EA3EC /* changeColorTrangleTest.cpp */; };
+		E83F53B82725993300DAA31A /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E83F53B72725993300DAA31A /* OpenGL.framework */; };
+		E865F7D7271F042F008791B9 /* hw2_xmz_part1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E865F7D6271F042F008791B9 /* hw2_xmz_part1.cpp */; };
 		E8840E532706A3040023EA73 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8840E522706A3040023EA73 /* AppKit.framework */; };
 		E8840E552706A3160023EA73 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8840E542706A3160023EA73 /* CoreFoundation.framework */; };
 		E8840E572706A3210023EA73 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8840E562706A3210023EA73 /* IOKit.framework */; };
 		E8840E592706A32F0023EA73 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8840E582706A32F0023EA73 /* Foundation.framework */; };
 		E8840E5B2706A35F0023EA73 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8840E5A2706A35F0023EA73 /* CoreGraphics.framework */; };
+		E8CFE8AE2725161E00E0F327 /* beanScan.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E8CFE8AD2725161E00E0F327 /* beanScan.cpp */; };
+		E8CFE8B02725187000E0F327 /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8CFE8AF2725187000E0F327 /* GLUT.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -41,11 +45,368 @@
 		E822F9CB2705B3B4003EA3EC /* learnopengl */ = {isa = PBXFileReference; lastKnownFileType = folder; path = learnopengl; sourceTree = "<group>"; };
 		E822F9CC2705B3BA003EA3EC /* glm */ = {isa = PBXFileReference; lastKnownFileType = folder; path = glm; sourceTree = "<group>"; };
 		E822F9CD2705B3E3003EA3EC /* changeColorTrangleTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = changeColorTrangleTest.cpp; sourceTree = "<group>"; };
+		E83F521B2725982F00DAA31A /* freeglut */ = {isa = PBXFileReference; lastKnownFileType = text; name = freeglut; path = GLFW/freeglut; sourceTree = "<group>"; };
+		E83F521D2725983600DAA31A /* README.mac */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.mac; sourceTree = "<group>"; };
+		E83F521E2725983600DAA31A /* freeglut.rc */ = {isa = PBXFileReference; lastKnownFileType = text; path = freeglut.rc; sourceTree = "<group>"; };
+		E83F521F2725983600DAA31A /* LISEZ_MOI */ = {isa = PBXFileReference; lastKnownFileType = text; path = LISEZ_MOI; sourceTree = "<group>"; };
+		E83F52202725983600DAA31A /* libtool */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = libtool; sourceTree = "<group>"; };
+		E83F52212725983600DAA31A /* Makefile.wat */ = {isa = PBXFileReference; lastKnownFileType = text; path = Makefile.wat; sourceTree = "<group>"; };
+		E83F52222725983600DAA31A /* install-sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "install-sh"; sourceTree = "<group>"; };
+		E83F52232725983600DAA31A /* configure.ac */ = {isa = PBXFileReference; lastKnownFileType = text; path = configure.ac; sourceTree = "<group>"; };
+		E83F52242725983600DAA31A /* freeglut.spec */ = {isa = PBXFileReference; lastKnownFileType = text; path = freeglut.spec; sourceTree = "<group>"; };
+		E83F52252725983600DAA31A /* INSTALL */ = {isa = PBXFileReference; lastKnownFileType = text; path = INSTALL; sourceTree = "<group>"; };
+		E83F52262725983600DAA31A /* ltmain.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = ltmain.sh; sourceTree = "<group>"; };
+		E83F52272725983600DAA31A /* freeglut.lsm */ = {isa = PBXFileReference; lastKnownFileType = text; path = freeglut.lsm; sourceTree = "<group>"; };
+		E83F522B2725983600DAA31A /* CallbackMaker.vcproj */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = CallbackMaker.vcproj; sourceTree = "<group>"; };
+		E83F522D2725983600DAA31A /* Fractals_random.vcproj */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Fractals_random.vcproj; sourceTree = "<group>"; };
+		E83F522F2725983600DAA31A /* Fractals.vcproj */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Fractals.vcproj; sourceTree = "<group>"; };
+		E83F52312725983600DAA31A /* shapes.vcproj */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = shapes.vcproj; sourceTree = "<group>"; };
+		E83F52332725983600DAA31A /* subwin.vcproj */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = subwin.vcproj; sourceTree = "<group>"; };
+		E83F52342725983600DAA31A /* freeglut.sln */ = {isa = PBXFileReference; lastKnownFileType = text; path = freeglut.sln; sourceTree = "<group>"; };
+		E83F52362725983600DAA31A /* One.vcproj */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = One.vcproj; sourceTree = "<group>"; };
+		E83F52382725983600DAA31A /* Resizer.vcproj */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Resizer.vcproj; sourceTree = "<group>"; };
+		E83F523A2725983600DAA31A /* smooth_opengl3.vcproj */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = smooth_opengl3.vcproj; sourceTree = "<group>"; };
+		E83F523B2725983600DAA31A /* freeglut.vcproj */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = freeglut.vcproj; sourceTree = "<group>"; };
+		E83F523D2725983600DAA31A /* Lorenz.vcproj */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Lorenz.vcproj; sourceTree = "<group>"; };
+		E83F523F2725983600DAA31A /* freeglut.vcxproj */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = freeglut.vcxproj; sourceTree = "<group>"; };
+		E83F52412725983600DAA31A /* CallbackMaker.vcxproj.filters */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = CallbackMaker.vcxproj.filters; sourceTree = "<group>"; };
+		E83F52422725983600DAA31A /* CallbackMaker.vcxproj */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = CallbackMaker.vcxproj; sourceTree = "<group>"; };
+		E83F52442725983600DAA31A /* Fractals_random.vcxproj.filters */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Fractals_random.vcxproj.filters; sourceTree = "<group>"; };
+		E83F52452725983600DAA31A /* Fractals_random.vcxproj */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Fractals_random.vcxproj; sourceTree = "<group>"; };
+		E83F52472725983600DAA31A /* Fractals.vcxproj */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Fractals.vcxproj; sourceTree = "<group>"; };
+		E83F52482725983600DAA31A /* Fractals.vcxproj.filters */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Fractals.vcxproj.filters; sourceTree = "<group>"; };
+		E83F524A2725983600DAA31A /* shapes.vcxproj.filters */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = shapes.vcxproj.filters; sourceTree = "<group>"; };
+		E83F524B2725983600DAA31A /* shapes.vcxproj */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = shapes.vcxproj; sourceTree = "<group>"; };
+		E83F524D2725983600DAA31A /* subwin.vcxproj.filters */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = subwin.vcxproj.filters; sourceTree = "<group>"; };
+		E83F524E2725983600DAA31A /* subwin.vcxproj */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = subwin.vcxproj; sourceTree = "<group>"; };
+		E83F524F2725983600DAA31A /* freeglut.sln */ = {isa = PBXFileReference; lastKnownFileType = text; path = freeglut.sln; sourceTree = "<group>"; };
+		E83F52512725983600DAA31A /* One.vcxproj */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = One.vcxproj; sourceTree = "<group>"; };
+		E83F52522725983600DAA31A /* One.vcxproj.filters */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = One.vcxproj.filters; sourceTree = "<group>"; };
+		E83F52542725983600DAA31A /* Resizer.vcxproj */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Resizer.vcxproj; sourceTree = "<group>"; };
+		E83F52552725983600DAA31A /* Resizer.vcxproj.filters */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Resizer.vcxproj.filters; sourceTree = "<group>"; };
+		E83F52572725983600DAA31A /* smooth_opengl3.vcxproj.filters */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = smooth_opengl3.vcxproj.filters; sourceTree = "<group>"; };
+		E83F52582725983600DAA31A /* smooth_opengl3.vcxproj */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = smooth_opengl3.vcxproj; sourceTree = "<group>"; };
+		E83F52592725983600DAA31A /* freeglut.vcxproj.filters */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = freeglut.vcxproj.filters; sourceTree = "<group>"; };
+		E83F525B2725983600DAA31A /* Lorenz.vcxproj */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Lorenz.vcxproj; sourceTree = "<group>"; };
+		E83F525C2725983600DAA31A /* Lorenz.vcxproj.filters */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Lorenz.vcxproj.filters; sourceTree = "<group>"; };
+		E83F525D2725983600DAA31A /* config.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = config.h; sourceTree = "<group>"; };
+		E83F525E2725983600DAA31A /* configure */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = configure; sourceTree = "<group>"; };
+		E83F525F2725983600DAA31A /* ChangeLog */ = {isa = PBXFileReference; lastKnownFileType = text; path = ChangeLog; sourceTree = "<group>"; };
+		E83F52602725983600DAA31A /* LISEZMOI.cygwin_mingw */ = {isa = PBXFileReference; lastKnownFileType = text; path = LISEZMOI.cygwin_mingw; sourceTree = "<group>"; };
+		E83F52622725983600DAA31A /* traces.0 */ = {isa = PBXFileReference; lastKnownFileType = text; path = traces.0; sourceTree = "<group>"; };
+		E83F52632725983600DAA31A /* traces.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = traces.1; sourceTree = "<group>"; };
+		E83F52642725983600DAA31A /* output.0 */ = {isa = PBXFileReference; lastKnownFileType = text; path = output.0; sourceTree = "<group>"; };
+		E83F52652725983600DAA31A /* output.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = output.1; sourceTree = "<group>"; };
+		E83F52662725983600DAA31A /* requests */ = {isa = PBXFileReference; lastKnownFileType = text; path = requests; sourceTree = "<group>"; };
+		E83F52672725983600DAA31A /* AUTHORS */ = {isa = PBXFileReference; lastKnownFileType = text; path = AUTHORS; sourceTree = "<group>"; };
+		E83F52682725983600DAA31A /* Makefile */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
+		E83F526A2725983600DAA31A /* Makefile */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
+		E83F526B2725983600DAA31A /* Makefile.am */ = {isa = PBXFileReference; lastKnownFileType = text; path = Makefile.am; sourceTree = "<group>"; };
+		E83F526D2725983600DAA31A /* glut.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = glut.h; sourceTree = "<group>"; };
+		E83F526E2725983600DAA31A /* Makefile */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
+		E83F526F2725983600DAA31A /* freeglut.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = freeglut.h; sourceTree = "<group>"; };
+		E83F52702725983600DAA31A /* Makefile.am */ = {isa = PBXFileReference; lastKnownFileType = text; path = Makefile.am; sourceTree = "<group>"; };
+		E83F52712725983600DAA31A /* freeglut_ext.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = freeglut_ext.h; sourceTree = "<group>"; };
+		E83F52722725983600DAA31A /* Makefile.in */ = {isa = PBXFileReference; lastKnownFileType = text; path = Makefile.in; sourceTree = "<group>"; };
+		E83F52732725983600DAA31A /* freeglut_std.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = freeglut_std.h; sourceTree = "<group>"; };
+		E83F52742725983600DAA31A /* Makefile.in */ = {isa = PBXFileReference; lastKnownFileType = text; path = Makefile.in; sourceTree = "<group>"; };
+		E83F52752725983600DAA31A /* stamp-h1 */ = {isa = PBXFileReference; lastKnownFileType = text; path = "stamp-h1"; sourceTree = "<group>"; };
+		E83F52762725983600DAA31A /* freeglut.kdevprj */ = {isa = PBXFileReference; lastKnownFileType = text; path = freeglut.kdevprj; sourceTree = "<group>"; };
+		E83F52772725983600DAA31A /* config.h.in */ = {isa = PBXFileReference; lastKnownFileType = text; path = config.h.in; sourceTree = "<group>"; };
+		E83F52782725983600DAA31A /* FrequentlyAskedQuestions */ = {isa = PBXFileReference; lastKnownFileType = text; path = FrequentlyAskedQuestions; sourceTree = "<group>"; };
+		E83F52792725983600DAA31A /* config.guess */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = config.guess; sourceTree = "<group>"; };
+		E83F527A2725983600DAA31A /* depcomp */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = depcomp; sourceTree = "<group>"; };
+		E83F527B2725983600DAA31A /* missing */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = missing; sourceTree = "<group>"; };
+		E83F527C2725983600DAA31A /* README.cygwin_mingw */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.cygwin_mingw; sourceTree = "<group>"; };
+		E83F527D2725983600DAA31A /* README */ = {isa = PBXFileReference; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
+		E83F527E2725983600DAA31A /* TODO */ = {isa = PBXFileReference; lastKnownFileType = text; path = TODO; sourceTree = "<group>"; };
+		E83F527F2725983600DAA31A /* Makefile.am */ = {isa = PBXFileReference; lastKnownFileType = text; path = Makefile.am; sourceTree = "<group>"; };
+		E83F52802725983600DAA31A /* config.status */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = config.status; sourceTree = "<group>"; };
+		E83F52812725983600DAA31A /* config.sub */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = config.sub; sourceTree = "<group>"; };
+		E83F52822725983600DAA31A /* freeglut_evc4.vcp */ = {isa = PBXFileReference; lastKnownFileType = text; path = freeglut_evc4.vcp; sourceTree = "<group>"; };
+		E83F52832725983600DAA31A /* freeglut_evc4.vcw */ = {isa = PBXFileReference; lastKnownFileType = text; path = freeglut_evc4.vcw; sourceTree = "<group>"; };
+		E83F52842725983600DAA31A /* COPYING */ = {isa = PBXFileReference; lastKnownFileType = text; path = COPYING; sourceTree = "<group>"; };
+		E83F52852725983600DAA31A /* freeglut_static.dep */ = {isa = PBXFileReference; lastKnownFileType = text; path = freeglut_static.dep; sourceTree = "<group>"; };
+		E83F52862725983600DAA31A /* freeglut.kdevelop */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = freeglut.kdevelop; sourceTree = "<group>"; };
+		E83F52872725983600DAA31A /* compile */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = compile; sourceTree = "<group>"; };
+		E83F52882725983600DAA31A /* NEWS */ = {isa = PBXFileReference; lastKnownFileType = text; path = NEWS; sourceTree = "<group>"; };
+		E83F52892725983600DAA31A /* freeglut.dsp */ = {isa = PBXFileReference; lastKnownFileType = text; path = freeglut.dsp; sourceTree = "<group>"; };
+		E83F528A2725983600DAA31A /* freeglut_static.mak */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.make; path = freeglut_static.mak; sourceTree = "<group>"; };
+		E83F528B2725983600DAA31A /* freeglut.dsw */ = {isa = PBXFileReference; lastKnownFileType = text; path = freeglut.dsw; sourceTree = "<group>"; };
+		E83F528D2725983600DAA31A /* freeglut_user_interface.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = freeglut_user_interface.html; sourceTree = "<group>"; };
+		E83F528E2725983700DAA31A /* index.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
+		E83F528F2725983700DAA31A /* ogl_sm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ogl_sm.png; sourceTree = "<group>"; };
+		E83F52902725983700DAA31A /* freeglut.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = freeglut.html; sourceTree = "<group>"; };
+		E83F52912725983700DAA31A /* progress.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = progress.html; sourceTree = "<group>"; };
+		E83F52922725983700DAA31A /* Makefile */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
+		E83F52932725983700DAA31A /* freeglut_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = freeglut_logo.png; sourceTree = "<group>"; };
+		E83F52942725983700DAA31A /* structure.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = structure.html; sourceTree = "<group>"; };
+		E83F52952725983700DAA31A /* Makefile.am */ = {isa = PBXFileReference; lastKnownFileType = text; path = Makefile.am; sourceTree = "<group>"; };
+		E83F52962725983700DAA31A /* download.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = download.html; sourceTree = "<group>"; };
+		E83F52972725983700DAA31A /* Makefile.in */ = {isa = PBXFileReference; lastKnownFileType = text; path = Makefile.in; sourceTree = "<group>"; };
+		E83F52982725983700DAA31A /* config.log */ = {isa = PBXFileReference; lastKnownFileType = text; path = config.log; sourceTree = "<group>"; };
+		E83F52992725983700DAA31A /* freeglut.mak */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.make; path = freeglut.mak; sourceTree = "<group>"; };
+		E83F529A2725983700DAA31A /* freeglut_static.dsp */ = {isa = PBXFileReference; lastKnownFileType = text; path = freeglut_static.dsp; sourceTree = "<group>"; };
+		E83F529B2725983700DAA31A /* Makefile.in */ = {isa = PBXFileReference; lastKnownFileType = text; path = Makefile.in; sourceTree = "<group>"; };
+		E83F529C2725983700DAA31A /* aclocal.m4 */ = {isa = PBXFileReference; lastKnownFileType = text; path = aclocal.m4; sourceTree = "<group>"; };
+		E83F529D2725983700DAA31A /* freeglut.dep */ = {isa = PBXFileReference; lastKnownFileType = text; path = freeglut.dep; sourceTree = "<group>"; };
+		E83F529E2725983700DAA31A /* README.win32 */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.win32; sourceTree = "<group>"; };
+		E83F52A02725983700DAA31A /* Makefile */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
+		E83F52A12725983700DAA31A /* Makefile.am */ = {isa = PBXFileReference; lastKnownFileType = text; path = Makefile.am; sourceTree = "<group>"; };
+		E83F52A22725983700DAA31A /* Makefile.in */ = {isa = PBXFileReference; lastKnownFileType = text; path = Makefile.in; sourceTree = "<group>"; };
+		E83F52A52725983700DAA31A /* CallbackMaker.dsp */ = {isa = PBXFileReference; lastKnownFileType = text; path = CallbackMaker.dsp; sourceTree = "<group>"; };
+		E83F52A62725983700DAA31A /* CallbackMaker */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = CallbackMaker; sourceTree = "<group>"; };
+		E83F52A72725983700DAA31A /* Makefile */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
+		E83F52A82725983700DAA31A /* CallbackMaker-CallbackMaker.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = "CallbackMaker-CallbackMaker.o"; sourceTree = "<group>"; };
+		E83F52A92725983700DAA31A /* CallbackMakerStatic.dsp */ = {isa = PBXFileReference; lastKnownFileType = text; path = CallbackMakerStatic.dsp; sourceTree = "<group>"; };
+		E83F52AA2725983700DAA31A /* Makefile.am */ = {isa = PBXFileReference; lastKnownFileType = text; path = Makefile.am; sourceTree = "<group>"; };
+		E83F52AC2725983700DAA31A /* CallbackMaker-CallbackMaker.Po */ = {isa = PBXFileReference; lastKnownFileType = text; path = "CallbackMaker-CallbackMaker.Po"; sourceTree = "<group>"; };
+		E83F52AD2725983700DAA31A /* CallbackMaker.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = CallbackMaker.c; sourceTree = "<group>"; };
+		E83F52AF2725983700DAA31A /* CallbackMaker */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = CallbackMaker; sourceTree = "<group>"; };
+		E83F52B02725983700DAA31A /* Makefile.in */ = {isa = PBXFileReference; lastKnownFileType = text; path = Makefile.in; sourceTree = "<group>"; };
+		E83F52B22725983700DAA31A /* Fractals_randomStatic.dsp */ = {isa = PBXFileReference; lastKnownFileType = text; path = Fractals_randomStatic.dsp; sourceTree = "<group>"; };
+		E83F52B32725983700DAA31A /* fractals.dat */ = {isa = PBXFileReference; lastKnownFileType = text; path = fractals.dat; sourceTree = "<group>"; };
+		E83F52B42725983700DAA31A /* fractals_random */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = fractals_random; sourceTree = "<group>"; };
+		E83F52B52725983700DAA31A /* Makefile */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
+		E83F52B62725983700DAA31A /* Fractals_random.dsp */ = {isa = PBXFileReference; lastKnownFileType = text; path = Fractals_random.dsp; sourceTree = "<group>"; };
+		E83F52B72725983700DAA31A /* Makefile.am */ = {isa = PBXFileReference; lastKnownFileType = text; path = Makefile.am; sourceTree = "<group>"; };
+		E83F52B82725983700DAA31A /* fractals_random.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = fractals_random.c; sourceTree = "<group>"; };
+		E83F52BA2725983700DAA31A /* fractals_random-fractals_random.Po */ = {isa = PBXFileReference; lastKnownFileType = text; path = "fractals_random-fractals_random.Po"; sourceTree = "<group>"; };
+		E83F52BC2725983700DAA31A /* fractals_random */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = fractals_random; sourceTree = "<group>"; };
+		E83F52BD2725983700DAA31A /* Makefile.in */ = {isa = PBXFileReference; lastKnownFileType = text; path = Makefile.in; sourceTree = "<group>"; };
+		E83F52BE2725983700DAA31A /* fractals_random-fractals_random.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = "fractals_random-fractals_random.o"; sourceTree = "<group>"; };
+		E83F52BF2725983700DAA31A /* Makefile */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
+		E83F52C12725983700DAA31A /* fractals.dat */ = {isa = PBXFileReference; lastKnownFileType = text; path = fractals.dat; sourceTree = "<group>"; };
+		E83F52C22725983700DAA31A /* Makefile */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
+		E83F52C32725983700DAA31A /* fractals */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = fractals; sourceTree = "<group>"; };
+		E83F52C42725983700DAA31A /* FractalsStatic.dsp */ = {isa = PBXFileReference; lastKnownFileType = text; path = FractalsStatic.dsp; sourceTree = "<group>"; };
+		E83F52C52725983700DAA31A /* fractals-fractals.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = "fractals-fractals.o"; sourceTree = "<group>"; };
+		E83F52C62725983700DAA31A /* Makefile.am */ = {isa = PBXFileReference; lastKnownFileType = text; path = Makefile.am; sourceTree = "<group>"; };
+		E83F52C72725983700DAA31A /* Fractals.dsp */ = {isa = PBXFileReference; lastKnownFileType = text; path = Fractals.dsp; sourceTree = "<group>"; };
+		E83F52C82725983700DAA31A /* fractals.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = fractals.c; sourceTree = "<group>"; };
+		E83F52CA2725983700DAA31A /* fractals-fractals.Po */ = {isa = PBXFileReference; lastKnownFileType = text; path = "fractals-fractals.Po"; sourceTree = "<group>"; };
+		E83F52CC2725983700DAA31A /* fractals */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = fractals; sourceTree = "<group>"; };
+		E83F52CD2725983700DAA31A /* Makefile.in */ = {isa = PBXFileReference; lastKnownFileType = text; path = Makefile.in; sourceTree = "<group>"; };
+		E83F52CF2725983700DAA31A /* shapesStatic.dsp */ = {isa = PBXFileReference; lastKnownFileType = text; path = shapesStatic.dsp; sourceTree = "<group>"; };
+		E83F52D02725983700DAA31A /* Makefile */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
+		E83F52D12725983700DAA31A /* shapes.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = shapes.c; sourceTree = "<group>"; };
+		E83F52D22725983700DAA31A /* shapes */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = shapes; sourceTree = "<group>"; };
+		E83F52D32725983700DAA31A /* Makefile.am */ = {isa = PBXFileReference; lastKnownFileType = text; path = Makefile.am; sourceTree = "<group>"; };
+		E83F52D42725983700DAA31A /* shapes.dsp */ = {isa = PBXFileReference; lastKnownFileType = text; path = shapes.dsp; sourceTree = "<group>"; };
+		E83F52D62725983700DAA31A /* shapes-shapes.Po */ = {isa = PBXFileReference; lastKnownFileType = text; path = "shapes-shapes.Po"; sourceTree = "<group>"; };
+		E83F52D82725983700DAA31A /* shapes */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = shapes; sourceTree = "<group>"; };
+		E83F52D92725983700DAA31A /* shapes-shapes.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = "shapes-shapes.o"; sourceTree = "<group>"; };
+		E83F52DA2725983700DAA31A /* Makefile.in */ = {isa = PBXFileReference; lastKnownFileType = text; path = Makefile.in; sourceTree = "<group>"; };
+		E83F52DB2725983700DAA31A /* Makefile.am */ = {isa = PBXFileReference; lastKnownFileType = text; path = Makefile.am; sourceTree = "<group>"; };
+		E83F52DD2725983700DAA31A /* subwin-subwin.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = "subwin-subwin.o"; sourceTree = "<group>"; };
+		E83F52DE2725983700DAA31A /* Makefile */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
+		E83F52DF2725983700DAA31A /* Makefile.am */ = {isa = PBXFileReference; lastKnownFileType = text; path = Makefile.am; sourceTree = "<group>"; };
+		E83F52E02725983700DAA31A /* subwin */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = subwin; sourceTree = "<group>"; };
+		E83F52E12725983700DAA31A /* subwin.dsp */ = {isa = PBXFileReference; lastKnownFileType = text; path = subwin.dsp; sourceTree = "<group>"; };
+		E83F52E32725983700DAA31A /* subwin-subwin.Po */ = {isa = PBXFileReference; lastKnownFileType = text; path = "subwin-subwin.Po"; sourceTree = "<group>"; };
+		E83F52E42725983700DAA31A /* subwin.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = subwin.c; sourceTree = "<group>"; };
+		E83F52E62725983700DAA31A /* subwin */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = subwin; sourceTree = "<group>"; };
+		E83F52E72725983700DAA31A /* Makefile.in */ = {isa = PBXFileReference; lastKnownFileType = text; path = Makefile.in; sourceTree = "<group>"; };
+		E83F52E82725983700DAA31A /* subwinStatic.dsp */ = {isa = PBXFileReference; lastKnownFileType = text; path = subwinStatic.dsp; sourceTree = "<group>"; };
+		E83F52EA2725983700DAA31A /* one.dsp */ = {isa = PBXFileReference; lastKnownFileType = text; path = one.dsp; sourceTree = "<group>"; };
+		E83F52EB2725983700DAA31A /* Makefile */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
+		E83F52EC2725983700DAA31A /* oneStatic.dsp */ = {isa = PBXFileReference; lastKnownFileType = text; path = oneStatic.dsp; sourceTree = "<group>"; };
+		E83F52ED2725983700DAA31A /* one-one.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = "one-one.o"; sourceTree = "<group>"; };
+		E83F52EE2725983700DAA31A /* Makefile.am */ = {isa = PBXFileReference; lastKnownFileType = text; path = Makefile.am; sourceTree = "<group>"; };
+		E83F52EF2725983700DAA31A /* one */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = one; sourceTree = "<group>"; };
+		E83F52F02725983700DAA31A /* one.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = one.c; sourceTree = "<group>"; };
+		E83F52F22725983700DAA31A /* one-one.Po */ = {isa = PBXFileReference; lastKnownFileType = text; path = "one-one.Po"; sourceTree = "<group>"; };
+		E83F52F42725983700DAA31A /* one */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = one; sourceTree = "<group>"; };
+		E83F52F52725983700DAA31A /* Makefile.in */ = {isa = PBXFileReference; lastKnownFileType = text; path = Makefile.in; sourceTree = "<group>"; };
+		E83F52F72725983700DAA31A /* Resizer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Resizer.cpp; sourceTree = "<group>"; };
+		E83F52F82725983700DAA31A /* Resizer.dsp */ = {isa = PBXFileReference; lastKnownFileType = text; path = Resizer.dsp; sourceTree = "<group>"; };
+		E83F52F92725983700DAA31A /* demos.dsw */ = {isa = PBXFileReference; lastKnownFileType = text; path = demos.dsw; sourceTree = "<group>"; };
+		E83F52FB2725983700DAA31A /* spaceball-spaceball.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = "spaceball-spaceball.o"; sourceTree = "<group>"; };
+		E83F52FC2725983700DAA31A /* Makefile */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
+		E83F52FD2725983700DAA31A /* vmath.inl */ = {isa = PBXFileReference; lastKnownFileType = text; path = vmath.inl; sourceTree = "<group>"; };
+		E83F52FE2725983700DAA31A /* vmath.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = vmath.c; sourceTree = "<group>"; };
+		E83F52FF2725983700DAA31A /* Makefile.am */ = {isa = PBXFileReference; lastKnownFileType = text; path = Makefile.am; sourceTree = "<group>"; };
+		E83F53002725983700DAA31A /* spaceball_static.dsp */ = {isa = PBXFileReference; lastKnownFileType = text; path = spaceball_static.dsp; sourceTree = "<group>"; };
+		E83F53012725983700DAA31A /* spaceball.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = spaceball.c; sourceTree = "<group>"; };
+		E83F53022725983700DAA31A /* spaceball-vmath.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = "spaceball-vmath.o"; sourceTree = "<group>"; };
+		E83F53032725983700DAA31A /* spaceball.dsp */ = {isa = PBXFileReference; lastKnownFileType = text; path = spaceball.dsp; sourceTree = "<group>"; };
+		E83F53042725983700DAA31A /* spaceball */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = spaceball; sourceTree = "<group>"; };
+		E83F53062725983700DAA31A /* spaceball-spaceball.Po */ = {isa = PBXFileReference; lastKnownFileType = text; path = "spaceball-spaceball.Po"; sourceTree = "<group>"; };
+		E83F53072725983700DAA31A /* spaceball-vmath.Po */ = {isa = PBXFileReference; lastKnownFileType = text; path = "spaceball-vmath.Po"; sourceTree = "<group>"; };
+		E83F53092725983700DAA31A /* spaceball */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = spaceball; sourceTree = "<group>"; };
+		E83F530A2725983700DAA31A /* Makefile.in */ = {isa = PBXFileReference; lastKnownFileType = text; path = Makefile.in; sourceTree = "<group>"; };
+		E83F530B2725983700DAA31A /* vmath.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = vmath.h; sourceTree = "<group>"; };
+		E83F530D2725983700DAA31A /* smooth_opengl3.dsp */ = {isa = PBXFileReference; lastKnownFileType = text; path = smooth_opengl3.dsp; sourceTree = "<group>"; };
+		E83F530E2725983700DAA31A /* Makefile */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
+		E83F530F2725983700DAA31A /* smooth_opengl3.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = smooth_opengl3.c; sourceTree = "<group>"; };
+		E83F53102725983700DAA31A /* Makefile.am */ = {isa = PBXFileReference; lastKnownFileType = text; path = Makefile.am; sourceTree = "<group>"; };
+		E83F53112725983700DAA31A /* smooth_opengl3Static.dsp */ = {isa = PBXFileReference; lastKnownFileType = text; path = smooth_opengl3Static.dsp; sourceTree = "<group>"; };
+		E83F53122725983700DAA31A /* smooth_opengl3-smooth_opengl3.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = "smooth_opengl3-smooth_opengl3.o"; sourceTree = "<group>"; };
+		E83F53132725983700DAA31A /* smooth_opengl3 */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = smooth_opengl3; sourceTree = "<group>"; };
+		E83F53152725983700DAA31A /* smooth_opengl3-smooth_opengl3.Po */ = {isa = PBXFileReference; lastKnownFileType = text; path = "smooth_opengl3-smooth_opengl3.Po"; sourceTree = "<group>"; };
+		E83F53172725983700DAA31A /* smooth_opengl3 */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = smooth_opengl3; sourceTree = "<group>"; };
+		E83F53182725983700DAA31A /* Makefile.in */ = {isa = PBXFileReference; lastKnownFileType = text; path = Makefile.in; sourceTree = "<group>"; };
+		E83F53192725983700DAA31A /* Makefile.in */ = {isa = PBXFileReference; lastKnownFileType = text; path = Makefile.in; sourceTree = "<group>"; };
+		E83F531B2725983700DAA31A /* lorenz-lorenz.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = "lorenz-lorenz.o"; sourceTree = "<group>"; };
+		E83F531C2725983700DAA31A /* Makefile */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
+		E83F531D2725983700DAA31A /* Makefile.am */ = {isa = PBXFileReference; lastKnownFileType = text; path = Makefile.am; sourceTree = "<group>"; };
+		E83F531E2725983700DAA31A /* lorenz.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = lorenz.c; sourceTree = "<group>"; };
+		E83F531F2725983700DAA31A /* lorenz.dsp */ = {isa = PBXFileReference; lastKnownFileType = text; path = lorenz.dsp; sourceTree = "<group>"; };
+		E83F53212725983700DAA31A /* lorenz-lorenz.Po */ = {isa = PBXFileReference; lastKnownFileType = text; path = "lorenz-lorenz.Po"; sourceTree = "<group>"; };
+		E83F53232725983700DAA31A /* lorenz */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = lorenz; sourceTree = "<group>"; };
+		E83F53242725983700DAA31A /* Makefile.in */ = {isa = PBXFileReference; lastKnownFileType = text; path = Makefile.in; sourceTree = "<group>"; };
+		E83F53252725983700DAA31A /* lorenzStatic.dsp */ = {isa = PBXFileReference; lastKnownFileType = text; path = lorenzStatic.dsp; sourceTree = "<group>"; };
+		E83F53262725983700DAA31A /* lorenz */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = lorenz; sourceTree = "<group>"; };
+		E83F53272725983700DAA31A /* autogen.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = autogen.sh; sourceTree = "<group>"; };
+		E83F53292725983700DAA31A /* libglut_la-freeglut_window.lo */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libglut_la-freeglut_window.lo"; sourceTree = "<group>"; };
+		E83F532A2725983700DAA31A /* libglut_la-freeglut_input_devices.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = "libglut_la-freeglut_input_devices.o"; sourceTree = "<group>"; };
+		E83F532B2725983700DAA31A /* freeglut_gamemode.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = freeglut_gamemode.c; sourceTree = "<group>"; };
+		E83F532C2725983700DAA31A /* libglut_la-freeglut_main.lo */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libglut_la-freeglut_main.lo"; sourceTree = "<group>"; };
+		E83F532D2725983700DAA31A /* freeglutdll.def */ = {isa = PBXFileReference; lastKnownFileType = text; path = freeglutdll.def; sourceTree = "<group>"; };
+		E83F532E2725983700DAA31A /* freeglut_cursor.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = freeglut_cursor.c; sourceTree = "<group>"; };
+		E83F532F2725983700DAA31A /* libglut_la-freeglut_font.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = "libglut_la-freeglut_font.o"; sourceTree = "<group>"; };
+		E83F53302725983700DAA31A /* libglut_la-freeglut_init.lo */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libglut_la-freeglut_init.lo"; sourceTree = "<group>"; };
+		E83F53312725983700DAA31A /* libglut_la-freeglut_init.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = "libglut_la-freeglut_init.o"; sourceTree = "<group>"; };
+		E83F53322725983700DAA31A /* freeglut_window.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = freeglut_window.c; sourceTree = "<group>"; };
+		E83F53332725983700DAA31A /* libglut_la-freeglut_xinput.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = "libglut_la-freeglut_xinput.o"; sourceTree = "<group>"; };
+		E83F53342725983700DAA31A /* libglut_la-freeglut_videoresize.lo */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libglut_la-freeglut_videoresize.lo"; sourceTree = "<group>"; };
+		E83F53352725983700DAA31A /* freeglut_input_devices.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = freeglut_input_devices.c; sourceTree = "<group>"; };
+		E83F53362725983700DAA31A /* freeglut_main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = freeglut_main.c; sourceTree = "<group>"; };
+		E83F53372725983700DAA31A /* freeglut_geometry.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = freeglut_geometry.c; sourceTree = "<group>"; };
+		E83F53382725983700DAA31A /* libglut_la-freeglut_cursor.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = "libglut_la-freeglut_cursor.o"; sourceTree = "<group>"; };
+		E83F53392725983700DAA31A /* libglut_la-freeglut_gamemode.lo */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libglut_la-freeglut_gamemode.lo"; sourceTree = "<group>"; };
+		E83F533A2725983700DAA31A /* freeglut_stroke_roman.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = freeglut_stroke_roman.c; sourceTree = "<group>"; };
+		E83F533B2725983700DAA31A /* libglut_la-freeglut_teapot.lo */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libglut_la-freeglut_teapot.lo"; sourceTree = "<group>"; };
+		E83F533C2725983700DAA31A /* libglut_la-freeglut_window.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = "libglut_la-freeglut_window.o"; sourceTree = "<group>"; };
+		E83F533D2725983700DAA31A /* freeglut_xinput.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = freeglut_xinput.c; sourceTree = "<group>"; };
+		E83F533E2725983700DAA31A /* Makefile */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
+		E83F533F2725983700DAA31A /* libglut_la-freeglut_stroke_roman.lo */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libglut_la-freeglut_stroke_roman.lo"; sourceTree = "<group>"; };
+		E83F53402725983700DAA31A /* libglut_la-freeglut_font_data.lo */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libglut_la-freeglut_font_data.lo"; sourceTree = "<group>"; };
+		E83F53412725983700DAA31A /* freeglut_display.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = freeglut_display.c; sourceTree = "<group>"; };
+		E83F53422725983700DAA31A /* libglut_la-freeglut_menu.lo */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libglut_la-freeglut_menu.lo"; sourceTree = "<group>"; };
+		E83F53432725983700DAA31A /* freeglut_internal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = freeglut_internal.h; sourceTree = "<group>"; };
+		E83F53442725983700DAA31A /* freeglut_ext.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = freeglut_ext.c; sourceTree = "<group>"; };
+		E83F53452725983700DAA31A /* freeglut_misc.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = freeglut_misc.c; sourceTree = "<group>"; };
+		E83F53462725983700DAA31A /* libglut_la-freeglut_menu.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = "libglut_la-freeglut_menu.o"; sourceTree = "<group>"; };
+		E83F53472725983700DAA31A /* libglut_la-freeglut_stroke_mono_roman.lo */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libglut_la-freeglut_stroke_mono_roman.lo"; sourceTree = "<group>"; };
+		E83F53482725983700DAA31A /* libglut_la-freeglut_joystick.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = "libglut_la-freeglut_joystick.o"; sourceTree = "<group>"; };
+		E83F53492725983700DAA31A /* libglut_la-freeglut_spaceball.lo */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libglut_la-freeglut_spaceball.lo"; sourceTree = "<group>"; };
+		E83F534A2725983700DAA31A /* libglut_la-freeglut_state.lo */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libglut_la-freeglut_state.lo"; sourceTree = "<group>"; };
+		E83F534B2725983700DAA31A /* libglut_la-freeglut_callbacks.lo */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libglut_la-freeglut_callbacks.lo"; sourceTree = "<group>"; };
+		E83F534C2725983700DAA31A /* libglut_la-freeglut_structure.lo */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libglut_la-freeglut_structure.lo"; sourceTree = "<group>"; };
+		E83F534D2725983700DAA31A /* libglut_la-freeglut_stroke_mono_roman.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = "libglut_la-freeglut_stroke_mono_roman.o"; sourceTree = "<group>"; };
+		E83F534E2725983700DAA31A /* libglut_la-freeglut_display.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = "libglut_la-freeglut_display.o"; sourceTree = "<group>"; };
+		E83F534F2725983700DAA31A /* freeglut_joystick.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = freeglut_joystick.c; sourceTree = "<group>"; };
+		E83F53502725983700DAA31A /* Makefile.am */ = {isa = PBXFileReference; lastKnownFileType = text; path = Makefile.am; sourceTree = "<group>"; };
+		E83F53512725983700DAA31A /* freeglut_menu.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = freeglut_menu.c; sourceTree = "<group>"; };
+		E83F53522725983700DAA31A /* libglut_la-freeglut_display.lo */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libglut_la-freeglut_display.lo"; sourceTree = "<group>"; };
+		E83F53532725983700DAA31A /* libglut_la-freeglut_misc.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = "libglut_la-freeglut_misc.o"; sourceTree = "<group>"; };
+		E83F53542725983700DAA31A /* freeglut_overlay.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = freeglut_overlay.c; sourceTree = "<group>"; };
+		E83F53552725983700DAA31A /* libglut_la-freeglut_xinput.lo */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libglut_la-freeglut_xinput.lo"; sourceTree = "<group>"; };
+		E83F53562725983700DAA31A /* freeglut_state.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = freeglut_state.c; sourceTree = "<group>"; };
+		E83F53572725983700DAA31A /* libglut_la-freeglut_spaceball.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = "libglut_la-freeglut_spaceball.o"; sourceTree = "<group>"; };
+		E83F53582725983700DAA31A /* libglut_la-freeglut_overlay.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = "libglut_la-freeglut_overlay.o"; sourceTree = "<group>"; };
+		E83F53592725983700DAA31A /* libglut_la-freeglut_font.lo */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libglut_la-freeglut_font.lo"; sourceTree = "<group>"; };
+		E83F535A2725983700DAA31A /* freeglut_videoresize.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = freeglut_videoresize.c; sourceTree = "<group>"; };
+		E83F535B2725983700DAA31A /* libglut_la-freeglut_structure.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = "libglut_la-freeglut_structure.o"; sourceTree = "<group>"; };
+		E83F535C2725983700DAA31A /* freeglut_spaceball.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = freeglut_spaceball.c; sourceTree = "<group>"; };
+		E83F535D2725983700DAA31A /* libglut_la-freeglut_glutfont_definitions.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = "libglut_la-freeglut_glutfont_definitions.o"; sourceTree = "<group>"; };
+		E83F535E2725983700DAA31A /* freeglut_stroke_mono_roman.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = freeglut_stroke_mono_roman.c; sourceTree = "<group>"; };
+		E83F535F2725983700DAA31A /* freeglut_structure.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = freeglut_structure.c; sourceTree = "<group>"; };
+		E83F53612725983700DAA31A /* cpp_template */ = {isa = PBXFileReference; lastKnownFileType = text; path = cpp_template; sourceTree = "<group>"; };
+		E83F53622725983700DAA31A /* header_template */ = {isa = PBXFileReference; lastKnownFileType = text; path = header_template; sourceTree = "<group>"; };
+		E83F53632725983700DAA31A /* libglut.la */ = {isa = PBXFileReference; lastKnownFileType = text; path = libglut.la; sourceTree = "<group>"; };
+		E83F53642725983700DAA31A /* libglut_la-freeglut_geometry.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = "libglut_la-freeglut_geometry.o"; sourceTree = "<group>"; };
+		E83F53652725983700DAA31A /* libglut_la-freeglut_joystick.lo */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libglut_la-freeglut_joystick.lo"; sourceTree = "<group>"; };
+		E83F53662725983700DAA31A /* libglut_la-freeglut_cursor.lo */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libglut_la-freeglut_cursor.lo"; sourceTree = "<group>"; };
+		E83F53672725983700DAA31A /* freeglut_callbacks.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = freeglut_callbacks.c; sourceTree = "<group>"; };
+		E83F53682725983700DAA31A /* libglut_la-freeglut_state.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = "libglut_la-freeglut_state.o"; sourceTree = "<group>"; };
+		E83F53692725983700DAA31A /* libglut_la-freeglut_font_data.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = "libglut_la-freeglut_font_data.o"; sourceTree = "<group>"; };
+		E83F536A2725983700DAA31A /* libglut_la-freeglut_main.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = "libglut_la-freeglut_main.o"; sourceTree = "<group>"; };
+		E83F536B2725983700DAA31A /* libglut_la-freeglut_misc.lo */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libglut_la-freeglut_misc.lo"; sourceTree = "<group>"; };
+		E83F536C2725983700DAA31A /* libglut_la-freeglut_teapot.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = "libglut_la-freeglut_teapot.o"; sourceTree = "<group>"; };
+		E83F536D2725983700DAA31A /* libglut_la-freeglut_callbacks.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = "libglut_la-freeglut_callbacks.o"; sourceTree = "<group>"; };
+		E83F536E2725983700DAA31A /* libglut_la-freeglut_input_devices.lo */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libglut_la-freeglut_input_devices.lo"; sourceTree = "<group>"; };
+		E83F536F2725983700DAA31A /* libglut_la-freeglut_videoresize.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = "libglut_la-freeglut_videoresize.o"; sourceTree = "<group>"; };
+		E83F53712725983700DAA31A /* libglut_la-freeglut_spaceball.Plo */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libglut_la-freeglut_spaceball.Plo"; sourceTree = "<group>"; };
+		E83F53722725983700DAA31A /* libglut_la-freeglut_teapot.Plo */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libglut_la-freeglut_teapot.Plo"; sourceTree = "<group>"; };
+		E83F53732725983700DAA31A /* libglut_la-freeglut_font_data.Plo */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libglut_la-freeglut_font_data.Plo"; sourceTree = "<group>"; };
+		E83F53742725983700DAA31A /* libglut_la-freeglut_font.Plo */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libglut_la-freeglut_font.Plo"; sourceTree = "<group>"; };
+		E83F53752725983700DAA31A /* libglut_la-freeglut_geometry.Plo */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libglut_la-freeglut_geometry.Plo"; sourceTree = "<group>"; };
+		E83F53762725983700DAA31A /* libglut_la-freeglut_menu.Plo */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libglut_la-freeglut_menu.Plo"; sourceTree = "<group>"; };
+		E83F53772725983700DAA31A /* libglut_la-freeglut_ext.Plo */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libglut_la-freeglut_ext.Plo"; sourceTree = "<group>"; };
+		E83F53782725983700DAA31A /* libglut_la-freeglut_misc.Plo */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libglut_la-freeglut_misc.Plo"; sourceTree = "<group>"; };
+		E83F53792725983700DAA31A /* libglut_la-freeglut_gamemode.Plo */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libglut_la-freeglut_gamemode.Plo"; sourceTree = "<group>"; };
+		E83F537A2725983700DAA31A /* libglut_la-freeglut_videoresize.Plo */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libglut_la-freeglut_videoresize.Plo"; sourceTree = "<group>"; };
+		E83F537B2725983700DAA31A /* libglut_la-freeglut_callbacks.Plo */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libglut_la-freeglut_callbacks.Plo"; sourceTree = "<group>"; };
+		E83F537C2725983700DAA31A /* libglut_la-freeglut_window.Plo */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libglut_la-freeglut_window.Plo"; sourceTree = "<group>"; };
+		E83F537D2725983700DAA31A /* libglut_la-freeglut_state.Plo */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libglut_la-freeglut_state.Plo"; sourceTree = "<group>"; };
+		E83F537E2725983700DAA31A /* libglut_la-freeglut_glutfont_definitions.Plo */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libglut_la-freeglut_glutfont_definitions.Plo"; sourceTree = "<group>"; };
+		E83F537F2725983700DAA31A /* libglut_la-freeglut_input_devices.Plo */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libglut_la-freeglut_input_devices.Plo"; sourceTree = "<group>"; };
+		E83F53802725983700DAA31A /* libglut_la-freeglut_main.Plo */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libglut_la-freeglut_main.Plo"; sourceTree = "<group>"; };
+		E83F53812725983700DAA31A /* libglut_la-freeglut_stroke_mono_roman.Plo */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libglut_la-freeglut_stroke_mono_roman.Plo"; sourceTree = "<group>"; };
+		E83F53822725983700DAA31A /* libglut_la-freeglut_overlay.Plo */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libglut_la-freeglut_overlay.Plo"; sourceTree = "<group>"; };
+		E83F53832725983700DAA31A /* libglut_la-freeglut_stroke_roman.Plo */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libglut_la-freeglut_stroke_roman.Plo"; sourceTree = "<group>"; };
+		E83F53842725983700DAA31A /* libglut_la-freeglut_init.Plo */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libglut_la-freeglut_init.Plo"; sourceTree = "<group>"; };
+		E83F53852725983700DAA31A /* libglut_la-freeglut_structure.Plo */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libglut_la-freeglut_structure.Plo"; sourceTree = "<group>"; };
+		E83F53862725983700DAA31A /* libglut_la-freeglut_joystick.Plo */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libglut_la-freeglut_joystick.Plo"; sourceTree = "<group>"; };
+		E83F53872725983700DAA31A /* libglut_la-freeglut_display.Plo */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libglut_la-freeglut_display.Plo"; sourceTree = "<group>"; };
+		E83F53882725983700DAA31A /* libglut_la-freeglut_cursor.Plo */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libglut_la-freeglut_cursor.Plo"; sourceTree = "<group>"; };
+		E83F53892725983700DAA31A /* libglut_la-freeglut_xinput.Plo */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libglut_la-freeglut_xinput.Plo"; sourceTree = "<group>"; };
+		E83F538A2725983700DAA31A /* freeglut_font_data.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = freeglut_font_data.c; sourceTree = "<group>"; };
+		E83F538B2725983700DAA31A /* freeglut_teapot_data.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = freeglut_teapot_data.h; sourceTree = "<group>"; };
+		E83F538C2725983700DAA31A /* freeglut_font.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = freeglut_font.c; sourceTree = "<group>"; };
+		E83F538D2725983700DAA31A /* freeglut_glutfont_definitions.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = freeglut_glutfont_definitions.c; sourceTree = "<group>"; };
+		E83F538F2725983700DAA31A /* libglut.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libglut.dylib; sourceTree = "<group>"; };
+		E83F53902725983700DAA31A /* libglut_la-freeglut_input_devices.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = "libglut_la-freeglut_input_devices.o"; sourceTree = "<group>"; };
+		E83F53912725983700DAA31A /* libglut_la-freeglut_font.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = "libglut_la-freeglut_font.o"; sourceTree = "<group>"; };
+		E83F53922725983700DAA31A /* libglut_la-freeglut_init.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = "libglut_la-freeglut_init.o"; sourceTree = "<group>"; };
+		E83F53932725983700DAA31A /* libglut_la-freeglut_xinput.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = "libglut_la-freeglut_xinput.o"; sourceTree = "<group>"; };
+		E83F53942725983700DAA31A /* libglut_la-freeglut_cursor.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = "libglut_la-freeglut_cursor.o"; sourceTree = "<group>"; };
+		E83F53952725983700DAA31A /* libglut_la-freeglut_window.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = "libglut_la-freeglut_window.o"; sourceTree = "<group>"; };
+		E83F53962725983700DAA31A /* libglut.lai */ = {isa = PBXFileReference; lastKnownFileType = text; path = libglut.lai; sourceTree = "<group>"; };
+		E83F53972725983700DAA31A /* libglut_la-freeglut_menu.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = "libglut_la-freeglut_menu.o"; sourceTree = "<group>"; };
+		E83F53982725983700DAA31A /* libglut_la-freeglut_joystick.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = "libglut_la-freeglut_joystick.o"; sourceTree = "<group>"; };
+		E83F53992725983700DAA31A /* libglut.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libglut.a; sourceTree = "<group>"; };
+		E83F539A2725983700DAA31A /* libglut_la-freeglut_stroke_mono_roman.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = "libglut_la-freeglut_stroke_mono_roman.o"; sourceTree = "<group>"; };
+		E83F539B2725983700DAA31A /* libglut_la-freeglut_display.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = "libglut_la-freeglut_display.o"; sourceTree = "<group>"; };
+		E83F539C2725983700DAA31A /* libglut_la-freeglut_misc.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = "libglut_la-freeglut_misc.o"; sourceTree = "<group>"; };
+		E83F539D2725983700DAA31A /* libglut_la-freeglut_spaceball.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = "libglut_la-freeglut_spaceball.o"; sourceTree = "<group>"; };
+		E83F539E2725983700DAA31A /* libglut_la-freeglut_overlay.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = "libglut_la-freeglut_overlay.o"; sourceTree = "<group>"; };
+		E83F539F2725983700DAA31A /* libglut_la-freeglut_structure.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = "libglut_la-freeglut_structure.o"; sourceTree = "<group>"; };
+		E83F53A02725983700DAA31A /* libglut.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libglut.3.dylib; sourceTree = "<group>"; };
+		E83F53A12725983700DAA31A /* libglut_la-freeglut_glutfont_definitions.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = "libglut_la-freeglut_glutfont_definitions.o"; sourceTree = "<group>"; };
+		E83F53A22725983700DAA31A /* libglut.la */ = {isa = PBXFileReference; lastKnownFileType = text; path = libglut.la; sourceTree = "<group>"; };
+		E83F53A32725983700DAA31A /* libglut_la-freeglut_geometry.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = "libglut_la-freeglut_geometry.o"; sourceTree = "<group>"; };
+		E83F53A42725983700DAA31A /* libglut_la-freeglut_state.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = "libglut_la-freeglut_state.o"; sourceTree = "<group>"; };
+		E83F53A52725983700DAA31A /* libglut_la-freeglut_font_data.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = "libglut_la-freeglut_font_data.o"; sourceTree = "<group>"; };
+		E83F53A62725983700DAA31A /* libglut_la-freeglut_main.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = "libglut_la-freeglut_main.o"; sourceTree = "<group>"; };
+		E83F53A72725983700DAA31A /* libglut_la-freeglut_teapot.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = "libglut_la-freeglut_teapot.o"; sourceTree = "<group>"; };
+		E83F53A82725983700DAA31A /* libglut_la-freeglut_callbacks.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = "libglut_la-freeglut_callbacks.o"; sourceTree = "<group>"; };
+		E83F53A92725983700DAA31A /* libglut_la-freeglut_videoresize.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = "libglut_la-freeglut_videoresize.o"; sourceTree = "<group>"; };
+		E83F53AA2725983700DAA31A /* libglut_la-freeglut_gamemode.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = "libglut_la-freeglut_gamemode.o"; sourceTree = "<group>"; };
+		E83F53AB2725983700DAA31A /* libglut_la-freeglut_stroke_roman.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = "libglut_la-freeglut_stroke_roman.o"; sourceTree = "<group>"; };
+		E83F53AC2725983700DAA31A /* libglut_la-freeglut_ext.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = "libglut_la-freeglut_ext.o"; sourceTree = "<group>"; };
+		E83F53AD2725983700DAA31A /* Makefile.in */ = {isa = PBXFileReference; lastKnownFileType = text; path = Makefile.in; sourceTree = "<group>"; };
+		E83F53AE2725983700DAA31A /* libglut_la-freeglut_glutfont_definitions.lo */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libglut_la-freeglut_glutfont_definitions.lo"; sourceTree = "<group>"; };
+		E83F53AF2725983700DAA31A /* libglut_la-freeglut_gamemode.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = "libglut_la-freeglut_gamemode.o"; sourceTree = "<group>"; };
+		E83F53B02725983700DAA31A /* libglut_la-freeglut_stroke_roman.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = "libglut_la-freeglut_stroke_roman.o"; sourceTree = "<group>"; };
+		E83F53B12725983700DAA31A /* libglut_la-freeglut_geometry.lo */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libglut_la-freeglut_geometry.lo"; sourceTree = "<group>"; };
+		E83F53B22725983700DAA31A /* libglut_la-freeglut_ext.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = "libglut_la-freeglut_ext.o"; sourceTree = "<group>"; };
+		E83F53B32725983700DAA31A /* freeglut_teapot.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = freeglut_teapot.c; sourceTree = "<group>"; };
+		E83F53B42725983700DAA31A /* libglut_la-freeglut_overlay.lo */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libglut_la-freeglut_overlay.lo"; sourceTree = "<group>"; };
+		E83F53B52725983700DAA31A /* freeglut_init.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = freeglut_init.c; sourceTree = "<group>"; };
+		E83F53B62725983700DAA31A /* libglut_la-freeglut_ext.lo */ = {isa = PBXFileReference; lastKnownFileType = text; path = "libglut_la-freeglut_ext.lo"; sourceTree = "<group>"; };
+		E83F53B72725993300DAA31A /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
+		E83F53CF27259EA800DAA31A /* GL */ = {isa = PBXFileReference; lastKnownFileType = folder; name = GL; path = freeglut/include/GL; sourceTree = "<group>"; };
+		E865F7D6271F042F008791B9 /* hw2_xmz_part1.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = hw2_xmz_part1.cpp; sourceTree = "<group>"; };
 		E8840E522706A3040023EA73 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		E8840E542706A3160023EA73 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		E8840E562706A3210023EA73 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		E8840E582706A32F0023EA73 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		E8840E5A2706A35F0023EA73 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		E8CFE8AD2725161E00E0F327 /* beanScan.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = beanScan.cpp; sourceTree = "<group>"; };
+		E8CFE8AF2725187000E0F327 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = System/Library/Frameworks/GLUT.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +414,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E83F53B82725993300DAA31A /* OpenGL.framework in Frameworks */,
+				E8CFE8B02725187000E0F327 /* GLUT.framework in Frameworks */,
 				E8840E5B2706A35F0023EA73 /* CoreGraphics.framework in Frameworks */,
 				E8840E592706A32F0023EA73 /* Foundation.framework in Frameworks */,
 				E8840E572706A3210023EA73 /* IOKit.framework in Frameworks */,
@@ -87,7 +450,9 @@
 			isa = PBXGroup;
 			children = (
 				E822F9CD2705B3E3003EA3EC /* changeColorTrangleTest.cpp */,
+				E865F7D6271F042F008791B9 /* hw2_xmz_part1.cpp */,
 				E822F9B727054A43003EA3EC /* main.cpp */,
+				E8CFE8AD2725161E00E0F327 /* beanScan.cpp */,
 			);
 			path = OpenGLTest2;
 			sourceTree = "<group>";
@@ -95,6 +460,7 @@
 		E822F9BE27054B2C003EA3EC /* Externals */ = {
 			isa = PBXGroup;
 			children = (
+				E83F521C2725983600DAA31A /* freeglut */,
 				E822F9C927054E78003EA3EC /* glad.c */,
 				E822F9C027054B42003EA3EC /* Include */,
 				E822F9BF27054B39003EA3EC /* Libraries */,
@@ -113,6 +479,8 @@
 		E822F9C027054B42003EA3EC /* Include */ = {
 			isa = PBXGroup;
 			children = (
+				E83F53CF27259EA800DAA31A /* GL */,
+				E83F521B2725982F00DAA31A /* freeglut */,
 				E822F9CC2705B3BA003EA3EC /* glm */,
 				E822F9CB2705B3B4003EA3EC /* learnopengl */,
 				E822F9C827054E4E003EA3EC /* KHR */,
@@ -122,9 +490,841 @@
 			path = Include;
 			sourceTree = "<group>";
 		};
+		E83F521C2725983600DAA31A /* freeglut */ = {
+			isa = PBXGroup;
+			children = (
+				E83F521D2725983600DAA31A /* README.mac */,
+				E83F521E2725983600DAA31A /* freeglut.rc */,
+				E83F521F2725983600DAA31A /* LISEZ_MOI */,
+				E83F52202725983600DAA31A /* libtool */,
+				E83F52212725983600DAA31A /* Makefile.wat */,
+				E83F52222725983600DAA31A /* install-sh */,
+				E83F52232725983600DAA31A /* configure.ac */,
+				E83F52242725983600DAA31A /* freeglut.spec */,
+				E83F52252725983600DAA31A /* INSTALL */,
+				E83F52262725983600DAA31A /* ltmain.sh */,
+				E83F52272725983600DAA31A /* freeglut.lsm */,
+				E83F52282725983600DAA31A /* VisualStudio */,
+				E83F525D2725983600DAA31A /* config.h */,
+				E83F525E2725983600DAA31A /* configure */,
+				E83F525F2725983600DAA31A /* ChangeLog */,
+				E83F52602725983600DAA31A /* LISEZMOI.cygwin_mingw */,
+				E83F52612725983600DAA31A /* autom4te.cache */,
+				E83F52672725983600DAA31A /* AUTHORS */,
+				E83F52682725983600DAA31A /* Makefile */,
+				E83F52692725983600DAA31A /* include */,
+				E83F52752725983600DAA31A /* stamp-h1 */,
+				E83F52762725983600DAA31A /* freeglut.kdevprj */,
+				E83F52772725983600DAA31A /* config.h.in */,
+				E83F52782725983600DAA31A /* FrequentlyAskedQuestions */,
+				E83F52792725983600DAA31A /* config.guess */,
+				E83F527A2725983600DAA31A /* depcomp */,
+				E83F527B2725983600DAA31A /* missing */,
+				E83F527C2725983600DAA31A /* README.cygwin_mingw */,
+				E83F527D2725983600DAA31A /* README */,
+				E83F527E2725983600DAA31A /* TODO */,
+				E83F527F2725983600DAA31A /* Makefile.am */,
+				E83F52802725983600DAA31A /* config.status */,
+				E83F52812725983600DAA31A /* config.sub */,
+				E83F52822725983600DAA31A /* freeglut_evc4.vcp */,
+				E83F52832725983600DAA31A /* freeglut_evc4.vcw */,
+				E83F52842725983600DAA31A /* COPYING */,
+				E83F52852725983600DAA31A /* freeglut_static.dep */,
+				E83F52862725983600DAA31A /* freeglut.kdevelop */,
+				E83F52872725983600DAA31A /* compile */,
+				E83F52882725983600DAA31A /* NEWS */,
+				E83F52892725983600DAA31A /* freeglut.dsp */,
+				E83F528A2725983600DAA31A /* freeglut_static.mak */,
+				E83F528B2725983600DAA31A /* freeglut.dsw */,
+				E83F528C2725983600DAA31A /* doc */,
+				E83F52982725983700DAA31A /* config.log */,
+				E83F52992725983700DAA31A /* freeglut.mak */,
+				E83F529A2725983700DAA31A /* freeglut_static.dsp */,
+				E83F529B2725983700DAA31A /* Makefile.in */,
+				E83F529C2725983700DAA31A /* aclocal.m4 */,
+				E83F529D2725983700DAA31A /* freeglut.dep */,
+				E83F529E2725983700DAA31A /* README.win32 */,
+				E83F529F2725983700DAA31A /* progs */,
+				E83F53272725983700DAA31A /* autogen.sh */,
+				E83F53282725983700DAA31A /* src */,
+			);
+			path = freeglut;
+			sourceTree = "<group>";
+		};
+		E83F52282725983600DAA31A /* VisualStudio */ = {
+			isa = PBXGroup;
+			children = (
+				E83F52292725983600DAA31A /* 2008 */,
+				E83F523E2725983600DAA31A /* 2010 */,
+			);
+			path = VisualStudio;
+			sourceTree = "<group>";
+		};
+		E83F52292725983600DAA31A /* 2008 */ = {
+			isa = PBXGroup;
+			children = (
+				E83F522A2725983600DAA31A /* CallbackMaker */,
+				E83F522C2725983600DAA31A /* Fractals_random */,
+				E83F522E2725983600DAA31A /* Fractals */,
+				E83F52302725983600DAA31A /* shapes */,
+				E83F52322725983600DAA31A /* subwin */,
+				E83F52342725983600DAA31A /* freeglut.sln */,
+				E83F52352725983600DAA31A /* One */,
+				E83F52372725983600DAA31A /* Resizer */,
+				E83F52392725983600DAA31A /* smooth_opengl3 */,
+				E83F523B2725983600DAA31A /* freeglut.vcproj */,
+				E83F523C2725983600DAA31A /* Lorenz */,
+			);
+			path = 2008;
+			sourceTree = "<group>";
+		};
+		E83F522A2725983600DAA31A /* CallbackMaker */ = {
+			isa = PBXGroup;
+			children = (
+				E83F522B2725983600DAA31A /* CallbackMaker.vcproj */,
+			);
+			path = CallbackMaker;
+			sourceTree = "<group>";
+		};
+		E83F522C2725983600DAA31A /* Fractals_random */ = {
+			isa = PBXGroup;
+			children = (
+				E83F522D2725983600DAA31A /* Fractals_random.vcproj */,
+			);
+			path = Fractals_random;
+			sourceTree = "<group>";
+		};
+		E83F522E2725983600DAA31A /* Fractals */ = {
+			isa = PBXGroup;
+			children = (
+				E83F522F2725983600DAA31A /* Fractals.vcproj */,
+			);
+			path = Fractals;
+			sourceTree = "<group>";
+		};
+		E83F52302725983600DAA31A /* shapes */ = {
+			isa = PBXGroup;
+			children = (
+				E83F52312725983600DAA31A /* shapes.vcproj */,
+			);
+			path = shapes;
+			sourceTree = "<group>";
+		};
+		E83F52322725983600DAA31A /* subwin */ = {
+			isa = PBXGroup;
+			children = (
+				E83F52332725983600DAA31A /* subwin.vcproj */,
+			);
+			path = subwin;
+			sourceTree = "<group>";
+		};
+		E83F52352725983600DAA31A /* One */ = {
+			isa = PBXGroup;
+			children = (
+				E83F52362725983600DAA31A /* One.vcproj */,
+			);
+			path = One;
+			sourceTree = "<group>";
+		};
+		E83F52372725983600DAA31A /* Resizer */ = {
+			isa = PBXGroup;
+			children = (
+				E83F52382725983600DAA31A /* Resizer.vcproj */,
+			);
+			path = Resizer;
+			sourceTree = "<group>";
+		};
+		E83F52392725983600DAA31A /* smooth_opengl3 */ = {
+			isa = PBXGroup;
+			children = (
+				E83F523A2725983600DAA31A /* smooth_opengl3.vcproj */,
+			);
+			path = smooth_opengl3;
+			sourceTree = "<group>";
+		};
+		E83F523C2725983600DAA31A /* Lorenz */ = {
+			isa = PBXGroup;
+			children = (
+				E83F523D2725983600DAA31A /* Lorenz.vcproj */,
+			);
+			path = Lorenz;
+			sourceTree = "<group>";
+		};
+		E83F523E2725983600DAA31A /* 2010 */ = {
+			isa = PBXGroup;
+			children = (
+				E83F523F2725983600DAA31A /* freeglut.vcxproj */,
+				E83F52402725983600DAA31A /* CallbackMaker */,
+				E83F52432725983600DAA31A /* Fractals_random */,
+				E83F52462725983600DAA31A /* Fractals */,
+				E83F52492725983600DAA31A /* shapes */,
+				E83F524C2725983600DAA31A /* subwin */,
+				E83F524F2725983600DAA31A /* freeglut.sln */,
+				E83F52502725983600DAA31A /* One */,
+				E83F52532725983600DAA31A /* Resizer */,
+				E83F52562725983600DAA31A /* smooth_opengl3 */,
+				E83F52592725983600DAA31A /* freeglut.vcxproj.filters */,
+				E83F525A2725983600DAA31A /* Lorenz */,
+			);
+			path = 2010;
+			sourceTree = "<group>";
+		};
+		E83F52402725983600DAA31A /* CallbackMaker */ = {
+			isa = PBXGroup;
+			children = (
+				E83F52412725983600DAA31A /* CallbackMaker.vcxproj.filters */,
+				E83F52422725983600DAA31A /* CallbackMaker.vcxproj */,
+			);
+			path = CallbackMaker;
+			sourceTree = "<group>";
+		};
+		E83F52432725983600DAA31A /* Fractals_random */ = {
+			isa = PBXGroup;
+			children = (
+				E83F52442725983600DAA31A /* Fractals_random.vcxproj.filters */,
+				E83F52452725983600DAA31A /* Fractals_random.vcxproj */,
+			);
+			path = Fractals_random;
+			sourceTree = "<group>";
+		};
+		E83F52462725983600DAA31A /* Fractals */ = {
+			isa = PBXGroup;
+			children = (
+				E83F52472725983600DAA31A /* Fractals.vcxproj */,
+				E83F52482725983600DAA31A /* Fractals.vcxproj.filters */,
+			);
+			path = Fractals;
+			sourceTree = "<group>";
+		};
+		E83F52492725983600DAA31A /* shapes */ = {
+			isa = PBXGroup;
+			children = (
+				E83F524A2725983600DAA31A /* shapes.vcxproj.filters */,
+				E83F524B2725983600DAA31A /* shapes.vcxproj */,
+			);
+			path = shapes;
+			sourceTree = "<group>";
+		};
+		E83F524C2725983600DAA31A /* subwin */ = {
+			isa = PBXGroup;
+			children = (
+				E83F524D2725983600DAA31A /* subwin.vcxproj.filters */,
+				E83F524E2725983600DAA31A /* subwin.vcxproj */,
+			);
+			path = subwin;
+			sourceTree = "<group>";
+		};
+		E83F52502725983600DAA31A /* One */ = {
+			isa = PBXGroup;
+			children = (
+				E83F52512725983600DAA31A /* One.vcxproj */,
+				E83F52522725983600DAA31A /* One.vcxproj.filters */,
+			);
+			path = One;
+			sourceTree = "<group>";
+		};
+		E83F52532725983600DAA31A /* Resizer */ = {
+			isa = PBXGroup;
+			children = (
+				E83F52542725983600DAA31A /* Resizer.vcxproj */,
+				E83F52552725983600DAA31A /* Resizer.vcxproj.filters */,
+			);
+			path = Resizer;
+			sourceTree = "<group>";
+		};
+		E83F52562725983600DAA31A /* smooth_opengl3 */ = {
+			isa = PBXGroup;
+			children = (
+				E83F52572725983600DAA31A /* smooth_opengl3.vcxproj.filters */,
+				E83F52582725983600DAA31A /* smooth_opengl3.vcxproj */,
+			);
+			path = smooth_opengl3;
+			sourceTree = "<group>";
+		};
+		E83F525A2725983600DAA31A /* Lorenz */ = {
+			isa = PBXGroup;
+			children = (
+				E83F525B2725983600DAA31A /* Lorenz.vcxproj */,
+				E83F525C2725983600DAA31A /* Lorenz.vcxproj.filters */,
+			);
+			path = Lorenz;
+			sourceTree = "<group>";
+		};
+		E83F52612725983600DAA31A /* autom4te.cache */ = {
+			isa = PBXGroup;
+			children = (
+				E83F52622725983600DAA31A /* traces.0 */,
+				E83F52632725983600DAA31A /* traces.1 */,
+				E83F52642725983600DAA31A /* output.0 */,
+				E83F52652725983600DAA31A /* output.1 */,
+				E83F52662725983600DAA31A /* requests */,
+			);
+			path = autom4te.cache;
+			sourceTree = "<group>";
+		};
+		E83F52692725983600DAA31A /* include */ = {
+			isa = PBXGroup;
+			children = (
+				E83F526A2725983600DAA31A /* Makefile */,
+				E83F526B2725983600DAA31A /* Makefile.am */,
+				E83F526C2725983600DAA31A /* GL */,
+				E83F52742725983600DAA31A /* Makefile.in */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		E83F526C2725983600DAA31A /* GL */ = {
+			isa = PBXGroup;
+			children = (
+				E83F526D2725983600DAA31A /* glut.h */,
+				E83F526E2725983600DAA31A /* Makefile */,
+				E83F526F2725983600DAA31A /* freeglut.h */,
+				E83F52702725983600DAA31A /* Makefile.am */,
+				E83F52712725983600DAA31A /* freeglut_ext.h */,
+				E83F52722725983600DAA31A /* Makefile.in */,
+				E83F52732725983600DAA31A /* freeglut_std.h */,
+			);
+			path = GL;
+			sourceTree = "<group>";
+		};
+		E83F528C2725983600DAA31A /* doc */ = {
+			isa = PBXGroup;
+			children = (
+				E83F528D2725983600DAA31A /* freeglut_user_interface.html */,
+				E83F528E2725983700DAA31A /* index.html */,
+				E83F528F2725983700DAA31A /* ogl_sm.png */,
+				E83F52902725983700DAA31A /* freeglut.html */,
+				E83F52912725983700DAA31A /* progress.html */,
+				E83F52922725983700DAA31A /* Makefile */,
+				E83F52932725983700DAA31A /* freeglut_logo.png */,
+				E83F52942725983700DAA31A /* structure.html */,
+				E83F52952725983700DAA31A /* Makefile.am */,
+				E83F52962725983700DAA31A /* download.html */,
+				E83F52972725983700DAA31A /* Makefile.in */,
+			);
+			path = doc;
+			sourceTree = "<group>";
+		};
+		E83F529F2725983700DAA31A /* progs */ = {
+			isa = PBXGroup;
+			children = (
+				E83F52A02725983700DAA31A /* Makefile */,
+				E83F52A12725983700DAA31A /* Makefile.am */,
+				E83F52A22725983700DAA31A /* Makefile.in */,
+				E83F52A32725983700DAA31A /* demos */,
+			);
+			path = progs;
+			sourceTree = "<group>";
+		};
+		E83F52A32725983700DAA31A /* demos */ = {
+			isa = PBXGroup;
+			children = (
+				E83F52A42725983700DAA31A /* CallbackMaker */,
+				E83F52B12725983700DAA31A /* Fractals_random */,
+				E83F52BF2725983700DAA31A /* Makefile */,
+				E83F52C02725983700DAA31A /* Fractals */,
+				E83F52CE2725983700DAA31A /* shapes */,
+				E83F52DB2725983700DAA31A /* Makefile.am */,
+				E83F52DC2725983700DAA31A /* subwin */,
+				E83F52E92725983700DAA31A /* One */,
+				E83F52F62725983700DAA31A /* Resizer */,
+				E83F52F92725983700DAA31A /* demos.dsw */,
+				E83F52FA2725983700DAA31A /* spaceball */,
+				E83F530C2725983700DAA31A /* smooth_opengl3 */,
+				E83F53192725983700DAA31A /* Makefile.in */,
+				E83F531A2725983700DAA31A /* Lorenz */,
+			);
+			path = demos;
+			sourceTree = "<group>";
+		};
+		E83F52A42725983700DAA31A /* CallbackMaker */ = {
+			isa = PBXGroup;
+			children = (
+				E83F52A52725983700DAA31A /* CallbackMaker.dsp */,
+				E83F52A62725983700DAA31A /* CallbackMaker */,
+				E83F52A72725983700DAA31A /* Makefile */,
+				E83F52A82725983700DAA31A /* CallbackMaker-CallbackMaker.o */,
+				E83F52A92725983700DAA31A /* CallbackMakerStatic.dsp */,
+				E83F52AA2725983700DAA31A /* Makefile.am */,
+				E83F52AB2725983700DAA31A /* .deps */,
+				E83F52AD2725983700DAA31A /* CallbackMaker.c */,
+				E83F52AE2725983700DAA31A /* .libs */,
+				E83F52B02725983700DAA31A /* Makefile.in */,
+			);
+			path = CallbackMaker;
+			sourceTree = "<group>";
+		};
+		E83F52AB2725983700DAA31A /* .deps */ = {
+			isa = PBXGroup;
+			children = (
+				E83F52AC2725983700DAA31A /* CallbackMaker-CallbackMaker.Po */,
+			);
+			path = .deps;
+			sourceTree = "<group>";
+		};
+		E83F52AE2725983700DAA31A /* .libs */ = {
+			isa = PBXGroup;
+			children = (
+				E83F52AF2725983700DAA31A /* CallbackMaker */,
+			);
+			path = .libs;
+			sourceTree = "<group>";
+		};
+		E83F52B12725983700DAA31A /* Fractals_random */ = {
+			isa = PBXGroup;
+			children = (
+				E83F52B22725983700DAA31A /* Fractals_randomStatic.dsp */,
+				E83F52B32725983700DAA31A /* fractals.dat */,
+				E83F52B42725983700DAA31A /* fractals_random */,
+				E83F52B52725983700DAA31A /* Makefile */,
+				E83F52B62725983700DAA31A /* Fractals_random.dsp */,
+				E83F52B72725983700DAA31A /* Makefile.am */,
+				E83F52B82725983700DAA31A /* fractals_random.c */,
+				E83F52B92725983700DAA31A /* .deps */,
+				E83F52BB2725983700DAA31A /* .libs */,
+				E83F52BD2725983700DAA31A /* Makefile.in */,
+				E83F52BE2725983700DAA31A /* fractals_random-fractals_random.o */,
+			);
+			path = Fractals_random;
+			sourceTree = "<group>";
+		};
+		E83F52B92725983700DAA31A /* .deps */ = {
+			isa = PBXGroup;
+			children = (
+				E83F52BA2725983700DAA31A /* fractals_random-fractals_random.Po */,
+			);
+			path = .deps;
+			sourceTree = "<group>";
+		};
+		E83F52BB2725983700DAA31A /* .libs */ = {
+			isa = PBXGroup;
+			children = (
+				E83F52BC2725983700DAA31A /* fractals_random */,
+			);
+			path = .libs;
+			sourceTree = "<group>";
+		};
+		E83F52C02725983700DAA31A /* Fractals */ = {
+			isa = PBXGroup;
+			children = (
+				E83F52C12725983700DAA31A /* fractals.dat */,
+				E83F52C22725983700DAA31A /* Makefile */,
+				E83F52C32725983700DAA31A /* fractals */,
+				E83F52C42725983700DAA31A /* FractalsStatic.dsp */,
+				E83F52C52725983700DAA31A /* fractals-fractals.o */,
+				E83F52C62725983700DAA31A /* Makefile.am */,
+				E83F52C72725983700DAA31A /* Fractals.dsp */,
+				E83F52C82725983700DAA31A /* fractals.c */,
+				E83F52C92725983700DAA31A /* .deps */,
+				E83F52CB2725983700DAA31A /* .libs */,
+				E83F52CD2725983700DAA31A /* Makefile.in */,
+			);
+			path = Fractals;
+			sourceTree = "<group>";
+		};
+		E83F52C92725983700DAA31A /* .deps */ = {
+			isa = PBXGroup;
+			children = (
+				E83F52CA2725983700DAA31A /* fractals-fractals.Po */,
+			);
+			path = .deps;
+			sourceTree = "<group>";
+		};
+		E83F52CB2725983700DAA31A /* .libs */ = {
+			isa = PBXGroup;
+			children = (
+				E83F52CC2725983700DAA31A /* fractals */,
+			);
+			path = .libs;
+			sourceTree = "<group>";
+		};
+		E83F52CE2725983700DAA31A /* shapes */ = {
+			isa = PBXGroup;
+			children = (
+				E83F52CF2725983700DAA31A /* shapesStatic.dsp */,
+				E83F52D02725983700DAA31A /* Makefile */,
+				E83F52D12725983700DAA31A /* shapes.c */,
+				E83F52D22725983700DAA31A /* shapes */,
+				E83F52D32725983700DAA31A /* Makefile.am */,
+				E83F52D42725983700DAA31A /* shapes.dsp */,
+				E83F52D52725983700DAA31A /* .deps */,
+				E83F52D72725983700DAA31A /* .libs */,
+				E83F52D92725983700DAA31A /* shapes-shapes.o */,
+				E83F52DA2725983700DAA31A /* Makefile.in */,
+			);
+			path = shapes;
+			sourceTree = "<group>";
+		};
+		E83F52D52725983700DAA31A /* .deps */ = {
+			isa = PBXGroup;
+			children = (
+				E83F52D62725983700DAA31A /* shapes-shapes.Po */,
+			);
+			path = .deps;
+			sourceTree = "<group>";
+		};
+		E83F52D72725983700DAA31A /* .libs */ = {
+			isa = PBXGroup;
+			children = (
+				E83F52D82725983700DAA31A /* shapes */,
+			);
+			path = .libs;
+			sourceTree = "<group>";
+		};
+		E83F52DC2725983700DAA31A /* subwin */ = {
+			isa = PBXGroup;
+			children = (
+				E83F52DD2725983700DAA31A /* subwin-subwin.o */,
+				E83F52DE2725983700DAA31A /* Makefile */,
+				E83F52DF2725983700DAA31A /* Makefile.am */,
+				E83F52E02725983700DAA31A /* subwin */,
+				E83F52E12725983700DAA31A /* subwin.dsp */,
+				E83F52E22725983700DAA31A /* .deps */,
+				E83F52E42725983700DAA31A /* subwin.c */,
+				E83F52E52725983700DAA31A /* .libs */,
+				E83F52E72725983700DAA31A /* Makefile.in */,
+				E83F52E82725983700DAA31A /* subwinStatic.dsp */,
+			);
+			path = subwin;
+			sourceTree = "<group>";
+		};
+		E83F52E22725983700DAA31A /* .deps */ = {
+			isa = PBXGroup;
+			children = (
+				E83F52E32725983700DAA31A /* subwin-subwin.Po */,
+			);
+			path = .deps;
+			sourceTree = "<group>";
+		};
+		E83F52E52725983700DAA31A /* .libs */ = {
+			isa = PBXGroup;
+			children = (
+				E83F52E62725983700DAA31A /* subwin */,
+			);
+			path = .libs;
+			sourceTree = "<group>";
+		};
+		E83F52E92725983700DAA31A /* One */ = {
+			isa = PBXGroup;
+			children = (
+				E83F52EA2725983700DAA31A /* one.dsp */,
+				E83F52EB2725983700DAA31A /* Makefile */,
+				E83F52EC2725983700DAA31A /* oneStatic.dsp */,
+				E83F52ED2725983700DAA31A /* one-one.o */,
+				E83F52EE2725983700DAA31A /* Makefile.am */,
+				E83F52EF2725983700DAA31A /* one */,
+				E83F52F02725983700DAA31A /* one.c */,
+				E83F52F12725983700DAA31A /* .deps */,
+				E83F52F32725983700DAA31A /* .libs */,
+				E83F52F52725983700DAA31A /* Makefile.in */,
+			);
+			path = One;
+			sourceTree = "<group>";
+		};
+		E83F52F12725983700DAA31A /* .deps */ = {
+			isa = PBXGroup;
+			children = (
+				E83F52F22725983700DAA31A /* one-one.Po */,
+			);
+			path = .deps;
+			sourceTree = "<group>";
+		};
+		E83F52F32725983700DAA31A /* .libs */ = {
+			isa = PBXGroup;
+			children = (
+				E83F52F42725983700DAA31A /* one */,
+			);
+			path = .libs;
+			sourceTree = "<group>";
+		};
+		E83F52F62725983700DAA31A /* Resizer */ = {
+			isa = PBXGroup;
+			children = (
+				E83F52F72725983700DAA31A /* Resizer.cpp */,
+				E83F52F82725983700DAA31A /* Resizer.dsp */,
+			);
+			path = Resizer;
+			sourceTree = "<group>";
+		};
+		E83F52FA2725983700DAA31A /* spaceball */ = {
+			isa = PBXGroup;
+			children = (
+				E83F52FB2725983700DAA31A /* spaceball-spaceball.o */,
+				E83F52FC2725983700DAA31A /* Makefile */,
+				E83F52FD2725983700DAA31A /* vmath.inl */,
+				E83F52FE2725983700DAA31A /* vmath.c */,
+				E83F52FF2725983700DAA31A /* Makefile.am */,
+				E83F53002725983700DAA31A /* spaceball_static.dsp */,
+				E83F53012725983700DAA31A /* spaceball.c */,
+				E83F53022725983700DAA31A /* spaceball-vmath.o */,
+				E83F53032725983700DAA31A /* spaceball.dsp */,
+				E83F53042725983700DAA31A /* spaceball */,
+				E83F53052725983700DAA31A /* .deps */,
+				E83F53082725983700DAA31A /* .libs */,
+				E83F530A2725983700DAA31A /* Makefile.in */,
+				E83F530B2725983700DAA31A /* vmath.h */,
+			);
+			path = spaceball;
+			sourceTree = "<group>";
+		};
+		E83F53052725983700DAA31A /* .deps */ = {
+			isa = PBXGroup;
+			children = (
+				E83F53062725983700DAA31A /* spaceball-spaceball.Po */,
+				E83F53072725983700DAA31A /* spaceball-vmath.Po */,
+			);
+			path = .deps;
+			sourceTree = "<group>";
+		};
+		E83F53082725983700DAA31A /* .libs */ = {
+			isa = PBXGroup;
+			children = (
+				E83F53092725983700DAA31A /* spaceball */,
+			);
+			path = .libs;
+			sourceTree = "<group>";
+		};
+		E83F530C2725983700DAA31A /* smooth_opengl3 */ = {
+			isa = PBXGroup;
+			children = (
+				E83F530D2725983700DAA31A /* smooth_opengl3.dsp */,
+				E83F530E2725983700DAA31A /* Makefile */,
+				E83F530F2725983700DAA31A /* smooth_opengl3.c */,
+				E83F53102725983700DAA31A /* Makefile.am */,
+				E83F53112725983700DAA31A /* smooth_opengl3Static.dsp */,
+				E83F53122725983700DAA31A /* smooth_opengl3-smooth_opengl3.o */,
+				E83F53132725983700DAA31A /* smooth_opengl3 */,
+				E83F53142725983700DAA31A /* .deps */,
+				E83F53162725983700DAA31A /* .libs */,
+				E83F53182725983700DAA31A /* Makefile.in */,
+			);
+			path = smooth_opengl3;
+			sourceTree = "<group>";
+		};
+		E83F53142725983700DAA31A /* .deps */ = {
+			isa = PBXGroup;
+			children = (
+				E83F53152725983700DAA31A /* smooth_opengl3-smooth_opengl3.Po */,
+			);
+			path = .deps;
+			sourceTree = "<group>";
+		};
+		E83F53162725983700DAA31A /* .libs */ = {
+			isa = PBXGroup;
+			children = (
+				E83F53172725983700DAA31A /* smooth_opengl3 */,
+			);
+			path = .libs;
+			sourceTree = "<group>";
+		};
+		E83F531A2725983700DAA31A /* Lorenz */ = {
+			isa = PBXGroup;
+			children = (
+				E83F531B2725983700DAA31A /* lorenz-lorenz.o */,
+				E83F531C2725983700DAA31A /* Makefile */,
+				E83F531D2725983700DAA31A /* Makefile.am */,
+				E83F531E2725983700DAA31A /* lorenz.c */,
+				E83F531F2725983700DAA31A /* lorenz.dsp */,
+				E83F53202725983700DAA31A /* .deps */,
+				E83F53222725983700DAA31A /* .libs */,
+				E83F53242725983700DAA31A /* Makefile.in */,
+				E83F53252725983700DAA31A /* lorenzStatic.dsp */,
+				E83F53262725983700DAA31A /* lorenz */,
+			);
+			path = Lorenz;
+			sourceTree = "<group>";
+		};
+		E83F53202725983700DAA31A /* .deps */ = {
+			isa = PBXGroup;
+			children = (
+				E83F53212725983700DAA31A /* lorenz-lorenz.Po */,
+			);
+			path = .deps;
+			sourceTree = "<group>";
+		};
+		E83F53222725983700DAA31A /* .libs */ = {
+			isa = PBXGroup;
+			children = (
+				E83F53232725983700DAA31A /* lorenz */,
+			);
+			path = .libs;
+			sourceTree = "<group>";
+		};
+		E83F53282725983700DAA31A /* src */ = {
+			isa = PBXGroup;
+			children = (
+				E83F53292725983700DAA31A /* libglut_la-freeglut_window.lo */,
+				E83F532A2725983700DAA31A /* libglut_la-freeglut_input_devices.o */,
+				E83F532B2725983700DAA31A /* freeglut_gamemode.c */,
+				E83F532C2725983700DAA31A /* libglut_la-freeglut_main.lo */,
+				E83F532D2725983700DAA31A /* freeglutdll.def */,
+				E83F532E2725983700DAA31A /* freeglut_cursor.c */,
+				E83F532F2725983700DAA31A /* libglut_la-freeglut_font.o */,
+				E83F53302725983700DAA31A /* libglut_la-freeglut_init.lo */,
+				E83F53312725983700DAA31A /* libglut_la-freeglut_init.o */,
+				E83F53322725983700DAA31A /* freeglut_window.c */,
+				E83F53332725983700DAA31A /* libglut_la-freeglut_xinput.o */,
+				E83F53342725983700DAA31A /* libglut_la-freeglut_videoresize.lo */,
+				E83F53352725983700DAA31A /* freeglut_input_devices.c */,
+				E83F53362725983700DAA31A /* freeglut_main.c */,
+				E83F53372725983700DAA31A /* freeglut_geometry.c */,
+				E83F53382725983700DAA31A /* libglut_la-freeglut_cursor.o */,
+				E83F53392725983700DAA31A /* libglut_la-freeglut_gamemode.lo */,
+				E83F533A2725983700DAA31A /* freeglut_stroke_roman.c */,
+				E83F533B2725983700DAA31A /* libglut_la-freeglut_teapot.lo */,
+				E83F533C2725983700DAA31A /* libglut_la-freeglut_window.o */,
+				E83F533D2725983700DAA31A /* freeglut_xinput.c */,
+				E83F533E2725983700DAA31A /* Makefile */,
+				E83F533F2725983700DAA31A /* libglut_la-freeglut_stroke_roman.lo */,
+				E83F53402725983700DAA31A /* libglut_la-freeglut_font_data.lo */,
+				E83F53412725983700DAA31A /* freeglut_display.c */,
+				E83F53422725983700DAA31A /* libglut_la-freeglut_menu.lo */,
+				E83F53432725983700DAA31A /* freeglut_internal.h */,
+				E83F53442725983700DAA31A /* freeglut_ext.c */,
+				E83F53452725983700DAA31A /* freeglut_misc.c */,
+				E83F53462725983700DAA31A /* libglut_la-freeglut_menu.o */,
+				E83F53472725983700DAA31A /* libglut_la-freeglut_stroke_mono_roman.lo */,
+				E83F53482725983700DAA31A /* libglut_la-freeglut_joystick.o */,
+				E83F53492725983700DAA31A /* libglut_la-freeglut_spaceball.lo */,
+				E83F534A2725983700DAA31A /* libglut_la-freeglut_state.lo */,
+				E83F534B2725983700DAA31A /* libglut_la-freeglut_callbacks.lo */,
+				E83F534C2725983700DAA31A /* libglut_la-freeglut_structure.lo */,
+				E83F534D2725983700DAA31A /* libglut_la-freeglut_stroke_mono_roman.o */,
+				E83F534E2725983700DAA31A /* libglut_la-freeglut_display.o */,
+				E83F534F2725983700DAA31A /* freeglut_joystick.c */,
+				E83F53502725983700DAA31A /* Makefile.am */,
+				E83F53512725983700DAA31A /* freeglut_menu.c */,
+				E83F53522725983700DAA31A /* libglut_la-freeglut_display.lo */,
+				E83F53532725983700DAA31A /* libglut_la-freeglut_misc.o */,
+				E83F53542725983700DAA31A /* freeglut_overlay.c */,
+				E83F53552725983700DAA31A /* libglut_la-freeglut_xinput.lo */,
+				E83F53562725983700DAA31A /* freeglut_state.c */,
+				E83F53572725983700DAA31A /* libglut_la-freeglut_spaceball.o */,
+				E83F53582725983700DAA31A /* libglut_la-freeglut_overlay.o */,
+				E83F53592725983700DAA31A /* libglut_la-freeglut_font.lo */,
+				E83F535A2725983700DAA31A /* freeglut_videoresize.c */,
+				E83F535B2725983700DAA31A /* libglut_la-freeglut_structure.o */,
+				E83F535C2725983700DAA31A /* freeglut_spaceball.c */,
+				E83F535D2725983700DAA31A /* libglut_la-freeglut_glutfont_definitions.o */,
+				E83F535E2725983700DAA31A /* freeglut_stroke_mono_roman.c */,
+				E83F535F2725983700DAA31A /* freeglut_structure.c */,
+				E83F53602725983700DAA31A /* templates */,
+				E83F53632725983700DAA31A /* libglut.la */,
+				E83F53642725983700DAA31A /* libglut_la-freeglut_geometry.o */,
+				E83F53652725983700DAA31A /* libglut_la-freeglut_joystick.lo */,
+				E83F53662725983700DAA31A /* libglut_la-freeglut_cursor.lo */,
+				E83F53672725983700DAA31A /* freeglut_callbacks.c */,
+				E83F53682725983700DAA31A /* libglut_la-freeglut_state.o */,
+				E83F53692725983700DAA31A /* libglut_la-freeglut_font_data.o */,
+				E83F536A2725983700DAA31A /* libglut_la-freeglut_main.o */,
+				E83F536B2725983700DAA31A /* libglut_la-freeglut_misc.lo */,
+				E83F536C2725983700DAA31A /* libglut_la-freeglut_teapot.o */,
+				E83F536D2725983700DAA31A /* libglut_la-freeglut_callbacks.o */,
+				E83F536E2725983700DAA31A /* libglut_la-freeglut_input_devices.lo */,
+				E83F536F2725983700DAA31A /* libglut_la-freeglut_videoresize.o */,
+				E83F53702725983700DAA31A /* .deps */,
+				E83F538A2725983700DAA31A /* freeglut_font_data.c */,
+				E83F538B2725983700DAA31A /* freeglut_teapot_data.h */,
+				E83F538C2725983700DAA31A /* freeglut_font.c */,
+				E83F538D2725983700DAA31A /* freeglut_glutfont_definitions.c */,
+				E83F538E2725983700DAA31A /* .libs */,
+				E83F53AD2725983700DAA31A /* Makefile.in */,
+				E83F53AE2725983700DAA31A /* libglut_la-freeglut_glutfont_definitions.lo */,
+				E83F53AF2725983700DAA31A /* libglut_la-freeglut_gamemode.o */,
+				E83F53B02725983700DAA31A /* libglut_la-freeglut_stroke_roman.o */,
+				E83F53B12725983700DAA31A /* libglut_la-freeglut_geometry.lo */,
+				E83F53B22725983700DAA31A /* libglut_la-freeglut_ext.o */,
+				E83F53B32725983700DAA31A /* freeglut_teapot.c */,
+				E83F53B42725983700DAA31A /* libglut_la-freeglut_overlay.lo */,
+				E83F53B52725983700DAA31A /* freeglut_init.c */,
+				E83F53B62725983700DAA31A /* libglut_la-freeglut_ext.lo */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		E83F53602725983700DAA31A /* templates */ = {
+			isa = PBXGroup;
+			children = (
+				E83F53612725983700DAA31A /* cpp_template */,
+				E83F53622725983700DAA31A /* header_template */,
+			);
+			path = templates;
+			sourceTree = "<group>";
+		};
+		E83F53702725983700DAA31A /* .deps */ = {
+			isa = PBXGroup;
+			children = (
+				E83F53712725983700DAA31A /* libglut_la-freeglut_spaceball.Plo */,
+				E83F53722725983700DAA31A /* libglut_la-freeglut_teapot.Plo */,
+				E83F53732725983700DAA31A /* libglut_la-freeglut_font_data.Plo */,
+				E83F53742725983700DAA31A /* libglut_la-freeglut_font.Plo */,
+				E83F53752725983700DAA31A /* libglut_la-freeglut_geometry.Plo */,
+				E83F53762725983700DAA31A /* libglut_la-freeglut_menu.Plo */,
+				E83F53772725983700DAA31A /* libglut_la-freeglut_ext.Plo */,
+				E83F53782725983700DAA31A /* libglut_la-freeglut_misc.Plo */,
+				E83F53792725983700DAA31A /* libglut_la-freeglut_gamemode.Plo */,
+				E83F537A2725983700DAA31A /* libglut_la-freeglut_videoresize.Plo */,
+				E83F537B2725983700DAA31A /* libglut_la-freeglut_callbacks.Plo */,
+				E83F537C2725983700DAA31A /* libglut_la-freeglut_window.Plo */,
+				E83F537D2725983700DAA31A /* libglut_la-freeglut_state.Plo */,
+				E83F537E2725983700DAA31A /* libglut_la-freeglut_glutfont_definitions.Plo */,
+				E83F537F2725983700DAA31A /* libglut_la-freeglut_input_devices.Plo */,
+				E83F53802725983700DAA31A /* libglut_la-freeglut_main.Plo */,
+				E83F53812725983700DAA31A /* libglut_la-freeglut_stroke_mono_roman.Plo */,
+				E83F53822725983700DAA31A /* libglut_la-freeglut_overlay.Plo */,
+				E83F53832725983700DAA31A /* libglut_la-freeglut_stroke_roman.Plo */,
+				E83F53842725983700DAA31A /* libglut_la-freeglut_init.Plo */,
+				E83F53852725983700DAA31A /* libglut_la-freeglut_structure.Plo */,
+				E83F53862725983700DAA31A /* libglut_la-freeglut_joystick.Plo */,
+				E83F53872725983700DAA31A /* libglut_la-freeglut_display.Plo */,
+				E83F53882725983700DAA31A /* libglut_la-freeglut_cursor.Plo */,
+				E83F53892725983700DAA31A /* libglut_la-freeglut_xinput.Plo */,
+			);
+			path = .deps;
+			sourceTree = "<group>";
+		};
+		E83F538E2725983700DAA31A /* .libs */ = {
+			isa = PBXGroup;
+			children = (
+				E83F538F2725983700DAA31A /* libglut.dylib */,
+				E83F53902725983700DAA31A /* libglut_la-freeglut_input_devices.o */,
+				E83F53912725983700DAA31A /* libglut_la-freeglut_font.o */,
+				E83F53922725983700DAA31A /* libglut_la-freeglut_init.o */,
+				E83F53932725983700DAA31A /* libglut_la-freeglut_xinput.o */,
+				E83F53942725983700DAA31A /* libglut_la-freeglut_cursor.o */,
+				E83F53952725983700DAA31A /* libglut_la-freeglut_window.o */,
+				E83F53962725983700DAA31A /* libglut.lai */,
+				E83F53972725983700DAA31A /* libglut_la-freeglut_menu.o */,
+				E83F53982725983700DAA31A /* libglut_la-freeglut_joystick.o */,
+				E83F53992725983700DAA31A /* libglut.a */,
+				E83F539A2725983700DAA31A /* libglut_la-freeglut_stroke_mono_roman.o */,
+				E83F539B2725983700DAA31A /* libglut_la-freeglut_display.o */,
+				E83F539C2725983700DAA31A /* libglut_la-freeglut_misc.o */,
+				E83F539D2725983700DAA31A /* libglut_la-freeglut_spaceball.o */,
+				E83F539E2725983700DAA31A /* libglut_la-freeglut_overlay.o */,
+				E83F539F2725983700DAA31A /* libglut_la-freeglut_structure.o */,
+				E83F53A02725983700DAA31A /* libglut.3.dylib */,
+				E83F53A12725983700DAA31A /* libglut_la-freeglut_glutfont_definitions.o */,
+				E83F53A22725983700DAA31A /* libglut.la */,
+				E83F53A32725983700DAA31A /* libglut_la-freeglut_geometry.o */,
+				E83F53A42725983700DAA31A /* libglut_la-freeglut_state.o */,
+				E83F53A52725983700DAA31A /* libglut_la-freeglut_font_data.o */,
+				E83F53A62725983700DAA31A /* libglut_la-freeglut_main.o */,
+				E83F53A72725983700DAA31A /* libglut_la-freeglut_teapot.o */,
+				E83F53A82725983700DAA31A /* libglut_la-freeglut_callbacks.o */,
+				E83F53A92725983700DAA31A /* libglut_la-freeglut_videoresize.o */,
+				E83F53AA2725983700DAA31A /* libglut_la-freeglut_gamemode.o */,
+				E83F53AB2725983700DAA31A /* libglut_la-freeglut_stroke_roman.o */,
+				E83F53AC2725983700DAA31A /* libglut_la-freeglut_ext.o */,
+			);
+			path = .libs;
+			sourceTree = "<group>";
+		};
 		E8840E512706A3040023EA73 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E83F53B72725993300DAA31A /* OpenGL.framework */,
+				E8CFE8AF2725187000E0F327 /* GLUT.framework */,
 				E8840E5A2706A35F0023EA73 /* CoreGraphics.framework */,
 				E8840E582706A32F0023EA73 /* Foundation.framework */,
 				E8840E562706A3210023EA73 /* IOKit.framework */,
@@ -190,6 +1390,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E8CFE8AE2725161E00E0F327 /* beanScan.cpp in Sources */,
+				E865F7D7271F042F008791B9 /* hw2_xmz_part1.cpp in Sources */,
 				E822F9CE2705B3E3003EA3EC /* changeColorTrangleTest.cpp in Sources */,
 				E822F9B827054A43003EA3EC /* main.cpp in Sources */,
 				E822F9CA27054E78003EA3EC /* glad.c in Sources */,
@@ -314,8 +1516,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Externals/Include";
-				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/Externals/Libraries";
+				HEADER_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/Externals/Include",
+					"$(PROJECT_DIR)/Externals/Include/freeglut/include",
+					/usr/local/include,
+					/opt/X11/include,
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/Externals/Libraries",
+					/usr/local/lib,
+					/opt/X11/include,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -324,8 +1535,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Externals/Include";
-				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/Externals/Libraries";
+				HEADER_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/Externals/Include",
+					"$(PROJECT_DIR)/Externals/Include/freeglut/include",
+					/usr/local/include,
+					/opt/X11/include,
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/Externals/Libraries",
+					/usr/local/lib,
+					/opt/X11/include,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

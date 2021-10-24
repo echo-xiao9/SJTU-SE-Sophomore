@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/gs-service-registration-and-discovery.iml" filepath="$PROJECT_DIR$/gs-service-registration-and-discovery.iml" />
+      <module fileurl="file://$PROJECT_DIR$/eureka-client/service-registration-and-discovery-client.iml" filepath="$PROJECT_DIR$/eureka-client/service-registration-and-discovery-client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/eureka-service/service-registration-and-discovery-service.iml" filepath="$PROJECT_DIR$/eureka-service/service-registration-and-discovery-service.iml" />
+    </modules>
+  </component>
+</project>
