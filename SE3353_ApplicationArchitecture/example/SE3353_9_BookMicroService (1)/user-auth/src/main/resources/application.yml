@@ -1,0 +1,27 @@
+#mybatis:
+#  config-location: classpath:mybatis/mybatis-config.xml  #全局配置文件位置
+#  mapper-locations: classpath:mybatis/mapper/*.xml  #sql映射文件位置
+spring:
+  datasource:
+#    url: jdbc:mysql://localhost:3306/bookstore
+    url: jdbc:mysql://localhost:3306/testDataBase
+    username: root
+    password: password
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  application:
+    name: user-auth
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+eureka:
+  instance:
+    prefer-ip-address: true
+    ip-address: localhost
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://localhost:8040/eureka
+server:
+  port: 11330

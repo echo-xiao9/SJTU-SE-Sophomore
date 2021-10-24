@@ -1,0 +1,776 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="5e80f383-1ddf-453f-849a-7522011bc4c1" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/20200703_bookstore_backend/src/main/resources/applicaiton.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_10_HelloSecuritySample/se3353_10_HelloSecuritySample.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_10_HelloSecuritySample/securing-web.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SE3353_10_ReactRouter.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_10_SSL/SE3353_10_SSL.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_10_SSL/demo.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_8_RestfulWebServiceSample/SE3353_8_RestfulWebServiceSample.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_8_RestfulWebServiceSample/restsample.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_8_WebServiceSample/SE3353_8_WebServiceSample.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/SE3353_9_BookMicroService (1).iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__antlr_antlr_2_7_7.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__aopalliance_aopalliance_1_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__ch_qos_logback_logback_classic_1_2_5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__ch_qos_logback_logback_classic_1_2_6.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__ch_qos_logback_logback_core_1_2_5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__ch_qos_logback_logback_core_1_2_6.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_autoscaling_1_11_277.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_core_1_11_277.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_ec2_1_11_277.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_route53_1_11_277.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__com_amazonaws_aws_java_sdk_sts_1_11_277.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__com_amazonaws_jmespath_java_1_11_277.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__com_auth0_java_jwt_3_18_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__com_baomidou_mybatis_plus_3_4_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__com_baomidou_mybatis_plus_annotation_3_4_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__com_baomidou_mybatis_plus_boot_starter_3_4_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__com_baomidou_mybatis_plus_core_3_4_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__com_baomidou_mybatis_plus_extension_3_4_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__com_fasterxml_classmate_1_5_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_annotations_2_12_4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_annotations_2_12_5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_core_2_12_4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_core_2_12_5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_databind_2_12_4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_databind_2_12_5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__com_fasterxml_jackson_dataformat_jackson_dataformat_cbor_2_12_4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__com_fasterxml_jackson_dataformat_jackson_dataformat_xml_2_12_4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__com_fasterxml_jackson_datatype_jackson_datatype_jdk8_2_12_4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__com_fasterxml_jackson_datatype_jackson_datatype_jdk8_2_12_5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__com_fasterxml_jackson_datatype_jackson_datatype_jsr310_2_12_4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__com_fasterxml_jackson_datatype_jackson_datatype_jsr310_2_12_5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__com_fasterxml_jackson_module_jackson_module_jaxb_annotations_2_12_4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__com_fasterxml_jackson_module_jackson_module_parameter_names_2_12_4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__com_fasterxml_jackson_module_jackson_module_parameter_names_2_12_5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__com_fasterxml_woodstox_woodstox_core_6_2_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__com_github_jsqlparser_jsqlparser_3_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__com_google_code_gson_gson_2_8_7.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__com_google_code_gson_gson_2_8_8.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__com_google_guava_guava_19_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__com_google_inject_guice_4_1_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__com_jayway_jsonpath_json_path_2_5_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__com_netflix_eureka_eureka_client_1_10_14.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__com_netflix_eureka_eureka_client_1_10_16.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__com_netflix_eureka_eureka_core_1_10_14.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__com_netflix_eureka_eureka_core_1_10_16.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__com_netflix_netflix_commons_netflix_eventbus_0_3_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__com_netflix_netflix_commons_netflix_infix_0_3_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__com_netflix_servo_servo_core_0_12_21.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__com_stoyanr_evictor_1_0_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__com_sun_activation_jakarta_activation_1_2_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__com_sun_istack_istack_commons_runtime_3_0_12.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__com_sun_jersey_contribs_jersey_apache_client4_1_19_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__com_sun_jersey_jersey_client_1_19_4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__com_sun_jersey_jersey_core_1_19_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__com_sun_jersey_jersey_server_1_19_4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__com_sun_jersey_jersey_servlet_1_19_4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__com_thoughtworks_xstream_xstream_1_4_16.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__com_thoughtworks_xstream_xstream_1_4_18.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__com_vaadin_external_google_android_json_0_0_20131108_vaadin1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__com_zaxxer_HikariCP_4_0_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__commons_codec_commons_codec_1_15.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__commons_configuration_commons_configuration_1_10.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__commons_jxpath_commons_jxpath_1_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__commons_lang_commons_lang_2_6.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__commons_logging_commons_logging_1_1_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__io_github_x_stream_mxparser_1_2_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__io_github_x_stream_mxparser_1_2_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__io_micrometer_micrometer_core_1_7_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__io_netty_netty_buffer_4_1_67_Final.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__io_netty_netty_codec_4_1_67_Final.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__io_netty_netty_codec_dns_4_1_67_Final.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__io_netty_netty_codec_http2_4_1_67_Final.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__io_netty_netty_codec_http_4_1_67_Final.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__io_netty_netty_codec_socks_4_1_67_Final.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__io_netty_netty_common_4_1_67_Final.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__io_netty_netty_handler_4_1_67_Final.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__io_netty_netty_handler_proxy_4_1_67_Final.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__io_netty_netty_resolver_4_1_67_Final.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__io_netty_netty_resolver_dns_4_1_67_Final.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__io_netty_netty_resolver_dns_native_macos_osx_x86_64_4_1_67_Final.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__io_netty_netty_transport_4_1_67_Final.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__io_netty_netty_transport_native_epoll_linux_x86_64_4_1_67_Final.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__io_netty_netty_transport_native_unix_common_4_1_67_Final.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__io_projectreactor_addons_reactor_extra_3_4_4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__io_projectreactor_addons_reactor_extra_3_4_5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__io_projectreactor_netty_reactor_netty_core_1_0_10.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__io_projectreactor_netty_reactor_netty_http_1_0_10.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__io_projectreactor_reactor_core_3_4_10.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__io_projectreactor_reactor_core_3_4_9.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__jakarta_activation_jakarta_activation_api_1_2_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__jakarta_annotation_jakarta_annotation_api_1_3_5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__jakarta_persistence_jakarta_persistence_api_2_2_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__jakarta_transaction_jakarta_transaction_api_1_3_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__jakarta_validation_jakarta_validation_api_2_0_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__jakarta_xml_bind_jakarta_xml_bind_api_2_3_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__javax_inject_javax_inject_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__javax_servlet_servlet_api_2_5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__javax_ws_rs_jsr311_api_1_1_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__joda_time_joda_time_2_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__joda_time_joda_time_2_8_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__mysql_mysql_connector_java_8_0_26.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__net_bytebuddy_byte_buddy_1_10_22.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__net_bytebuddy_byte_buddy_agent_1_10_22.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__net_minidev_accessors_smart_2_4_7.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__net_minidev_json_smart_2_4_7.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_antlr_antlr_runtime_3_4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_antlr_stringtemplate_3_2_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_apache_commons_commons_math_2_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_apache_httpcomponents_httpclient_4_5_13.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_apache_httpcomponents_httpcore_4_4_14.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_apache_logging_log4j_log4j_api_2_14_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_apache_logging_log4j_log4j_to_slf4j_2_14_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_apache_tomcat_embed_tomcat_embed_core_9_0_52.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_apache_tomcat_embed_tomcat_embed_core_9_0_53.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_apache_tomcat_embed_tomcat_embed_el_9_0_52.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_apache_tomcat_embed_tomcat_embed_el_9_0_53.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_apache_tomcat_embed_tomcat_embed_websocket_9_0_52.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_apache_tomcat_embed_tomcat_embed_websocket_9_0_53.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_apiguardian_apiguardian_api_1_1_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_aspectj_aspectjweaver_1_9_7.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_assertj_assertj_core_3_19_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_bouncycastle_bcpkix_jdk15on_1_68.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_bouncycastle_bcprov_jdk15on_1_68.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_codehaus_jettison_jettison_1_4_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_codehaus_woodstox_stax2_api_4_2_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_dom4j_dom4j_2_1_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_freemarker_freemarker_2_3_31.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_glassfish_jaxb_jaxb_runtime_2_3_5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_glassfish_jaxb_txw2_2_3_5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_hamcrest_hamcrest_2_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_hdrhistogram_HdrHistogram_2_1_12.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_hibernate_common_hibernate_commons_annotations_5_1_2_Final.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_hibernate_hibernate_core_5_4_32_Final.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_hibernate_validator_hibernate_validator_6_2_0_Final.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_javassist_javassist_3_27_0_GA.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_jboss_jandex_2_2_3_Final.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_jboss_logging_jboss_logging_3_4_2_Final.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_5_7_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_api_5_7_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_engine_5_7_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_params_5_7_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_junit_platform_junit_platform_commons_1_7_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_junit_platform_junit_platform_engine_1_7_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_latencyutils_LatencyUtils_2_0_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_mockito_mockito_core_3_9_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_mockito_mockito_junit_jupiter_3_9_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_mybatis_mybatis_3_5_6.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_mybatis_mybatis_spring_2_0_5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_objenesis_objenesis_3_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_opentest4j_opentest4j_1_2_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_ow2_asm_asm_9_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_projectlombok_lombok_1_18_20.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_reactivestreams_reactive_streams_1_0_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_skyscreamer_jsonassert_1_5_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_slf4j_jul_to_slf4j_1_7_32.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_slf4j_slf4j_api_1_7_32.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_springframework_boot_spring_boot_2_5_4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_springframework_boot_spring_boot_2_5_5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_springframework_boot_spring_boot_actuator_2_5_4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_springframework_boot_spring_boot_actuator_autoconfigure_2_5_4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_springframework_boot_spring_boot_autoconfigure_2_5_4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_springframework_boot_spring_boot_autoconfigure_2_5_5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_springframework_boot_spring_boot_configuration_processor_2_5_4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_springframework_boot_spring_boot_devtools_2_5_4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_2_5_4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_2_5_5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_actuator_2_5_4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_aop_2_5_4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_aop_2_5_5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_cache_2_5_4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_cache_2_5_5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_data_jdbc_2_5_4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_data_jpa_2_5_4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_data_jpa_2_5_5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_freemarker_2_5_4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_jdbc_2_5_4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_jdbc_2_5_5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_json_2_5_4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_json_2_5_5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_logging_2_5_4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_logging_2_5_5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_reactor_netty_2_5_4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_test_2_5_4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_test_2_5_5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_tomcat_2_5_4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_tomcat_2_5_5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_validation_2_5_4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_web_2_5_4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_web_2_5_5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_webflux_2_5_4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_springframework_boot_spring_boot_test_2_5_4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_springframework_boot_spring_boot_test_2_5_5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_springframework_boot_spring_boot_test_autoconfigure_2_5_4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_springframework_boot_spring_boot_test_autoconfigure_2_5_5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_springframework_cloud_spring_cloud_commons_3_0_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_springframework_cloud_spring_cloud_commons_3_0_4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_springframework_cloud_spring_cloud_context_3_0_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_springframework_cloud_spring_cloud_context_3_0_4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_springframework_cloud_spring_cloud_gateway_server_3_0_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_springframework_cloud_spring_cloud_loadbalancer_3_0_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_springframework_cloud_spring_cloud_loadbalancer_3_0_4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_springframework_cloud_spring_cloud_netflix_eureka_client_3_0_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_springframework_cloud_spring_cloud_netflix_eureka_client_3_0_4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_springframework_cloud_spring_cloud_netflix_eureka_server_3_0_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_springframework_cloud_spring_cloud_starter_3_0_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_springframework_cloud_spring_cloud_starter_3_0_4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_springframework_cloud_spring_cloud_starter_gateway_3_0_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_springframework_cloud_spring_cloud_starter_loadbalancer_3_0_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_springframework_cloud_spring_cloud_starter_loadbalancer_3_0_4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_springframework_cloud_spring_cloud_starter_netflix_eureka_client_3_0_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_springframework_cloud_spring_cloud_starter_netflix_eureka_client_3_0_4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_springframework_cloud_spring_cloud_starter_netflix_eureka_server_3_0_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_springframework_data_spring_data_commons_2_5_4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_springframework_data_spring_data_commons_2_5_5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_springframework_data_spring_data_jdbc_2_2_4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_springframework_data_spring_data_jpa_2_5_4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_springframework_data_spring_data_jpa_2_5_5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_springframework_data_spring_data_relational_2_2_4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_springframework_security_spring_security_crypto_5_5_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_springframework_security_spring_security_rsa_1_0_10_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_springframework_spring_aop_5_3_10.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_springframework_spring_aop_5_3_9.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_springframework_spring_aspects_5_3_10.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_springframework_spring_aspects_5_3_9.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_springframework_spring_beans_5_3_10.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_springframework_spring_beans_5_3_9.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_springframework_spring_context_5_3_10.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_springframework_spring_context_5_3_9.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_springframework_spring_context_support_5_3_10.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_springframework_spring_context_support_5_3_9.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_springframework_spring_core_5_3_10.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_springframework_spring_core_5_3_9.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_springframework_spring_expression_5_3_10.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_springframework_spring_expression_5_3_9.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_springframework_spring_jcl_5_3_10.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_springframework_spring_jcl_5_3_9.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_springframework_spring_jdbc_5_3_10.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_springframework_spring_jdbc_5_3_9.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_springframework_spring_orm_5_3_10.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_springframework_spring_orm_5_3_9.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_springframework_spring_test_5_3_10.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_springframework_spring_test_5_3_9.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_springframework_spring_tx_5_3_10.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_springframework_spring_tx_5_3_9.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_springframework_spring_web_5_3_10.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_springframework_spring_web_5_3_9.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_springframework_spring_webflux_5_3_9.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_springframework_spring_webmvc_5_3_10.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_springframework_spring_webmvc_5_3_9.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_xmlunit_xmlunit_core_2_8_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__org_yaml_snakeyaml_1_28.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__software_amazon_ion_ion_java_1_0_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/libraries/Maven__xmlpull_xmlpull_1_1_3_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/user-auth/root-web-learning-1.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_BookMicroService (1)/user-auth/user-auth.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Gateway/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Gateway/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Gateway/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Gateway/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Gateway/.idea/libraries/Maven__ch_qos_logback_logback_classic_1_2_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Gateway/.idea/libraries/Maven__ch_qos_logback_logback_core_1_2_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Gateway/.idea/libraries/Maven__com_fasterxml_classmate_1_5_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Gateway/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_annotations_2_11_4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Gateway/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_core_2_11_4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Gateway/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_databind_2_11_4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Gateway/.idea/libraries/Maven__com_fasterxml_jackson_datatype_jackson_datatype_jdk8_2_11_4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Gateway/.idea/libraries/Maven__com_fasterxml_jackson_datatype_jackson_datatype_jsr310_2_11_4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Gateway/.idea/libraries/Maven__com_fasterxml_jackson_module_jackson_module_parameter_names_2_11_4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Gateway/.idea/libraries/Maven__com_jayway_jsonpath_json_path_2_4_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Gateway/.idea/libraries/Maven__com_vaadin_external_google_android_json_0_0_20131108_vaadin1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Gateway/.idea/libraries/Maven__io_micrometer_micrometer_core_1_6_6.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Gateway/.idea/libraries/Maven__io_netty_netty_buffer_4_1_63_Final.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Gateway/.idea/libraries/Maven__io_netty_netty_codec_4_1_63_Final.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Gateway/.idea/libraries/Maven__io_netty_netty_codec_dns_4_1_63_Final.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Gateway/.idea/libraries/Maven__io_netty_netty_codec_http2_4_1_63_Final.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Gateway/.idea/libraries/Maven__io_netty_netty_codec_http_4_1_63_Final.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Gateway/.idea/libraries/Maven__io_netty_netty_codec_socks_4_1_63_Final.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Gateway/.idea/libraries/Maven__io_netty_netty_common_4_1_63_Final.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Gateway/.idea/libraries/Maven__io_netty_netty_handler_4_1_63_Final.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Gateway/.idea/libraries/Maven__io_netty_netty_handler_proxy_4_1_63_Final.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Gateway/.idea/libraries/Maven__io_netty_netty_resolver_4_1_63_Final.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Gateway/.idea/libraries/Maven__io_netty_netty_resolver_dns_4_1_63_Final.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Gateway/.idea/libraries/Maven__io_netty_netty_resolver_dns_native_macos_osx_x86_64_4_1_63_Final.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Gateway/.idea/libraries/Maven__io_netty_netty_transport_4_1_63_Final.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Gateway/.idea/libraries/Maven__io_netty_netty_transport_native_epoll_linux_x86_64_4_1_63_Final.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Gateway/.idea/libraries/Maven__io_netty_netty_transport_native_unix_common_4_1_63_Final.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Gateway/.idea/libraries/Maven__io_projectreactor_addons_reactor_extra_3_4_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Gateway/.idea/libraries/Maven__io_projectreactor_netty_reactor_netty_core_1_0_6.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Gateway/.idea/libraries/Maven__io_projectreactor_netty_reactor_netty_http_1_0_6.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Gateway/.idea/libraries/Maven__io_projectreactor_reactor_core_3_4_5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Gateway/.idea/libraries/Maven__jakarta_activation_jakarta_activation_api_1_2_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Gateway/.idea/libraries/Maven__jakarta_annotation_jakarta_annotation_api_1_3_5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Gateway/.idea/libraries/Maven__jakarta_validation_jakarta_validation_api_2_0_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Gateway/.idea/libraries/Maven__jakarta_xml_bind_jakarta_xml_bind_api_2_3_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Gateway/.idea/libraries/Maven__net_bytebuddy_byte_buddy_1_10_22.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Gateway/.idea/libraries/Maven__net_bytebuddy_byte_buddy_agent_1_10_22.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Gateway/.idea/libraries/Maven__net_minidev_accessors_smart_1_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Gateway/.idea/libraries/Maven__net_minidev_json_smart_2_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Gateway/.idea/libraries/Maven__org_apache_logging_log4j_log4j_api_2_13_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Gateway/.idea/libraries/Maven__org_apache_logging_log4j_log4j_to_slf4j_2_13_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Gateway/.idea/libraries/Maven__org_apiguardian_apiguardian_api_1_1_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Gateway/.idea/libraries/Maven__org_assertj_assertj_core_3_18_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Gateway/.idea/libraries/Maven__org_bouncycastle_bcpkix_jdk15on_1_64.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Gateway/.idea/libraries/Maven__org_bouncycastle_bcprov_jdk15on_1_64.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Gateway/.idea/libraries/Maven__org_glassfish_jakarta_el_3_0_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Gateway/.idea/libraries/Maven__org_hamcrest_hamcrest_2_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Gateway/.idea/libraries/Maven__org_hdrhistogram_HdrHistogram_2_1_12.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Gateway/.idea/libraries/Maven__org_hibernate_validator_hibernate_validator_6_1_7_Final.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Gateway/.idea/libraries/Maven__org_jboss_logging_jboss_logging_3_4_1_Final.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Gateway/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_5_7_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Gateway/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_api_5_7_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Gateway/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_engine_5_7_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Gateway/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_params_5_7_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Gateway/.idea/libraries/Maven__org_junit_platform_junit_platform_commons_1_7_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Gateway/.idea/libraries/Maven__org_junit_platform_junit_platform_engine_1_7_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Gateway/.idea/libraries/Maven__org_latencyutils_LatencyUtils_2_0_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Gateway/.idea/libraries/Maven__org_mockito_mockito_core_3_6_28.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Gateway/.idea/libraries/Maven__org_mockito_mockito_junit_jupiter_3_6_28.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Gateway/.idea/libraries/Maven__org_objenesis_objenesis_3_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Gateway/.idea/libraries/Maven__org_opentest4j_opentest4j_1_2_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Gateway/.idea/libraries/Maven__org_ow2_asm_asm_5_0_4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Gateway/.idea/libraries/Maven__org_reactivestreams_reactive_streams_1_0_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Gateway/.idea/libraries/Maven__org_skyscreamer_jsonassert_1_5_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Gateway/.idea/libraries/Maven__org_slf4j_jul_to_slf4j_1_7_30.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Gateway/.idea/libraries/Maven__org_slf4j_slf4j_api_1_7_30.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Gateway/.idea/libraries/Maven__org_springframework_boot_spring_boot_2_4_5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Gateway/.idea/libraries/Maven__org_springframework_boot_spring_boot_actuator_2_4_5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Gateway/.idea/libraries/Maven__org_springframework_boot_spring_boot_actuator_autoconfigure_2_4_5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Gateway/.idea/libraries/Maven__org_springframework_boot_spring_boot_autoconfigure_2_4_5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Gateway/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_2_4_5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Gateway/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_actuator_2_4_5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Gateway/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_json_2_4_5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Gateway/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_logging_2_4_5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Gateway/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_reactor_netty_2_4_5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Gateway/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_test_2_4_5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Gateway/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_validation_2_4_5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Gateway/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_webflux_2_4_5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Gateway/.idea/libraries/Maven__org_springframework_boot_spring_boot_test_2_4_5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Gateway/.idea/libraries/Maven__org_springframework_boot_spring_boot_test_autoconfigure_2_4_5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Gateway/.idea/libraries/Maven__org_springframework_cloud_spring_cloud_commons_3_0_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Gateway/.idea/libraries/Maven__org_springframework_cloud_spring_cloud_context_3_0_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Gateway/.idea/libraries/Maven__org_springframework_cloud_spring_cloud_gateway_server_3_0_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Gateway/.idea/libraries/Maven__org_springframework_cloud_spring_cloud_starter_3_0_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Gateway/.idea/libraries/Maven__org_springframework_cloud_spring_cloud_starter_gateway_3_0_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Gateway/.idea/libraries/Maven__org_springframework_security_spring_security_crypto_5_4_6.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Gateway/.idea/libraries/Maven__org_springframework_security_spring_security_rsa_1_0_9_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Gateway/.idea/libraries/Maven__org_springframework_spring_aop_5_3_6.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Gateway/.idea/libraries/Maven__org_springframework_spring_beans_5_3_6.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Gateway/.idea/libraries/Maven__org_springframework_spring_context_5_3_6.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Gateway/.idea/libraries/Maven__org_springframework_spring_core_5_3_6.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Gateway/.idea/libraries/Maven__org_springframework_spring_expression_5_3_6.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Gateway/.idea/libraries/Maven__org_springframework_spring_jcl_5_3_6.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Gateway/.idea/libraries/Maven__org_springframework_spring_test_5_3_6.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Gateway/.idea/libraries/Maven__org_springframework_spring_web_5_3_6.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Gateway/.idea/libraries/Maven__org_springframework_spring_webflux_5_3_6.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Gateway/.idea/libraries/Maven__org_xmlunit_xmlunit_core_2_7_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Gateway/.idea/libraries/Maven__org_yaml_snakeyaml_1_27.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Gateway/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Gateway/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Gateway/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Gateway/SE3353_9_Gateway.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Gateway/gateway.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/.name" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/libraries/Maven__antlr_antlr_2_7_7.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/libraries/Maven__aopalliance_aopalliance_1_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/libraries/Maven__ch_qos_logback_logback_classic_1_2_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/libraries/Maven__ch_qos_logback_logback_core_1_2_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/libraries/Maven__com_fasterxml_classmate_1_5_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_annotations_2_11_4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_core_2_11_4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_databind_2_11_4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/libraries/Maven__com_fasterxml_jackson_dataformat_jackson_dataformat_xml_2_11_4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/libraries/Maven__com_fasterxml_jackson_datatype_jackson_datatype_jdk8_2_11_4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/libraries/Maven__com_fasterxml_jackson_datatype_jackson_datatype_jsr310_2_11_4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/libraries/Maven__com_fasterxml_jackson_module_jackson_module_jaxb_annotations_2_11_4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/libraries/Maven__com_fasterxml_jackson_module_jackson_module_parameter_names_2_11_4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/libraries/Maven__com_fasterxml_woodstox_woodstox_core_5_3_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/libraries/Maven__com_google_code_gson_gson_2_8_6.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/libraries/Maven__com_google_guava_guava_19_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/libraries/Maven__com_google_inject_guice_4_1_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/libraries/Maven__com_jayway_jsonpath_json_path_2_4_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/libraries/Maven__com_netflix_eureka_eureka_client_1_10_10.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/libraries/Maven__com_netflix_eureka_eureka_core_1_10_10.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/libraries/Maven__com_netflix_netflix_commons_netflix_eventbus_0_3_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/libraries/Maven__com_netflix_netflix_commons_netflix_infix_0_3_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/libraries/Maven__com_netflix_servo_servo_core_0_12_21.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/libraries/Maven__com_stoyanr_evictor_1_0_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/libraries/Maven__com_sun_activation_jakarta_activation_1_2_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/libraries/Maven__com_sun_istack_istack_commons_runtime_3_0_12.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/libraries/Maven__com_sun_jersey_contribs_jersey_apache_client4_1_19_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/libraries/Maven__com_sun_jersey_jersey_client_1_19_4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/libraries/Maven__com_sun_jersey_jersey_core_1_19_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/libraries/Maven__com_sun_jersey_jersey_server_1_19_4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/libraries/Maven__com_sun_jersey_jersey_servlet_1_19_4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/libraries/Maven__com_thoughtworks_xstream_xstream_1_4_14.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/libraries/Maven__com_vaadin_external_google_android_json_0_0_20131108_vaadin1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/libraries/Maven__commons_codec_commons_codec_1_15.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/libraries/Maven__commons_configuration_commons_configuration_1_10.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/libraries/Maven__commons_jxpath_commons_jxpath_1_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/libraries/Maven__commons_lang_commons_lang_2_6.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/libraries/Maven__io_micrometer_micrometer_core_1_6_6.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/libraries/Maven__io_projectreactor_addons_reactor_extra_3_4_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/libraries/Maven__io_projectreactor_reactor_core_3_4_5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/libraries/Maven__jakarta_activation_jakarta_activation_api_1_2_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/libraries/Maven__jakarta_annotation_jakarta_annotation_api_1_3_5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/libraries/Maven__jakarta_validation_jakarta_validation_api_2_0_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/libraries/Maven__jakarta_xml_bind_jakarta_xml_bind_api_2_3_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/libraries/Maven__javax_inject_javax_inject_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/libraries/Maven__javax_ws_rs_jsr311_api_1_1_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/libraries/Maven__joda_time_joda_time_2_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/libraries/Maven__net_bytebuddy_byte_buddy_1_10_22.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/libraries/Maven__net_bytebuddy_byte_buddy_agent_1_10_22.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/libraries/Maven__net_minidev_accessors_smart_1_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/libraries/Maven__net_minidev_json_smart_2_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/libraries/Maven__org_antlr_antlr_runtime_3_4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/libraries/Maven__org_antlr_stringtemplate_3_2_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/libraries/Maven__org_apache_commons_commons_math_2_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/libraries/Maven__org_apache_httpcomponents_httpclient_4_5_13.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/libraries/Maven__org_apache_httpcomponents_httpcore_4_4_14.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/libraries/Maven__org_apache_logging_log4j_log4j_api_2_13_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/libraries/Maven__org_apache_logging_log4j_log4j_to_slf4j_2_13_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/libraries/Maven__org_apache_tomcat_embed_tomcat_embed_core_9_0_45.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/libraries/Maven__org_apache_tomcat_embed_tomcat_embed_websocket_9_0_45.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/libraries/Maven__org_apiguardian_apiguardian_api_1_1_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/libraries/Maven__org_assertj_assertj_core_3_18_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/libraries/Maven__org_bouncycastle_bcpkix_jdk15on_1_64.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/libraries/Maven__org_bouncycastle_bcprov_jdk15on_1_64.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/libraries/Maven__org_codehaus_jettison_jettison_1_4_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/libraries/Maven__org_codehaus_woodstox_stax2_api_4_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/libraries/Maven__org_codehaus_woodstox_stax2_api_4_2_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/libraries/Maven__org_freemarker_freemarker_2_3_31.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/libraries/Maven__org_glassfish_jakarta_el_3_0_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/libraries/Maven__org_glassfish_jaxb_jaxb_runtime_2_3_4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/libraries/Maven__org_glassfish_jaxb_txw2_2_3_4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/libraries/Maven__org_hamcrest_hamcrest_2_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/libraries/Maven__org_hdrhistogram_HdrHistogram_2_1_12.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/libraries/Maven__org_hibernate_validator_hibernate_validator_6_1_7_Final.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/libraries/Maven__org_jboss_logging_jboss_logging_3_4_1_Final.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_5_7_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_api_5_7_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_engine_5_7_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_params_5_7_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/libraries/Maven__org_junit_platform_junit_platform_commons_1_7_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/libraries/Maven__org_junit_platform_junit_platform_engine_1_7_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/libraries/Maven__org_latencyutils_LatencyUtils_2_0_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/libraries/Maven__org_mockito_mockito_core_3_6_28.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/libraries/Maven__org_mockito_mockito_junit_jupiter_3_6_28.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/libraries/Maven__org_objenesis_objenesis_3_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/libraries/Maven__org_opentest4j_opentest4j_1_2_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/libraries/Maven__org_ow2_asm_asm_5_0_4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/libraries/Maven__org_reactivestreams_reactive_streams_1_0_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/libraries/Maven__org_skyscreamer_jsonassert_1_5_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/libraries/Maven__org_slf4j_jul_to_slf4j_1_7_30.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/libraries/Maven__org_slf4j_slf4j_api_1_7_30.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/libraries/Maven__org_springframework_boot_spring_boot_2_4_5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/libraries/Maven__org_springframework_boot_spring_boot_actuator_2_4_5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/libraries/Maven__org_springframework_boot_spring_boot_actuator_autoconfigure_2_4_5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/libraries/Maven__org_springframework_boot_spring_boot_autoconfigure_2_4_5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_2_4_5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_actuator_2_4_5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_cache_2_4_5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_freemarker_2_4_5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_json_2_4_5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_logging_2_4_5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_test_2_4_5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_tomcat_2_4_5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_validation_2_4_5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_web_2_4_5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/libraries/Maven__org_springframework_boot_spring_boot_test_2_4_5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/libraries/Maven__org_springframework_boot_spring_boot_test_autoconfigure_2_4_5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/libraries/Maven__org_springframework_cloud_spring_cloud_commons_3_0_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/libraries/Maven__org_springframework_cloud_spring_cloud_context_3_0_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/libraries/Maven__org_springframework_cloud_spring_cloud_loadbalancer_3_0_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/libraries/Maven__org_springframework_cloud_spring_cloud_netflix_eureka_client_3_0_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/libraries/Maven__org_springframework_cloud_spring_cloud_netflix_eureka_server_3_0_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/libraries/Maven__org_springframework_cloud_spring_cloud_starter_3_0_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/libraries/Maven__org_springframework_cloud_spring_cloud_starter_loadbalancer_3_0_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/libraries/Maven__org_springframework_cloud_spring_cloud_starter_netflix_eureka_client_3_0_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/libraries/Maven__org_springframework_cloud_spring_cloud_starter_netflix_eureka_server_3_0_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/libraries/Maven__org_springframework_security_spring_security_crypto_5_4_6.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/libraries/Maven__org_springframework_security_spring_security_rsa_1_0_9_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/libraries/Maven__org_springframework_spring_aop_5_3_6.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/libraries/Maven__org_springframework_spring_beans_5_3_6.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/libraries/Maven__org_springframework_spring_context_5_3_6.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/libraries/Maven__org_springframework_spring_context_support_5_3_6.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/libraries/Maven__org_springframework_spring_core_5_3_6.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/libraries/Maven__org_springframework_spring_expression_5_3_6.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/libraries/Maven__org_springframework_spring_jcl_5_3_6.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/libraries/Maven__org_springframework_spring_test_5_3_6.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/libraries/Maven__org_springframework_spring_web_5_3_6.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/libraries/Maven__org_springframework_spring_webmvc_5_3_6.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/libraries/Maven__org_xmlunit_xmlunit_core_2_7_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/libraries/Maven__org_yaml_snakeyaml_1_27.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/libraries/Maven__xmlpull_xmlpull_1_1_3_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/libraries/Maven__xpp3_xpp3_min_1_1_4c.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/eureka-client/service-registration-and-discovery-client.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/eureka-service/service-registration-and-discovery-service.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SE3353_9_Microservice/gs-service-registration-and-discovery.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/.idea/20210327_bookStoreWeb.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/.idea/compiler.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/.idea/dataSources.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/.idea/encodings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/.idea/jarRepositories.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/.idea/libraries/Maven__antlr_antlr_2_7_7.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/.idea/libraries/Maven__ch_qos_logback_logback_classic_1_2_3.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/.idea/libraries/Maven__ch_qos_logback_logback_core_1_2_3.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/.idea/libraries/Maven__com_fasterxml_classmate_1_5_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_annotations_2_11_4.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_core_2_11_4.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_databind_2_11_4.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/.idea/libraries/Maven__com_fasterxml_jackson_datatype_jackson_datatype_jdk8_2_11_4.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/.idea/libraries/Maven__com_fasterxml_jackson_datatype_jackson_datatype_jsr310_2_11_4.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/.idea/libraries/Maven__com_fasterxml_jackson_module_jackson_module_parameter_names_2_11_4.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/.idea/libraries/Maven__com_jayway_jsonpath_json_path_2_4_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/.idea/libraries/Maven__com_sun_activation_jakarta_activation_1_2_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/.idea/libraries/Maven__com_sun_istack_istack_commons_runtime_3_0_12.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/.idea/libraries/Maven__com_vaadin_external_google_android_json_0_0_20131108_vaadin1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/.idea/libraries/Maven__com_zaxxer_HikariCP_3_4_5.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/.idea/libraries/Maven__jakarta_activation_jakarta_activation_api_1_2_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/.idea/libraries/Maven__jakarta_annotation_jakarta_annotation_api_1_3_5.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/.idea/libraries/Maven__jakarta_persistence_jakarta_persistence_api_2_2_3.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/.idea/libraries/Maven__jakarta_transaction_jakarta_transaction_api_1_3_3.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/.idea/libraries/Maven__jakarta_xml_bind_jakarta_xml_bind_api_2_3_3.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/.idea/libraries/Maven__javax_servlet_javax_servlet_api_4_0_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/.idea/libraries/Maven__mysql_mysql_connector_java_8_0_23.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/.idea/libraries/Maven__net_bytebuddy_byte_buddy_1_10_22.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/.idea/libraries/Maven__net_bytebuddy_byte_buddy_agent_1_10_22.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/.idea/libraries/Maven__net_minidev_accessors_smart_1_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/.idea/libraries/Maven__net_minidev_json_smart_2_3.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/.idea/libraries/Maven__org_apache_logging_log4j_log4j_api_2_13_3.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/.idea/libraries/Maven__org_apache_logging_log4j_log4j_to_slf4j_2_13_3.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/.idea/libraries/Maven__org_apache_tomcat_embed_tomcat_embed_core_9_0_45.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/.idea/libraries/Maven__org_apache_tomcat_embed_tomcat_embed_websocket_9_0_45.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/.idea/libraries/Maven__org_apiguardian_apiguardian_api_1_1_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/.idea/libraries/Maven__org_aspectj_aspectjweaver_1_9_6.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/.idea/libraries/Maven__org_assertj_assertj_core_3_18_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/.idea/libraries/Maven__org_attoparser_attoparser_2_0_5_RELEASE.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/.idea/libraries/Maven__org_dom4j_dom4j_2_1_3.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/.idea/libraries/Maven__org_glassfish_jakarta_el_3_0_3.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/.idea/libraries/Maven__org_glassfish_jaxb_jaxb_runtime_2_3_4.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/.idea/libraries/Maven__org_glassfish_jaxb_txw2_2_3_4.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/.idea/libraries/Maven__org_hamcrest_hamcrest_2_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/.idea/libraries/Maven__org_hibernate_common_hibernate_commons_annotations_5_1_2_Final.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/.idea/libraries/Maven__org_hibernate_hibernate_core_5_4_30_Final.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/.idea/libraries/Maven__org_javassist_javassist_3_27_0_GA.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/.idea/libraries/Maven__org_jboss_jandex_2_2_3_Final.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/.idea/libraries/Maven__org_jboss_logging_jboss_logging_3_4_1_Final.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_5_7_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_api_5_7_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_engine_5_7_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_params_5_7_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/.idea/libraries/Maven__org_junit_platform_junit_platform_commons_1_7_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/.idea/libraries/Maven__org_junit_platform_junit_platform_engine_1_7_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/.idea/libraries/Maven__org_mockito_mockito_core_3_6_28.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/.idea/libraries/Maven__org_mockito_mockito_junit_jupiter_3_6_28.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/.idea/libraries/Maven__org_objenesis_objenesis_3_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/.idea/libraries/Maven__org_opentest4j_opentest4j_1_2_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/.idea/libraries/Maven__org_ow2_asm_asm_5_0_4.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/.idea/libraries/Maven__org_projectlombok_lombok_1_18_20.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/.idea/libraries/Maven__org_skyscreamer_jsonassert_1_5_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/.idea/libraries/Maven__org_slf4j_jul_to_slf4j_1_7_30.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/.idea/libraries/Maven__org_slf4j_slf4j_api_1_7_30.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/.idea/libraries/Maven__org_springframework_boot_spring_boot_2_4_5.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/.idea/libraries/Maven__org_springframework_boot_spring_boot_autoconfigure_2_4_5.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_2_4_5.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_aop_2_4_5.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_data_jpa_2_4_5.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_jdbc_2_4_5.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_json_2_4_5.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_logging_2_4_5.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_security_2_4_5.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_test_2_4_5.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_thymeleaf_2_4_5.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_tomcat_2_4_5.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_web_2_4_5.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/.idea/libraries/Maven__org_springframework_boot_spring_boot_test_2_4_5.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/.idea/libraries/Maven__org_springframework_boot_spring_boot_test_autoconfigure_2_4_5.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/.idea/libraries/Maven__org_springframework_data_spring_data_commons_2_4_8.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/.idea/libraries/Maven__org_springframework_data_spring_data_jpa_2_4_8.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/.idea/libraries/Maven__org_springframework_restdocs_spring_restdocs_core_2_0_5_RELEASE.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/.idea/libraries/Maven__org_springframework_restdocs_spring_restdocs_mockmvc_2_0_5_RELEASE.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/.idea/libraries/Maven__org_springframework_security_spring_security_config_5_4_6.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/.idea/libraries/Maven__org_springframework_security_spring_security_core_5_4_6.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/.idea/libraries/Maven__org_springframework_security_spring_security_test_5_4_6.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/.idea/libraries/Maven__org_springframework_security_spring_security_web_5_4_6.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/.idea/libraries/Maven__org_springframework_spring_aop_5_3_6.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/.idea/libraries/Maven__org_springframework_spring_aspects_5_3_6.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/.idea/libraries/Maven__org_springframework_spring_beans_5_3_6.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/.idea/libraries/Maven__org_springframework_spring_context_5_3_6.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/.idea/libraries/Maven__org_springframework_spring_core_5_3_6.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/.idea/libraries/Maven__org_springframework_spring_expression_5_3_6.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/.idea/libraries/Maven__org_springframework_spring_jcl_5_3_6.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/.idea/libraries/Maven__org_springframework_spring_jdbc_5_3_6.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/.idea/libraries/Maven__org_springframework_spring_orm_5_3_6.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/.idea/libraries/Maven__org_springframework_spring_test_5_3_6.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/.idea/libraries/Maven__org_springframework_spring_tx_5_3_6.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/.idea/libraries/Maven__org_springframework_spring_web_5_3_6.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/.idea/libraries/Maven__org_springframework_spring_webmvc_5_3_6.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/.idea/libraries/Maven__org_thymeleaf_extras_thymeleaf_extras_java8time_3_0_4_RELEASE.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/.idea/libraries/Maven__org_thymeleaf_extras_thymeleaf_extras_springsecurity5_3_0_4_RELEASE.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/.idea/libraries/Maven__org_thymeleaf_thymeleaf_3_0_12_RELEASE.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/.idea/libraries/Maven__org_thymeleaf_thymeleaf_spring5_3_0_12_RELEASE.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/.idea/libraries/Maven__org_unbescape_unbescape_1_1_6_RELEASE.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/.idea/libraries/Maven__org_xmlunit_xmlunit_core_2_7_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/.idea/libraries/Maven__org_yaml_snakeyaml_1_27.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/20200703_bookstore_backend/index/_b.cfe" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/20200703_bookstore_backend/index/_b.cfs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/20200703_bookstore_backend/index/_b.si" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/20200703_bookstore_backend/index/segments_c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/20200703_bookstore_backend/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/20200703_bookstore_backend/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/20200703_bookstore_backend/src/main/java/com/reins/bookstore/BookstoreApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/20200703_bookstore_backend/src/main/java/com/reins/bookstore/BookstoreApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/20200703_bookstore_backend/src/main/java/com/reins/bookstore/controller/BookController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/20200703_bookstore_backend/src/main/java/com/reins/bookstore/controller/BookController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/20200703_bookstore_backend/src/main/java/com/reins/bookstore/daoimpl/BookDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/20200703_bookstore_backend/src/main/java/com/reins/bookstore/daoimpl/BookDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/20200703_bookstore_backend/src/main/java/com/reins/bookstore/interceptor/InterceptorConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/20200703_bookstore_backend/src/main/java/com/reins/bookstore/interceptor/InterceptorConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/20200703_bookstore_backend/src/main/java/com/reins/bookstore/serviceimpl/OrderServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/20200703_bookstore_backend/src/main/java/com/reins/bookstore/serviceimpl/OrderServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/20200703_bookstore_backend/src/main/java/com/reins/bookstore/serviceimpl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/20200703_bookstore_backend/src/main/java/com/reins/bookstore/serviceimpl/UserServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/20200703_bookstore_backend/src/main/java/com/reins/bookstore/utils/lucene/IndexFiles.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/20200703_bookstore_backend/src/main/java/com/reins/bookstore/utils/lucene/IndexFiles.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/20200703_bookstore_backend/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/20200703_bookstore_backend/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/bookStore/.vscode/settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/bookStore/.vscode/settings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/bookStore/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/bookStore/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/bookStore/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/bookStore/public/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/bookStore/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/bookStore/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/bookStore/src/axios.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/bookStore/src/axios.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/bookStore/src/components/Button.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/bookStore/src/components/Button.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/bookStore/src/components/CardItem.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/bookStore/src/components/CardItem.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/bookStore/src/components/Cards2.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/bookStore/src/components/Cards2.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/bookStore/src/components/Carousel.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/bookStore/src/components/Carousel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/bookStore/src/components/CartItem.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/bookStore/src/components/CartItem.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/bookStore/src/components/Footer.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/bookStore/src/components/Footer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/bookStore/src/components/HeroSection.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/bookStore/src/components/HeroSection.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/bookStore/src/components/Navbar.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/bookStore/src/components/Navbar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/bookStore/src/components/OrderCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/bookStore/src/components/OrderCard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/bookStore/src/components/Pagination.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/bookStore/src/components/Pagination.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/bookStore/src/components/PerchaseExcel.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/bookStore/src/components/PerchaseExcel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/bookStore/src/components/SearchBox.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/bookStore/src/components/SearchBox.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/bookStore/src/components/cartActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/bookStore/src/components/cartActions.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/bookStore/src/components/hotBoard.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/bookStore/src/components/hotBoard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/bookStore/src/components/hotUserBoard.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/bookStore/src/components/hotUserBoard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/bookStore/src/components/material-table.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/bookStore/src/components/material-table.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/bookStore/src/components/productActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/bookStore/src/components/productActions.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/bookStore/src/css/Admin.css" beforeDir="false" afterPath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/bookStore/src/css/Admin.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/bookStore/src/css/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/bookStore/src/css/App.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/bookStore/src/css/Book.css" beforeDir="false" afterPath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/bookStore/src/css/Book.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/bookStore/src/css/Button.css" beforeDir="false" afterPath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/bookStore/src/css/Button.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/bookStore/src/css/Cards.css" beforeDir="false" afterPath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/bookStore/src/css/Cards.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/bookStore/src/css/Carousel.css" beforeDir="false" afterPath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/bookStore/src/css/Carousel.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/bookStore/src/css/Cart.css" beforeDir="false" afterPath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/bookStore/src/css/Cart.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/bookStore/src/css/CartItem.css" beforeDir="false" afterPath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/bookStore/src/css/CartItem.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/bookStore/src/css/Footer.css" beforeDir="false" afterPath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/bookStore/src/css/Footer.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/bookStore/src/css/HeroSection.css" beforeDir="false" afterPath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/bookStore/src/css/HeroSection.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/bookStore/src/css/Login.css" beforeDir="false" afterPath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/bookStore/src/css/Login.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/bookStore/src/css/Navbar.css" beforeDir="false" afterPath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/bookStore/src/css/Navbar.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/bookStore/src/css/OrderCard.css" beforeDir="false" afterPath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/bookStore/src/css/OrderCard.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/bookStore/src/css/Pagination.css" beforeDir="false" afterPath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/bookStore/src/css/Pagination.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/bookStore/src/css/Register.css" beforeDir="false" afterPath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/bookStore/src/css/Register.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/bookStore/src/css/SearchBox.css" beforeDir="false" afterPath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/bookStore/src/css/SearchBox.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/bookStore/src/css/w3.css" beforeDir="false" afterPath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/bookStore/src/css/w3.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/bookStore/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/bookStore/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/bookStore/src/pages/AdminBook.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/bookStore/src/pages/AdminBook.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/bookStore/src/pages/AdminIndex.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/bookStore/src/pages/AdminIndex.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/bookStore/src/pages/AdminOrders.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/bookStore/src/pages/AdminOrders.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/bookStore/src/pages/AdminUser.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/bookStore/src/pages/AdminUser.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/bookStore/src/pages/Administrator.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/bookStore/src/pages/Administrator.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/bookStore/src/pages/Book.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/bookStore/src/pages/Book.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/bookStore/src/pages/Book2.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/bookStore/src/pages/Book2.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/bookStore/src/pages/Cart.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/bookStore/src/pages/Cart.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/bookStore/src/pages/ChatRoom.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/bookStore/src/pages/ChatRoom.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/bookStore/src/pages/ChatRoom.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/bookStore/src/pages/ChatRoom.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/bookStore/src/pages/Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/bookStore/src/pages/Home.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/bookStore/src/pages/HotSelling.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/bookStore/src/pages/HotSelling.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/bookStore/src/pages/HotUsers.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/bookStore/src/pages/HotUsers.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/bookStore/src/pages/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/bookStore/src/pages/Login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/bookStore/src/pages/Orders.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/bookStore/src/pages/Orders.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/bookStore/src/pages/Register.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/bookStore/src/pages/Register.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/bookStore/src/pages/Statistics.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/bookStore/src/pages/Statistics.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/bookStore/src/pages/UserOrders.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/bookStore/src/pages/UserOrders.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/bookStore/src/pages/useForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/bookStore/src/pages/useForm.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/carouseImg/pipe-full.hcl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/carouseImg/截屏2021-04-01 下午4.34.00.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/carouseImg/截屏2021-04-01 下午4.34.24.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/carouseImg/截屏2021-04-01 下午4.34.42.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/carouseImg/截屏2021-04-01 下午4.34.51.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/carouseImg/截屏2021-04-01 下午4.35.00.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/carouseImg/截屏2021-04-01 下午4.35.13.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/carouseImg/截屏2021-04-01 下午4.49.33.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/carouseImg/截屏2021-04-01 下午4.49.43.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2321_WebDevelopment/20210327_bookStoreWeb/carouseImg/截屏2021-04-01 下午4.53.29.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE2322_HighLevelDataStructure/exercises" beforeDir="false" afterPath="$PROJECT_DIR$/../../../SE2322_HighLevelDataStructure/exercises" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE344_ComputerGraphics/OpenGLTest2/OpenGLTest2.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/../../../SE344_ComputerGraphics/OpenGLTest2/OpenGLTest2.xcodeproj/project.pbxproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE344_ComputerGraphics/OpenGLTest2/OpenGLTest2.xcodeproj/project.xcworkspace/xcuserdata/kangyixiao.xcuserdatad/UserInterfaceState.xcuserstate" beforeDir="false" afterPath="$PROJECT_DIR$/../../../SE344_ComputerGraphics/OpenGLTest2/OpenGLTest2.xcodeproj/project.xcworkspace/xcuserdata/kangyixiao.xcuserdatad/UserInterfaceState.xcuserstate" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE344_ComputerGraphics/OpenGLTest2/OpenGLTest2/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../../../SE344_ComputerGraphics/OpenGLTest2/OpenGLTest2/main.cpp" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
+  </component>
+  <component name="ProjectId" id="1ztc4J8lMEC2Gb64di6FM2cFbQ6" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="nodejs_package_manager_path" value="npm" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="5e80f383-1ddf-453f-849a-7522011bc4c1" name="Default Changelist" comment="" />
+      <created>1634970632693</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1634970632693</updated>
+      <workItem from="1634970634955" duration="41000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

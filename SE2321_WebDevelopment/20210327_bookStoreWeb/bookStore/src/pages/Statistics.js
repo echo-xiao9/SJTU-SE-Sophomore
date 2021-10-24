@@ -1,6 +1,3 @@
-
-
-
 import React from 'react';
 import TableContainer from '@material-ui/core/TableContainer';
 import TextField from '@material-ui/core/TextField';
@@ -11,107 +8,107 @@ import axios from "axios"
 
 export default class HotSelling extends React.Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      userHotSelling:[],
-      from:  "2021-04-05",
-      to:"2021-12-12",
-      totalPrice:0,
-      totalNum:0
-    }
-  
-    this.handleFromChange=this.handleFromChange.bind(this);
-    this.handleToChange=this.handleToChange.bind(this);
-    this.getHotUser=this.getHotUser.bind(this);
-
-      axios({
-        method: 'GET',
-        url: 'http://localhost:9090/getUserHotSelling',
-        params: {
-          from:this.state.from,
-          to:this.state.to,
-          user_id:localStorage.getItem('userId')
+    constructor(props) {
+        super(props);
+        this.state = {
+            userHotSelling: [],
+            from: "2021-04-05",
+            to: "2021-12-12",
+            totalPrice: 0,
+            totalNum: 0
         }
-      }).then(response => {
-      
-       console.log(response);
-       this.setState({userHotSelling:response.data.hotSellingList});
-        this.setState({totalNum:response.data.totalNum});
-        this.setState({totalPrice: response.data.totalPrice});
-      })
+
+        this.handleFromChange = this.handleFromChange.bind(this);
+        this.handleToChange = this.handleToChange.bind(this);
+        this.getHotUser = this.getHotUser.bind(this);
+
+        axios({
+            method: 'GET',
+            url: 'http://localhost:9090/getUserHotSelling',
+            params: {
+                from: this.state.from,
+                to: this.state.to,
+                user_id: localStorage.getItem('userId')
+            }
+        }).then(response => {
+
+            console.log(response);
+            this.setState({userHotSelling: response.data.hotSellingList});
+            this.setState({totalNum: response.data.totalNum});
+            this.setState({totalPrice: response.data.totalPrice});
+        })
     }
 
-    handleFromChange=(e)=>{
-      this.state.from=e.target.value;
-    }
-    
-    handleToChange=(e)=>{
-      this.state.to=e.target.value;
+    handleFromChange = (e) => {
+        this.state.from = e.target.value;
     }
 
-    getHotUser=()=>{
-      axios({
-        method: 'GET',
-        url: 'http://localhost:9090/getUserHotSelling',
-        params: {
-          from:this.state.from,
-          to:this.state.to,
-          user_id:localStorage.getItem('userId')
-        }
-      }).then(response => {
-        console.log("response data");
-        console.log(response.data);
-        this.setState({userHotSelling:response.data.hotSellingList});
-        this.setState({totalNum:response.data.totalNum});
-        this.setState({totalPrice: response.data.totalPrice});
-        // this.state.userHotSelling=response.data.hotSellingList;
-        // this.state.totalNum=response.data.totalNum;
-        // this.state.totalPrice=response.data.totalPrice;
-        console.log("userHot");
-        console.log(this.state.userHotSelling);
-      })
+    handleToChange = (e) => {
+        this.state.to = e.target.value;
     }
 
-  render() {
-    return (
-      <div>
-          <h1> Perchase Board</h1>
-         <TableContainer  align="center" marginTop="10">
+    getHotUser = () => {
+        axios({
+            method: 'GET',
+            url: 'http://localhost:9090/getUserHotSelling',
+            params: {
+                from: this.state.from,
+                to: this.state.to,
+                user_id: localStorage.getItem('userId')
+            }
+        }).then(response => {
+            console.log("response data");
+            console.log(response.data);
+            this.setState({userHotSelling: response.data.hotSellingList});
+            this.setState({totalNum: response.data.totalNum});
+            this.setState({totalPrice: response.data.totalPrice});
+            // this.state.userHotSelling=response.data.hotSellingList;
+            // this.state.totalNum=response.data.totalNum;
+            // this.state.totalPrice=response.data.totalPrice;
+            console.log("userHot");
+            console.log(this.state.userHotSelling);
+        })
+    }
 
-        <TextField
-          id="date"
-          label="From"
-          type="date"
-          defaultValue="2021-04-05"
-          InputLabelProps={{
-            shrink: true,
-          }}
-          onChange={this.handleFromChange}
-        />
+    render() {
+        return (
+            <div>
+                <h1> Perchase Board</h1>
+                <TableContainer align="center" marginTop="10">
 
-        <TextField
-          id="date"
-          label="To"
-          type="date"
-          ref="myField"
-          defaultValue="2021-12-12"
-          onChange={this.handleToChange}
-          InputLabelProps={{
-            shrink: true,
-          }}
-        />
+                    <TextField
+                        id="date"
+                        label="From"
+                        type="date"
+                        defaultValue="2021-04-05"
+                        InputLabelProps={{
+                            shrink: true,
+                        }}
+                        onChange={this.handleFromChange}
+                    />
 
-        <Button onClick={this.getHotUser}>select</Button>
-        </TableContainer>
-          <PerchaseExcel
-            rows={ this.state.userHotSelling}
-            totalPrice={this.state.totalPrice}
-            totalNum={this.state.totalNum}
-          />
-      </div>
-    );
-  }
-  
+                    <TextField
+                        id="date"
+                        label="To"
+                        type="date"
+                        ref="myField"
+                        defaultValue="2021-12-12"
+                        onChange={this.handleToChange}
+                        InputLabelProps={{
+                            shrink: true,
+                        }}
+                    />
+
+                    <Button onClick={this.getHotUser}>select</Button>
+                </TableContainer>
+                <PerchaseExcel
+                    rows={this.state.userHotSelling}
+                    totalPrice={this.state.totalPrice}
+                    totalNum={this.state.totalNum}
+                />
+            </div>
+        );
+    }
+
 }
 

@@ -20,18 +20,18 @@ public class BookController {
     @Autowired
     private BookService bookService;
 
-    @GetMapping("/searchBooks")
+//    @RequestMapping(value="/books", method = RequestMethod.GET,params = "query")
+    @GetMapping(path = "/books", params = "query")
     public List<Book> searchBooks(@RequestParam("query") String query){
         return bookService.searchBooks( query);
     }
-    @GetMapping("/getBooks")
+    @GetMapping(path = "/books",params = "page")
     public List<Book> getBooks(@RequestParam("page") Integer page) {
         List<Book> bookList = bookService.getBooks(page);
-        System.out.println("bookList size:"+bookList.size());
         return bookList;
     }
 
-    @GetMapping("/getBook")
+    @GetMapping(value = "/books",params = "id")
     public Book getBook(@RequestParam("id") Integer id){
         return bookService.findBookById(id);
     }
@@ -41,7 +41,7 @@ public class BookController {
         return bookService.getAdminBook();
     }
 
-    @GetMapping("/addBook")
+    @PostMapping("/books")
     public Book addBook(
             @RequestParam("isbn") String isbn,
             @RequestParam("name") String name,
@@ -53,7 +53,7 @@ public class BookController {
             @RequestParam("image") String image
     ){return bookService.addBook(isbn,name,type,author,price,description,inventory,image);}
 
-    @GetMapping("/deleteBook")
+    @DeleteMapping (path = "/books",params = "bookId")
     public Book deleteBook(@RequestParam("bookId") Integer bookId){
         return bookService.deleteBook(bookId);
     }
@@ -70,7 +70,6 @@ public class BookController {
     @RequestParam("inventory") Integer inventory,
     @RequestParam("image") String image
     ){
-
             return bookService.changeBook(id,isbn,name,type,author,price,description,inventory,image);
     }
 

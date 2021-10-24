@@ -56,7 +56,7 @@ public class IndexFiles {
 
         Date start = new Date();
         try {
-            System.out.println("Indexing to directory '" + indexPath + "'...");
+//            System.out.println("Indexing to directory '" + indexPath + "'...");
             Directory dir = FSDirectory.open(Paths.get(indexPath));
             Analyzer analyzer = new StandardAnalyzer();
             IndexWriterConfig iwc = new IndexWriterConfig(analyzer);
@@ -91,7 +91,7 @@ public class IndexFiles {
             writer.close();
 
             Date end = new Date();
-            System.out.println(end.getTime() - start.getTime() + " total milliseconds");
+//            System.out.println(end.getTime() - start.getTime() + " total milliseconds");
 
         } catch (IOException e) {
             System.out.println(" caught a " + e.getClass() +
@@ -132,7 +132,7 @@ public class IndexFiles {
 
         Date start = new Date();
         try {
-            System.out.println("Indexing to directory '" + indexPath + "'...");
+//            System.out.println("Indexing to directory '" + indexPath + "'...");
             Directory dir = FSDirectory.open(Paths.get(indexPath));
             Analyzer analyzer = new StandardAnalyzer();
             IndexWriterConfig iwc = new IndexWriterConfig(analyzer);
@@ -240,16 +240,16 @@ public class IndexFiles {
             // If that's not the case searching for special characters will fail.
 
             doc.add(new TextField("contents", new BufferedReader(new InputStreamReader(stream, StandardCharsets.UTF_8))));
-            System.out.println(doc.get("content"));
+//            System.out.println(doc.get("content"));
             if (writer.getConfig().getOpenMode() == OpenMode.CREATE) {
                 // New index, so we just add the document (no old document can be there):
-                System.out.println("adding " + file);
+//                System.out.println("adding " + file);
                 writer.addDocument(doc);
             } else {
                 // Existing index (an old copy of this document may have been indexed) so
                 // we use updateDocument instead to replace the old one matching the exact
                 // path, if present:
-                System.out.println("updating " + file);
+//                System.out.println("updating " + file);
                 writer.updateDocument(new Term("path", file.toString()), doc);
             }
         }

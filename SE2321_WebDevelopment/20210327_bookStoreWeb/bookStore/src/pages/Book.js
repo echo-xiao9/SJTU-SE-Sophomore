@@ -2,109 +2,112 @@ import React from 'react';
 import '../css/Book.css';
 import '../css/w3.css'
 import Button from '../components/Button';
-import { withRouter } from "react-router-dom";
-import { Component } from 'react';
+import {withRouter} from "react-router-dom";
+import {Component} from 'react';
 import qs from 'querystring';
 import axios from 'axios';
 
 class Book extends Component {
 
-  getQueryVariable(variable) {
-    var query = window.location.search.substring(1);
-    var vars = query.split('&');
-    for (var i = 0; i < vars.length; i++) {
-      var pair = vars[i].split('=');
-      if (decodeURIComponent(pair[0]) === variable) {
-        return decodeURIComponent(pair[1]);
-      }
+    getQueryVariable(variable) {
+        var query = window.location.search.substring(1);
+        var vars = query.split('&');
+        for (var i = 0; i < vars.length; i++) {
+            var pair = vars[i].split('=');
+            if (decodeURIComponent(pair[0]) === variable) {
+                return decodeURIComponent(pair[1]);
+            }
+        }
+        console.log('Query variable %s not found', variable);
     }
-    console.log('Query variable %s not found', variable);
-  }
 
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      book: []
+    constructor(props) {
+        super(props);
+        this.state = {
+            book: []
+        }
+        axios({
+            method: 'GET',
+            url: 'http://localhost:9090/getBook',
+            params: {
+                id: this.getQueryVariable("bookId")
+            }
+        }).then(response => {
+            // const thisbook = response.data.find(x => x.isbn === this.getQueryVariable('isbn'));
+            this.setState({
+                book: response.data
+            })
+        })
     }
-    axios({
-      method: 'GET',
-      url: 'http://localhost:9090/getBook',
-      params: {
-        id:this.getQueryVariable("bookId")
-      }
-    }).then(response => {
-      // const thisbook = response.data.find(x => x.isbn === this.getQueryVariable('isbn'));
-      this.setState({
-        book: response.data
-      })
-    })
-  }
 
 
-  render() {
+    render() {
 
-    const bookoj = this.state.book;
+        const bookoj = this.state.book;
 
-    return (
-      <div>
-        {/* <title>W3.CSS Template</title>
+        return (
+            <div>
+                {/* <title>W3.CSS Template</title>
       <meta charSet="UTF-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
       <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway" /> */}
-        <style dangerouslySetInnerHTML={{ __html: "\nbody,h1,h2,h3,h4,h5 {font-family: \"Raleway\", sans-serif}\n" }} />
-        {/* w3-content defines a container for fixed size centered content, 
+                <style
+                    dangerouslySetInnerHTML={{__html: "\nbody,h1,h2,h3,h4,h5 {font-family: \"Raleway\", sans-serif}\n"}}/>
+                {/* w3-content defines a container for fixed size centered content,
 and is wrapped around the whole page content, except for the footer in this example */}
-        <div className="w3-content" style={{ maxWidth: '1200px' }}>
-          {/* Header */}
-          <header className="w3-container w3-center w3-padding-32">
-            {/* <h1><b>Harry Potter (Books 1-7) </b></h1> */}
-            {/* <h1><b>{bookoj.bookId} </b></h1> */}
-            {/* <p> <span className="w3-tag">Children's literature classics</span></p> */}
-            <p> <span className="w3-tag">{bookoj.name}</span></p>
-          </header>
-          {/* Grid */}
-          
-          <div className="w3-row">
-            {/* Blog entries */}
-            <div className="w3-col l8 s12">
-              {/* Blog entry */}
-              <div className="w3-card-4 w3-margin w3-white" style={{ maxWidth: '1400px' }}>
-                {/* <img src="images/harryCover.jpg" alt="Nature" style={{ width: '100%' }} /> */}
-                {/* <img src={bookoj.image} alt="book image" style={{ width: '100%' }} /> */}
+                <div className="w3-content" style={{maxWidth: '1200px'}}>
+                    {/* Header */}
+                    <header className="w3-container w3-center w3-padding-32">
+                        {/* <h1><b>Harry Potter (Books 1-7) </b></h1> */}
+                        {/* <h1><b>{bookoj.bookId} </b></h1> */}
+                        {/* <p> <span className="w3-tag">Children's literature classics</span></p> */}
+                        <p><span className="w3-tag">{bookoj.name}</span></p>
+                    </header>
+                    {/* Grid */}
 
-                <div className="w3-container">
-                  {/* <h3><b>Harry Potter (Books 1-7) </b></h3> */}
-                  <h3><b>{bookoj.name}</b></h3>
-                  <h5> {bookoj.author}
-                    {/* <span className="w3-opacity">July 1, 2009</span> */}
-                  </h5>
-                </div>
+                    <div className="w3-row">
+                        {/* Blog entries */}
+                        <div className="w3-col l8 s12">
+                            {/* Blog entry */}
+                            <div className="w3-card-4 w3-margin w3-white" style={{maxWidth: '1400px'}}>
+                                {/* <img src="images/harryCover.jpg" alt="Nature" style={{ width: '100%' }} /> */}
+                                {/* <img src={bookoj.image} alt="book image" style={{ width: '100%' }} /> */}
 
-                <div className="w3-container">
-                  <p>{bookoj.description}
-                  </p>
-                  <Button />
+                                <div className="w3-container">
+                                    {/* <h3><b>Harry Potter (Books 1-7) </b></h3> */}
+                                    <h3><b>{bookoj.name}</b></h3>
+                                    <h5> {bookoj.author}
+                                        {/* <span className="w3-opacity">July 1, 2009</span> */}
+                                    </h5>
+                                </div>
 
-                  <div className="w3-row">
-                    <div className="w3-col m8 s12">
-                      <p>
-                        
-                        <button className="w3-button w3-white  "><b>Price: ${bookoj.price / 100}</b></button>
-                        <button className="w3-button w3-white w3-border" onClick={this.addToCart}><b>Add to cart »</b></button>
-                      </p>
-                    </div>
-                    <div className="w3-col m4 w3-hide-small">
-                      <button className="w3-button w3-white w3-border"><b>Comment</b></button>
-                    </div>
-                  </div>
-                </div>
-              </div>
+                                <div className="w3-container">
+                                    <p>{bookoj.description}
+                                    </p>
+                                    <Button/>
 
-              <hr />
-              {/* Blog entry */}
-              {/* <div className="w3-card-4 w3-margin w3-white">
+                                    <div className="w3-row">
+                                        <div className="w3-col m8 s12">
+                                            <p>
+
+                                                <button className="w3-button w3-white  "><b>Price:
+                                                    ${bookoj.price / 100}</b></button>
+                                                <button className="w3-button w3-white w3-border"
+                                                        onClick={this.addToCart}><b>Add to cart »</b></button>
+                                            </p>
+                                        </div>
+                                        <div className="w3-col m4 w3-hide-small">
+                                            <button className="w3-button w3-white w3-border"><b>Comment</b></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <hr/>
+                            {/* Blog entry */}
+                            {/* <div className="w3-card-4 w3-margin w3-white">
                 <img src="images/jk-rowling.jpg" alt="Norway" style={{ width: '100%' }} />
                 <div className="w3-container">
                   <h3><b>Editorial Reviews</b></h3>
@@ -134,33 +137,32 @@ and is wrapped around the whole page content, except for the footer in this exam
                   </div>
                 </div>
               </div> */}
-              {/* END BLOG ENTRIES */}
+                            {/* END BLOG ENTRIES */}
 
 
-            </div>
-            {/* Introduction menu */}
+                        </div>
+                        {/* Introduction menu */}
 
-            <div className="w3-col l4">
-              {/* About Card */}
-              <div className="w3-card w3-margin w3-margin-top">
-             
-
-                <div className="w3-container w3-white">
-                   <img src={bookoj.image} alt="book image" style={{ width: '100%' }} />
-                  <h4><b>Product details</b></h4>
-
-                  <h6><b> Author :</b> {bookoj.author}</h6>
-                  <h6><b> type :</b> {bookoj.type} </h6>
-                  <h6><b> isbn:</b> {bookoj.isbn}</h6>
-                  <h6><b> price:</b> {bookoj.price}</h6>
+                        <div className="w3-col l4">
+                            {/* About Card */}
+                            <div className="w3-card w3-margin w3-margin-top">
 
 
+                                <div className="w3-container w3-white">
+                                    <img src={bookoj.image} alt="book image" style={{width: '100%'}}/>
+                                    <h4><b>Product details</b></h4>
 
-                </div>
-              </div>
-              <hr />
-              {/* Posts */}
-              {/* <div className="w3-card w3-margin">
+                                    <h6><b> Author :</b> {bookoj.author}</h6>
+                                    <h6><b> type :</b> {bookoj.type} </h6>
+                                    <h6><b> isbn:</b> {bookoj.isbn}</h6>
+                                    <h6><b> price:</b> {bookoj.price}</h6>
+
+
+                                </div>
+                            </div>
+                            <hr/>
+                            {/* Posts */}
+                            {/* <div className="w3-card w3-margin">
                 <div className="w3-container w3-padding">
                   <h4>Customers who viewed this item also viewed</h4>
                 </div>
@@ -187,9 +189,9 @@ and is wrapped around the whole page content, except for the footer in this exam
                   </li>
                 </ul>
               </div> */}
-              {/* <hr /> */}
-              {/* Labels / tags */}
-              {/* <div className="w3-card w3-margin">
+                            {/* <hr /> */}
+                            {/* Labels / tags */}
+                            {/* <div className="w3-card w3-margin">
                 <div className="w3-container w3-padding">
                   <h4>Tags</h4>
                 </div>
@@ -200,53 +202,53 @@ and is wrapped around the whole page content, except for the footer in this exam
                   </span>
                 </div>
               </div> */}
-            </div>
-            {/* END GRID */}
-          </div>
-          {/* <br /> */}
-          {/* END w3-content */}
-        </div>
-        {/* Footer */}
-        {/* <footert className="w3-container w3-dark-grey w3-padding-32 w3-margin-top">
+                        </div>
+                        {/* END GRID */}
+                    </div>
+                    {/* <br /> */}
+                    {/* END w3-content */}
+                </div>
+                {/* Footer */}
+                {/* <footert className="w3-container w3-dark-grey w3-padding-32 w3-margin-top">
           <button className="w3-button w3-black w3-disabled w3-padding-large w3-margin-bottom">Previous</button>
           <button className="w3-button w3-black w3-padding-large w3-margin-bottom" onClick={this.log}>Next »</button>
 
         </footert> */}
 
-      </div>
-    );
-  }
-
-  addToCart = e => {
-    if(localStorage.getItem("userId")===null){
-      alert("please log in!");
-      <script type="text/javascript">
-　　function jumurl(){
-　　window.location.href = 'http://localhost:3000/login'
-　　}
-　　setTimeout(jumurl,3000);
-　　</script>
+            </div>
+        );
     }
-    console.log("book:");
-    console.log(this.state.book);
-    axios({
-      method: 'GET',
-      url: 'http://localhost:9090/addToCart',
-      params: {
-        name: this.state.book.name,
-        author:this.state.book.author,
-        price:this.state.book.price,
-        number:1,
-        bookId:this.state.book.bookId,
-        userId:localStorage.getItem('userId')
-      }
-  }).then(response => {
-      alert("Successfully add a book to cart!");
-  }).catch(error => {
-      console.log(error)
-  })
-   
-};
+
+    addToCart = e => {
+        if (localStorage.getItem("userId") === null) {
+            alert("please log in!");
+            <script type="text/javascript">
+                function jumurl(){
+                window.location.href = 'http://localhost:3000/login'
+            }
+                setTimeout(jumurl,3000);
+            </script>
+        }
+        console.log("book:");
+        console.log(this.state.book);
+        axios({
+            method: 'GET',
+            url: 'http://localhost:9090/addToCart',
+            params: {
+                name: this.state.book.name,
+                author: this.state.book.author,
+                price: this.state.book.price,
+                number: 1,
+                bookId: this.state.book.bookId,
+                userId: localStorage.getItem('userId')
+            }
+        }).then(response => {
+            alert("Successfully add a book to cart!");
+        }).catch(error => {
+            console.log(error)
+        })
+
+    };
 
 }
 

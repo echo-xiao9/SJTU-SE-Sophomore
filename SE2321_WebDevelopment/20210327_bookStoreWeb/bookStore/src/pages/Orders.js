@@ -3,10 +3,10 @@ import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import '../css/Admin.css';
 import {Button} from '../components/Button'
-import { BrowserRouter, Route, Link } from "react-router-dom" 
+import {BrowserRouter, Route, Link} from "react-router-dom"
 // const headers = ["isbn", "name", "type", "author","price", "description","inventory", "image"];
 const data = [];
-const headers = ["order_id","order_price", "user_id", "order_items", "date", "year","month","day"];
+const headers = ["order_id", "order_price", "user_id", "order_items", "date", "year", "month", "day"];
 
 class Excel extends React.Component {
 
@@ -106,6 +106,7 @@ class Excel extends React.Component {
         ev.target.href = URL.createObjectURL(blob);
         ev.target.download = 'data.' + format;
     };
+
     getBooks = () => {
         // fetch("http://localhost:8080/se122_10_reactdb_war/BookManager")
         fetch("http://localhost:9090/getOrders")
@@ -115,32 +116,31 @@ class Excel extends React.Component {
                 // const propertyValues = Object.entries(data);
                 // console.log(propertyValues);
                 this.setState({
-                    data:  data
+                    data: data
                 });
-                
+
             }).catch(function (ex) {
             console.log('parsing failed', ex)
         })
     }
 
 
-
     saveBooks = () => {
-      // fetch("http://localhost:8080/se122_10_reactdb_war/BookManager")
-      fetch("http://localhost:9090/adminBook")
-          .then(response => response.json())
-          .then(data => { // alert("data:" + data);
-              // const propertyValues = Object.entries(data);
-              // console.log(propertyValues);
-              this.setState({
-                  data:  data
-              });
-              
-          }).catch(function (ex) {
-          console.log('parsing failed', ex)
-      })
-  }
-    
+        // fetch("http://localhost:8080/se122_10_reactdb_war/BookManager")
+        fetch("http://localhost:9090/adminBook")
+            .then(response => response.json())
+            .then(data => { // alert("data:" + data);
+                // const propertyValues = Object.entries(data);
+                // console.log(propertyValues);
+                this.setState({
+                    data: data
+                });
+
+            }).catch(function (ex) {
+            console.log('parsing failed', ex)
+        })
+    }
+
 
     render = () => {
         return (
@@ -154,9 +154,9 @@ class Excel extends React.Component {
     renderToolbar = () => {
         return (
             <div className="toolbar">
-      <BrowserRouter>
-        <Button  buttonStyle='btn--test'  buttonLink='/AdminIndex'> back</Button>
-      </BrowserRouter>
+                <BrowserRouter>
+                    <Button buttonStyle='btn--test' buttonLink='/AdminIndex'> back</Button>
+                </BrowserRouter>
                 <button onClick={this.getBooks}>Get Books</button>
                 <button onClick={this.toggleSearch}>Search</button>
                 <a onClick={this.download.bind(this, 'json')}
@@ -243,14 +243,14 @@ function AdminBook1() {
     );
 }
 
-function AdminBook(){
-  return(
-    <div>
-      <h1>hhhh</h1>
-      <AdminBook1/>
-      
-    </div>
-  )
+function AdminBook() {
+    return (
+        <div>
+            <h1>hhhh</h1>
+            <AdminBook1/>
+
+        </div>
+    )
 }
 
 export default AdminBook;

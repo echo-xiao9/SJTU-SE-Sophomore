@@ -1,0 +1,9 @@
+{
+  "properties": [
+
+    {
+      "name": "zone-name",
+      "type": "java.lang.String",
+      "description": "Description for zone-name."
+    }
+  ] }

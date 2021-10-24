@@ -13,14 +13,14 @@ const useForm = (callback, validate) => {
     const [errors, setErrors] = useState({});
     const [isSubmitting, setIsSubmitting] = useState(false);
 
-    const check= () => {
-        if(!values.username){
-          alert("用户名为空！");
-          return;
+    const check = () => {
+        if (!values.username) {
+            alert("用户名为空！");
+            return;
         }
-        if(!values.password){
-          alert("密码为空！");
-          return;
+        if (!values.password) {
+            alert("密码为空！");
+            return;
         }
         axios({
             method: 'GET',
@@ -32,29 +32,29 @@ const useForm = (callback, validate) => {
         }).then(response => {
             console.log(response)
             if (response.status === 200) {
-              if(response.data.data.userType===0)alert("您的账号已经被禁用");
-                // this.$notify({ title: '提示信息', message: '登录成功', type: 'success'
+                if (response.data.data.userType === 0) alert("您的账号已经被禁用");
+                    // this.$notify({ title: '提示信息', message: '登录成功', type: 'success'
                 //                 // })
                 else {
-                  alert(response.data.msg);
-                  var userId=response.data.data.userId;
-                  var userType=response.data.data.userType;
-                  var username=response.data.data.username;
-                  console.log("userType");
-                  console.log(userType);
-                  localStorage.setItem('userId',userId);
-                  localStorage.setItem('userType',userType);
-                  localStorage.setItem('username',username);
-                  console.log("userType");
-                  console.log(localStorage.getItem('userType'));
-                 
-          <script type="text/javascript">
-　　function jumurl(){
-　　window.location.href = 'http://localhost:3000'
-　　}
-　　setTimeout(jumurl,3000);
-　　</script>
-                  
+                    alert(response.data.msg);
+                    var userId = response.data.data.userId;
+                    var userType = response.data.data.userType;
+                    var username = response.data.data.username;
+                    console.log("userType");
+                    console.log(userType);
+                    localStorage.setItem('userId', userId);
+                    localStorage.setItem('userType', userType);
+                    localStorage.setItem('username', username);
+                    console.log("userType");
+                    console.log(localStorage.getItem('userType'));
+
+                    <script type="text/javascript">
+                        function jumurl(){
+                        window.location.href = 'http://localhost:3000'
+                    }
+                        setTimeout(jumurl,3000);
+                    </script>
+
                 }
             }
         }).catch(error => {

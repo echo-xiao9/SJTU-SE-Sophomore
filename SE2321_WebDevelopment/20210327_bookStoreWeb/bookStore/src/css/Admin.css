@@ -1,74 +1,79 @@
 
 input {
-  font: 16px Arial;
+    font: 16px Arial;
 }
 
-td .odd{
-  border-top: 1px solid black;
-  cursor: cell;
-  padding: 5px;
+td .odd {
+    border-top: 1px solid black;
+    cursor: cell;
+    padding: 5px;
 }
-td.even{
-  border-top: 1px solid black;
-  cursor: cell;
-  padding: 5px;
-  background-color: #d4d4d4;
+
+td.even {
+    border-top: 1px solid black;
+    cursor: cell;
+    padding: 5px;
+    background-color: #d4d4d4;
 }
+
 td {
-  border-top: 1px solid black;
-  cursor: cell;
-  padding: 5px;
-  background-color: #f1f0f0;
-  text-align: center;
-  
+    border-top: 1px solid black;
+    cursor: cell;
+    padding: 5px;
+    background-color: #f1f0f0;
+    text-align: center;
+
 }
 
 th {
-  cursor: pointer;
-  padding: 5px;
-  text-align: center;
+    cursor: pointer;
+    padding: 5px;
+    text-align: center;
 }
 
 table {
-  border: 1px solid black;
-  margin: 20px;
-  text-align: center;
-  margin-top: 40px;
+    border: 1px solid black;
+    margin: 20px;
+    text-align: center;
+    margin-top: 40px;
 }
 
-.adminImageWrapper{
-  /* min-width: 50%; */
-  max-width: 200px;
-  word-wrap:break-word ;
-  
+.adminImageWrapper {
+    /* min-width: 50%; */
+    max-width: 200px;
+    word-wrap: break-word;
+
 }
-.adminImage{
-  min-width: 100%;
+
+.adminImage {
+    min-width: 100%;
 }
+
 .toolbar {
-  margin-left: 20px;
-  margin-top: 40px;
-  text-align: center;
+    margin-left: 20px;
+    margin-top: 40px;
+    text-align: center;
 }
 
 .toolbar a, .toolbar button { /* thanks css3buttongenerator.com! */
-  background: #181818;
-  /* background-image: linear-gradient(to bottom, #adadad, #464646); */
-  border-radius: 28px;
-  box-shadow: 0px 1px 3px #666666;
-  color: #ffffff;
-  font-size: 14px;
-  padding: 10px 20px 10px 20px;
-  text-decoration: none;
-  border: 0;
-  margin-right: 5px;
+    background: #181818;
+    /* background-image: linear-gradient(to bottom, #adadad, #464646); */
+    border-radius: 28px;
+    box-shadow: 0px 1px 3px #666666;
+    color: #ffffff;
+    font-size: 14px;
+    padding: 10px 20px 10px 20px;
+    text-decoration: none;
+    border: 0;
+    margin-right: 5px;
 }
 
 .toolbar a:hover, .toolbar button:hover {
-  background: #3d3d3d;
-  /* background-image: linear-gradient(to bottom, #6e6e6e, #3a3a3a); */
-  text-decoration: none;
+    background: #3d3d3d;
+    /* background-image: linear-gradient(to bottom, #6e6e6e, #3a3a3a); */
+    text-decoration: none;
 }
-.excelContainer{
-  text-align: center;
+
+.excelContainer {
+    text-align: center;
 }

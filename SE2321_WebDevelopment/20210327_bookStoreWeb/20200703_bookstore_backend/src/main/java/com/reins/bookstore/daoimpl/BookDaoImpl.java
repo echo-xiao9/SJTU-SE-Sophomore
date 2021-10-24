@@ -33,16 +33,16 @@ public class BookDaoImpl implements BookDao {
     @Override
     public Book findOne(Integer id){
         Book book=null;
-        System.out.println("Searching Book: " + id + " in Redis");
+//        System.out.println("Searching Book: " + id + " in Redis");
         Object b = redisUtil.get("book" + id);
         if(b==null){
-            System.out.println("Book: "+id+" is not in Redis");
-            System.out.println("Searching Book: "+id+" in DB");
+//            System.out.println("Book: "+id+" is not in Redis");
+//            System.out.println("Searching Book: "+id+" in DB");
             book = bookRepository.getById(id);
             redisUtil.set("book"+id,JSONArray.toJSON(book));
         }else{
             book = JSONArray.parseObject(b.toString(),Book.class);
-            System.out.println("Book: "+id+" is in Redis");
+//            System.out.println("Book: "+id+" is in Redis");
         }
         return book;
     }
@@ -61,7 +61,7 @@ public class BookDaoImpl implements BookDao {
                 Book b=bookList.get(i);
                 redisUtil.set("book"+b.getBookId(),JSONArray.toJSON(b));
                 bookIdList.add(b.getBookId());
-                System.out.println("set Book in redis: "+bookList.get(i).getBookId());
+//                System.out.println("set Book in redis: "+bookList.get(i).getBookId());
             }
             redisUtil.set("bookIdList",JSONArray.toJSON(bookIdList));
             // prepare the result
@@ -89,7 +89,7 @@ public class BookDaoImpl implements BookDao {
                 Book b=allBooks.get(i);
                 redisUtil.set("book"+b.getBookId(),JSONArray.toJSON(b));
                 bookIdList.add(b.getBookId());
-                System.out.println("set Book in redis: "+allBooks.get(i).getBookId());
+//                System.out.println("set Book in redis: "+allBooks.get(i).getBookId());
             }
             redisUtil.set("bookIdList",JSONArray.toJSON(bookIdList));
         }
@@ -113,6 +113,7 @@ public class BookDaoImpl implements BookDao {
             for (Integer item : bookIdList) {
                 if(id.equals(item)) {
                     bookIdList.remove(item);
+                    break;
                 }
             }
         }
@@ -156,15 +157,16 @@ public class BookDaoImpl implements BookDao {
     @Override
     public Book deleteBook(Integer bookId) {
         Optional<Book> b=bookRepository.findById(bookId);
+        if(!b.isPresent())return null;
         bookRepository.deleteById(bookId);
             //isPresent方法用来检查Optional实例中是否包含值
-            if (b.isPresent()) {
+
                 //在Optional实例内调用get()返回已存在的值
                 // update cache
                 redisUtil.del("book"+b.get().getBookId());
                 updateIdList(false,b.get().getBookId());
                 return b.get();
-            }else return null;
+
     }
 
     @Override

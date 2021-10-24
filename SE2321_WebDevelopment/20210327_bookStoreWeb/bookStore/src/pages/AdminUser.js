@@ -3,11 +3,12 @@ import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import '../css/Admin.css';
 import {Button} from '../components/Button'
-import { BrowserRouter} from "react-router-dom" 
+import {BrowserRouter} from "react-router-dom"
 import axios from 'axios';
 
 const data = [];
 const headers = ["User Id", "user name", "email", "type (0: forbidden  1: Customer 2: Administrator)"];
+
 class Excel extends React.Component {
 
     constructor(props) {
@@ -52,20 +53,20 @@ class Excel extends React.Component {
         let input = e.target.firstChild;
         let data = this.state.data.slice();
         data[this.state.edit.row][this.state.edit.cell] = input.value;
-    
-        if(this.state.edit.cell===3){
-          axios({
-            method: 'GET',
-            url: 'http://localhost:9090/adminUserChange',
-            params: {
-                user_id:data[this.state.edit.row][0],
-                name:data[this.state.edit.row][1],
-                email:data[this.state.edit.row][2],
-                type:data[this.state.edit.row][3]
-            }
-        }).then(response => {
-            console.log(response);
-        })
+
+        if (this.state.edit.cell === 3) {
+            axios({
+                method: 'GET',
+                url: 'http://localhost:9090/adminUserChange',
+                params: {
+                    user_id: data[this.state.edit.row][0],
+                    name: data[this.state.edit.row][1],
+                    email: data[this.state.edit.row][2],
+                    type: data[this.state.edit.row][3]
+                }
+            }).then(response => {
+                console.log(response);
+            })
         }
     };
 
@@ -124,9 +125,9 @@ class Excel extends React.Component {
             .then(response => response.json())
             .then(data => {
                 this.setState({
-                    data:  data
+                    data: data
                 });
-                
+
             }).catch(function (ex) {
             console.log('parsing failed', ex);
         })
@@ -145,16 +146,16 @@ class Excel extends React.Component {
     renderToolbar = () => {
         return (
             <div className="toolbar">
-      <BrowserRouter>
-        <Button  buttonStyle='btn--test'  buttonLink='/AdminIndex'> back</Button>
-      </BrowserRouter>
+                <BrowserRouter>
+                    <Button buttonStyle='btn--test' buttonLink='/AdminIndex'> back</Button>
+                </BrowserRouter>
                 <button onClick={this.getBooks}>Get Users</button>
                 <button onClick={this.toggleSearch}>Search</button>
                 <a onClick={this.download.bind(this, 'json')}
                    href="data.json">Export JSON</a>
                 <a onClick={this.download.bind(this, 'csv')}
                    href="data.csv">Export CSV</a>
-                   <button onClick={this.saveBooks}>Save</button>
+                <button onClick={this.saveBooks}>Save</button>
             </div>
         );
     };

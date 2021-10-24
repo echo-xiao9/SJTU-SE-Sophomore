@@ -15,19 +15,19 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
  * @Author thunderBoy
  * @Date 2019/11/7 20:11
  */
-@Configuration
-public class InterceptorConfig implements WebMvcConfigurer {
-
-    @Bean
-    public SessionValidateInterceptor sessionValidateInterceptor(){
-        return new SessionValidateInterceptor();
-    }
-
-    @Override
-    public void addInterceptors(InterceptorRegistry registry){
-        registry.addInterceptor(sessionValidateInterceptor()).addPathPatterns("/**")
-                .excludePathPatterns("/login").excludePathPatterns("/register");
-    }
+//@Configuration
+//public class InterceptorConfig implements WebMvcConfigurer {
+//
+//    @Bean
+//    public SessionValidateInterceptor sessionValidateInterceptor(){
+//        return new SessionValidateInterceptor();
+//    }
+//
+//    @Override
+//    public void addInterceptors(InterceptorRegistry registry){
+//        registry.addInterceptor(sessionValidateInterceptor()).addPathPatterns("/**")
+//                .excludePathPatterns("/login").excludePathPatterns("/register");
+//    }
 
 //    private CorsConfiguration buildConfig() {
 //        CorsConfiguration corsConfiguration = new CorsConfiguration();
@@ -45,4 +45,4 @@ public class InterceptorConfig implements WebMvcConfigurer {
 //        return new CorsFilter(source);
 //    }
 
-}
+//}
