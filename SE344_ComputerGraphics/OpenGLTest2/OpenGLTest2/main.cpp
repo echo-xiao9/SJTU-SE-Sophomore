@@ -174,8 +174,8 @@
 //    glEnableVertexAttribArray(1);
 //    glBindVertexArray(0);
 //    glUseProgram(shaderProgram);
-//    
-//    
+//
+//
 //    glBindVertexArray(VAOs[1]);
 //    glBindBuffer(GL_ARRAY_BUFFER, VBOs[1]);
 //    glBufferData(GL_ARRAY_BUFFER, sizeof(rainbowTriangle2), rainbowTriangle2, GL_STATIC_DRAW);
@@ -187,7 +187,7 @@
 //    glEnableVertexAttribArray(1);
 //    glBindVertexArray(0);
 //    glUseProgram(shaderProgram);
-//    
+//
 //    glBindVertexArray(VAOs[2]);
 //    glBindBuffer(GL_ARRAY_BUFFER, VBOs[2]);
 //    glBufferData(GL_ARRAY_BUFFER, sizeof(rainbowTriangle3), rainbowTriangle3, GL_STATIC_DRAW);
@@ -199,8 +199,8 @@
 //    glEnableVertexAttribArray(1);
 //    glBindVertexArray(0);
 //    glUseProgram(shaderProgram);
-//    
-//    
+//
+//
 //    glBindVertexArray(VAOs[3]);
 //    glBindBuffer(GL_ARRAY_BUFFER, VBOs[3]);
 //    glBufferData(GL_ARRAY_BUFFER, sizeof(rainbowTriangle4), rainbowTriangle4, GL_STATIC_DRAW);
@@ -212,13 +212,13 @@
 //    glEnableVertexAttribArray(1);
 //    glBindVertexArray(0);
 //    glUseProgram(shaderProgram);
-//    
-//    
-//    
-//    
-//    
-//    
-//    
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //    // render loop

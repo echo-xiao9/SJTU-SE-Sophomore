@@ -1,7 +1,7 @@
 //#include <iostream>
 //#include <vector>
 //#include <GLFW/glfw3.h>
-//
+//#include "GL/freeglut.h"
 //using namespace std;
 //
 ////定义用于边表ET和活动边表AET的通用类Edge
@@ -45,9 +45,9 @@
 ////Demo3 多边形
 ////vector<Point> vertices = { Point(200, 500), Point(200, 1000), Point(900, 600), Point(1600, 1100), Point(1600, 400), Point(1200, 200), Point(700, 200) };
 ////Demo4 箭头
-////vector<Point> vertices = { Point(395, 887), Point(479, 998), Point(1199, 433), Point(1101, 867), Point(1294, 715), Point(1417, 171), Point(857, 163), Point(668, 314), Point(1111, 321) };
+//vector<Point> vertices = { Point(395, 887), Point(479, 998), Point(1199, 433), Point(1101, 867), Point(1294, 715), Point(1417, 171), Point(857, 163), Point(668, 314), Point(1111, 321) };
 ////Demo5 闪电
-//vector<Point> vertices = { Point(566, 970), Point(685, 1020), Point(754, 683), Point(985, 768), Point(1037, 481), Point(1208, 546), Point(1233, 179), Point(1140, 440), Point(951, 386), Point(899, 662), Point(668, 562) };
+////vector<Point> vertices = { Point(566, 970), Point(685, 1020), Point(754, 683), Point(985, 768), Point(1037, 481), Point(1208, 546), Point(1233, 179), Point(1140, 440), Point(951, 386), Point(899, 662), Point(668, 562) };
 ////边表
 //Edge *ET[windowHeight];
 ////活动边表

@@ -405,6 +405,7 @@
 		E8840E562706A3210023EA73 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		E8840E582706A32F0023EA73 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		E8840E5A2706A35F0023EA73 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		E8891F53272642A000828EDE /* Files */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Files; sourceTree = "<group>"; };
 		E8CFE8AD2725161E00E0F327 /* beanScan.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = beanScan.cpp; sourceTree = "<group>"; };
 		E8CFE8AF2725187000E0F327 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = System/Library/Frameworks/GLUT.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -431,6 +432,7 @@
 		E822F9AB27054A43003EA3EC = {
 			isa = PBXGroup;
 			children = (
+				E8891F53272642A000828EDE /* Files */,
 				E822F9BE27054B2C003EA3EC /* Externals */,
 				E822F9B627054A43003EA3EC /* OpenGLTest2 */,
 				E822F9B527054A43003EA3EC /* Products */,
