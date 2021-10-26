@@ -11,6 +11,8 @@ using namespace::std;
 
 const float errNum= -10000;
 const int BUF_SIZE=800;
+const float REC_WID=40;
+const float REC_LEN = 180;
 
 struct Color {
     float R;
@@ -84,18 +86,13 @@ protected:
     }
     
 public:
-    Shape(vector<Vertex>&v){
-        for (int i=0; i<v.size(); i++) vertexs.push_back(v[i]);
-        scale(2);
-        sort(vertexs.begin(),vertexs.begin()+vertexs.size(),cmp);
-        for(int i=0;i<v.size();i++){
-            for(int j=i+1;j<v.size();j++){
-                lines.push_back(Line(vertexs[i],vertexs[j]));
-            }
-        }
-    }
-    void scale(float scale ){
+    void scale(float scale,vector<Vertex>&vec ){
         for(auto &v:vertexs){
+            v.x*=scale;
+            v.y*=scale;
+            v.z*=scale;
+        }
+        for(auto &v:vec){
             v.x*=scale;
             v.y*=scale;
             v.z*=scale;
@@ -159,11 +156,28 @@ public:
 
 class Triangle :public Shape{
 public:
-    Triangle(vector<Vertex>&v):Shape(v){}
+    Triangle(vector<Vertex>&v){
+        for (int i=0; i<v.size(); i++) vertexs.push_back(v[i]);
+        scale(2,v);
+        sort(vertexs.begin(),vertexs.begin()+vertexs.size(),cmp);
+        for(int i=0;i<v.size();i++){
+            for(int j=i+1;j<v.size();j++){
+                lines.push_back(Line(vertexs[i],vertexs[j]));
+            }
+        }}
 };
 class Rectangle :public Shape{
 public:
-    Rectangle(vector<Vertex>&v):Shape(v){}
+    Rectangle(vector<Vertex>&v){
+        assert(v.size()==4);
+        for (int i=0; i<v.size(); i++) vertexs.push_back(v[i]);
+        sort(vertexs.begin(),vertexs.begin()+vertexs.size(),cmp);
+        scale(2,v);
+        lines.emplace_back(v[0],v[1]);
+        lines.emplace_back(v[1],v[2]);
+        lines.emplace_back(v[2],v[3]);
+        lines.emplace_back(v[3],v[0]);
+    }
 };
 
 class zbuffer {
@@ -313,14 +327,19 @@ void drawRectangle() {
     const Color blue = Color(68 / 255.0, 114 / 255.0, 196 / 255.0);
     const Color purple = Color(112 / 55.0, 48 / 255.0, 160 / 255.0);
     for (int i = 0; i < 4; i ++) {
-        Vertex v1(100 + 80 * i, 0, 0,purple);
-        Vertex v2(20 + 80 * i, 0, 0,purple);
-        Vertex v3(100 + 80 * i, 360, 0,purple);
-        Vertex v4(20 + 80 * i, 360, 0,purple);
-        vct.push_back(v1);
-        vct.push_back(v2);
-        vct.push_back(v3);
-        vct.push_back(v4);
+        vct.clear();
+        vct.emplace_back(REC_WID-30 + REC_WID * i, 0, 0,purple);
+        vct.emplace_back(REC_WID-10 + REC_WID * i, 0, 0,purple);
+        vct.emplace_back(REC_WID-10 + REC_WID * i, 180, 0,purple);
+        vct.emplace_back(REC_WID-30 + REC_WID * i, 180, 0,purple);
+        shapes.emplace_back(new Rectangle(vct));
+    }
+    for (int i = 0; i < 4; i ++) {
+        vct.clear();
+        vct.emplace_back( 0, REC_WID-30 + REC_WID * i, 0,blue);
+        vct.emplace_back( 0, REC_WID-10 + REC_WID * i, 0,blue);
+        vct.emplace_back( REC_LEN, REC_WID-10 + REC_WID * i, 0,blue);
+        vct.emplace_back( REC_LEN, REC_WID-30 + REC_WID * i, 0,blue);
         shapes.emplace_back(new Rectangle(vct));
     }
     drawShape(shapes, 800);
@@ -330,7 +349,7 @@ void drawRectangle() {
 void display() {
     glClearColor(1, 1, 1, 1);
     glClear(GL_COLOR_BUFFER_BIT);
-    static int index = 1;
+    static int index = 2;
     if (index == 0) {
         drawTriangle("overlapping.txt");
     }
