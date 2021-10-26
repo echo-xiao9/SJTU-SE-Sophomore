@@ -11,6 +11,7 @@
 		E822F9C227054C00003EA3EC /* libglfw3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E822F9C127054C00003EA3EC /* libglfw3.a */; };
 		E822F9CA27054E78003EA3EC /* glad.c in Sources */ = {isa = PBXBuildFile; fileRef = E822F9C927054E78003EA3EC /* glad.c */; };
 		E822F9CE2705B3E3003EA3EC /* changeColorTrangleTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E822F9CD2705B3E3003EA3EC /* changeColorTrangleTest.cpp */; };
+		E83383942726F52100673A66 /* hw2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E83383932726F52100673A66 /* hw2.cpp */; };
 		E83F53B82725993300DAA31A /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E83F53B72725993300DAA31A /* OpenGL.framework */; };
 		E865F7D7271F042F008791B9 /* hw2_xmz_part1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E865F7D6271F042F008791B9 /* hw2_xmz_part1.cpp */; };
 		E8840E532706A3040023EA73 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8840E522706A3040023EA73 /* AppKit.framework */; };
@@ -45,6 +46,7 @@
 		E822F9CB2705B3B4003EA3EC /* learnopengl */ = {isa = PBXFileReference; lastKnownFileType = folder; path = learnopengl; sourceTree = "<group>"; };
 		E822F9CC2705B3BA003EA3EC /* glm */ = {isa = PBXFileReference; lastKnownFileType = folder; path = glm; sourceTree = "<group>"; };
 		E822F9CD2705B3E3003EA3EC /* changeColorTrangleTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = changeColorTrangleTest.cpp; sourceTree = "<group>"; };
+		E83383932726F52100673A66 /* hw2.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = hw2.cpp; sourceTree = "<group>"; };
 		E83F521B2725982F00DAA31A /* freeglut */ = {isa = PBXFileReference; lastKnownFileType = text; name = freeglut; path = GLFW/freeglut; sourceTree = "<group>"; };
 		E83F521D2725983600DAA31A /* README.mac */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.mac; sourceTree = "<group>"; };
 		E83F521E2725983600DAA31A /* freeglut.rc */ = {isa = PBXFileReference; lastKnownFileType = text; path = freeglut.rc; sourceTree = "<group>"; };
@@ -453,6 +455,7 @@
 			children = (
 				E822F9CD2705B3E3003EA3EC /* changeColorTrangleTest.cpp */,
 				E865F7D6271F042F008791B9 /* hw2_xmz_part1.cpp */,
+				E83383932726F52100673A66 /* hw2.cpp */,
 				E822F9B727054A43003EA3EC /* main.cpp */,
 				E8CFE8AD2725161E00E0F327 /* beanScan.cpp */,
 			);
@@ -1395,6 +1398,7 @@
 				E8CFE8AE2725161E00E0F327 /* beanScan.cpp in Sources */,
 				E865F7D7271F042F008791B9 /* hw2_xmz_part1.cpp in Sources */,
 				E822F9CE2705B3E3003EA3EC /* changeColorTrangleTest.cpp in Sources */,
+				E83383942726F52100673A66 /* hw2.cpp in Sources */,
 				E822F9B827054A43003EA3EC /* main.cpp in Sources */,
 				E822F9CA27054E78003EA3EC /* glad.c in Sources */,
 			);
