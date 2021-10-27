@@ -21,6 +21,7 @@
 		E8840E5B2706A35F0023EA73 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8840E5A2706A35F0023EA73 /* CoreGraphics.framework */; };
 		E8CFE8AE2725161E00E0F327 /* beanScan.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E8CFE8AD2725161E00E0F327 /* beanScan.cpp */; };
 		E8CFE8B02725187000E0F327 /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8CFE8AF2725187000E0F327 /* GLUT.framework */; };
+		E8D88C6E272901B300F04853 /* try.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E8D88C6D272901B300F04853 /* try.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -410,6 +411,7 @@
 		E8891F53272642A000828EDE /* Files */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Files; sourceTree = "<group>"; };
 		E8CFE8AD2725161E00E0F327 /* beanScan.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = beanScan.cpp; sourceTree = "<group>"; };
 		E8CFE8AF2725187000E0F327 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = System/Library/Frameworks/GLUT.framework; sourceTree = SDKROOT; };
+		E8D88C6D272901B300F04853 /* try.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = try.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -457,6 +459,7 @@
 				E865F7D6271F042F008791B9 /* hw2_xmz_part1.cpp */,
 				E83383932726F52100673A66 /* hw2.cpp */,
 				E822F9B727054A43003EA3EC /* main.cpp */,
+				E8D88C6D272901B300F04853 /* try.cpp */,
 				E8CFE8AD2725161E00E0F327 /* beanScan.cpp */,
 			);
 			path = OpenGLTest2;
@@ -1395,6 +1398,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E8D88C6E272901B300F04853 /* try.cpp in Sources */,
 				E8CFE8AE2725161E00E0F327 /* beanScan.cpp in Sources */,
 				E865F7D7271F042F008791B9 /* hw2_xmz_part1.cpp in Sources */,
 				E822F9CE2705B3E3003EA3EC /* changeColorTrangleTest.cpp in Sources */,

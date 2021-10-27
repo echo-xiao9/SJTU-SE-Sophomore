@@ -11,7 +11,7 @@ using namespace::std;
 
 const float errNum= -10000;
 const int BUF_SIZE=800;
-const float REC_WID=40;
+const float REC_WID=10;
 const float REC_LEN = 180;
 const float PI = 3.14159265;
 const int type=3;
@@ -32,7 +32,12 @@ struct Color {
     }
     Color() {}
 };
+const Color AIMIRUCHA =Color(35 / 255.0, 77 / 255.0, 63 / 255.0);
 const Color blue = Color(68 / 255.0, 114 / 255.0, 196 / 255.0);
+const Color blue2 = Color(116 / 255.0, 184 / 255.0, 182 / 255.0);
+const Color blue3 = Color(62 / 255.0, 166 / 255.0, 145 / 255.0);
+const Color green1=Color(144 / 255.0, 190 / 255.0, 112 / 255.0);
+const Color green2 =Color(150 / 255.0, 178 / 255.0, 160 / 255.0);
 const Color purple = Color(112 / 255.0, 48 / 255.0, 160 / 255.0);
 const Color purple2 = Color(155 / 255.0, 144 / 255.0, 194 / 255.0);
 const Color white = Color(1,1,1);
@@ -44,7 +49,7 @@ struct Vertex {
     Color c;
     Vertex(float x, float y, float z, Color c) :x(x), y(y), z(z),c(c) {}
     Vertex() {}
-    
+
 };
 
 struct Line{
@@ -90,7 +95,7 @@ protected:
         return i.y<j.y;
     }
     Color shapeColor;
-    
+
 public:
     void setColor(Color &c){
         shapeColor = c;
@@ -107,7 +112,7 @@ public:
             v.z*=scale;
         }
     }
-    
+
     pair<Vertex, Vertex> getSweepVertexRange(float y){
         // get point of intersection of giver y
         // in this homework, only consider triangle and rectangle
@@ -129,15 +134,15 @@ public:
         interPair.second = verror2;
         return interPair;
     }
-    
-    
+
+
     pair<float, float> getYRange(){
         pair<float, float> p;
         p.first=vertexs[0].y;
         p.second=vertexs[vertexs.size()-1].y;
         return p;
     }
-    
+
     vector<Vertex> sweepLineVertexs(int y){
         pair<float, float> yRange= getYRange();
         pair<Vertex, Vertex> interVtx;
@@ -155,9 +160,9 @@ public:
             if(type==0||type==1)z=(x-minV.x)/(maxV.x-minV.x)*(maxV.z-minV.z)+minV.z;
             else if (type==2)
                 z =(80 * sin(PI / 160 * (x +v1.y) - PI / 2));
-            else if (type==3){
+            else if (type==3||type==4){
                 z =(80 * sin(PI / 80 * (x +v1.y) - PI / 2));
-               
+
                 c= shapeColor*(1-((z/80)*0.1));
             }
             vec.push_back(Vertex(x,minV.y,z,c));
@@ -210,7 +215,7 @@ public:
         }
         return vec;
     }
-    
+
 };
 
 class zbuffer {
@@ -248,7 +253,7 @@ public:
             buffer[i] = new Color[size];
             for (int j = 0; j < size; j++) {
                 buffer[i][j] = Color(1,1,1);
-                if(type==3)buffer[i][j]=purple2;
+                if(type==3||type==4)buffer[i][j]=AIMIRUCHA;
             }
         }
     }
@@ -352,8 +357,95 @@ void drawTriangle(string filename) {
     drawShape(shapes, BUF_SIZE);
     for (auto& s : shapes) delete s;
 }
+//
+//void drawRectangle() {
+//    std::vector<Shape*> shapes;
+//    vector<Vertex>vct;
+//    for (int i = 0; i < 4; i ++) {
+//        vct.clear();
+//        vct.emplace_back(-REC_LEN+REC_WID + 2*REC_WID * i,         -REC_LEN, 0,purple);
+//        vct.emplace_back(-REC_LEN+2*REC_WID + 2*REC_WID * i, -REC_LEN, 0,purple);
+//        vct.emplace_back(-REC_LEN+2*REC_WID + 2*REC_WID * i, REC_LEN, 0,purple);
+//        vct.emplace_back(-REC_LEN+REC_WID + 2*REC_WID * i,         REC_LEN, 0,purple);
+//        shapes.emplace_back(new Rectangle(vct,blue2));
+//    }
+//
+//    for (int i = 0; i < 4; i ++) {
+//        vct.clear();
+//        vct.emplace_back(  -REC_LEN, -REC_LEN+REC_WID + 2*REC_WID * i, 0,blue3);
+//        vct.emplace_back(  -REC_LEN, -REC_LEN+2*REC_WID + 2*REC_WID * i, 0,blue3);
+//        vct.emplace_back( REC_LEN,  -REC_LEN+2*REC_WID + 2*REC_WID * i, 0,blue3);
+//        vct.emplace_back( REC_LEN, -REC_LEN+REC_WID + 2*REC_WID * i, 0,blue3);
+//        shapes.emplace_back(new Rectangle(vct,blue3));
+//    }
+//    drawShape(shapes, 800);
+//    for (auto& s : shapes)delete s;
+//}
 
 void drawRectangle() {
+    std::vector<Shape*> shapes;
+    vector<Vertex>vct;
+    float REC_WIDTH_ORI=40;
+    for (int i = 0; i < 4; i ++) {
+        vct.clear();
+        vct.emplace_back(-REC_LEN+REC_WIDTH_ORI + 2*REC_WIDTH_ORI * i,         -REC_LEN, 0,purple);
+        vct.emplace_back(-REC_LEN+2*REC_WIDTH_ORI + 2*REC_WIDTH_ORI * i, -REC_LEN, 0,purple);
+        vct.emplace_back(-REC_LEN+2*REC_WIDTH_ORI + 2*REC_WIDTH_ORI * i, REC_LEN, 0,purple);
+        vct.emplace_back(-REC_LEN+REC_WIDTH_ORI + 2*REC_WIDTH_ORI * i,         REC_LEN, 0,purple);
+        shapes.emplace_back(new Rectangle(vct,purple));
+    }
+    for (int i = 0; i < 4; i ++) {
+        vct.clear();
+        vct.emplace_back(  -REC_LEN, -REC_LEN+REC_WIDTH_ORI + 2*REC_WIDTH_ORI * i, 0,blue);
+        vct.emplace_back(  -REC_LEN, -REC_LEN+2*REC_WIDTH_ORI + 2*REC_WIDTH_ORI * i, 0,blue);
+        vct.emplace_back( REC_LEN,  -REC_LEN+2*REC_WIDTH_ORI + 2*REC_WIDTH_ORI * i, 0,blue);
+        vct.emplace_back( REC_LEN, -REC_LEN+REC_WIDTH_ORI + 2*REC_WIDTH_ORI * i, 0,blue);
+        shapes.emplace_back(new Rectangle(vct,blue));
+    }
+    drawShape(shapes, 800);
+    for (auto& s : shapes)delete s;
+}
+
+
+void drawRectangle2() {
+    std::vector<Shape*> shapes;
+    vector<Vertex>vct;
+    float REC_WIDTH_ORI=40;
+    for (int i = 0; i < 3;) {
+        vct.clear();
+        vct.emplace_back(-REC_LEN+REC_WIDTH_ORI + 2*REC_WIDTH_ORI * i,         -REC_LEN, 0,green1);
+        vct.emplace_back(-REC_LEN+2*REC_WIDTH_ORI + 2*REC_WIDTH_ORI * i, -REC_LEN, 0,green1);
+        vct.emplace_back(-REC_LEN+2*REC_WIDTH_ORI + 2*REC_WIDTH_ORI * i, REC_LEN, 0,green1);
+        vct.emplace_back(-REC_LEN+REC_WIDTH_ORI + 2*REC_WIDTH_ORI * i,         REC_LEN, 0,green1);
+        shapes.emplace_back(new Rectangle(vct, green2));
+        i++;
+        vct.clear();
+        vct.emplace_back(-REC_LEN+REC_WIDTH_ORI + 2*REC_WIDTH_ORI * i,         -REC_LEN, 0,green2);
+        vct.emplace_back(-REC_LEN+2*REC_WIDTH_ORI + 2*REC_WIDTH_ORI * i, -REC_LEN, 0,green2);
+        vct.emplace_back(-REC_LEN+2*REC_WIDTH_ORI + 2*REC_WIDTH_ORI * i, REC_LEN, 0,green2);
+        vct.emplace_back(-REC_LEN+REC_WIDTH_ORI + 2*REC_WIDTH_ORI * i,         REC_LEN, 0,green2);
+        shapes.emplace_back(new Rectangle(vct,  green2));
+    }
+    for (int i = 0; i < 3; i ++) {
+        vct.clear();
+        vct.emplace_back(  -REC_LEN, -REC_LEN+REC_WIDTH_ORI + 2*REC_WIDTH_ORI * i, 0,green1);
+        vct.emplace_back(  -REC_LEN, -REC_LEN+2*REC_WIDTH_ORI + 2*REC_WIDTH_ORI * i, 0,green1);
+        vct.emplace_back( REC_LEN,  -REC_LEN+2*REC_WIDTH_ORI + 2*REC_WIDTH_ORI * i, 0,green1);
+        vct.emplace_back( REC_LEN, -REC_LEN+REC_WIDTH_ORI + 2*REC_WIDTH_ORI * i, 0,green1);
+        shapes.emplace_back(new Rectangle(vct, blue3));
+        i++;
+        vct.clear();
+        vct.emplace_back(  -REC_LEN, -REC_LEN+REC_WIDTH_ORI +2* REC_WIDTH_ORI * i, 0,green2);
+        vct.emplace_back(  -REC_LEN, -REC_LEN+2*REC_WIDTH_ORI + 2*REC_WIDTH_ORI * i, 0,green2);
+        vct.emplace_back( REC_LEN,  -REC_LEN+2*REC_WIDTH_ORI + 2*REC_WIDTH_ORI * i, 0,green2);
+        vct.emplace_back( REC_LEN, -REC_LEN+REC_WIDTH_ORI + 2*REC_WIDTH_ORI * i, 0,green2);
+        shapes.emplace_back(new Rectangle(vct, blue3));
+    }
+    drawShape(shapes, 800);
+    for (auto& s : shapes)delete s;
+}
+
+void drawRectangle3(){
     std::vector<Shape*> shapes;
     vector<Vertex>vct;
     for (int i = 0; i < 4; i ++) {
@@ -362,57 +454,37 @@ void drawRectangle() {
         vct.emplace_back(-REC_LEN+2*REC_WID + 2*REC_WID * i, -REC_LEN, 0,purple);
         vct.emplace_back(-REC_LEN+2*REC_WID + 2*REC_WID * i, REC_LEN, 0,purple);
         vct.emplace_back(-REC_LEN+REC_WID + 2*REC_WID * i,         REC_LEN, 0,purple);
-        shapes.emplace_back(new Rectangle(vct,purple));
+        shapes.emplace_back(new Rectangle(vct,green2));
     }
     for (int i = 0; i < 4; i ++) {
         vct.clear();
-        vct.emplace_back(  -REC_LEN, -REC_LEN+REC_WID + 2*REC_WID * i, 0,blue);
-        vct.emplace_back(  -REC_LEN, -REC_LEN+2*REC_WID + 2*REC_WID * i, 0,blue);
-        vct.emplace_back( REC_LEN,  -REC_LEN+2*REC_WID + 2*REC_WID * i, 0,blue);
-        vct.emplace_back( REC_LEN, -REC_LEN+REC_WID + 2*REC_WID * i, 0,blue);
-        shapes.emplace_back(new Rectangle(vct,blue));
+        float start=80.0;
+        vct.emplace_back(start+REC_WID + 2*REC_WID * i,         -REC_LEN, 0,purple);
+        vct.emplace_back(start+2*REC_WID + 2*REC_WID * i, -REC_LEN, 0,purple);
+        vct.emplace_back(start+2*REC_WID + 2*REC_WID * i, REC_LEN, 0,purple);
+        vct.emplace_back(start+REC_WID + 2*REC_WID * i,         REC_LEN, 0,purple);
+        shapes.emplace_back(new Rectangle(vct,green1));
+    }
+    for (int i = 0; i < 4; i ++) {
+        vct.clear();
+        float start=260.0;
+        vct.emplace_back(  -REC_LEN,start -REC_LEN+REC_WID + 2*REC_WID * i, 0,blue3);
+        vct.emplace_back(  -REC_LEN, start-REC_LEN+2*REC_WID + 2*REC_WID * i, 0,blue3);
+        vct.emplace_back( REC_LEN,  start-REC_LEN+2*REC_WID + 2*REC_WID * i, 0,blue3);
+        vct.emplace_back( REC_LEN,start -REC_LEN+REC_WID + 2*REC_WID * i, 0,blue3);
+        shapes.emplace_back(new Rectangle(vct,blue3));
+    }
+    for (int i = 0; i < 4; i ++) {
+        vct.clear();
+        vct.emplace_back(  -REC_LEN, -REC_LEN+REC_WID + 2*REC_WID * i, 0,blue3);
+        vct.emplace_back(  -REC_LEN, -REC_LEN+2*REC_WID + 2*REC_WID * i, 0,blue3);
+        vct.emplace_back( REC_LEN,  -REC_LEN+2*REC_WID + 2*REC_WID * i, 0,blue3);
+        vct.emplace_back( REC_LEN, -REC_LEN+REC_WID + 2*REC_WID * i, 0,blue3);
+        shapes.emplace_back(new Rectangle(vct,blue2));
     }
     drawShape(shapes, 800);
     for (auto& s : shapes)delete s;
 }
-void drawRectangle2() {
-    std::vector<Shape*> shapes;
-    vector<Vertex>vct;
-    for (int i = 0; i < 3;) {
-        vct.clear();
-        vct.emplace_back(-REC_LEN+REC_WID + 2*REC_WID * i,         -REC_LEN, 0,blue);
-        vct.emplace_back(-REC_LEN+2*REC_WID + 2*REC_WID * i, -REC_LEN, 0,blue);
-        vct.emplace_back(-REC_LEN+2*REC_WID + 2*REC_WID * i, REC_LEN, 0,purple);
-        vct.emplace_back(-REC_LEN+REC_WID + 2*REC_WID * i,         REC_LEN, 0,purple);
-        shapes.emplace_back(new Rectangle(vct, red));
-        i++;
-        vct.clear();
-        vct.emplace_back(-REC_LEN+REC_WID + 2*REC_WID * i,         -REC_LEN, 0,blue);
-        vct.emplace_back(-REC_LEN+2*REC_WID + 2*REC_WID * i, -REC_LEN, 0,blue);
-        vct.emplace_back(-REC_LEN+2*REC_WID + 2*REC_WID * i, REC_LEN, 0,blue);
-        vct.emplace_back(-REC_LEN+REC_WID + 2*REC_WID * i,         REC_LEN, 0,blue);
-        shapes.emplace_back(new Rectangle(vct,  red));
-    }
-    for (int i = 0; i < 3; i ++) {
-        vct.clear();
-        vct.emplace_back(  -REC_LEN, -REC_LEN+REC_WID + 2*REC_WID * i, 0,purple);
-        vct.emplace_back(  -REC_LEN, -REC_LEN+2*REC_WID + 2*REC_WID * i, 0,purple);
-        vct.emplace_back( REC_LEN,  -REC_LEN+2*REC_WID + 2*REC_WID * i, 0,purple);
-        vct.emplace_back( REC_LEN, -REC_LEN+REC_WID + 2*REC_WID * i, 0,purple);
-        shapes.emplace_back(new Rectangle(vct, blue));
-        i++;
-        vct.clear();
-        vct.emplace_back(  -REC_LEN, -REC_LEN+REC_WID +2* REC_WID * i, 0,blue);
-        vct.emplace_back(  -REC_LEN, -REC_LEN+2*REC_WID + 2*REC_WID * i, 0,blue);
-        vct.emplace_back( REC_LEN,  -REC_LEN+2*REC_WID + 2*REC_WID * i, 0,blue);
-        vct.emplace_back( REC_LEN, -REC_LEN+REC_WID + 2*REC_WID * i, 0,blue);
-        shapes.emplace_back(new Rectangle(vct, blue));
-    }
-    drawShape(shapes, 800);
-    for (auto& s : shapes)delete s;
-}
-
-
 
 void display() {
     glClearColor(1, 1, 1, 1);
@@ -428,6 +500,9 @@ void display() {
     }
     else if(type == 3){
         drawRectangle2();
+    }
+    else if(type == 4){
+        drawRectangle3();
     }
     else{
         cout<<"index= "<<index<<" index can only be 0,1,2"<<endl;
