@@ -14,7 +14,10 @@ const int BUF_SIZE=800;
 const float REC_WID=10;
 const float REC_LEN = 180;
 const float PI = 3.14159265;
-const int type=3;
+bool mouseLeftDown;
+bool mouseRightDown;
+float mouseX, mouseY;
+int type=0;
 struct Color {
     float R;
     float G;
@@ -339,7 +342,8 @@ void drawTriangle(string filename) {
     std::ifstream file(filename);
     std::vector<Shape*> shapes;
     vector<Vertex>vct;
-    int num=getFileLineNum(filename);
+    int num;
+    num=(type==0)?4:2;
     for (int i = 0; i < num; i++) {
         vct.clear();
         Vertex pt1, pt2, pt3;
@@ -357,30 +361,7 @@ void drawTriangle(string filename) {
     drawShape(shapes, BUF_SIZE);
     for (auto& s : shapes) delete s;
 }
-//
-//void drawRectangle() {
-//    std::vector<Shape*> shapes;
-//    vector<Vertex>vct;
-//    for (int i = 0; i < 4; i ++) {
-//        vct.clear();
-//        vct.emplace_back(-REC_LEN+REC_WID + 2*REC_WID * i,         -REC_LEN, 0,purple);
-//        vct.emplace_back(-REC_LEN+2*REC_WID + 2*REC_WID * i, -REC_LEN, 0,purple);
-//        vct.emplace_back(-REC_LEN+2*REC_WID + 2*REC_WID * i, REC_LEN, 0,purple);
-//        vct.emplace_back(-REC_LEN+REC_WID + 2*REC_WID * i,         REC_LEN, 0,purple);
-//        shapes.emplace_back(new Rectangle(vct,blue2));
-//    }
-//
-//    for (int i = 0; i < 4; i ++) {
-//        vct.clear();
-//        vct.emplace_back(  -REC_LEN, -REC_LEN+REC_WID + 2*REC_WID * i, 0,blue3);
-//        vct.emplace_back(  -REC_LEN, -REC_LEN+2*REC_WID + 2*REC_WID * i, 0,blue3);
-//        vct.emplace_back( REC_LEN,  -REC_LEN+2*REC_WID + 2*REC_WID * i, 0,blue3);
-//        vct.emplace_back( REC_LEN, -REC_LEN+REC_WID + 2*REC_WID * i, 0,blue3);
-//        shapes.emplace_back(new Rectangle(vct,blue3));
-//    }
-//    drawShape(shapes, 800);
-//    for (auto& s : shapes)delete s;
-//}
+
 
 void drawRectangle() {
     std::vector<Shape*> shapes;
@@ -490,10 +471,10 @@ void display() {
     glClearColor(1, 1, 1, 1);
     glClear(GL_COLOR_BUFFER_BIT);
     if (type == 0) {
-        drawTriangle("overlapping.txt");
+        drawTriangle("overlapping.chi");
     }
     else if (type == 1) {
-        drawTriangle("intersecting.txt");
+        drawTriangle("intersecting.chi");
     }
     else if (type == 2) {
         drawRectangle();
@@ -510,6 +491,25 @@ void display() {
 }
 
 
+void mouseCB(int button, int state, int x, int y)
+{
+    mouseX = x;
+    mouseY = y;
+    if(button == GLUT_LEFT_BUTTON)
+    {
+        if(state == GLUT_DOWN)
+        {
+            type++;
+            type=type%5;
+            mouseLeftDown = true;
+        }
+        glutPostRedisplay();
+    }
+
+}
+
+
+
 int main(int argc, char **argv) {
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
@@ -517,7 +517,9 @@ int main(int argc, char **argv) {
     glutInitWindowPosition(0, 0);
     glutCreateWindow("hw2_518541910002_康艺潇");
     glutDisplayFunc(display);
+    glutMouseFunc(mouseCB);
     glutMainLoop();
+    
     return 0;
 }
 
