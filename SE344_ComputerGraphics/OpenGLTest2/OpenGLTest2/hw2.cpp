@@ -13,7 +13,8 @@ const float errNum= -10000;
 const int BUF_SIZE=800;
 const float REC_WID=40;
 const float REC_LEN = 180;
-
+const float PI = 3.14159265;
+const int type=3;
 struct Color {
     float R;
     float G;
@@ -31,7 +32,11 @@ struct Color {
     }
     Color() {}
 };
-
+const Color blue = Color(68 / 255.0, 114 / 255.0, 196 / 255.0);
+const Color purple = Color(112 / 255.0, 48 / 255.0, 160 / 255.0);
+const Color purple2 = Color(155 / 255.0, 144 / 255.0, 194 / 255.0);
+const Color white = Color(1,1,1);
+const Color red = Color(208/255.0,16/255.0,75/255.0);
 struct Vertex {
     float x;
     float y;
@@ -84,8 +89,12 @@ protected:
     static bool cmp(Vertex i,Vertex j){
         return i.y<j.y;
     }
+    Color shapeColor;
     
 public:
+    void setColor(Color &c){
+        shapeColor = c;
+    }
     void scale(float scale,vector<Vertex>&vec ){
         for(auto &v:vertexs){
             v.x*=scale;
@@ -129,19 +138,6 @@ public:
         return p;
     }
     
-    vector<Vertex> lineVertexs(Vertex v1, Vertex v2){
-        Vertex minV = (v1.x<v2.x)?v1:v2;
-        Vertex maxV = (v1.x>v2.x)?v1:v2;
-        assert(v1.y==v2.y);
-        float z=0;Color c;
-        vector<Vertex> vc;
-        for(float x=minV.x;x<maxV.x;x+=0.5){
-            z=(x-minV.x)/(maxV.x-minV.x)*(maxV.z-minV.z)+minV.z;
-            c=(maxV.c-minV.c)*((x-minV.x)/(maxV.x-minV.x))+minV.c;
-            vc.push_back(Vertex(x,minV.y,z,c));
-        }
-        return vc;
-    }
     vector<Vertex> sweepLineVertexs(int y){
         pair<float, float> yRange= getYRange();
         pair<Vertex, Vertex> interVtx;
@@ -149,7 +145,23 @@ public:
         if(y<=yRange.first || y>= yRange.second)return vec;
         interVtx=getSweepVertexRange(y);
         if(interVtx.first.x<errNum+1)return vec; // no intersect line
-        vec=lineVertexs(interVtx.first, interVtx.second);
+        Vertex v1=interVtx.first;
+        Vertex v2=interVtx.second;
+        Vertex minV = (v1.x<v2.x)?v1:v2;
+        Vertex maxV = (v1.x>v2.x)?v1:v2;
+        float z=0;
+        for(float x=minV.x;x<maxV.x;x+=0.5){
+            Color c=(maxV.c-minV.c)*((x-minV.x)/(maxV.x-minV.x))+minV.c;
+            if(type==0||type==1)z=(x-minV.x)/(maxV.x-minV.x)*(maxV.z-minV.z)+minV.z;
+            else if (type==2)
+                z =(80 * sin(PI / 160 * (x +v1.y) - PI / 2));
+            else if (type==3){
+                z =(80 * sin(PI / 80 * (x +v1.y) - PI / 2));
+               
+                c= shapeColor*(1-((z/80)*0.1));
+            }
+            vec.push_back(Vertex(x,minV.y,z,c));
+        }
         return vec;
     }
 };
@@ -168,7 +180,7 @@ public:
 };
 class Rectangle :public Shape{
 public:
-    Rectangle(vector<Vertex>&v){
+    Rectangle(vector<Vertex>&v,Color c){
         assert(v.size()==4);
         for (int i=0; i<v.size(); i++) vertexs.push_back(v[i]);
         sort(vertexs.begin(),vertexs.begin()+vertexs.size(),cmp);
@@ -177,7 +189,28 @@ public:
         lines.emplace_back(v[1],v[2]);
         lines.emplace_back(v[2],v[3]);
         lines.emplace_back(v[3],v[0]);
+        setColor(c);
     }
+    vector<Vertex> sweepLineVertexs(int y){
+        pair<float, float> yRange= getYRange();
+        pair<Vertex, Vertex> interVtx;
+        vector<Vertex> vec;
+        if(y<=yRange.first || y>= yRange.second)return vec;
+        interVtx=getSweepVertexRange(y);
+        if(interVtx.first.x<errNum+1)return vec; // no intersect line
+        Vertex v1=interVtx.first;
+        Vertex v2=interVtx.second;
+        Vertex minV = (v1.x<v2.x)?v1:v2;
+        Vertex maxV = (v1.x>v2.x)?v1:v2;
+        float z=0;Color c;
+        for(float x=minV.x;x<maxV.x;x+=0.5){
+            z = (int)(80 * sin(PI / 160 * (x +v1.y) - PI / 2));
+            c=(maxV.c-minV.c)*((x-minV.x)/(maxV.x-minV.x))+minV.c;
+            vec.push_back(Vertex(x,minV.y,z,c));
+        }
+        return vec;
+    }
+    
 };
 
 class zbuffer {
@@ -215,6 +248,7 @@ public:
             buffer[i] = new Color[size];
             for (int j = 0; j < size; j++) {
                 buffer[i][j] = Color(1,1,1);
+                if(type==3)buffer[i][j]=purple2;
             }
         }
     }
@@ -270,7 +304,6 @@ void drawShape(std::vector<Shape*> shapes, int bufSize) {
             glColor3f(clr.R, clr.G, clr.B);
             // convert coordinate
             glVertex2f(i / (double)(bufSize/2) - 1, j / (double)(bufSize/2) - 1);
-            
         }
     }
     glEnd();
@@ -313,7 +346,6 @@ void drawTriangle(string filename) {
         vct.push_back(pt1);
         vct.push_back(pt2);
         vct.push_back(pt3);
-        
         shapes.emplace_back(new Triangle(vct));
     }
     file.close();
@@ -324,40 +356,78 @@ void drawTriangle(string filename) {
 void drawRectangle() {
     std::vector<Shape*> shapes;
     vector<Vertex>vct;
-    const Color blue = Color(68 / 255.0, 114 / 255.0, 196 / 255.0);
-    const Color purple = Color(112 / 55.0, 48 / 255.0, 160 / 255.0);
     for (int i = 0; i < 4; i ++) {
         vct.clear();
-        vct.emplace_back(REC_WID-30 + REC_WID * i, 0, 0,purple);
-        vct.emplace_back(REC_WID-10 + REC_WID * i, 0, 0,purple);
-        vct.emplace_back(REC_WID-10 + REC_WID * i, 180, 0,purple);
-        vct.emplace_back(REC_WID-30 + REC_WID * i, 180, 0,purple);
-        shapes.emplace_back(new Rectangle(vct));
+        vct.emplace_back(-REC_LEN+REC_WID + 2*REC_WID * i,         -REC_LEN, 0,purple);
+        vct.emplace_back(-REC_LEN+2*REC_WID + 2*REC_WID * i, -REC_LEN, 0,purple);
+        vct.emplace_back(-REC_LEN+2*REC_WID + 2*REC_WID * i, REC_LEN, 0,purple);
+        vct.emplace_back(-REC_LEN+REC_WID + 2*REC_WID * i,         REC_LEN, 0,purple);
+        shapes.emplace_back(new Rectangle(vct,purple));
     }
     for (int i = 0; i < 4; i ++) {
         vct.clear();
-        vct.emplace_back( 0, REC_WID-30 + REC_WID * i, 0,blue);
-        vct.emplace_back( 0, REC_WID-10 + REC_WID * i, 0,blue);
-        vct.emplace_back( REC_LEN, REC_WID-10 + REC_WID * i, 0,blue);
-        vct.emplace_back( REC_LEN, REC_WID-30 + REC_WID * i, 0,blue);
-        shapes.emplace_back(new Rectangle(vct));
+        vct.emplace_back(  -REC_LEN, -REC_LEN+REC_WID + 2*REC_WID * i, 0,blue);
+        vct.emplace_back(  -REC_LEN, -REC_LEN+2*REC_WID + 2*REC_WID * i, 0,blue);
+        vct.emplace_back( REC_LEN,  -REC_LEN+2*REC_WID + 2*REC_WID * i, 0,blue);
+        vct.emplace_back( REC_LEN, -REC_LEN+REC_WID + 2*REC_WID * i, 0,blue);
+        shapes.emplace_back(new Rectangle(vct,blue));
+    }
+    drawShape(shapes, 800);
+    for (auto& s : shapes)delete s;
+}
+void drawRectangle2() {
+    std::vector<Shape*> shapes;
+    vector<Vertex>vct;
+    for (int i = 0; i < 3;) {
+        vct.clear();
+        vct.emplace_back(-REC_LEN+REC_WID + 2*REC_WID * i,         -REC_LEN, 0,blue);
+        vct.emplace_back(-REC_LEN+2*REC_WID + 2*REC_WID * i, -REC_LEN, 0,blue);
+        vct.emplace_back(-REC_LEN+2*REC_WID + 2*REC_WID * i, REC_LEN, 0,purple);
+        vct.emplace_back(-REC_LEN+REC_WID + 2*REC_WID * i,         REC_LEN, 0,purple);
+        shapes.emplace_back(new Rectangle(vct, red));
+        i++;
+        vct.clear();
+        vct.emplace_back(-REC_LEN+REC_WID + 2*REC_WID * i,         -REC_LEN, 0,blue);
+        vct.emplace_back(-REC_LEN+2*REC_WID + 2*REC_WID * i, -REC_LEN, 0,blue);
+        vct.emplace_back(-REC_LEN+2*REC_WID + 2*REC_WID * i, REC_LEN, 0,blue);
+        vct.emplace_back(-REC_LEN+REC_WID + 2*REC_WID * i,         REC_LEN, 0,blue);
+        shapes.emplace_back(new Rectangle(vct,  red));
+    }
+    for (int i = 0; i < 3; i ++) {
+        vct.clear();
+        vct.emplace_back(  -REC_LEN, -REC_LEN+REC_WID + 2*REC_WID * i, 0,purple);
+        vct.emplace_back(  -REC_LEN, -REC_LEN+2*REC_WID + 2*REC_WID * i, 0,purple);
+        vct.emplace_back( REC_LEN,  -REC_LEN+2*REC_WID + 2*REC_WID * i, 0,purple);
+        vct.emplace_back( REC_LEN, -REC_LEN+REC_WID + 2*REC_WID * i, 0,purple);
+        shapes.emplace_back(new Rectangle(vct, blue));
+        i++;
+        vct.clear();
+        vct.emplace_back(  -REC_LEN, -REC_LEN+REC_WID +2* REC_WID * i, 0,blue);
+        vct.emplace_back(  -REC_LEN, -REC_LEN+2*REC_WID + 2*REC_WID * i, 0,blue);
+        vct.emplace_back( REC_LEN,  -REC_LEN+2*REC_WID + 2*REC_WID * i, 0,blue);
+        vct.emplace_back( REC_LEN, -REC_LEN+REC_WID + 2*REC_WID * i, 0,blue);
+        shapes.emplace_back(new Rectangle(vct, blue));
     }
     drawShape(shapes, 800);
     for (auto& s : shapes)delete s;
 }
 
+
+
 void display() {
     glClearColor(1, 1, 1, 1);
     glClear(GL_COLOR_BUFFER_BIT);
-    static int index = 2;
-    if (index == 0) {
+    if (type == 0) {
         drawTriangle("overlapping.txt");
     }
-    else if (index == 1) {
+    else if (type == 1) {
         drawTriangle("intersecting.txt");
     }
-    else if (index == 2) {
+    else if (type == 2) {
         drawRectangle();
+    }
+    else if(type == 3){
+        drawRectangle2();
     }
     else{
         cout<<"index= "<<index<<" index can only be 0,1,2"<<endl;
