@@ -1,0 +1,288 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXFileReference section */
+		E85D2817272A9D0000150F1E /* mr_protocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = mr_protocol.h; sourceTree = "<group>"; };
+		E85D2818272A9D0000150F1E /* chfs_client1.log */ = {isa = PBXFileReference; lastKnownFileType = text; path = chfs_client1.log; sourceTree = "<group>"; };
+		E85D2819272A9D0000150F1E /* GNUmakefile */ = {isa = PBXFileReference; lastKnownFileType = text; path = GNUmakefile; sourceTree = "<group>"; };
+		E85D281A272A9D0000150F1E /* extent_client.cc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = extent_client.cc; sourceTree = "<group>"; };
+		E85D281B272A9D0000150F1E /* lab1_518431910002.tgz */ = {isa = PBXFileReference; lastKnownFileType = file; path = lab1_518431910002.tgz; sourceTree = "<group>"; };
+		E85D281C272A9D0000150F1E /* demo_server */ = {isa = PBXFileReference; lastKnownFileType = file; path = demo_server; sourceTree = "<group>"; };
+		E85D281D272A9D0000150F1E /* test-lab2-part1-d.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "test-lab2-part1-d.sh"; sourceTree = "<group>"; };
+		E85D281E272A9D0000150F1E /* mr_worker */ = {isa = PBXFileReference; lastKnownFileType = file; path = mr_worker; sourceTree = "<group>"; };
+		E85D281F272A9D0000150F1E /* demo_server.cc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = demo_server.cc; sourceTree = "<group>"; };
+		E85D2820272A9D0000150F1E /* mr_worker.d */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.dtrace; path = mr_worker.d; sourceTree = "<group>"; };
+		E85D2821272A9D0000150F1E /* mr_worker.cc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = mr_worker.cc; sourceTree = "<group>"; };
+		E85D2822272A9D0000150F1E /* test-lab2-part1-e.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "test-lab2-part1-e.sh"; sourceTree = "<group>"; };
+		E85D2823272A9D0000150F1E /* test-lab2-part2-b.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "test-lab2-part2-b.sh"; sourceTree = "<group>"; };
+		E85D2824272A9D0000150F1E /* inode_manager.d */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.dtrace; path = inode_manager.d; sourceTree = "<group>"; };
+		E85D2825272A9D0000150F1E /* test-lab2-part1-g.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = "test-lab2-part1-g.c"; sourceTree = "<group>"; };
+		E85D2826272A9D0000150F1E /* gettime.d */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.dtrace; path = gettime.d; sourceTree = "<group>"; };
+		E85D2827272A9D0000150F1E /* fuse.cc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = fuse.cc; sourceTree = "<group>"; };
+		E85D2828272A9D0000150F1E /* extent_server.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = extent_server.o; sourceTree = "<group>"; };
+		E85D2829272A9D0000150F1E /* part1_tester.d */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.dtrace; path = part1_tester.d; sourceTree = "<group>"; };
+		E85D282A272A9D0000150F1E /* extent_smain.d */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.dtrace; path = extent_smain.d; sourceTree = "<group>"; };
+		E85D282B272A9D0000150F1E /* extent_server.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = extent_server.h; sourceTree = "<group>"; };
+		E85D282C272A9D0000150F1E /* gettime.cc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = gettime.cc; sourceTree = "<group>"; };
+		E85D282D272A9D0000150F1E /* extent_server.cc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = extent_server.cc; sourceTree = "<group>"; };
+		E85D282E272A9D0000150F1E /* mr_coordinator.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = mr_coordinator.o; sourceTree = "<group>"; };
+		E85D282F272A9D0000150F1E /* extent_smain.cc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = extent_smain.cc; sourceTree = "<group>"; };
+		E85D2830272A9D0000150F1E /* chfs_client.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = chfs_client.h; sourceTree = "<group>"; };
+		E85D2831272A9D0000150F1E /* test-lab2-part1-b.pl */ = {isa = PBXFileReference; lastKnownFileType = text.script.perl; path = "test-lab2-part1-b.pl"; sourceTree = "<group>"; };
+		E85D2832272A9D0000150F1E /* chfs_client.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = chfs_client.o; sourceTree = "<group>"; };
+		E85D2833272A9D0000150F1E /* demo_client.cc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = demo_client.cc; sourceTree = "<group>"; };
+		E85D2834272A9D0000150F1E /* demo_protocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = demo_protocol.h; sourceTree = "<group>"; };
+		E85D2835272A9D0000150F1E /* mr_sequential */ = {isa = PBXFileReference; lastKnownFileType = file; path = mr_sequential; sourceTree = "<group>"; };
+		E85D2836272A9D0000150F1E /* extent_client.d */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.dtrace; path = extent_client.d; sourceTree = "<group>"; };
+		E85D2837272A9D0000150F1E /* grade.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = grade.sh; sourceTree = "<group>"; };
+		E85D2838272A9D0000150F1E /* mr_sequential.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = mr_sequential.o; sourceTree = "<group>"; };
+		E85D2839272A9D0000150F1E /* fuse.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = fuse.o; sourceTree = "<group>"; };
+		E85D283A272A9D0000150F1E /* tprintf.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = tprintf.h; sourceTree = "<group>"; };
+		E85D283B272A9D0000150F1E /* part1_tester */ = {isa = PBXFileReference; lastKnownFileType = file; path = part1_tester; sourceTree = "<group>"; };
+		E85D283C272A9D0000150F1E /* test-lab2-part1-g */ = {isa = PBXFileReference; lastKnownFileType = file; path = "test-lab2-part1-g"; sourceTree = "<group>"; };
+		E85D283D272A9D0000150F1E /* test-lab2-part1-c.pl */ = {isa = PBXFileReference; lastKnownFileType = text.script.perl; path = "test-lab2-part1-c.pl"; sourceTree = "<group>"; };
+		E85D283E272A9D0000150F1E /* demo_server.d */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.dtrace; path = demo_server.d; sourceTree = "<group>"; };
+		E85D283F272A9D0000150F1E /* inode_manager.cc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = inode_manager.cc; sourceTree = "<group>"; };
+		E85D2840272A9D0000150F1E /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		E85D2841272A9D0000150F1E /* demo_client.d */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.dtrace; path = demo_client.d; sourceTree = "<group>"; };
+		E85D2842272A9D0000150F1E /* extent_protocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = extent_protocol.h; sourceTree = "<group>"; };
+		E85D2843272A9D0000150F1E /* mr_worker.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = mr_worker.o; sourceTree = "<group>"; };
+		E85D2844272A9D0000150F1E /* lang */ = {isa = PBXFileReference; lastKnownFileType = folder; path = lang; sourceTree = "<group>"; };
+		E85D2845272A9D0000150F1E /* demo_client */ = {isa = PBXFileReference; lastKnownFileType = file; path = demo_client; sourceTree = "<group>"; };
+		E85D2846272A9D0000150F1E /* chfs_client */ = {isa = PBXFileReference; lastKnownFileType = file; path = chfs_client; sourceTree = "<group>"; };
+		E85D2847272A9D0000150F1E /* extent_smain.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = extent_smain.o; sourceTree = "<group>"; };
+		E85D2848272A9D0000150F1E /* part1_tester.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = part1_tester.o; sourceTree = "<group>"; };
+		E85D2849272A9D0000150F1E /* extent_server.d */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.dtrace; path = extent_server.d; sourceTree = "<group>"; };
+		E85D284A272A9D0000150F1E /* mr_sequential.cc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = mr_sequential.cc; sourceTree = "<group>"; };
+		E85D284B272A9D0000150F1E /* test-lab2-part1-a.pl */ = {isa = PBXFileReference; lastKnownFileType = text.script.perl; path = "test-lab2-part1-a.pl"; sourceTree = "<group>"; };
+		E85D284C272A9D0000150F1E /* inode_manager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = inode_manager.h; sourceTree = "<group>"; };
+		E85D284D272A9D0000150F1E /* inode_manager.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = inode_manager.o; sourceTree = "<group>"; };
+		E85D284E272A9D0000150F1E /* gettime.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = gettime.h; sourceTree = "<group>"; };
+		E85D284F272A9D0000150F1E /* gettime.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = gettime.o; sourceTree = "<group>"; };
+		E85D2850272A9D0000150F1E /* chfs_client.cc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = chfs_client.cc; sourceTree = "<group>"; };
+		E85D2851272A9D0000150F1E /* test-lab2-part1-f.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "test-lab2-part1-f.sh"; sourceTree = "<group>"; };
+		E85D2852272A9D0000150F1E /* test-lab2-part2-a.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "test-lab2-part2-a.sh"; sourceTree = "<group>"; };
+		E85D2853272A9D0000150F1E /* extent_client.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = extent_client.o; sourceTree = "<group>"; };
+		E85D2854272A9D0000150F1E /* extent_client.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = extent_client.h; sourceTree = "<group>"; };
+		E85D2855272A9D0000150F1E /* novels */ = {isa = PBXFileReference; lastKnownFileType = folder; path = novels; sourceTree = "<group>"; };
+		E85D2856272A9D0000150F1E /* stop.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = stop.sh; sourceTree = "<group>"; };
+		E85D2857272A9D0000150F1E /* chfs_client.d */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.dtrace; path = chfs_client.d; sourceTree = "<group>"; };
+		E85D2858272A9D0000150F1E /* .git */ = {isa = PBXFileReference; lastKnownFileType = folder; path = .git; sourceTree = "<group>"; };
+		E85D2859272A9D0000150F1E /* .vscode */ = {isa = PBXFileReference; lastKnownFileType = folder; path = .vscode; sourceTree = "<group>"; };
+		E85D285A272A9D0000150F1E /* rpc */ = {isa = PBXFileReference; lastKnownFileType = folder; path = rpc; sourceTree = "<group>"; };
+		E85D285B272A9D0000150F1E /* extent_server */ = {isa = PBXFileReference; lastKnownFileType = file; path = extent_server; sourceTree = "<group>"; };
+		E85D285C272A9D0000150F1E /* mr_coordinator */ = {isa = PBXFileReference; lastKnownFileType = file; path = mr_coordinator; sourceTree = "<group>"; };
+		E85D285D272A9D0000150F1E /* mr_coordinator.d */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.dtrace; path = mr_coordinator.d; sourceTree = "<group>"; };
+		E85D285E272A9D0000150F1E /* mr_coordinator.cc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = mr_coordinator.cc; sourceTree = "<group>"; };
+		E85D285F272A9D0000150F1E /* fuse.d */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.dtrace; path = fuse.d; sourceTree = "<group>"; };
+		E85D2860272A9D0000150F1E /* start.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = start.sh; sourceTree = "<group>"; };
+		E85D2861272A9D0000150F1E /* mr_sequential.d */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.dtrace; path = mr_sequential.d; sourceTree = "<group>"; };
+		E85D2862272A9D0000150F1E /* chfs1 */ = {isa = PBXFileReference; lastKnownFileType = folder; path = chfs1; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		E85D2811272A9D0000150F1E = {
+			isa = PBXGroup;
+			children = (
+				E85D2817272A9D0000150F1E /* mr_protocol.h */,
+				E85D2818272A9D0000150F1E /* chfs_client1.log */,
+				E85D2819272A9D0000150F1E /* GNUmakefile */,
+				E85D281A272A9D0000150F1E /* extent_client.cc */,
+				E85D281B272A9D0000150F1E /* lab1_518431910002.tgz */,
+				E85D281C272A9D0000150F1E /* demo_server */,
+				E85D281D272A9D0000150F1E /* test-lab2-part1-d.sh */,
+				E85D281E272A9D0000150F1E /* mr_worker */,
+				E85D281F272A9D0000150F1E /* demo_server.cc */,
+				E85D2820272A9D0000150F1E /* mr_worker.d */,
+				E85D2821272A9D0000150F1E /* mr_worker.cc */,
+				E85D2822272A9D0000150F1E /* test-lab2-part1-e.sh */,
+				E85D2823272A9D0000150F1E /* test-lab2-part2-b.sh */,
+				E85D2824272A9D0000150F1E /* inode_manager.d */,
+				E85D2825272A9D0000150F1E /* test-lab2-part1-g.c */,
+				E85D2826272A9D0000150F1E /* gettime.d */,
+				E85D2827272A9D0000150F1E /* fuse.cc */,
+				E85D2828272A9D0000150F1E /* extent_server.o */,
+				E85D2829272A9D0000150F1E /* part1_tester.d */,
+				E85D282A272A9D0000150F1E /* extent_smain.d */,
+				E85D282B272A9D0000150F1E /* extent_server.h */,
+				E85D282C272A9D0000150F1E /* gettime.cc */,
+				E85D282D272A9D0000150F1E /* extent_server.cc */,
+				E85D282E272A9D0000150F1E /* mr_coordinator.o */,
+				E85D282F272A9D0000150F1E /* extent_smain.cc */,
+				E85D2830272A9D0000150F1E /* chfs_client.h */,
+				E85D2831272A9D0000150F1E /* test-lab2-part1-b.pl */,
+				E85D2832272A9D0000150F1E /* chfs_client.o */,
+				E85D2833272A9D0000150F1E /* demo_client.cc */,
+				E85D2834272A9D0000150F1E /* demo_protocol.h */,
+				E85D2835272A9D0000150F1E /* mr_sequential */,
+				E85D2836272A9D0000150F1E /* extent_client.d */,
+				E85D2837272A9D0000150F1E /* grade.sh */,
+				E85D2838272A9D0000150F1E /* mr_sequential.o */,
+				E85D2839272A9D0000150F1E /* fuse.o */,
+				E85D283A272A9D0000150F1E /* tprintf.h */,
+				E85D283B272A9D0000150F1E /* part1_tester */,
+				E85D283C272A9D0000150F1E /* test-lab2-part1-g */,
+				E85D283D272A9D0000150F1E /* test-lab2-part1-c.pl */,
+				E85D283E272A9D0000150F1E /* demo_server.d */,
+				E85D283F272A9D0000150F1E /* inode_manager.cc */,
+				E85D2840272A9D0000150F1E /* README.md */,
+				E85D2841272A9D0000150F1E /* demo_client.d */,
+				E85D2842272A9D0000150F1E /* extent_protocol.h */,
+				E85D2843272A9D0000150F1E /* mr_worker.o */,
+				E85D2844272A9D0000150F1E /* lang */,
+				E85D2845272A9D0000150F1E /* demo_client */,
+				E85D2846272A9D0000150F1E /* chfs_client */,
+				E85D2847272A9D0000150F1E /* extent_smain.o */,
+				E85D2848272A9D0000150F1E /* part1_tester.o */,
+				E85D2849272A9D0000150F1E /* extent_server.d */,
+				E85D284A272A9D0000150F1E /* mr_sequential.cc */,
+				E85D284B272A9D0000150F1E /* test-lab2-part1-a.pl */,
+				E85D284C272A9D0000150F1E /* inode_manager.h */,
+				E85D284D272A9D0000150F1E /* inode_manager.o */,
+				E85D284E272A9D0000150F1E /* gettime.h */,
+				E85D284F272A9D0000150F1E /* gettime.o */,
+				E85D2850272A9D0000150F1E /* chfs_client.cc */,
+				E85D2851272A9D0000150F1E /* test-lab2-part1-f.sh */,
+				E85D2852272A9D0000150F1E /* test-lab2-part2-a.sh */,
+				E85D2853272A9D0000150F1E /* extent_client.o */,
+				E85D2854272A9D0000150F1E /* extent_client.h */,
+				E85D2855272A9D0000150F1E /* novels */,
+				E85D2856272A9D0000150F1E /* stop.sh */,
+				E85D2857272A9D0000150F1E /* chfs_client.d */,
+				E85D2858272A9D0000150F1E /* .git */,
+				E85D2859272A9D0000150F1E /* .vscode */,
+				E85D285A272A9D0000150F1E /* rpc */,
+				E85D285B272A9D0000150F1E /* extent_server */,
+				E85D285C272A9D0000150F1E /* mr_coordinator */,
+				E85D285D272A9D0000150F1E /* mr_coordinator.d */,
+				E85D285E272A9D0000150F1E /* mr_coordinator.cc */,
+				E85D285F272A9D0000150F1E /* fuse.d */,
+				E85D2860272A9D0000150F1E /* start.sh */,
+				E85D2861272A9D0000150F1E /* mr_sequential.d */,
+				E85D2862272A9D0000150F1E /* chfs1 */,
+			);
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXLegacyTarget section */
+		E85D2816272A9D0000150F1E /* cse-lab */ = {
+			isa = PBXLegacyTarget;
+			buildArgumentsString = "$(ACTION)";
+			buildConfigurationList = E85D2863272A9D0000150F1E /* Build configuration list for PBXLegacyTarget "cse-lab" */;
+			buildPhases = (
+			);
+			buildToolPath = /usr/bin/make;
+			buildWorkingDirectory = "/Users/kangyixiao/EchoFile/coding/CSE/cse-lab";
+			dependencies = (
+			);
+			name = "cse-lab";
+			passBuildSettingsInEnvironment = 1;
+			productName = "cse-lab";
+		};
+/* End PBXLegacyTarget section */
+
+/* Begin PBXProject section */
+		E85D2812272A9D0000150F1E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+			};
+			buildConfigurationList = E85D2815272A9D0000150F1E /* Build configuration list for PBXProject "cse-lab" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = E85D2811272A9D0000150F1E;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				E85D2816272A9D0000150F1E /* cse-lab */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin XCBuildConfiguration section */
+		E85D2813272A9D0000150F1E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				COPY_PHASE_STRIP = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx10.6;
+			};
+			name = Debug;
+		};
+		E85D2814272A9D0000150F1E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				COPY_PHASE_STRIP = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				SDKROOT = macosx10.6;
+			};
+			name = Release;
+		};
+		E85D2864272A9D0000150F1E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				DEBUGGING_SYMBOLS = YES;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "cse-lab";
+			};
+			name = Debug;
+		};
+		E85D2865272A9D0000150F1E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "cse-lab";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		E85D2815272A9D0000150F1E /* Build configuration list for PBXProject "cse-lab" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E85D2813272A9D0000150F1E /* Debug */,
+				E85D2814272A9D0000150F1E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E85D2863272A9D0000150F1E /* Build configuration list for PBXLegacyTarget "cse-lab" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E85D2864272A9D0000150F1E /* Debug */,
+				E85D2865272A9D0000150F1E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = E85D2812272A9D0000150F1E /* Project object */;
+}
