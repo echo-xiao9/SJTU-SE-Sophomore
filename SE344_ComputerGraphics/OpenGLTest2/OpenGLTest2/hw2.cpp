@@ -7,17 +7,10 @@
 #include <algorithm>
 #include <fstream>
 #include <cmath>
+#include "stdlib.h"
+#include "const.h"
 using namespace::std;
 
-const float errNum= -10000;
-const int BUF_SIZE=800;
-const float REC_WID=10;
-const float REC_LEN = 180;
-const float PI = 3.14159265;
-bool mouseLeftDown;
-bool mouseRightDown;
-float mouseX, mouseY;
-int type=0;
 struct Color {
     float R;
     float G;
@@ -337,9 +330,44 @@ int getFileLineNum(string filename){
     return n;
 }
 
+void readString(string filename,ifstream &file){
+    ofstream outfile;
+    outfile.open(filename);
+    cout << "Writing to the file" << endl;
+    if(type==0)outfile << overlapping << endl;
+    else if(type==1)outfile << intersecting << endl;
+    outfile.close();
+    file=ifstream(filename);
+}
+
+
 void drawTriangle(string filename) {
     //    std::ifstream file("overlapping.txt");
-    std::ifstream file(filename);
+//   if(!getenv)
+    ifstream file;
+    if(type==0){
+    
+        if(getenv("overlapping.txt"))file=ifstream(getenv("overlapping.txt"));
+        else {
+            readString( filename,  file);
+        }
+    }else if(type==1){
+        if(getenv("intersecting.txt"))file=ifstream(getenv("intersecting.txt"));
+        else readString( filename,  file);
+    }
+    
+//       if (!getenv(filename)){
+//           cout<<filename<<" doesn't exist!"<<endl;
+//           return;
+//       }
+//      ifstream file(getenv(filename));
+//        int x;
+//        arq>>x;
+//
+//
+//    std::ifstream file(filename);
+
+    
     std::vector<Shape*> shapes;
     vector<Vertex>vct;
     int num;
@@ -486,7 +514,7 @@ void display() {
         drawRectangle3();
     }
     else{
-        cout<<"index= "<<index<<" index can only be 0,1,2"<<endl;
+        cout<<"type= "<<type<<" type can only be 0,1,2,3,4"<<endl;
     }
 }
 

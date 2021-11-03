@@ -19,6 +19,8 @@
 		E8840E572706A3210023EA73 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8840E562706A3210023EA73 /* IOKit.framework */; };
 		E8840E592706A32F0023EA73 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8840E582706A32F0023EA73 /* Foundation.framework */; };
 		E8840E5B2706A35F0023EA73 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8840E5A2706A35F0023EA73 /* CoreGraphics.framework */; };
+		E8B0831A272C1717005DEEF9 /* intersecting.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = E8B08319272C1717005DEEF9 /* intersecting.txt */; };
+		E8B0831C272C1732005DEEF9 /* overlapping.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = E8B0831B272C1732005DEEF9 /* overlapping.txt */; };
 		E8CFE8AE2725161E00E0F327 /* beanScan.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E8CFE8AD2725161E00E0F327 /* beanScan.cpp */; };
 		E8CFE8B02725187000E0F327 /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8CFE8AF2725187000E0F327 /* GLUT.framework */; };
 		E8D88C6E272901B300F04853 /* try.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E8D88C6D272901B300F04853 /* try.cpp */; };
@@ -27,12 +29,14 @@
 /* Begin PBXCopyFilesBuildPhase section */
 		E822F9B227054A43003EA3EC /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = /usr/share/man/man1/;
-			dstSubfolderSpec = 0;
+			buildActionMask = 12;
+			dstPath = "";
+			dstSubfolderSpec = 16;
 			files = (
+				E8B0831C272C1732005DEEF9 /* overlapping.txt in CopyFiles */,
+				E8B0831A272C1717005DEEF9 /* intersecting.txt in CopyFiles */,
 			);
-			runOnlyForDeploymentPostprocessing = 1;
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
@@ -408,7 +412,10 @@
 		E8840E562706A3210023EA73 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		E8840E582706A32F0023EA73 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		E8840E5A2706A35F0023EA73 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		E8891F53272642A000828EDE /* Files */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Files; sourceTree = "<group>"; };
+		E8B08318272C16CC005DEEF9 /* Files */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Files; sourceTree = "<group>"; };
+		E8B08319272C1717005DEEF9 /* intersecting.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = intersecting.txt; sourceTree = "<group>"; };
+		E8B0831B272C1732005DEEF9 /* overlapping.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = overlapping.txt; sourceTree = "<group>"; };
+		E8B0831D272C1E60005DEEF9 /* const.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = const.h; sourceTree = "<group>"; };
 		E8CFE8AD2725161E00E0F327 /* beanScan.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = beanScan.cpp; sourceTree = "<group>"; };
 		E8CFE8AF2725187000E0F327 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = System/Library/Frameworks/GLUT.framework; sourceTree = SDKROOT; };
 		E8D88C6D272901B300F04853 /* try.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = try.cpp; sourceTree = "<group>"; };
@@ -436,7 +443,9 @@
 		E822F9AB27054A43003EA3EC = {
 			isa = PBXGroup;
 			children = (
-				E8891F53272642A000828EDE /* Files */,
+				E8B0831B272C1732005DEEF9 /* overlapping.txt */,
+				E8B08319272C1717005DEEF9 /* intersecting.txt */,
+				E8B08318272C16CC005DEEF9 /* Files */,
 				E822F9BE27054B2C003EA3EC /* Externals */,
 				E822F9B627054A43003EA3EC /* OpenGLTest2 */,
 				E822F9B527054A43003EA3EC /* Products */,
@@ -461,6 +470,7 @@
 				E822F9B727054A43003EA3EC /* main.cpp */,
 				E8D88C6D272901B300F04853 /* try.cpp */,
 				E8CFE8AD2725161E00E0F327 /* beanScan.cpp */,
+				E8B0831D272C1E60005DEEF9 /* const.h */,
 			);
 			path = OpenGLTest2;
 			sourceTree = "<group>";
