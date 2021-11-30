@@ -1,6 +1,6 @@
 # SJTU-SE
 
-Code for all software engineering course assignments.
+Code for all software engineering sophomore year course assignments.
 
 | Course                                                       |
 | ------------------------------------------------------------ |
